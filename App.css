@@ -1,0 +1,300 @@
+html, body, #root, .app {
+  min-height: 100%;
+  display: flex;
+  background-color: #F8FAFC;
+}
+.App-body {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-grow: 1; 
+  height: 70vh;
+  margin: 0 auto;
+}
+.albums-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 6px;
+  padding-right: 6px;
+  position: relative;
+  z-index: 10;
+}
+.album-grid {
+    
+}
+.album-card {
+margin: 10px;
+min-width: 300px;
+min-height: 300px;
+  max-width: 600px;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  background-color: #F9FAFB;
+  padding-top: 0.5rem;
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  position: relative;
+
+  /* make it a flex container */
+  display: flex;
+  flex-direction: column; /* children will stack vertically */
+}
+.album-text {
+  background-color: #F9FAFB; /* Adjust the color as needed */
+  padding-top: 0.5rem; /* Adjust the value as needed */
+  border-bottom-left-radius: 0.375rem; /* Adjust the border radius values for specific corners if needed */
+  border-bottom-right-radius: 0.375rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.04); /* Adjust the shadow values as needed */
+  max-width: 600px;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+}
+.bell {
+  margin-right: 6px;
+  margin-left: 6px;
+}
+.dropdown {
+  margin-top: 2px;
+  margin-right: 4px;
+  position: absolute;
+  width: 375px;
+  background-color: rgba(255, 255, 255, 1.0); /* RGBA - red, green, blue, alpha (opacity) */
+  color: 000;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 60vh;  /* set a max height for the dropdown */
+  overflow-y: auto;  /* make it scrollable */
+  z-index: 1000;  /* make sure it floats above other elements */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+  ;
+}
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+.notification:hover {
+  display: flex;
+  align-items: center;
+  background-color: #eff9ff;
+}
+.notification-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+  margin-bottom: 2px; 
+}
+
+.notification-text {
+  font-size: 14px;
+  font-weight: 400;
+  display: inline; /* Add this line to make the text inline */
+}
+.notification-item {
+  padding: 8px;
+  border-bottom: 1px solid #cccccc92;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+.close-notifications-item {
+  float: right;
+  padding: 8px;
+}
+.view-notifications {
+  float: left;
+  padding: 8px;
+}
+.dapp-button {
+  margin-right: 12px;
+  margin-left: 12px;
+  position: relative;
+}
+
+.page-content {
+  width: 80vw;
+  flex-grow: 1;
+  margin: 0 auto;
+  padding: 1em;
+  justify-content: center;
+}
+
+.navContainer {
+  width: 80vw;
+  display: flex;
+  justify-content: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  background: #263040;
+  color: #fff;
+  min-height: 72px;
+  padding: 1em;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar-logo {
+  height: 24px;
+  align-items: center;
+  padding-top: 2px
+}
+
+.navbar-search {
+  margin-right: 16px;
+  margin-left: 16px;
+  background-color: #434854;
+  width: 300px;
+  max-width: 100%;
+  color: #fff;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  border: none;
+  font-size: var(--text-md);
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: width 0.3s ease-in-out, box-shadow .15s ease-in-out;
+  background-clip: padding-box;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.navbar-search.full-width {
+  width: 100%;
+}
+
+.navbar-search:focus {
+  outline: none;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+  min-width: 50px;
+  white-space: nowrap;
+}
+
+.navbar-items a {
+  margin-left: 10px;
+  margin-right: 8px;
+}
+
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30vh;
+  width: 100vw;
+  flex-grow: 1;
+  margin: 0 auto;
+  padding-left: 10em;
+  padding-right: 10em;
+}
+
+.footer-logo {
+  height: 32px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: block;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a {
+  margin-top: 5px;
+}
+
+.powered-by {
+  text-align: right;
+  float: bottom;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Below are the CSS changes for responsive design */
+
+@media (max-width: 768px) { 
+  .dapp-button {
+    display: none; /* Hides Dapp connector element */
+  }
+
+  .navbar-logo {
+    height: 16px;
+    align-items: center;
+    padding-top: 2px
+  }
+  
+  
+  .page-content, .navContainer, .navbar {
+    width: 100vw; /* Less margin */
+  }
+    
+  .footer {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 1em;
+  }
+}
