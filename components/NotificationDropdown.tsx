@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BellIcon, XIcon } from '@primer/octicons-react';
 import { Notification } from './types';
@@ -11,6 +11,9 @@ type Props = {
 
 const NotificationDropdown = ({ notifications, buttonRef }: Props) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false); // Add this line
+
+  
 
   const handleClickOutside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && buttonRef.current !== event.target) {
@@ -31,7 +34,7 @@ const NotificationDropdown = ({ notifications, buttonRef }: Props) => {
         right: `${window.innerWidth - buttonRef.current.getBoundingClientRect().right}px`,
         top: `${buttonRef.current.getBoundingClientRect().top + buttonRef.current.getBoundingClientRect().height}px`,
       } : {}}>
-        {notifications.map((notification, index) => {
+        {notifications && notifications.map((notification, index) => {
           let actionText;
           switch (notification.type) {
             case 'Share':
