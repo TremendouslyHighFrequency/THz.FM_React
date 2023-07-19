@@ -8,7 +8,7 @@ import {
 import { sha256 } from '@noble/hashes/sha256';
 import { utf8ToBytes } from '@noble/hashes/utils';
 
-(async () => {
+export async function MintNFT() {
   if (await ergoConnector.nautilus.connect()) {
     const height = await ergo.get_current_height();
     const recipient = '9hq9HfNKnK1GYHo8fobgDanuMMDnawB9BPw5tWTga3H91tpnTga';
@@ -52,5 +52,4 @@ import { utf8ToBytes } from '@noble/hashes/utils';
 
     console.log(txId);
   }
-})();
-
+}

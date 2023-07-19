@@ -9,6 +9,7 @@ import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 import MyDocumentList from './components/MyDocumentList';
 import THZIcon from './assets/Terahertz.png';
+import { MintNFT } from './components/MintNFT';
 
 
 function App() {
@@ -22,6 +23,14 @@ function App() {
       .then(notificationData => setNotifications(notificationData))
       .catch(error => console.error(`Error fetching data: ${error}`));
   }, []);
+
+  const handleButtonClick = async () => {
+    try {
+      await MintNFT();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 async function purchase() {
   // requests wallet access
@@ -61,14 +70,16 @@ async function purchase() {
         <div className="App-header" style={{ minHeight: '72px' }}>
           <Navbar loggedUser={null} notifications={notifications} />
         </div>
-        <body>
+        <div>
           <div className="App-body">
             <div className="page-content">
+            <div className="" id="downloadButton"></div>
+            <button onClick={handleButtonClick}>Mint NFT</button>
               <MyDocumentList />
               <div id="comment-container"></div>
             </div>
          </div>
-        </body>
+        </div>
 
         <div className="App-footer">
           <div className="footer">
