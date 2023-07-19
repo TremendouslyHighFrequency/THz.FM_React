@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { BellIcon, PersonIcon, VersionsIcon } from '@primer/octicons-react';
+import { BellIcon, PersonIcon, VersionsIcon, RocketIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
 import THZLogo from '../assets/THZFM_logo.png';
@@ -42,11 +42,13 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
           <div className="dapp-button">
             <ErgoDappConnector color="cyan" />
           </div>
+          
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
             <BellIcon size={24} />
           </button>
           {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} />}
           <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
+          <a href="/collection"><RocketIcon size={24} /></a>  
           <a href="/me">
             {userImage ? (
               <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
@@ -54,6 +56,7 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
               <PersonIcon size={24} />
             )}
           </a>
+         
         </div>
       </div>
     </div>
