@@ -86,9 +86,11 @@ async function purchase() {
         <div>
         
  <div className="App-body">
-           
+           <div className="main-container">
+           {links}
+           </div>
             <div className="page-content">
-            {links}
+            
             <Routes>
   {navItems.map(item => (
     <Route key={item.route} path={item.route} element={React.createElement(item.component)} />

@@ -130,7 +130,9 @@ min-height: 300px;
   margin-left: 12px;
   position: relative;
 }
-
+.main-container {
+  margin-right: 200px;  /* Adjust as needed */
+}
 .page-content {
   width: 80vw;
   flex-grow: 1;
