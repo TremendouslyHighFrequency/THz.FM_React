@@ -1,45 +1,35 @@
-import React, { useState } from 'react';
-import { useFrappeGetDocList } from 'frappe-react-sdk';
-import { ReleaseItem } from '../types'; // Change to ReleaseItem type
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const Tracks = () => {
-  const [pageIndex, setPageIndex] = useState<number>(0)
-  const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , { // Fetch 'Release' DocType
-      fields: ["title", "release_tracks"], // Include 'release_tracks' field
-      limit_start: pageIndex,
-      limit: 10,
-      orderBy: {
-          field: "creation",
-          order: 'desc'
-      }
-  });
+  const [tracks, setTracks] = useState([]);
 
-  if (isValidating) {
-      return <>Loading</>
-  }
-  if (error) {
-      return <>{JSON.stringify(error)}</>
-  }
-  if (data && Array.isArray(data)) {
-      return (
-          <div className="albums-index">
-              {
-                  data.flatMap(({release_tracks}, i) => ( // Use flatMap to create a flat array of track divs
-                      release_tracks && release_tracks.map((track, j) => (
-                          <div key={`${i}-${j}`} className="track-card" style={{backgroundImage: `url(${track.artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                              <div className="track-text">
-                                  <h4>{track.title}</h4>
-                                  <p>{track.track_artist}</p>
-                              </div>
-                          </div>
-                      ))
-                  ))
-              }
-              <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
-          </div>
-      )
-  }
-  return null
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        const userResponse = await axios.get('https://thz.fm/api/method/frappe.auth.get_logged_user', {withCredentials: true});
+        const loggedUser = userResponse.data.message;
+
+        const trackResponse = await axios.get(`https://thz.fm/api/resource/Track?fields=["track_title","track_number","parent","track_artist","remixer","track_type","attach_wav","attach_mp3","price_usd","price_erg","label","artwork","route","published"]&filters=[["Track","owner","=","${loggedUser}"]]&parent=Release`);
+        setTracks(trackResponse.data.data);
+      } catch (error) {
+        console.error(`Error fetching data: ${error}`);
+      }
+    };
+
+    fetchTracks();
+  }, []);
+
+  return (
+    <div>
+      {tracks.map((track, index) => (
+        <div key={index}>
+          <Link to={`/releases/${track.parent}/tracks/${track.track_number}`}>{track.track_title}</Link>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Tracks;
