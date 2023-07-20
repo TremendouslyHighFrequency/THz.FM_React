@@ -27,6 +27,16 @@ html, body, #root, .app {
 .album-grid {
     
 }
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: fixed;
+  z-index: 10;
+}
 .album-card {
 margin: 10px;
 min-width: 300px;
