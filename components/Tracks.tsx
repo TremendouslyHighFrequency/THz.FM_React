@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
-import { TrackItem } from '../types';
+import { ReleaseItem } from '../types'; // Change to ReleaseItem type
 
 const Tracks = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
-  const { data, error, isValidating } = useFrappeGetDocList<TrackItem>('Track' , {
-      fields: ["title", "track_artist","artwork"],
+  const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , { // Fetch 'Release' DocType
+      fields: ["release_tracks"], // Include 'release_tracks' field
       limit_start: pageIndex,
       limit: 10,
-      parent: "Release",
       orderBy: {
           field: "creation",
           order: 'desc'
@@ -22,19 +21,21 @@ const Tracks = () => {
       return <>{JSON.stringify(error)}</>
   }
   if (data && Array.isArray(data)) {
-         return (
+      return (
           <div className="albums-index">
-                  {
-                      data.map(({title, track_artist, artwork}, i) => (
-                          <div key={i} className="album-card" style={{backgroundImage: `url(${artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                          <div className="album-text">
-                                  <h4>{title}</h4>
-                                  <p>{track_artist}</p>
+              {
+                  data.flatMap(({release_tracks}, i) => ( // Use flatMap to create a flat array of track divs
+                      release_tracks && release_tracks.map((track, j) => (
+                          <div key={`${i}-${j}`} className="track-card" style={{backgroundImage: `url(${track.artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                              <div className="track-text">
+                                  <h4>{track.title}</h4>
+                                  <p>{track.track_artist}</p>
                               </div>
                           </div>
                       ))
-                  }
-                  <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
+                  ))
+              }
+              <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
           </div>
       )
   }
