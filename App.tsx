@@ -1,15 +1,26 @@
+//React Imports
 import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+//Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
+
+//Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
 import { SHA256 } from 'crypto-js';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
+import { MintNFT } from './components/MintNFT';
+
+//App Requirement Imports
 import './App.css';
 import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 import MyDocumentList from './components/MyDocumentList';
 import THZIcon from './assets/Terahertz.png';
-import { MintNFT } from './components/MintNFT';
+
+// SideNav Imports
+import SideNav from './components/FrontSideNav';
 
 
 function App() {
@@ -63,24 +74,30 @@ async function purchase() {
   }
 };
 
+  const { navItems, links } = SideNav();
 
   return (
+    <Router>
     <div className="App">
       <FrappeProvider url='https://thz.fm'>
         <div className="App-header" style={{ minHeight: '72px' }}>
           <Navbar loggedUser={null} notifications={notifications} />
         </div>
         <div>
-          <div className="App-body">
+        
+ <div className="App-body">
+            {links}
             <div className="page-content">
-            <div className="" id="downloadButton"></div>
-            <button onClick={handleButtonClick}>Mint NFT</button>
-              <MyDocumentList />
+            <Routes>
+  {navItems.map(item => (
+    <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
+  ))}
+</Routes>
               <div id="comment-container"></div>
             </div>
          </div>
         </div>
-
+    
         <div className="App-footer">
           <div className="footer">
             <div>
@@ -94,6 +111,7 @@ async function purchase() {
         </div>
       </FrappeProvider>
     </div>
+    </Router>
   );
 }
 
