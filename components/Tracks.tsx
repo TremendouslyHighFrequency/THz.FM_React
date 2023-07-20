@@ -24,7 +24,7 @@ const Tracks = () => {
          return (
           <div className="albums-index">
                   {
-                      data.map(({title, track_artist, track_artwork}, i) => (
+                      data.map(({title, track_artist, artwork}, i) => (
                           <div key={i} className="album-card" style={{backgroundImage: `url(${artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
