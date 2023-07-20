@@ -136,7 +136,9 @@ min-height: 300px;
   position: relative;
 }
 .main-container {
-  margin-right: 120px;  /* Adjust as needed */
+  margin-right: 10vw;  /* Adjust as needed */
+  padding-top: 1em;
+  margin-left: 10vw;
   height: 100%;
   width: 80px;
 }
