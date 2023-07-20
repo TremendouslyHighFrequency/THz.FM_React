@@ -5,7 +5,7 @@ import { ReleaseItem } from '../types'; // Change to ReleaseItem type
 const Tracks = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , { // Fetch 'Release' DocType
-      fields: ["release_tracks"], // Include 'release_tracks' field
+      fields: ["title", "release_tracks"], // Include 'release_tracks' field
       limit_start: pageIndex,
       limit: 10,
       orderBy: {
