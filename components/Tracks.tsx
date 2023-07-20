@@ -33,6 +33,7 @@ const Tracks = () => {
                               </div>
                           </div>
                       ))
+                      console.log; // Log the array of track divs
                   ))
               }
               <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
