@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
-import { TrackItem } from '../types';
+import { ReleaseItem } from '../types';
 
 const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
-  const { data, error, isValidating } = useFrappeGetDocList<TrackItem>('Release' , {
+  const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {
       fields: ["title", "release_artist","release_artwork"],
       limit_start: pageIndex,
       limit: 10,
