@@ -5,6 +5,7 @@ import axios from 'axios';
 // Import your components
 import Artists from './Artists';
 import Publishers from './Publishers';
+import Labels from './Labels';
 import Releases from './Releases';
 import Tracks from './Tracks';
 import Events from './Events';
@@ -26,6 +27,7 @@ type SidebarData = {
 const routeComponents: Record<string, React.ComponentType<any>> = {
   '/artists': Artists,
   '/publishers': Publishers,
+  '/labels': Labels,
   '/releases': Releases,
   '/tracks': Tracks,
   '/events': Events,
