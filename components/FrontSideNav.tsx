@@ -32,7 +32,7 @@ const routeComponents: Record<string, React.ComponentType<any>> = {
   '/tracks': Tracks,
   '/events': Events,
   '/venues': Venues,
-  '/marketplace': Marketplace,
+  '/z': Marketplace,
   '/dashboard': Dashboard,
   // add the route for labels and the other routes here...
 };
