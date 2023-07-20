@@ -8,6 +8,7 @@ const Tracks = () => {
       fields: ["title", "track_artist","artwork"],
       limit_start: pageIndex,
       limit: 10,
+      parent: "Release",
       orderBy: {
           field: "creation",
           order: 'desc'
