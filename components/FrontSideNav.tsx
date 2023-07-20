@@ -39,7 +39,7 @@ const SideNav = () => {
   const [navItems, setNavItems] = useState<SidebarItem[]>([]);
 
   useEffect(() => {
-    axios.get('https://thz.fm/api/Website%20Sidebar/Main%20Website%20Menu/')
+    axios.get('https://thz.fm/api/resource/Website%20Sidebar/Main%20Website%20Menu')
       .then(response => {
         // Extract the sidebar_items array from the data
         const sidebarData: SidebarData = response.data.data;
