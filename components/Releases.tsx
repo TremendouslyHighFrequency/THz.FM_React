@@ -8,7 +8,7 @@ const Releases = () => {
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {
       fields: ["title", "release_artist","release_artwork"],
       limit_start: pageIndex,
-      limit: 10,
+      limit: 50,
       orderBy: {
           field: "creation",
           order: 'desc'
