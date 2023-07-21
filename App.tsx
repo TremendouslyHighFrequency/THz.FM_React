@@ -109,8 +109,6 @@ async function purchase() {
                 <FooterNav />
               </div>
             </div>
-
-            <div className="powered-by">Powered by Music</div>
           </div>
         </div>
       </FrappeProvider>

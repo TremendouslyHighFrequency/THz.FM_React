@@ -50,6 +50,9 @@ const FooterNav = () => {
         <div className="footer-link"><a target="_blank" key={item.route} href={item.url}>{item.title}</a></div>
       ))}
     </div>
+    <div className="footer-right">
+    <div className="powered-by">Powered by Music</div>
+    </div>
   );
 };
 
