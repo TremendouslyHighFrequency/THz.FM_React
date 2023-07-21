@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import THZIcon from '../assets/Terahertz.png';
 
 type SidebarItem = {
   title: string;
