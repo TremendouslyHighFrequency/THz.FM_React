@@ -105,7 +105,6 @@ async function purchase() {
         <div className="App-footer">
           <div className="footer">
             <div>
-              <img className="footer-logo" src={THZIcon} alt="logo" />
               <div className="footer-links">
                 <FooterNav />
               </div>

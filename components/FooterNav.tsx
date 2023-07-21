@@ -44,6 +44,7 @@ const FooterNav = () => {
 
   return (
     <div className="footer-nav">
+        <img className="footer-logo" src={THZIcon} alt="logo" />
       {navItems.map(item => (
         <div className="footer-link"><a target="_blank" key={item.route} href={item.url}>{item.title}</a></div>
       ))}
