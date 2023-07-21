@@ -16,7 +16,7 @@ type SidebarData = {
 };
 
 // Create a mapping of routes to components
-const routeComponents: Record<string, React.ComponentType<any>> = {
+const routeUrls: Record<string, string> = {
   '/blog': 'https://thz.fm/blog',
   '/about': 'https://thz.fm/about',
   '/roadmap': 'https://thz.fm/roadmap',
@@ -58,5 +58,5 @@ const FooterNav = () => {
   );
 
 export default FooterNav;
-export { SidebarItem, routeComponents };
+export { SidebarItem, routeUrls };
 
