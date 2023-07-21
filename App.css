@@ -349,7 +349,9 @@ min-height: 300px;
   .side-nav {
     display: none;
   }
-
+  .side-navContainer {
+    display: none;
+  }
   .navbar-logo {
     height: 16px;
     align-items: center;
