@@ -31,6 +31,7 @@ const Releases = () => {
                                   <p>{release_artist}</p>
                               </div>
                           </div>
+                          <Link to={`/releases/${release.title}`}>View Track</Link>
                       ))
                   }
                   <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
