@@ -22,7 +22,7 @@ const routeUrls: Record<string, string> = {
   '/roadmap': 'https://thz.fm/roadmap',
   '/career-application': 'https://thz.fm/career-application',
   '/creator-application': 'https://thz.fm/creator-application',
-  '/legal': 'https://thz.fmlegal',
+  '/legal': 'https://thz.fm/legal',
   '/github': 'https://github.com/TremendouslyHighFrequency',
   '/dao': 'https://thz.fm/dao',
   '/daw': 'https://thz.fm/daw',
