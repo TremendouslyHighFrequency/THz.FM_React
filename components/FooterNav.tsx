@@ -17,15 +17,15 @@ type SidebarData = {
 
 // Create a mapping of routes to components
 const routeComponents: Record<string, React.ComponentType<any>> = {
-  '/blog': Blog,
-  '/about': About,
-  '/roadmap': Roadmap,
-  '/career-application': Careers,
-  '/creator-application': Content-Creators,
-  '/legal': Legal,
-  '/github': Github,
-  '/dao': DAO,
-  '/daw': DAW,
+  '/blog': 'https://thz.fm/blog',
+  '/about': 'https://thz.fm/about',
+  '/roadmap': 'https://thz.fm/roadmap',
+  '/career-application': 'https://thz.fm/career-application',
+  '/creator-application': 'https://thz.fm/creator-application',
+  '/legal': 'https://thz.fmlegal',
+  '/github': 'https://github.com/TremendouslyHighFrequency',
+  '/dao': 'https://thz.fm/dao',
+  '/daw': 'https://thz.fm/daw',
   // add the route for labels and the other routes here...
 };
 
