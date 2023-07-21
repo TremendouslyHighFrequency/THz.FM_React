@@ -193,7 +193,8 @@ min-height: 300px;
   flex-grow: 1;
   margin: 0 auto;
   padding: 1em;
-  justify-content: center;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .navContainer {
