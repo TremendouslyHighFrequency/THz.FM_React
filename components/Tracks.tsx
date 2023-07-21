@@ -37,7 +37,7 @@ const Tracks = () => {
           </div>
         </div>
       ))}
-      <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
+      <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
     </div>
   );
 };
