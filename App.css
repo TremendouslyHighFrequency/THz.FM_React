@@ -44,22 +44,22 @@ html, body, #root, .app {
 .footer-nav {
   background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
-  color: #4c5a67;
-  cursor: auto;
-  display: inline;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
-  font-size: 14px;
-  font-weight: 500;
-  height: auto;
-  line-height: 28px;
-  text-align: left;
-  text-decoration: none;
-  text-decoration-line: none;
   width: auto;
   -webkit-font-smoothing: antialiased;
 }
 .footer-link {
   margin-right: 16px;
+  color: #4c5a67;
+  cursor: auto;
+  display: inline;
+  font-size: 14px;
+  font-weight: 500;
+  height: auto;
+  line-height: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+  text-align: left;
+  text-decoration: none;
+  text-decoration-line: none;
 }
 .album-card {
 margin: 10px;
