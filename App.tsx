@@ -21,6 +21,7 @@ import THZIcon from './assets/Terahertz.png';
 
 // SideNav Imports
 import SideNav from './components/FrontSideNav';
+import FooterNav from './components/FooterNav';
 
 
 function App() {
@@ -106,6 +107,7 @@ async function purchase() {
             <div>
               <img className="footer-logo" src={THZIcon} alt="logo" />
               <div className="footer-links">
+                <FooterNav />
               </div>
             </div>
 

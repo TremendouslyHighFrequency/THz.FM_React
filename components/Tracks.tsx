@@ -34,7 +34,7 @@ const Tracks = () => {
             <h4>{track.track_title}</h4>
             <p>{track.track_artist}</p>
           </div>
-          <Link to={`/releases/${track.parent}/tracks/${track.track_number}`}>View Track</Link>
+          <Link to={`/releases/${track.parent}/tracks/${track.title}`}>View Track</Link>
         </div>
       ))}
       <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
