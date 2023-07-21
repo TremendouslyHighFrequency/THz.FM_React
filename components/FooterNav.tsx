@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-// Import your components
-
 
 type SidebarItem = {
   title: string;
@@ -15,7 +11,6 @@ type SidebarData = {
   sidebar_items: SidebarItem[];
 };
 
-// Create a mapping of routes to URLs
 const routeUrls: Record<string, string> = {
   '/blog': 'https://thz.fm/blog',
   '/about': 'https://thz.fm/about',
@@ -35,12 +30,10 @@ const FooterNav = () => {
   useEffect(() => {
     axios.get('https://thz.fm/api/resource/Website%20Sidebar/Footer%20Nav')
       .then(response => {
-        // Extract the sidebar_items array from the data
         const sidebarData: SidebarData = response.data.data;
-        // Transform the sidebar items to include the corresponding url
         const newNavItems = sidebarData.sidebar_items.map(item => ({
           ...item,
-          url: routeUrls[item.route],
+          url: routeUrls[item.route] || item.route, // if the route is not in routeUrls, use the route itself
         }));
         setNavItems(newNavItems);
       })
@@ -60,4 +53,3 @@ const FooterNav = () => {
 
 export default FooterNav;
 export { SidebarItem, routeUrls };
-
