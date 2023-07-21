@@ -8,6 +8,7 @@ import axios from 'axios';
 type SidebarItem = {
   title: string;
   route: string;
+  url: string;
 };
 
 type SidebarData = {
@@ -36,10 +37,10 @@ const FooterNav = () => {
       .then(response => {
         // Extract the sidebar_items array from the data
         const sidebarData: SidebarData = response.data.data;
-        // Transform the sidebar items to include the corresponding component
+        // Transform the sidebar items to include the corresponding url
         const newNavItems = sidebarData.sidebar_items.map(item => ({
           ...item,
-          component: routeUrls[item.route],
+          url: routeUrls[item.route],
         }));
         setNavItems(newNavItems);
       })
