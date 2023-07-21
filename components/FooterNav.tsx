@@ -49,14 +49,13 @@ const FooterNav = () => {
       });
   }, []);
 
-  return {navItems, links: (
+  return (
     <div className="footer-nav">
       {navItems.map(item => (
-        <Link key={item.route} to={item.route}>{item.title}</Link>
+        <a key={item.route} href={item.url}>{item.title}</a>
       ))}
     </div>
-  )};
-};
+  );
 
 export default FooterNav;
 export { SidebarItem, routeComponents };
