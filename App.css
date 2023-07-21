@@ -39,8 +39,28 @@ html, body, #root, .app {
   padding-right: 15px;
   padding-left: 15px;
   font-size: 16px;
-  color: #4c5a67
-  
+  color: #4c5a67;
+}
+.footer-nav {
+  box-sizing: border-box;
+  color: rgb(76, 90, 103);
+  display: block;
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+  font-size: 16px;
+  font-weight: 400;
+  height: 92.796875px;
+  line-height: 32px;
+  max-width: 50%;
+  padding-bottom: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 12.8px;
+  position: relative;
+  text-align: left;
+  width: 660px;
 }
 .album-card {
 margin: 10px;
