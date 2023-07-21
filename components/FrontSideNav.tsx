@@ -60,7 +60,7 @@ const SideNav = () => {
   return {navItems, links: (
     <div className="side-nav">
       {navItems.map(item => (
-        <Link key={item.route} to={item.route}>{item.title}</Link>
+        <li><Link key={item.route} to={item.route}>{item.title}</Link></li>
       ))}
     </div>
   )};

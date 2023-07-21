@@ -58,6 +58,8 @@ html, body, #root, .app {
   transition-timing-function: ease-in-out;
   width: 143px;
   -webkit-font-smoothing: antialiased;
+  display: block;
+
 }
 .footer-nav {
   background-color: rgba(0, 0, 0, 0);
