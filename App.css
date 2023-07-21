@@ -46,6 +46,8 @@ html, body, #root, .app {
   box-sizing: border-box;
   width: auto;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: space-between;
 }
 .footer-link {
   margin-right: 16px;
