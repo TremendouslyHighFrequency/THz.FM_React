@@ -27,6 +27,10 @@ html, body, #root, .app {
 .album-grid {
     
 }
+.side-navContainer {
+  height: 100%;
+  display: flex;
+}
 .side-nav {
   background-color: rgba(0, 0, 0, 0);
   border-bottom-left-radius: 6px;
@@ -45,10 +49,10 @@ html, body, #root, .app {
   list-style-type: none;
   margin-top: 6px;
   margin-bottom: 4px;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
+  padding-top: 8px;
   padding-left: 8px;
   padding-right: 8px;
-  padding-top: 6px;
   text-align: left;
   text-decoration: none;
   text-decoration-line: none;

@@ -58,10 +58,12 @@ const SideNav = () => {
   }, []);
 
   return {navItems, links: (
-    <div className="side-nav">
+    <div className="side-navContainer">
+     <div className="side-nav">
       {navItems.map(item => (
         <li><Link key={item.route} to={item.route}>{item.title}</Link></li>
       ))}
+      </div>
     </div>
   )};
 };
