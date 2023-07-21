@@ -21,7 +21,7 @@ const routeComponents: Record<string, React.ComponentType<any>> = {
   '/about': About,
   '/roadmap': Roadmap,
   '/career-application': Careers,
-  '/creator-application': Content Creators,
+  '/creator-application': Content-Creators,
   '/legal': Legal,
   '/github': Github,
   '/dao': DAO,
