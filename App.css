@@ -39,7 +39,6 @@ html, body, #root, .app {
   font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
   font-size: 14px;
   font-weight: 500;
-  height: 29px;
   line-height: 21px;
   list-style-image: none;
   list-style-position: outside;
@@ -60,7 +59,6 @@ html, body, #root, .app {
   width: 143px;
   -webkit-font-smoothing: antialiased;
   display: block;
-
 }
 .footer-nav {
   background-color: rgba(0, 0, 0, 0);
