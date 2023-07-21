@@ -28,18 +28,37 @@ html, body, #root, .app {
     
 }
 .side-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-left: 20%;
-  margin-right: 10px;
-  position: relative;
-  z-index: 10;
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 16px;
-  color: #4c5a67;
+  ackground-color: rgba(0, 0, 0, 0);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-sizing: border-box;
+  color: rgb(25, 39, 52);
+  cursor: auto;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+  font-size: 14px;
+  font-weight: 500;
+  height: 29px;
+  line-height: 21px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  margin-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  text-align: left;
+  text-decoration: none;
+  text-decoration-line: none;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  width: 143px;
+  -webkit-font-smoothing: antialiased;
 }
 .footer-nav {
   background-color: rgba(0, 0, 0, 0);
