@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types';
+import { Link } from "react-router-dom";
 
 const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
