@@ -36,7 +36,6 @@ html, body, #root, .app {
   box-sizing: border-box;
   color: rgb(25, 39, 52);
   cursor: auto;
-  display: block;
   font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
   font-size: 14px;
   font-weight: 500;
