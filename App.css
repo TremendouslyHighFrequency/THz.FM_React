@@ -346,6 +346,9 @@ min-height: 300px;
   .dapp-button {
     display: none; /* Hides Dapp connector element */
   }
+  .side-nav {
+    display: none;
+  }
 
   .navbar-logo {
     height: 16px;
