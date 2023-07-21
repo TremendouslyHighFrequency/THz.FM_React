@@ -64,6 +64,7 @@ html, body, #root, .app {
 .footer-right {
   float: right;
   text-align: right;
+  right: 0;
 }
 .album-card {
 margin: 10px;
