@@ -59,5 +59,5 @@ const FooterNav = () => {
 };
 
 export default FooterNav;
-export { FooterItem, routeComponents };
+export { SidebarItem, routeComponents };
 
