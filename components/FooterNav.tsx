@@ -51,7 +51,7 @@ const FooterNav = () => {
   return (
     <div className="footer-nav">
       {navItems.map(item => (
-        <a key={item.route} href={item.url}>{item.title}</a>
+        <div className="footer-link"><a key={item.route} href={item.url}>{item.title}</a></div>
       ))}
     </div>
   );
