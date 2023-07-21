@@ -28,7 +28,7 @@ html, body, #root, .app {
     
 }
 .side-nav {
-  ackground-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   border-top-left-radius: 6px;
