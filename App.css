@@ -42,25 +42,22 @@ html, body, #root, .app {
   color: #4c5a67;
 }
 .footer-nav {
+  background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
-  color: rgb(76, 90, 103);
-  display: block;
-  flex-basis: 50%;
-  flex-grow: 0;
-  flex-shrink: 0;
+  color: rgb(36, 144, 239);
+  cursor: auto;
+  display: inline;
   font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
-  font-size: 16px;
-  font-weight: 400;
-  height: 92.796875px;
-  line-height: 32px;
-  max-width: 50%;
-  padding-bottom: 16px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 12.8px;
-  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  height: auto;
+  line-height: 28px;
+  margin-right: 16px;
   text-align: left;
-  width: 660px;
+  text-decoration: none;
+  text-decoration-line: none;
+  width: auto;
+  -webkit-font-smoothing: antialiased;
 }
 .album-card {
 margin: 10px;
