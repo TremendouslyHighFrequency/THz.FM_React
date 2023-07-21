@@ -8,14 +8,13 @@ import axios from 'axios';
 type SidebarItem = {
   title: string;
   route: string;
-  component?: React.ComponentType<any>;
 };
 
 type SidebarData = {
   sidebar_items: SidebarItem[];
 };
 
-// Create a mapping of routes to components
+// Create a mapping of routes to URLs
 const routeUrls: Record<string, string> = {
   '/blog': 'https://thz.fm/blog',
   '/about': 'https://thz.fm/about',
@@ -26,7 +25,7 @@ const routeUrls: Record<string, string> = {
   '/github': 'https://github.com/TremendouslyHighFrequency',
   '/dao': 'https://thz.fm/dao',
   '/daw': 'https://thz.fm/daw',
-  // add the route for labels and the other routes here...
+  // add the other routes here...
 };
 
 const FooterNav = () => {
@@ -40,7 +39,7 @@ const FooterNav = () => {
         // Transform the sidebar items to include the corresponding component
         const newNavItems = sidebarData.sidebar_items.map(item => ({
           ...item,
-          component: routeComponents[item.route],
+          component: routeUrls[item.route],
         }));
         setNavItems(newNavItems);
       })
