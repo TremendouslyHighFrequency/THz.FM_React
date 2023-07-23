@@ -16,8 +16,6 @@ import './App.css';
 import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
-import MyDocumentList from './components/MyDocumentList';
-import THZIcon from './assets/Terahertz.png';
 
 // Nav Imports
 import SideNav from './components/FrontSideNav';

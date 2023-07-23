@@ -9,7 +9,7 @@ const Release = () => {
 
   useEffect(() => {
     // do something when title or artist changes, such as fetch related data
-  }, [title, artist]);
+  }, [title, artist, release_artwork, release_artist, release_date]);
 
   if (isValidating) {
     return <>Loading...</>
@@ -25,6 +25,7 @@ const Release = () => {
         {/* Display the data */}
         <h1>{data.title}</h1>
         <p>{data.release_artist}</p>
+        <p>{data.release_date}</p>
         <img src={data.release_artwork} alt={data.title} />
         {/* Add more fields as necessary */}
       </div>
