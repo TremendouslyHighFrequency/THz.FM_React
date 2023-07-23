@@ -23,11 +23,11 @@ const Release = () => {
     return (
       <div>
         {/* Display the data */}
+        <div className="album-page" style={{backgroundImage: `url(${release_artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <h1>{data.title}</h1>
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
-        <img src={data.release_artwork} alt={data.title} />
-        {/* Add more fields as necessary */}
+        </div>
       </div>
     )
   }
