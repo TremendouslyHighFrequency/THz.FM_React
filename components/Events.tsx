@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Events = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
-  const { data, error, isValidating } = useFrappeGetDocList<EventItem>('Event' , {
+  const { data, error, isValidating } = useFrappeGetDocList<EventItem>('User Event' , {
       fields: ["title", "event_description","event_photo"],
       limit_start: pageIndex,
       limit: 50,
