@@ -202,7 +202,7 @@ min-height: 300px;
 .navContainer {
   width: 100%;
   display: flex;
-  justify-content: flex;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   padding-left: 1em;
