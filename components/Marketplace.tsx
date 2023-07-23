@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Marketplace = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ProductItem>('Merchandise' , {
-      fields: ["title", "image","price_usd", "price_erg", "owner"],
+      fields: ["title", "image", "price_usd", "price_erg", "owner"],
       limit_start: pageIndex,
       limit: 50,
       orderBy: {
@@ -25,7 +25,7 @@ const Marketplace = () => {
          return (
           <div className="albums-index">
                   {
-                      data.map(({title, image, price_usd, price_erg, creator}, i) => (
+                      data.map(({title, image, price_usd, price_erg, owner}, i) => (
                           <div key={i} className="album-card" style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
