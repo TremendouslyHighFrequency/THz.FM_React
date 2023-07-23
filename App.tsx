@@ -19,10 +19,10 @@ import Navbar from './components/Navbar';
 import MyDocumentList from './components/MyDocumentList';
 import THZIcon from './assets/Terahertz.png';
 
-// SideNav Imports
+// Nav Imports
 import SideNav from './components/FrontSideNav';
 import FooterNav from './components/FooterNav';
-
+import Release from './components/Release'; 
 
 function App() {
 
@@ -96,6 +96,7 @@ async function purchase() {
   {navItems.map(item => (
     <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
   ))}
+    <Route path="/releases/:title/by/:artist" element={<Release />} />
 </Routes>
               <div id="comment-container"></div>
             </div>
