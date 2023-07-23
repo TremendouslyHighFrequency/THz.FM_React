@@ -1,13 +1,47 @@
-// Venues.jsx
-import React from 'react';
+import React, { useState } from 'react';
+import { useFrappeGetDocList } from 'frappe-react-sdk';
+import { ProductItem } from '../types';
+import { Link } from "react-router-dom";
 
 const Marketplace = () => {
-  return (
-    <div className="content">
-      This is the Marketplace page.
-    </div>
-  );
+  const [pageIndex, setPageIndex] = useState<number>(0)
+  const { data, error, isValidating } = useFrappeGetDocList<ProductItem>('Merchandise' , {
+      fields: ["title", "image","price_usd", "price_erg"],
+      limit_start: pageIndex,
+      limit: 50,
+      orderBy: {
+          field: "creation",
+          order: 'desc'
+      }
+  });
+
+  if (isValidating) {
+      return <>Loading</>
+  }
+  if (error) {
+      return <>{JSON.stringify(error)}</>
+  }
+  if (data && Array.isArray(data)) {
+         return (
+          <div className="albums-index">
+                  {
+                      data.map(({title, image, price_usd, price_erg}, i) => (
+                          <div key={i} className="album-card" style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                          <div className="album-text">
+                                  <h4>{title}</h4>
+                                  <p>{price_usd}</p>
+                                  <p>{price_erg}</p>
+                                  <Link to={`/marketplace/product/${title}`}>View Prodct</Link>
+                              </div>
+                          </div>
+  
+                      ))
+                  }
+                  <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+          </div>
+      )
+  }
+  return null
 };
 
 export default Marketplace;
-
