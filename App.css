@@ -358,15 +358,9 @@ min-height: 300px;
     padding-top: 2px
   }
   
-  
   .page-content, .navContainer, .navbar {
-    width: 100vw; /* Less margin */
+    width: 100%; /* Less margin */
   }
-    
-  .footer {
-    padding: 10px;
-  }
-
   .card {
     padding: 1em;
   }
