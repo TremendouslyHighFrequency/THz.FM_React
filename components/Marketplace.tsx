@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Marketplace = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ProductItem>('Merchandise' , {
-      fields: ["title", "image","price_usd", "price_erg", "creator"],
+      fields: ["title", "image","price_usd", "price_erg", "owner"],
       limit_start: pageIndex,
       limit: 50,
       orderBy: {
@@ -31,7 +31,7 @@ const Marketplace = () => {
                                   <h4>{title}</h4>
                                   <p>{price_usd}</p>
                                   <p>{price_erg}</p>
-                                  <Link to={`/marketplace/${creator}/product/${title}`}>View Prodct</Link>
+                                  <Link to={`/marketplace/${owner}/product/${title}`}>View Prodct</Link>
                               </div>
                           </div>
   
