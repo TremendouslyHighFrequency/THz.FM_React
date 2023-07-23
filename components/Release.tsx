@@ -9,7 +9,7 @@ const Release = () => {
 
   useEffect(() => {
     // do something when title or artist changes, such as fetch related data
-  }, [title, artist, release_artwork, release_artist, release_date]);
+  }, ["title", "artist", "release_artwork", "release_artist", "release_date"]);
 
   if (isValidating) {
     return <>Loading...</>
