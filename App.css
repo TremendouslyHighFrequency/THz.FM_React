@@ -1,6 +1,6 @@
 html, body, #root, .app {
   min-height: 100%;
-  display: flex;
+  /* display: flex; */
   background-color: #263040;
 }
 .App-body {
