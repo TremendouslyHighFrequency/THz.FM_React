@@ -18,7 +18,20 @@ type NavbarProps = {
 
 type TrackItem = {
   title: string,
-  track_artist: string
+  track_artist: string,
 };
 
-export { Notification, User, NavbarProps, TrackItem };
+type ReleaseItem = {
+  title: string,
+  release_artist: string,
+  release_date: string,
+  release_artwork: string,
+};
+
+type ArtistItem = {
+  title: string,
+  artist_bio: string,
+  artist_photo: string
+};
+
+export { Notification, User, NavbarProps, TrackItem, ReleaseItem, ArtistItem };
