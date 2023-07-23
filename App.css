@@ -198,11 +198,13 @@ min-height: 300px;
 }
 
 .navContainer {
-  width: 80vw;
+  width: 100%;
   display: flex;
   justify-content: flex;
   align-items: center;
   margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .navbar {
@@ -277,6 +279,8 @@ min-height: 300px;
   width: 100vw;
   flex-grow: 1;
   margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .footer-logo {
