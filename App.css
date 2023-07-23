@@ -273,7 +273,7 @@ min-height: 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30vh;
+  height: 20dvh;
   width: 100vw;
   flex-grow: 1;
   margin: 0 auto;
