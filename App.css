@@ -116,6 +116,7 @@ min-height: 240px;
   flex-direction: column; /* children will stack vertically */
 }
 .album-text {
+  background-color: #F9FAFB; /* Adjust the color as needed */
   padding-top: 0.5rem; /* Adjust the value as needed */
   border-bottom-left-radius: 0.375rem; /* Adjust the border radius values for specific corners if needed */
   border-bottom-right-radius: 0.375rem;
@@ -124,7 +125,6 @@ min-height: 240px;
   bottom: 0;
   height: 80px;
   width: 100%;
-  filter: invert(1);
 }
 .bell {
   margin-right: 6px;
