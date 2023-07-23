@@ -23,7 +23,7 @@ const Release = () => {
     return (
       <div>
         {/* Display the data */}
-        <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
         <h1>{data.title}</h1>
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
