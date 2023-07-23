@@ -9,9 +9,6 @@ const Tracks = () => {
   useEffect(() => {
     const fetchTracks = async () => {
       try {
-        const userResponse = await axios.get('https://thz.fm/api/method/frappe.auth.get_logged_user', {withCredentials: true});
-        const loggedUser = userResponse.data.message;
-
         const trackResponse = await axios.get(`https://thz.fm/api/resource/Track?fields=["track_title","track_number","parent","track_artist","remixer","track_type","attach_wav","attach_mp3","price_usd","price_erg","label","artwork","route","published"]&parent=Release&limit_page_length=10&limit_start=${pageIndex}`);
         setTracks(trackResponse.data.data);
       } catch (error) {
