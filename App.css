@@ -357,6 +357,7 @@ min-height: 240px;
   }
   .side-nav {
     display: none;
+    width: 0px;
   }
   .side-navContainer {
     display: none;
