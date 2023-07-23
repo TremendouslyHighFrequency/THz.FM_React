@@ -23,8 +23,12 @@ html, body, #root, .app {
   position: relative;
   z-index: 10;
 }
-.album-grid {
-    
+.album-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1em;
+    color: #f2f2f2;
+    min-height: 800px;
 }
 .side-navContainer {
   height: 100%;
