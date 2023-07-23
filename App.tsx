@@ -23,6 +23,11 @@ import THZIcon from './assets/Terahertz.png';
 import SideNav from './components/FrontSideNav';
 import FooterNav from './components/FooterNav';
 import Release from './components/Release'; 
+import Product from './components/Product';
+import Artist from './components/Artist';
+import Event from './components/Event';
+import Venue from './components/Venue';
+import Single from './components/Single';
 
 function App() {
 
