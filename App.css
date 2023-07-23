@@ -271,8 +271,8 @@ min-height: 300px;
 }
 
 .footer {
-  background-color: #ffffff;
-  border-top: 1px solid #e0e0e0;
+  background-color: #263040;
+  color: rgb(245, 245, 245);
   display: flex;
   justify-content: space-between;
   align-items: center;
