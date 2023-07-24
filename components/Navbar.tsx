@@ -40,7 +40,7 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
             onBlur={() => setIsExpanded(false)}
           />
           <div className="dapp-button">
-            <ErgoDappConnector color="darkorange" />
+            <ErgoDappConnector color="inkwell" />
           </div>
           
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
