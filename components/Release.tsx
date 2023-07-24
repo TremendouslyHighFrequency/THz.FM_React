@@ -29,7 +29,7 @@ const Release = () => {
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
         <p>{data.release_label}</p>
-        <p>{data.release_description}</p>
+        {data.release_description}
         {data.release_tracks.map((track, index) => (
           <div key={index}>
             <p>{track.title}</p>
