@@ -29,15 +29,17 @@ const Release = () => {
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
         <p>{data.release_label}</p>
-        {data.release_description}
+        <div>{data.release_description}</div>
+       <div>
         {data.release_tracks.map((track, index) => (
           <div key={index}>
             <p>{track.title}</p>
             <p>{track.artist}</p>
-            <p>{track.attach_mp3}</p>
+            <p>https://thz.fm{track.attach_mp3}</p>
           </div>
         ))}
-        <p>{data.release_credits}</p>
+        </div>
+        <div>{data.release_credits}</div>
         </div>
         </div>
       </div>
