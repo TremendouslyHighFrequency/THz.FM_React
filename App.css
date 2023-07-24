@@ -24,7 +24,7 @@ html, body, #root, .app {
   z-index: 10;
 }
 .album-page {
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: 1em;
     color: #f2f2f2;
