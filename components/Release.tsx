@@ -9,7 +9,7 @@ const Release = () => {
 
   useEffect(() => {
     // do something when title or artist changes, such as fetch related data
-  }, ["title", "artist", "release_artwork", "release_artist", "release_date"]);
+  }, ["title", "release_id", "release_artwork", "release_artist", "release_label", "release_description", "release_tracks[]", "release_credits", "release_date"]);
 
   if (isValidating) {
     return <>Loading...</>
@@ -28,6 +28,16 @@ const Release = () => {
         <h1>{data.title}</h1>
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
+        <p>{data.release_label}</p>
+        <p>{data.release_description}</p>
+        {data.release_tracks.map((track, index) => (
+          <div key={index}>
+            <p>{track.title}</p>
+            <p>{track.artist}</p>
+            <p>{track.attach_mp3}</p>
+          </div>
+        ))}
+        <p>{data.release_credits}</p>
         </div>
         </div>
       </div>
