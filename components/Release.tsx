@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 
-const wavesurfer = {
-  var currentAudio;
+var currentAudio;
 var wavesurfers = [];
 
 function formatTime(seconds) {
@@ -102,7 +101,6 @@ waveContainers.forEach(function(container, index) {
     }
   });
 });
-}
 
 const Release = () => {
   const { title, artist } = useParams();
