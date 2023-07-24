@@ -75,13 +75,6 @@ function previousAudio() {
   playAudio(previousIndex + 1);
 }
 
-function updateTimer(currentTime, duration, index) {
-  var currentTimeFormatted = formatTime(currentTime);
-  var durationFormatted = formatTime(duration);
-  var timerElement = document.getElementById('timer-' + index);
-  timerElement.textContent = currentTimeFormatted + ' / ' + durationFormatted;
-}
-
 // Initialize wavesurfers
 var waveContainers = document.querySelectorAll('[id^="waveform-"]');
 waveContainers.forEach(function(container, index) {
