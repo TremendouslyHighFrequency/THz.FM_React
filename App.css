@@ -191,7 +191,7 @@ min-height: 240px;
   margin-right: 12px;
   margin-left: 12px;
   position: relative;
-  filter: invert();
+  filter: sepia();
 }
 .main-container {
   padding-top: 1em;
