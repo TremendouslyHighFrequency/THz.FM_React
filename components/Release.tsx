@@ -80,7 +80,10 @@ const Release = () => {
             <p>{data.release_date}</p>
             <p>{data.release_label}</p>
             <p>{data.release_description}</p>
-            <p>{data.release_credits}</p>
+            {data.release_credits.map((credit, index) => (
+              <p key={index}>{credit}</p>
+              
+            ))}
             {data.release_tracks.map((track, index) => (
               <Track track={track} index={index} key={index} />
             ))}
