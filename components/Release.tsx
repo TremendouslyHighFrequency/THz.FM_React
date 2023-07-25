@@ -5,7 +5,7 @@ import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 
 const Release = () => {
-  const { title, artist } = useParams();
+  const { title, release_artist } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
 
   useEffect(() => {
@@ -20,15 +20,14 @@ const Release = () => {
     return <>{JSON.stringify(error)}</>
   }
 
-  if (data) {
-    const wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#4F4A85',
-      progressColor: '#383351',
-      url: 'https://thz.fm{(track.attach_mp3}}',
-    });    
+  if (data) {   
     return (
-      
+      const WaveSurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: '#4F4A85',
+        progressColor: '#383351',
+        url: 'https://thz.fm{(track.attach_mp3}}',
+      })
       <div>
         {/* Display the data */}
         <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
