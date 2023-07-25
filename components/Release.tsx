@@ -1,32 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 
-const Release = () => {
-  const { title } = useParams();
-  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
-
-  const [wavesurfers, setWavesurfers] = useState([]);
-  const [currentAudio, setCurrentAudio] = useState(null);
+function Track({ track, index }) {
+  const waveformRef = useRef(null);
+  const wavesurferRef = useRef(null);
 
   useEffect(() => {
-    if (data) {
-      const newWavesurfers = data.release_tracks.map((track, index) => {
-        const wavesurfer = WaveSurfer.create({
-          container: '#waveform-' + (index + 1),
-          waveColor: 'lightskyblue',
-          progressColor: 'lightslategray',
-          cursorColor: 'rgba(0,0,0,0)',
-          height: 88
-        });
-        wavesurfer.load(track.attach_mp3);
-        return wavesurfer;
-      });
-      setWavesurfers(newWavesurfers);
-    }
-  }, [data]);
+    wavesurferRef.current = WaveSurfer.create({
+      container: waveformRef.current,
+      waveColor: 'lightskyblue',
+      progressColor: 'lightslategray',
+      cursorColor: 'rgba(0,0,0,0)',
+      height: 88
+    });
+    wavesurferRef.current.load(track.attach_mp3);
+    return () => wavesurferRef.current.destroy();
+  }, [track]);
 
   const formatTime = (seconds) => {
     var minutes = Math.floor(seconds / 60);
@@ -107,32 +99,53 @@ const Release = () => {
   if (data) {
     return (
       <div>
-        {/* Display the data */}
-        {data.release_tracks.map((track, index) => (
-          <div key={index}>
-            <p>{track.title}</p>
-            <p>{track.artist}</p>
-            <div className="audio-controls-container">
-              <div id={`timer-${index}`}></div>
-              <div className="audio-controls">
-                <audio id={`audio-${index}`} crossorigin src={track.attach_mp3} type="audio/mpeg"></audio>
-                <div className="waveform" id={`waveform-${index}`}></div>
-                <div className="buttons">
-                  <button className="previous" onClick={() => previousAudio()}>Previous</button>
-                  <button id="playButton" onClick={() => playAudio(index)}>Play</button>
-                  <button onClick={() => pauseAudio()}>Pause</button>
-                  <button onClick={() => resumeAudio()}>Resume</button>
-                  <button onClick={() => nextAudio()}>Next</button>
-                </div>
-              </div>
+        <p>{track.title}</p>
+        <p>{track.artist}</p>
+        <div className="audio-controls-container">
+          <div id={`timer-${index}`}></div>
+          <div className="audio-controls">
+            <audio id={`audio-${index}`} crossorigin src={track.attach_mp3} type="audio/mpeg"></audio>
+            <div className="waveform" ref={waveformRef}></div>
+            <div className="buttons">
+              <button id="playButton" onClick={play}>Play</button>
+              <button onClick={pause}>Pause</button>
+              {/* other buttons */}
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    )
+    );
   }
-
-  return null;
-};
-
-export default Release;
+  
+  const Release = () => {
+    const { title } = useParams();
+    const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
+  
+    if (isValidating) {
+      return <>Loading...</>
+    }
+  
+    if (error) {
+      return <>{JSON.stringify(error)}</>
+    }
+  
+    if (data) {
+      return (
+        <div>
+          <h1>{data.title}</h1>
+          <p>{data.release_artist}</p>
+          <p>{data.release_date}</p>
+          <p>{data.release_label}</p>
+          <div>{data.release_description}</div>
+          {data.release_tracks.map((track, index) => (
+            <Track key={index} track={track} index={index} />
+          ))}
+          <div>{data.release_credits}</div>
+        </div>
+      )
+    }
+  
+    return null;
+  };
+  
+  export default Release;
