@@ -21,13 +21,6 @@ const Release = () => {
   }
 
   if (data) {  
-    const wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#4F4A85',
-      progressColor: '#383351',
-      url: 'https://thz.fm{(track.attach_mp3}}',
-    })
-
     return (
       <div>
         {/* Display the data */}
