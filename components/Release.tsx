@@ -35,7 +35,6 @@ const Track = ({ track, index }) => {
       waveColor: 'lightskyblue',
       progressColor: 'lightslategray',
       cursorColor: 'rgba(0,0,0,0)',
-      height: 88,
     });
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`);
     wavesurferRef.current.on('ready', function() {
