@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
-import WaveSurfer from 'wavesurfer.js';
+import 'WaveSurfer' from 'wavesurfer.js';
 
 const Release = () => {
-  const { title, release_artist } = useParams();
+  const { title, artist } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
 
   useEffect(() => {
@@ -15,12 +15,10 @@ const Release = () => {
   if (isValidating) {
     return <>Loading...</>
   }
-
   if (error) {
     return <>{JSON.stringify(error)}</>
   }
-
-  if (data) {  
+  if (data) {
     return (
       <div>
         {/* Display the data */}
@@ -30,33 +28,20 @@ const Release = () => {
         <p>{data.release_artist}</p>
         <p>{data.release_date}</p>
         <p>{data.release_label}</p>
-        <div>{data.release_description}</div>
-       <div>
+        <p>{data.release_description}</p>
         {data.release_tracks.map((track, index) => (
           <div key={index}>
             <p>{track.title}</p>
             <p>{track.artist}</p>
-            <p></p>
-            <div class="audio-controls-container">
-                <div id="timer-{ loop.index }"></div>
-            <div class="audio-controls">
-            <audio id="audio-{ loop.index }" crossorigin src="https://thz.fm{track.attach_mp3}" type="audio/mpeg"></audio>
-           
-           <div class="waveform" id="waveform-{ loop.index }"></div>
-           
-            </div>
-           </div>
+            <p>{track.attach_mp3}</p>
           </div>
         ))}
-        </div>
-        <div>{data.release_credits}</div>
+        <p>{data.release_credits}</p>
         </div>
         </div>
       </div>
     )
   }
-
   return null;
 };
-
 export default Release;
