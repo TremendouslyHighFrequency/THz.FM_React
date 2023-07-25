@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
@@ -7,7 +7,7 @@ import WaveSurfer from 'wavesurfer.js';
 const Track = ({ track, index }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
-  const [currentAudio, setCurrentAudio] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const formatTime = (seconds) => {
     var minutes = Math.floor(seconds / 60);
@@ -22,12 +22,14 @@ const Track = ({ track, index }) => {
     timerElement.textContent = currentTimeFormatted + ' / ' + durationFormatted;
   };
 
-  const playAudio = useCallback(() => {
-    if (wavesurferRef.current) {
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      wavesurferRef.current.pause();
+    } else {
       wavesurferRef.current.play();
-      setCurrentAudio(wavesurferRef.current);
     }
-  }, []);
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
     wavesurferRef.current = WaveSurfer.create({
@@ -37,11 +39,6 @@ const Track = ({ track, index }) => {
       cursorColor: 'rgba(0,0,0,0)',
     });
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`);
-    wavesurferRef.current.on('ready', function() {
-      if (index === 0) {
-        wavesurferRef.current.pause();
-      }
-    });
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
@@ -50,15 +47,14 @@ const Track = ({ track, index }) => {
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [track, index, playAudio]);
+  }, [track, index]);
 
   return (
     <div key={index}>
       <p>{track.title}</p>
       <p>{track.artist}</p>
       <div id={`waveform-${index}`} ref={waveformRef}></div>
-      <button onClick={playAudio}>Play</button>
-      <button onClick={() => currentAudio && currentAudio.pause()}>Pause</button>
+      <button onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
       <span id={`timer-${index}`}></span>
     </div>
   );
@@ -67,6 +63,15 @@ const Track = ({ track, index }) => {
 const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
+
+  if (isValidating) {
+    return <>Loading...</>
+  }
+
+  if (error) {
+    return <>{JSON.stringify(error)}</>
+  }
+
   if (data) {
     return (
       <div>
@@ -80,7 +85,7 @@ const Release = () => {
             <p>{data.release_description}</p>
             <p>{data.release_credits}</p>
             {data.release_tracks.map((track, index) => (
-              <Track track={track} index={index} />
+              <Track track={track} index={index} key={index} />
             ))}
           </div>
         </div>
