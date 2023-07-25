@@ -79,14 +79,6 @@ const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
 
-  if (isValidating) {
-    return <>Loading...</>
-  }
-
-  if (error) {
-    return <>{JSON.stringify(error)}</>
-  }
-
   if (data) {
     return (
       <div>
