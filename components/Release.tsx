@@ -8,6 +8,7 @@ const Track = ({ track, index }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [currentAudio, setCurrentAudio] = useState(null);
+  const [isTrackLoaded, setIsTrackLoaded] = useState(false);
 
   const formatTime = (seconds) => {
     var minutes = Math.floor(seconds / 60);
@@ -30,12 +31,15 @@ const Track = ({ track, index }) => {
   }, []);
 
   useEffect(() => {
+    if (!wavesurferRef.current) {
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: 'lightskyblue',
       progressColor: 'lightslategray',
       cursorColor: 'rgba(0,0,0,0)',
     });
+  }
+  if (!isTrackLoaded) {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`);
     wavesurferRef.current.on('ready', function() {
       if (index === 0) {
@@ -47,10 +51,17 @@ const Track = ({ track, index }) => {
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
-    return () => {
-      wavesurferRef.current && wavesurferRef.current.destroy();
-    };
-  }, [track, index, playAudio]);
+    setIsTrackLoaded(true);
+  }
+  return () => {
+    // Only destroy the WaveSurfer instance when the component is unmounted
+    if (wavesurferRef.current) {
+      wavesurferRef.current.destroy();
+      wavesurferRef.current = null;
+      setIsTrackLoaded(false);
+    }
+  };
+}, [track, index, playAudio]);
 
   return (
     <div key={index}>
