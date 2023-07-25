@@ -1,12 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 
-const Track = ({ track, index, playAudio }) => {
+const Track = ({ track, index }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+  const [currentAudio, setCurrentAudio] = useState(null);
+
+  const formatTime = (seconds) => {
+    var minutes = Math.floor(seconds / 60);
+    var remainingSeconds = Math.floor(seconds % 60);
+    return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+  };
+
+  const updateTimer = (currentTime, duration) => {
+    var currentTimeFormatted = formatTime(currentTime);
+    var durationFormatted = formatTime(duration);
+    var timerElement = document.getElementById('timer-' + index);
+    timerElement.textContent = currentTimeFormatted + ' / ' + durationFormatted;
+  };
+
+  const playAudio = useCallback(() => {
+    if (wavesurferRef.current) {
+      wavesurferRef.current.play();
+      setCurrentAudio(wavesurferRef.current);
+    }
+  }, []);
 
   useEffect(() => {
     wavesurferRef.current = WaveSurfer.create({
@@ -22,21 +43,22 @@ const Track = ({ track, index, playAudio }) => {
         wavesurferRef.current.pause();
       }
     });
+    wavesurferRef.current.on('audioprocess', function() {
+      var currentTime = wavesurferRef.current.getCurrentTime();
+      var duration = wavesurferRef.current.getDuration();
+      updateTimer(currentTime, duration);
+    });
     return () => {
-      wavesurferRef.current.destroy();
+      wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [track]);
-
-  useEffect(() => {
-    playAudio(index, wavesurferRef.current);
-  }, [playAudio]);
+  }, [track, index, playAudio]);
 
   return (
     <div key={index}>
       <p>{track.title}</p>
       <p>{track.artist}</p>
       <div id={`waveform-${index}`} ref={waveformRef}></div>
-      <audio id={`audio-${index}`} crossOrigin src={`https://thz.fm${track.attach_mp3}`} type="audio/mpeg"></audio>
+      <button onClick={playAudio}>Play</button>
     </div>
   );
 }
@@ -44,74 +66,6 @@ const Track = ({ track, index, playAudio }) => {
 const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
-
-  const [currentAudio, setCurrentAudio] = useState(null);
-  const [wavesurfers, setWavesurfers] = useState([]);
-
-  const playAudio = (index, wavesurfer) => {
-    stopAudio(); // Stop currently playing audio, if any
-
-  var wavesurfer = wavesurfers[index - 1];
-  wavesurfer.on('finish', function() {
-    // Automatically play the next audio after the current song ends
-    var nextIndex = (index % wavesurfers.length) + 1;
-    playAudio(nextIndex);
-  });
-  
-  wavesurfer.on('audioprocess', function() {
-    var currentTime = wavesurfer.getCurrentTime();
-    var duration = wavesurfer.getDuration();
-    updateTimer(currentTime, duration, index); // Pass the index to updateTimer
-  });
-  
-  wavesurfer.play();
-  currentAudio = wavesurfer;
-
-  };
-
-  // other functions for stopAudio, pauseAudio, resumeAudio, nextAudio, previousAudio
-  function stopAudio() {
-    if (currentAudio) {
-      currentAudio.stop();
-      currentAudio.un('finish'); // Remove the 'finish' event listener
-      currentAudio = null;
-    }
-  }
-  
-  function pauseAudio() {
-    if (currentAudio) {
-      currentAudio.pause();
-    }
-  }
-  
-  function resumeAudio() {
-    if (currentAudio) {
-      currentAudio.play();
-    }
-  }
-  
-  function nextAudio() {
-    var currentIndex = wavesurfers.findIndex(function(wavesurfer) {
-      return wavesurfer === currentAudio;
-    });
-    var nextIndex = (currentIndex + 1) % wavesurfers.length;
-    playAudio(nextIndex + 1);
-  }
-  
-  function previousAudio() {
-    var currentIndex = wavesurfers.findIndex(function(wavesurfer) {
-      return wavesurfer === currentAudio;
-    });
-    var previousIndex = (currentIndex - 1 + wavesurfers.length) % wavesurfers.length;
-    playAudio(previousIndex + 1);
-  }
-  
-  function updateTimer(currentTime, duration, index) {
-    var currentTimeFormatted = formatTime(currentTime);
-    var durationFormatted = formatTime(duration);
-    var timerElement = document.getElementById('timer-' + index);
-    timerElement.textContent = currentTimeFormatted + ' / ' + durationFormatted;
-  }
 
   if (isValidating) {
     return <>Loading...</>
@@ -134,7 +88,7 @@ const Release = () => {
             <p>{data.release_description}</p>
             <p>{data.release_credits}</p>
             {data.release_tracks.map((track, index) => (
-              <Track track={track} index={index} playAudio={playAudio} />
+              <Track track={track} index={index} />
             ))}
           </div>
         </div>
