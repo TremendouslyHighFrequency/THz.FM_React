@@ -38,19 +38,12 @@ const Release = () => {
             <p>{track.artist}</p>
             <p></p>
             <div class="audio-controls-container">
-                <div id="timer-{{ loop.index }}"></div>
+                <div id="timer-{ loop.index }"></div>
             <div class="audio-controls">
-            <audio id="audio-{{ loop.index }}" crossorigin src="https://thz.fm{{track.attach_mp3}}" type="audio/mpeg"></audio>
+            <audio id="audio-{ loop.index }" crossorigin src="https://thz.fm{track.attach_mp3}" type="audio/mpeg"></audio>
            
-           <div class="waveform" id="waveform-{{ loop.index }}"></div>
+           <div class="waveform" id="waveform-{ loop.index }"></div>
            
-            <div class="buttons">
-                <button class="previous" onclick="previousAudio({{ loop.index }})"> Previous </button>
-                <button id="playButton" onclick="playAudio({{ loop.index }})"> Play </button>
-                <button onclick="pauseAudio({{ loop.index }})"> Pause </button>
-                <button onclick="resumeAudio({{ loop.index }})"> Resume </button>
-                <button onclick="nextAudio({{ loop.index }})"> Next </button>
-            </div>
             </div>
            </div>
           </div>
