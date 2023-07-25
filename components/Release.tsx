@@ -35,19 +35,20 @@ const Release = () => {
             <p>{track.artist}</p>
            <audio id="audio-{ loop.index }" crossorigin src="https://thz.fm{track.attach_mp3}" type="audio/mpeg"></audio>
           </div>
-        ))}
+        ))
+        const wavesurfer = WaveSurfer.create({
+          container: '#waveform',
+          waveColor: '#4F4A85',
+          progressColor: '#383351',
+          url: 'https://thz.fm{track.attach_mp3}',
+        });
+        }
         <p>{data.release_credits}</p>
         </div>
         </div>
       </div>
     )
   }
-  const wavesurfer = WaveSurfer.create({
-    container: '#waveform',
-    waveColor: '#4F4A85',
-    progressColor: '#383351',
-    url: 'https://thz.fm{track.attach_mp3}',
-  });
   return null;
 };
 
