@@ -33,7 +33,7 @@ const Release = () => {
           <div key={index}>
             <p>{track.title}</p>
             <p>{track.artist}</p>
-            <p>{track.attach_mp3}</p>
+           <audio id="audio-{ loop.index }" crossorigin src="https://thz.fm{track.attach_mp3}" type="audio/mpeg"></audio>
           </div>
         ))}
         <p>{data.release_credits}</p>
@@ -42,6 +42,13 @@ const Release = () => {
       </div>
     )
   }
+  const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: '#4F4A85',
+    progressColor: '#383351',
+    url: 'https://thz.fm{track.attach_mp3}',
+  });
   return null;
 };
+
 export default Release;
