@@ -83,9 +83,9 @@ const Release = () => {
               {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
-            {data.release_tracks.map((track, index) => (
-              <Track track={track} index={index} key={index} />
-            ))}
+              {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
+                <Track track={track} index={index} key={index} />
+              ))}
           </div>
         </div>
       </div>
