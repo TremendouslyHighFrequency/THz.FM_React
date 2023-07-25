@@ -49,7 +49,8 @@ const Track = ({ track, index }) => {
   }, [index]);
 
   useEffect(() => {
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`);
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .catch(error => console.error(`Error loading audio file: ${error}`));
   }, [track]);
 
   return (
