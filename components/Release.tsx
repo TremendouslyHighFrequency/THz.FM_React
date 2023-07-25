@@ -8,6 +8,13 @@ const Release = () => {
   const { title, release_artist } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
 
+  const WaveSurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: '#4F4A85',
+    progressColor: '#383351',
+    url: 'https://thz.fm{(track.attach_mp3}}',
+  });
+
   useEffect(() => {
     // do something when title or artist changes, such as fetch related data
   }, ["title", "release_id", "release_artwork", "release_artist", "release_label", "release_description", "release_tracks[]", "release_credits", "release_date"]);
@@ -22,12 +29,6 @@ const Release = () => {
 
   if (data) {   
     return (
-      const WaveSurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: '#4F4A85',
-        progressColor: '#383351',
-        url: 'https://thz.fm{(track.attach_mp3}}',
-      })
       <div>
         {/* Display the data */}
         <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
