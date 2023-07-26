@@ -1,9 +1,9 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { FrappeContext } from 'frappe-react-sdk'; // adjust this import to your setup
 
 export const useFrappeRouting = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const frappe = useContext(FrappeContext);
 
@@ -17,7 +17,7 @@ export const useFrappeRouting = () => {
     // Update the URL whenever Frappe's route changes
     const url = '/' + frappe.get_route().join('/');
     if (location.pathname !== url) {
-      history.push(url);
+      navigate(url);
     }
   }, [frappe.get_route()]);
 
