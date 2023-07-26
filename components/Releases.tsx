@@ -30,7 +30,7 @@ const Releases = () => {
                           <div className="album-text">
                                   <h4>{title}</h4>
                                   <p>{release_artist}</p>
-                                  <button onClick={() => frappe.set_route('releases', title, 'by', release_artist)}>View Release</button>
+                                  <Link to={`/releases/${title}/by/${release_artist}`}>View Release</Link>
                               </div>
                           </div>
   

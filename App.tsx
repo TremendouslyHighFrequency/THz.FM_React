@@ -1,5 +1,6 @@
 //React Imports
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
@@ -27,20 +28,11 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 
 function App() {
-  const [route, setRoute] = useState([]);
+
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    // Initialize route
-    if (typeof frappe !== 'undefined') {
-      setRoute(frappe.get_route());
-
-      window.onpopstate = () => {
-        setRoute(frappe.get_route());
-      };
-    }
-
     getLoggedUser()
       .then(loggedUser => getNotifications(loggedUser))
       .then(notificationData => setNotifications(notificationData))
@@ -55,82 +47,65 @@ function App() {
     }
   };
 
-  async function purchase() {
-    // requests wallet access
-    if (await ergoConnector.nautilus.connect()) {
-      // get the current height from the dApp Connector
-      const height = await ergo.get_current_height();
+async function purchase() {
+  // requests wallet access
+  if (await ergoConnector.nautilus.connect()) {
+    // get the current height from the the dApp Connector
+    const height = await ergo.get_current_height();
 
-      const unsignedTx = new TransactionBuilder(height)
-        .from(await ergo.get_utxos()) // add inputs from dApp Connector
-        .to(
-          // Add output
-          new OutputBuilder(
-            "100000000",
-            "9fjTtRPuaSXU3QuK73EH7w6dCd2Z8oPDnXz5qBptKpD6MUdwiZX"
-          )
+    const unsignedTx = new TransactionBuilder(height)
+      .from(await ergo.get_utxos()) // add inputs from dApp Connector
+      .to(
+        // Add output
+        new OutputBuilder(
+          "100000000",
+          "9fjTtRPuaSXU3QuK73EH7w6dCd2Z8oPDnXz5qBptKpD6MUdwiZX"
         )
-        .sendChangeTo(await ergo.get_change_address()) // Set the change address to the user's default change address
-        .payMinFee() // set minimal transaction fee
-        .build() // build the transaction
-        .toEIP12Object(); // converts the ErgoUnsignedTransaction instance to an dApp Connector compatible plain object
+      )
+      .sendChangeTo(await ergo.get_change_address()) // Set the change address to the user's default change address
+      .payMinFee() // set minimal transaction fee
+      .build() // build the transaction
+      .toEIP12Object(); // converts the ErgoUnsignedTransaction instance to an dApp Connector compatible plain object
 
-      // requests the signature
-      const signedTx = await ergo.sign_tx(unsignedTx);
+    // requests the signature
+    const signedTx = await ergo.sign_tx(unsignedTx);
 
-      // send the signed transaction to the mempool
-      const txId = await ergo.submit_tx(signedTx);
+    // send the signed transaction to the mempool
+    const txId = await ergo.submit_tx(signedTx);
 
-      // prints the Transaction ID of the submitted transaction on the console
-      console.log(txId);
-    }
-  };
+    // prints the Transaction ID of the submitted transaction on the console
+    console.log(txId);
+  }
+};
 
   const { navItems, links } = SideNav();
 
-  // Render the right component based on the current route
-  let Component;
-  if (route.length > 0) {
-    switch (route[0]) {
-      case 'Release':
-        Component = Release;
-        break;
-      case 'Product':
-        Component = Product;
-        break;
-      case 'Artist':
-        Component = Artist;
-        break;
-      case 'Event':
-        Component = Event;
-        break;
-      case 'Venue':
-        Component = Venue;
-        break;
-      case 'Single':
-        Component = Single;
-        break;
-      default:
-        Component = null;  // Default component if no route matches
-        break;
-    }
-  }
-
   return (
-    <FrappeProvider url='https://thz.fm'>
-      <div className="App">
+    <Router>
+    <div className="App">
+      <FrappeProvider url='https://thz.fm'>
         <div className="App-header" style={{ minHeight: '72px' }}>
           <Navbar loggedUser={null} notifications={notifications} />
         </div>
-        <div className="App-body">
-          <div className="main-container">
-            {links}
-          </div>
-          <div className="page-content">
-            {Component ? <Component /> : <div>No Component for this route</div>}
-            <div id="comment-container"></div>
-          </div>
+        <div>
+        
+ <div className="App-body">
+           <div className="main-container">
+           {links}
+           </div>
+            <div className="page-content">
+            
+            <Routes>
+  {navItems.map(item => (
+    <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
+  ))}
+    <Route path="/releases/:title/by/:artist" element={<Release />} />
+</Routes>
+              <div id="comment-container"></div>
+            </div>
+         </div>
         </div>
+    
         <div className="App-footer">
           <div className="footer">
             <div>
@@ -140,8 +115,9 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
-    </FrappeProvider>
+      </FrappeProvider>
+    </div>
+    </Router>
   );
 }
 

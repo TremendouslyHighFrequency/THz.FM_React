@@ -66,7 +66,7 @@ const Track = ({ track, index }) => {
 
 
 const Release = () => {
-  const title = frappe.get_route()[1]; // if 'title' is the second part of your route
+  const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
 
   if (data) {

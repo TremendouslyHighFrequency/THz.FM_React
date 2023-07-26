@@ -61,7 +61,7 @@ const SideNav = () => {
     <div className="side-navContainer">
      <div className="side-nav">
       {navItems.map(item => (
-        <li><button key={item.route} onClick={() => frappe.set_route(item.route)}>{item.title}</button></li>
+        <li><Link key={item.route} to={item.route}>{item.title}</Link></li>
       ))}
       </div>
     </div>

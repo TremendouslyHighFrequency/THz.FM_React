@@ -31,7 +31,7 @@ const Marketplace = () => {
                                   <h4>{title}</h4>
                                   <p>{price_usd}</p>
                                   <p>{price_erg}</p>
-                                  <button onClick={() => frappe.set_route('marketplace', owner, 'product', title)}>View Product</button>
+                                  <Link to={`/marketplace/${owner}/product/${title}`}>View Prodct</Link>
                               </div>
                           </div>
   

@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { useFrappeGetDocList, FrappeContext } from 'frappe-react-sdk';
+import React, { useState } from 'react';
+import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ArtistItem } from '../types';
 import { Link } from "react-router-dom";
 
 const Artists = () => {
-const frappe = useContext(FrappeContext);
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ArtistItem>('Artist' , {
       fields: ["title", "artist_bio","artist_photo"],
@@ -30,7 +29,7 @@ const frappe = useContext(FrappeContext);
                           <div key={i} className="album-card" style={{backgroundImage: `url(${artist_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
-                                  <button onClick={() => frappe.set_route('artists', title)}>View Artist</button>
+                                  <Link to={`/artists/${title}`}>View Artist</Link>
                               </div>
                           </div>
   
