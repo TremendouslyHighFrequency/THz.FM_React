@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useFrappeGetDocList } from 'frappe-react-sdk';
+import React, { useState, useContext } from 'react';
+import { useFrappeGetDocList, FrappeContext } from 'frappe-react-sdk';
 import { ArtistItem } from '../types';
 import { Link } from "react-router-dom";
 
