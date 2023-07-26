@@ -48,7 +48,7 @@ const SideNav = () => {
         // Transform the sidebar items to include the corresponding component
         const newNavItems = sidebarData.sidebar_items.map(item => ({
           ...item,
-          component: routeComponents[item.route],
+          component: () => routeComponents[item.route],
         }));
         setNavItems(newNavItems);
       })
