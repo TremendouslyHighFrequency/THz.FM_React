@@ -27,19 +27,19 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 
 function App() {
-
   const [route, setRoute] = useState([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     // Initialize route
-    setRoute(frappe.get_route());
-
-    // Listen for route changes
-    window.onpopstate = () => {
+    if (typeof frappe !== 'undefined') {
       setRoute(frappe.get_route());
-    };
+
+      window.onpopstate = () => {
+        setRoute(frappe.get_route());
+      };
+    }
 
     getLoggedUser()
       .then(loggedUser => getNotifications(loggedUser))
@@ -58,7 +58,7 @@ function App() {
   async function purchase() {
     // requests wallet access
     if (await ergoConnector.nautilus.connect()) {
-      // get the current height from the the dApp Connector
+      // get the current height from the dApp Connector
       const height = await ergo.get_current_height();
 
       const unsignedTx = new TransactionBuilder(height)
@@ -90,28 +90,30 @@ function App() {
 
   // Render the right component based on the current route
   let Component;
-  switch (route[0]) {
-    case 'Release':
-      Component = Release;
-      break;
-    case 'Product':
-      Component = Product;
-      break;
-    case 'Artist':
-      Component = Artist;
-      break;
-    case 'Event':
-      Component = Event;
-      break;
-    case 'Venue':
-      Component = Venue;
-      break;
-    case 'Single':
-      Component = Single;
-      break;
-    default:
-      Component = null;  // Default component if no route matches
-      break;
+  if (route.length > 0) {
+    switch (route[0]) {
+      case 'Release':
+        Component = Release;
+        break;
+      case 'Product':
+        Component = Product;
+        break;
+      case 'Artist':
+        Component = Artist;
+        break;
+      case 'Event':
+        Component = Event;
+        break;
+      case 'Venue':
+        Component = Venue;
+        break;
+      case 'Single':
+        Component = Single;
+        break;
+      default:
+        Component = null;  // Default component if no route matches
+        break;
+    }
   }
 
   return (
