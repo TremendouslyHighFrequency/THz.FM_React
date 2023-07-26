@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 
 const Single = () => {
-  const { title, artist } = useParams();
+  const title = frappe.get_route()[2]; // assuming 'title' is the third part of your route
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
 
   useEffect(() => {
-    // do something when title or artist changes, such as fetch related data
-  }, [title, artist]);
+    // do something when title changes, such as fetch related data
+  }, [title]);
 
   if (isValidating) {
     return <>Loading...</>

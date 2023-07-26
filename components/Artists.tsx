@@ -29,7 +29,7 @@ const Artists = () => {
                           <div key={i} className="album-card" style={{backgroundImage: `url(${artist_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
-                                  <Link to={`/artists/${title}`}>View Artist</Link>
+                                  <button onClick={() => frappe.set_route('artists', title)}>View Artist</button>
                               </div>
                           </div>
   

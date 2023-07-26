@@ -4,7 +4,7 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 
 const Single = () => {
-  const { title, artist } = useParams();
+  const title = frappe.get_route()[2]; // assuming 'title' is the third part of your route
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
 
   useEffect(() => {
