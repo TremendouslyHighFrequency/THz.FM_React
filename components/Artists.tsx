@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ArtistItem } from '../types';
 import { Link } from "react-router-dom";
-import { useFrappeRouting } from '../hooks'; 
+
 
 const Artists = () => {
-  const frappe = useFrappeRouting();
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ArtistItem>('Artist' , {
       fields: ["title", "artist_bio","artist_photo"],
