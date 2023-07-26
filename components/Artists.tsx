@@ -4,6 +4,7 @@ import { ArtistItem } from '../types';
 import { Link } from "react-router-dom";
 
 const Artists = () => {
+const frappe = useContext(FrappeContext);
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ArtistItem>('Artist' , {
       fields: ["title", "artist_bio","artist_photo"],
