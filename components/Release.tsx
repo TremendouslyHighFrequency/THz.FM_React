@@ -84,8 +84,6 @@ const Release = () => {
            <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
               ))}</div>
-            <p>Released On: {data.release_date}</p>
-            <p>Label: {data.release_label}</p>
             <p>{data.release_description}</p>
             <button>BUY $ {data.price_usd} USD</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
@@ -93,6 +91,8 @@ const Release = () => {
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
+          <p>Released On: {data.release_date}</p>
+          <p>Publisher: {data.release_label}</p>
         </div>
       <div>
         <p>Credits:</p>
