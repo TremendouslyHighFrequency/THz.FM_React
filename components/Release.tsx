@@ -4,7 +4,7 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 
-const Track = ({ track, index, containerColor, waveformColor }) => {
+const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -34,8 +34,8 @@ const Track = ({ track, index, containerColor, waveformColor }) => {
   useEffect(() => {
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
-      waveColor: '#f2f2f299',
-      progressColor: waveformColor,
+      waveColor: waveformColor,
+      progressColor: progressColor,
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
@@ -55,8 +55,8 @@ const Track = ({ track, index, containerColor, waveformColor }) => {
   }, [track]);
 
   return (
-    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80' }}>
-      <div className="track-items" key={index}>
+    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
+      <div className="track-items" key={index} style={{ color: tracktextColor }}>
       <p>{track.track_title}</p>
       <p>by {track.track_artist}</p>
       <span id={`timer-${index}`}></span>
@@ -71,7 +71,7 @@ const Track = ({ track, index, containerColor, waveformColor }) => {
 
 
 const Release = () => {
-  const { title } = useParams();
+  const { title, releasetextColor } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
 
   if (data) {
@@ -84,7 +84,7 @@ const Release = () => {
            <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
               ))}</div>
-            <p>{data.release_description}</p>
+            <p style={{ color: releasetextColor }}>{data.release_description}</p>
             <button>BUY $ {data.price_usd} USD</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
@@ -93,7 +93,11 @@ const Release = () => {
                 index={index} 
                 key={index} 
                 containerColor={data.container_color} 
-                waveformColor={data.waveform_color}  />
+                waveformColor={data.waveform_color}  
+                releasetextColor={data.release_text_color}
+                tracktextColor={data.track_text_color}
+                progressColor={data.progress_color}
+                />
               ))}
           </div>
         </div>
