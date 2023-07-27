@@ -55,8 +55,6 @@ const Track = ({ track, index }) => {
 
   return (
     <div key={index}>
-      <p>{track.title}</p>
-      <p>{track.artist}</p>
       <div id={`waveform-${index}`} ref={waveformRef}></div>
       <button onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
       <span id={`timer-${index}`}></span>
@@ -89,6 +87,8 @@ const Release = () => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
+                      <p>{track.title}</p>
+                      <p>{track.artist}</p>
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
