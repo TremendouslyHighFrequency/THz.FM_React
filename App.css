@@ -204,6 +204,7 @@ min-height: 240px;
 }
 .tracklist {
   width: 420px;
+  background-color: #f2f2f2;
 }
 .dapp-button {
   margin-right: 12px;
