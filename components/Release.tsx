@@ -55,13 +55,11 @@ const Track = ({ track, index }) => {
 
   return (
     <div className="tracklist" key={index}>
-      <div className="track-items">
       <p>{track.track_title}</p>
       <p>by {track.track_artist}</p>
       <button onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
       <div id={`waveform-${index}`} ref={waveformRef}></div>  
       <span id={`timer-${index}`}></span>
-      </div>
     </div>
   );
 }
