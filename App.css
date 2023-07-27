@@ -205,6 +205,8 @@ min-height: 240px;
 .tracklist {
   width: 48%;
   align-items: center;
+  justify-content: center;
+  margin: space-between 0.5em;
   display: inline-block;
   background-color: #26304080;
   backdrop-filter: blur(10px);
