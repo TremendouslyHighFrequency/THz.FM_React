@@ -86,19 +86,20 @@ const Release = () => {
               ))}</div>
             <p>Released On: {data.release_date}</p>
             <p>Label: {data.release_label}</p>
-
-            <p>Price USD: $ {data.price_usd} USD</p>
-            <p>Price ERG: ∑ {data.price_erg} ERG</p>
             <p>{data.release_description}</p>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
+          <button>BUY $ {data.price_usd} USD</button>
+          <button>BUY ∑ {data.price_erg} ERG</button>
         </div>
+      <div>
         <p>Credits:</p>
               {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
+      </div>
       </div>
     )
   }
