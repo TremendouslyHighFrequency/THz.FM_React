@@ -90,16 +90,15 @@ const Release = () => {
             <p>Price USD: $ {data.price_usd} USD</p>
             <p>Price ERG: ∑ {data.price_erg} ERG</p>
             <p>{data.release_description}</p>
-              <p>Credits:</p>
-              {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
-                <p key={index}>{credit.credit_type}: {credit.name__title}</p>
-              ))}
-              <p>Tracks:</p>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
         </div>
+        <p>Credits:</p>
+              {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
+                <p key={index}>{credit.credit_type}: {credit.name__title}</p>
+              ))}
       </div>
     )
   }
