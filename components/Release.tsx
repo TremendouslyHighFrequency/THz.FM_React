@@ -37,6 +37,7 @@ const Track = ({ track, index }) => {
       waveColor: '#f2f2f299',
       progressColor: 'lightslategray',
       cursorColor: 'rgba(0,0,0,0)',
+      height: 50,
     });
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
