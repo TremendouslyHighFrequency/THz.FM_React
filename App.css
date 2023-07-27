@@ -52,6 +52,9 @@ html, body, #root, .app {
     padding-right: 1em;
     padding-left: 1em;
 }
+.credits {
+  padding-left: 1em;
+}
 .side-navContainer {
   height: 100%;
   display: flex;

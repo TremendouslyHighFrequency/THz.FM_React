@@ -94,7 +94,7 @@ const Release = () => {
           <p>Released On: {data.release_date}</p>
           <p>Publisher: {data.release_label}</p>
         </div>
-      <div>
+      <div className="credits">
         <p>Credits:</p>
               {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
