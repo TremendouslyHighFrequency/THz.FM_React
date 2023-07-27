@@ -211,6 +211,7 @@ min-height: 240px;
   align-items: center;
   padding: 8px;
   margin-bottom: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.5), 0 4px 6px -2px rgba(0,0,0,.05);
 }
 .dapp-button {
   margin-right: 12px;
@@ -221,8 +222,7 @@ min-height: 240px;
 }
 .track-items {
   display: flex;
-  background-color: #f2f2f2;
-  color: #263040;
+  color: #f2f2f2;
 }
 .main-container {
   padding-top: 1em;
