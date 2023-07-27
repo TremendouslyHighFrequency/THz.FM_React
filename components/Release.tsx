@@ -87,12 +87,12 @@ const Release = () => {
             <p>Released On: {data.release_date}</p>
             <p>Label: {data.release_label}</p>
             <p>{data.release_description}</p>
+            <button>BUY $ {data.price_usd} USD</button>
+          <button>BUY ∑ {data.price_erg} ERG</button>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
-          <button>BUY $ {data.price_usd} USD</button>
-          <button>BUY ∑ {data.price_erg} ERG</button>
         </div>
       <div>
         <p>Credits:</p>
