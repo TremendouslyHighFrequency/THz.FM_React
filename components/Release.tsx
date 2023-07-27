@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
+import { FaPlay, FaPause } from 'react-icons/fa';
 
 const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor }) => {
   const waveformRef = useRef(null);
@@ -61,7 +62,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <p>by {track.track_artist}</p>
       <span id={`timer-${index}`}></span>
       </div>
-      <button onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+      <button onClick={togglePlayPause}>{isPlaying ? <FaPause /> : <FaPlay />}</button>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       
   
