@@ -82,13 +82,12 @@ const Release = () => {
             <p>By: {data.release_artist}</p>
             <p>Released On: {data.release_date}</p>
             <p>Label: {data.release_label}</p>
-            <p>Price USD: $ {data.price_usd} USD</p>
-            <p>Price ERG: ∑ {data.price_erg} ERG</p>
-            <p>{data.release_description}</p>
-            <p>Genres:</p>
             {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
               ))}
+            <p>Price USD: $ {data.price_usd} USD</p>
+            <p>Price ERG: ∑ {data.price_erg} ERG</p>
+            <p>{data.release_description}</p>
               <p>Credits:</p>
               {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
