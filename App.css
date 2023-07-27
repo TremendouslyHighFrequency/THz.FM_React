@@ -3,6 +3,9 @@ html, body, #root, .app {
   /* display: flex; */
   background-color: #263040;
 }
+h1 {
+  font-size: 2.5rem;
+}
 .App-body {
   display: flex;
   justify-content: center;
