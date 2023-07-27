@@ -35,7 +35,7 @@ const Track = ({ track, index }) => {
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: '#f2f2f299',
-      progressColor: 'cyan',
+      progressColor: 'CadetBlue',
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
