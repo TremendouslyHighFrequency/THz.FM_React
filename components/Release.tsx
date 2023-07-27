@@ -76,11 +76,11 @@ const Release = () => {
         <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
           <div className="album-page-text">
             <h1>{data.title}</h1>
-            <p>{data.release_artist}</p>
-            <p>{data.release_date}</p>
-            <p>{data.release_label}</p>
-            <p>$ {data.price_usd} USD</p>
-            <p>∑ {data.price_erg} ERG</p>
+            <p>By: {data.release_artist}</p>
+            <p>Released On: {data.release_date}</p>
+            <p>Label: {data.release_label}</p>
+            <p>Price USD: $ {data.price_usd} USD</p>
+            <p>Price ERG: ∑ {data.price_erg} ERG</p>
             <p>{data.release_description}</p>
             {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p key={index}>{genre.genre}</p>
