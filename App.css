@@ -204,6 +204,7 @@ min-height: 240px;
 }
 .track-items {
   color: #263040;
+  width: 100%;
 }
 .main-container {
   padding-top: 1em;
