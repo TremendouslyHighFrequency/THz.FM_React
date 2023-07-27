@@ -207,8 +207,8 @@ min-height: 240px;
 }
 .tracklist {
   width: 47%; 
-  display: grid; /* Use grid instead of inline-block */
-  grid-template-columns: 1fr 1fr;
+  display: inline-block;
+  margin-right: 16px;
   /* background-color: #26304080; */
   backdrop-filter: blur(10px);
   color: #f2f2f2;
