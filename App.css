@@ -203,7 +203,7 @@ min-height: 240px;
   padding: 8px;
 }
 .tracklist {
-  z-index: 1;
+  width: 420px;
 }
 .dapp-button {
   margin-right: 12px;
