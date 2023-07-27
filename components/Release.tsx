@@ -62,10 +62,10 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <p>by {track.track_artist}</p>
       <span id={`timer-${index}`}></span>
       </div>
+      <div className="play-area">
       <button onClick={togglePlayPause}>{isPlaying ? <FaPause /> : <FaPlay />}</button>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
-      
-  
+      </div>
     </div>
   );
 }
