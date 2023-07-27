@@ -4,7 +4,7 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 
-const Track = ({ track, index }) => {
+const Track = ({ track, index, containerColor, waveformColor }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -35,7 +35,7 @@ const Track = ({ track, index }) => {
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: '#f2f2f299',
-      progressColor: 'CadetBlue',
+      progressColor: waveformColor,
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
@@ -55,7 +55,7 @@ const Track = ({ track, index }) => {
   }, [track]);
 
   return (
-    <div className="tracklist" key={index}>
+    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80' }}>
       <div className="track-items" key={index}>
       <p>{track.track_title}</p>
       <p>by {track.track_artist}</p>
@@ -88,7 +88,12 @@ const Release = () => {
             <button>BUY $ {data.price_usd} USD</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
-                <Track track={track} index={index} key={index} />
+                <Track 
+                track={track} 
+                index={index} 
+                key={index} 
+                containerColor={data.container_color} 
+                waveformColor={data.waveform_color}  />
               ))}
           </div>
         </div>
