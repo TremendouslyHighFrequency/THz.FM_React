@@ -187,6 +187,9 @@ min-height: 240px;
   float: left;
   padding: 8px;
 }
+.waveform {
+  z-index: 1;
+}
 .dapp-button {
   margin-right: 12px;
   margin-left: 12px;
