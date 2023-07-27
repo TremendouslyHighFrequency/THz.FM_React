@@ -71,7 +71,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
 
 
 const Release = () => {
-  const { title, releasetextColor } = useParams();
+  const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
 
   if (data) {
@@ -80,11 +80,11 @@ const Release = () => {
         {/* Display the data */}
         <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
           <div className="">
-            <span><div className="h1">{data.title}</div> by: {data.release_artist}</span>
+            <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div> by: {data.release_artist}</span>
            <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
               ))}</div>
-            <p style={{ color: releasetextColor }}>{data.release_description}</p>
+            <p style={{ color: data.release_text_color }}>{data.release_description}</p>
             <button>BUY $ {data.price_usd} USD</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
