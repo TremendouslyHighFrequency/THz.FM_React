@@ -206,8 +206,9 @@ min-height: 240px;
   padding: 8px;
 }
 .tracklist {
-  width: 44%; 
-  display: inline-block;
+  width: 47%; 
+  display: flex;
+  justify-content: space-between;
   /* background-color: #26304080; */
   backdrop-filter: blur(10px);
   color: #f2f2f2;
