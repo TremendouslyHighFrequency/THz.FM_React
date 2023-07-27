@@ -91,10 +91,10 @@ const Release = () => {
                 <Track track={track} index={index} key={index} />
               ))}
           </div>
-          <p>Released On: {data.release_date}</p>
-          <p>Publisher: {data.release_label}</p>
         </div>
       <div className="credits">
+      <p>Released On: {data.release_date}</p>
+      <p>Publisher: {data.release_label}</p>
         <p>Credits:</p>
               {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
