@@ -210,6 +210,7 @@ min-height: 240px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   align-items: center;
   padding: 8px;
+  margin-bottom: 8px;
 }
 .dapp-button {
   margin-right: 12px;
