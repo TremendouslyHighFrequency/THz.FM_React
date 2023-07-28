@@ -59,7 +59,18 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
       <p>{track.track_title}</p>
-      <p>by {track.track_artist}</p>
+
+      {
+  track.track_type === 'Remix'
+    ? (
+      <>
+        <p>Remix by {track.remixer}</p>
+        <p>Original by {track.track_artist}</p>
+      </>
+    )
+    : <p>{track.track_type} by {track.track_artist}</p>
+      }
+
       <span id={`timer-${index}`}></span>
       </div>
       <button onClick={togglePlayPause}>{isPlaying ? <FaPause /> : <FaPlay />}</button>
