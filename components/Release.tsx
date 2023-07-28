@@ -5,7 +5,7 @@ import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause } from 'react-icons/fa';
 
-const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor }) => {
+const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, trackType }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,10 +33,6 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   };
 
   useEffect(() => {
-    if (wavesurferRef.current) {
-      wavesurferRef.current.destroy();
-    }
-
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: waveformColor + '99',
@@ -44,38 +40,26 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
-
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
-
-    wavesurferRef.current.on('error', function (err) {
-      console.error('Error loading audio file:', err);
-    });
-
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`);
-
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [track, waveformColor, progressColor, index]);
+  }, [index]);
+
+  useEffect(() => {
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .catch(error => console.error(`Error loading audio file: ${error}`));
+  }, [track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
       <p>{track.track_title}</p>
-      {
-  track.track_type === 'Remix'
-    ? (
-      <>
-        <p>Remix by {track.remixer}</p>
-        <p>Original by {track.track_artist}</p>
-      </>
-    )
-    : <p>{track.track_type} by {track.track_artist}</p>
-}
+      <p>{track.track_type} by {track.track_artist}</p>
       <span id={`timer-${index}`}></span>
       </div>
       <div className="play-area">
