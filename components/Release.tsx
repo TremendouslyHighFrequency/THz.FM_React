@@ -5,6 +5,7 @@ import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import FooterPlayer from './FooterPlayer.js';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -105,7 +106,25 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
   );
 }
 
+// FooterPlayer component
+const FooterPlayer = ({ track, currentTime, duration }) => {
+  const percentage = (currentTime / duration) * 100;
 
+  if (!track) {
+    return null;
+  }
+
+  return (
+    <div className="footer-player">
+      <img src={`https://thz.fm${track.album_artwork}`} alt={track.track_title} />
+      <div className="track-details">
+        <h2>{track.track_title}</h2>
+        <p>{track.track_artist}</p>
+      </div>
+      <ProgressBar now={percentage} />
+    </div>
+  );
+};
 
 const Release = () => {
   const { title } = useParams();
