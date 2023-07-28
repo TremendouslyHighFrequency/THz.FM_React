@@ -5,7 +5,7 @@ import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 
-const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay }) => {
+const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
 
