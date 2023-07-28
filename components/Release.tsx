@@ -28,9 +28,9 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       onPlay(null);  // Set the playing track index to null when pausing
     } else {
       wavesurferRef.current.play();
-      onPlay();  // Set the playing track index to this track's index when playing
+      onPlay(index);  // Set the playing track index to this track's index when playing
     }
-  };  
+  };   
 
   useEffect(() => {
     if (wavesurferRef.current) {
