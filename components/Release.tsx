@@ -50,14 +50,24 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       updateTimer(currentTime, duration);
     });
 
-    wavesurferRef.current.on('finish', function() {
-      onNext();
-    });
-
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
   }, []);  // Empty dependency array so this useEffect only runs once
+
+  // useEffect hook to update 'finish' event listener when onNext prop changes
+  useEffect(() => {
+    const handleFinish = () => {
+      onNext();
+    };
+    
+    wavesurferRef.current.on('finish', handleFinish);
+
+    // Cleanup function to remove event listener when onNext prop changes
+    return () => {
+      wavesurferRef.current.un('finish', handleFinish);
+    };
+  }, [onNext]);
 
   useEffect(() => {
     if (playing) {
@@ -65,7 +75,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     } else {
       wavesurferRef.current.pause();
     }
-  }, [playing]);  // This useEffect runs whenever the playing prop changes
+  }, [playing]); // This useEffect runs whenever the playing prop changes
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
