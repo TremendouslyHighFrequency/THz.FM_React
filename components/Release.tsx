@@ -25,62 +25,52 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   const togglePlayPause = () => {
     if (playing) {
       wavesurferRef.current.pause();
-      onPlay(null);  // Set the playing track index to null when pausing
+      onPlay(null);
     } else {
       wavesurferRef.current.play();
-      onPlay(index);  // Set the playing track index to this track's index when playing
+      onPlay(index);
     }
-  };  
-
-useEffect(() => {
-  if (wavesurferRef.current) {
-    if (!playing) {
-      wavesurferRef.current.pause();
-    } else {
-      wavesurferRef.current.play();
-    }
-  }
-}, [playing]);
-
-useEffect(() => {
-  wavesurferRef.current = WaveSurfer.create({
-    container: waveformRef.current,
-    waveColor: waveformColor + '99',
-    progressColor: progressColor,
-    cursorColor: 'rgba(0,0,0,0)',
-    height: 50,
-  });
-
-  wavesurferRef.current.on('audioprocess', function() {
-    var currentTime = wavesurferRef.current.getCurrentTime();
-    var duration = wavesurferRef.current.getDuration();
-    updateTimer(currentTime, duration);
-  });
-
-  wavesurferRef.current.on('finish', function() {
-    onNext();
-  });
-
-  return () => {
-    wavesurferRef.current && wavesurferRef.current.destroy();
   };
-}, []);  // No dependencies here, so this useEffect will only run once when the component mounts
 
-useEffect(() => {
-  wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
-    .then(() => {
-      if (playing) {
-        wavesurferRef.current.play();
-      }
-    })
-    .catch(error => console.error(`Error loading audio file: ${error}`));
-}, [track, playing]);  // This useEffect will run whenever the track prop changes
+  useEffect(() => {
+    wavesurferRef.current = WaveSurfer.create({
+      container: waveformRef.current,
+      waveColor: waveformColor + '99',
+      progressColor: progressColor,
+      cursorColor: 'rgba(0,0,0,0)',
+      height: 50,
+    });
 
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .catch(error => console.error(`Error loading audio file: ${error}`));
+
+    wavesurferRef.current.on('audioprocess', function() {
+      var currentTime = wavesurferRef.current.getCurrentTime();
+      var duration = wavesurferRef.current.getDuration();
+      updateTimer(currentTime, duration);
+    });
+
+    wavesurferRef.current.on('finish', function() {
+      onNext();
+    });
+
+    return () => {
+      wavesurferRef.current && wavesurferRef.current.destroy();
+    };
+  }, []);  // Empty dependency array so this useEffect only runs once
+
+  useEffect(() => {
+    if (playing) {
+      wavesurferRef.current.play();
+    } else {
+      wavesurferRef.current.pause();
+    }
+  }, [playing]);  // This useEffect runs whenever the playing prop changes
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
-      <p>{track.track_title}</p>
+        <p>{track.track_title}</p>
       </div>
       <button onClick={onPrev}><FaBackward /></button>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
@@ -88,18 +78,19 @@ useEffect(() => {
       <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
-  track.track_type === 'Remix'
-    ? (
-      <>
-        <p>Remix by {track.remixer}</p>
-        <p>Original by {track.track_artist}</p>
-      </>
-    )
-    : <p>{track.track_type} by {track.track_artist}</p>
+        track.track_type === 'Remix'
+        ? (
+          <>
+            <p>Remix by {track.remixer}</p>
+            <p>Original by {track.track_artist}</p>
+          </>
+        )
+        : <p>{track.track_type} by {track.track_artist}</p>
       }
     </div>
   );
 }
+
 
 
 const Release = () => {
