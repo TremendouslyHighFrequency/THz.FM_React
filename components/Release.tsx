@@ -107,7 +107,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 }
 
 // FooterPlayer component
-const FooterPlayer = ({ track, currentTime, duration }) => {
+const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   const percentage = (currentTime / duration) * 100;
 
   if (!track) {
@@ -116,7 +116,7 @@ const FooterPlayer = ({ track, currentTime, duration }) => {
 
   return (
     <div className="footer-player">
-      <img src={`https://thz.fm${track.artwork}`} alt={track.track_title} />
+      <img src={`https://thz.fm${albumArtwork}`} alt={track.track_title} />  // use albumArtwork prop here
       <div className="track-details">
         <h2>{track.track_title}</h2>
         <p>{track.track_artist}</p>
@@ -189,6 +189,7 @@ const Release = () => {
       {playingTrackIndex !== null && (
           <FooterPlayer 
             track={data.release_tracks[playingTrackIndex]}
+            albumArtwork={data.release_artwork}
             currentTime={currentTime}
             duration={duration}
           />
