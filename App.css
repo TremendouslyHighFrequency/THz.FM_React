@@ -183,7 +183,10 @@ min-height: 240px;
   margin-right: 16px;
   margin-bottom: 2px; 
 }
-
+.player-art {
+  width: 80px;
+  height: 80px;
+}
 .notification-text {
   font-size: 14px;
   font-weight: 400;

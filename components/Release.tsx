@@ -116,7 +116,7 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
 
   return (
     <div className="footer-player">
-      <img src={`https://thz.fm${albumArtwork}`} alt={track.track_title} />  // use albumArtwork prop here
+      <img className="player-art" src={`https://thz.fm${albumArtwork}`} alt={track.track_title} /> 
       <div className="track-details">
         <h2>{track.track_title}</h2>
         <p>{track.track_artist}</p>
