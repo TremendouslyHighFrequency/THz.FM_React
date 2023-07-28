@@ -61,6 +61,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <p>{track.track_title}</p>
       </div>
       <button onClick={togglePlayPause}>{isPlaying ? <FaPause /> : <FaPlay />}</button>
+      <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
   track.track_type === 'Remix'
@@ -68,11 +69,9 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <>
         <p>Remix by {track.remixer}</p>
         <p>Original by {track.track_artist}</p>
-        <span id={`timer-${index}`}></span>
       </>
     )
     : <p>{track.track_type} by {track.track_artist}</p>
-    <span id={`timer-${index}`}></span>
       }
     </div>
   );
