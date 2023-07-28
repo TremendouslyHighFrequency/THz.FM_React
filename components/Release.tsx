@@ -42,9 +42,8 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     }
   }, [playing]);
 
-useEffect(() => {
+  useEffect(() => {
     if (wavesurferRef.current) {
-      wavesurferRef.current.stop();
       wavesurferRef.current.destroy();
     }
     wavesurferRef.current = WaveSurfer.create({
@@ -74,15 +73,14 @@ useEffect(() => {
       .catch(error => console.error(`Error loading audio file: ${error}`));
   
     return () => {
-      wavesurferRef.current.stop();
       wavesurferRef.current.destroy();
     };
-}, [index, playing, onNext, track]);
+  }, [index, playing, onNext, track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
-      <p>{track.track_title}</p>
+        <p>{track.track_title}</p>
       </div>
       <button onClick={onPrev}><FaBackward /></button>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
@@ -90,18 +88,19 @@ useEffect(() => {
       <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
-  track.track_type === 'Remix'
-    ? (
-      <>
-        <p>Remix by {track.remixer}</p>
-        <p>Original by {track.track_artist}</p>
-      </>
-    )
-    : <p>{track.track_type} by {track.track_artist}</p>
+        track.track_type === 'Remix'
+        ? (
+          <>
+            <p>Remix by {track.remixer}</p>
+            <p>Original by {track.track_artist}</p>
+          </>
+        )
+        : <p>{track.track_type} by {track.track_artist}</p>
       }
     </div>
   );
-}
+};
+
 
 
 const Release = () => {
