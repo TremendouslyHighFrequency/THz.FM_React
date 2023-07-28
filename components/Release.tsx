@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 
 const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay }) => {
   const waveformRef = useRef(null);
@@ -66,7 +66,9 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
       <p>{track.track_title}</p>
       </div>
+      <button onClick={onPrev}><FaBackward /></button>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
+      <button onClick={onNext}><FaForward /></button>
       <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
@@ -88,6 +90,15 @@ const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
+  const onNext = () => {
+    const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
+    setPlayingTrackIndex(nextTrackIndex);
+  };
+  
+  const onPrev = () => {
+    const prevTrackIndex = playingTrackIndex > 0 ? playingTrackIndex - 1 : data.release_tracks.length - 1;
+    setPlayingTrackIndex(prevTrackIndex);
+  };
 
   if (data) {
     return (
@@ -116,6 +127,8 @@ const Release = () => {
                 progressColor={data.progress_color}
                 playing={index === playingTrackIndex}
                 onPlay={() => setPlayingTrackIndex(index)}
+                onNext={onNext}
+                onPrev={onPrev}
                 />
               ))}
           </div>
