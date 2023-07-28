@@ -43,6 +43,10 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   }, [playing]);
 
   useEffect(() => {
+    if (wavesurferRef.current) {
+      wavesurferRef.current.stop();
+      wavesurferRef.current.destroy();
+    }
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: waveformColor + '99',
@@ -58,27 +62,22 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     });
   
     wavesurferRef.current.on('finish', function() {
-      if (wavesurferRef.current) {
-        wavesurferRef.current.stop();
-      }
       onNext();
     });
   
-    if (!playing) {
-      wavesurferRef.current.pause();
-    } else {
-      wavesurferRef.current.play();
-    }
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .then(() => {
+        if (playing) {
+          wavesurferRef.current.play();
+        }
+      })
+      .catch(error => console.error(`Error loading audio file: ${error}`));
   
     return () => {
-      wavesurferRef.current && wavesurferRef.current.destroy();
+      wavesurferRef.current.stop();
+      wavesurferRef.current.destroy();
     };
-  }, [index, playing, onNext]);
-
-  useEffect(() => {
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
-      .catch(error => console.error(`Error loading audio file: ${error}`));
-  }, [track]);
+}, [index, playing, onNext, track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
