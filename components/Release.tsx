@@ -50,21 +50,30 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
-
+  
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
-
-  wavesurferRef.current.on('finish', function() {
-    onNext();
-  });
-
+  
+    wavesurferRef.current.on('finish', function() {
+      if (wavesurferRef.current) {
+        wavesurferRef.current.stop();
+      }
+      onNext();
+    });
+  
+    if (!playing) {
+      wavesurferRef.current.pause();
+    } else {
+      wavesurferRef.current.play();
+    }
+  
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index]);
+  }, [index, playing, onNext]);
 
   useEffect(() => {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
