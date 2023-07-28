@@ -4,7 +4,7 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
-import FooterPlayer from './FooterPlayer';
+import FooterPlayer from 'FooterPlayer.js';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -111,6 +111,9 @@ const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
+  const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
+  const [duration, setDuration] = useState(0);  // Added duration state
+
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
     setPlayingTrackIndex(nextTrackIndex);
@@ -154,13 +157,6 @@ const Release = () => {
                 setDuration={setDuration}
                 />
               ))}
-               {playingTrackIndex !== null && (
-            <FooterPlayer 
-              track={data.release_tracks[playingTrackIndex]}
-              currentTime={currentTime}
-              duration={duration}
-            />
-          )}
           </div>
         </div>
       <div className="credits">
@@ -171,8 +167,15 @@ const Release = () => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
+      {playingTrackIndex !== null && (
+          <FooterPlayer 
+            track={data.release_tracks[playingTrackIndex]}
+            currentTime={currentTime}
+            duration={duration}
+          />
+        )}
       </div>
-    )
+    );
   }
 
   return null;
