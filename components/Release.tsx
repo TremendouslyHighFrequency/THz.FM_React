@@ -33,19 +33,12 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   };  
 
   useEffect(() => {
-    if (wavesurferRef.current) {
-      if (!playing) {
-        wavesurferRef.current.pause();
-      } else {
-        wavesurferRef.current.play();
-      }
+    if (!playing && wavesurferRef.current) {
+      wavesurferRef.current.pause();
     }
   }, [playing]);
 
   useEffect(() => {
-    if (wavesurferRef.current) {
-      wavesurferRef.current.destroy();
-    }
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: waveformColor + '99',
@@ -53,34 +46,32 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
-  
+
+
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
-  
+
     wavesurferRef.current.on('finish', function() {
       onNext();
     });
-  
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
-      .then(() => {
-        if (playing) {
-          wavesurferRef.current.play();
-        }
-      })
-      .catch(error => console.error(`Error loading audio file: ${error}`));
-  
+
     return () => {
-      wavesurferRef.current.destroy();
+      wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index, playing, onNext, track]);
+  }, [index]);
+
+  useEffect(() => {
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .catch(error => console.error(`Error loading audio file: ${error}`));
+  }, [track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
-        <p>{track.track_title}</p>
+      <p>{track.track_title}</p>
       </div>
       <button onClick={onPrev}><FaBackward /></button>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
@@ -88,19 +79,18 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
-        track.track_type === 'Remix'
-        ? (
-          <>
-            <p>Remix by {track.remixer}</p>
-            <p>Original by {track.track_artist}</p>
-          </>
-        )
-        : <p>{track.track_type} by {track.track_artist}</p>
+  track.track_type === 'Remix'
+    ? (
+      <>
+        <p>Remix by {track.remixer}</p>
+        <p>Original by {track.track_artist}</p>
+      </>
+    )
+    : <p>{track.track_type} by {track.track_artist}</p>
       }
     </div>
   );
-};
-
+}
 
 
 const Release = () => {
