@@ -32,6 +32,11 @@ function App() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
+  // Add state for the current track, current time, and duration
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
   useEffect(() => {
     getLoggedUser()
       .then(loggedUser => getNotifications(loggedUser))
@@ -99,7 +104,7 @@ async function purchase() {
   {navItems.map(item => (
     <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
   ))}
-    <Route path="/releases/:title/by/:artist" element={<Release />} />
+    <Route path="/releases/:title/by/:artist" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
 </Routes>
               <div id="comment-container"></div>
             </div>
@@ -110,7 +115,7 @@ async function purchase() {
           <div className="footer">
             <div>
               <div className="footer-links">
-                <FooterNav />
+                <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
               </div>
             </div>
           </div>
