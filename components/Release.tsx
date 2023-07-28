@@ -24,13 +24,20 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   };
 
   const togglePlayPause = () => {
-    if (isPlaying) {
+    if (playing) {
       wavesurferRef.current.pause();
+      onPlay(null);  // Set the playing track index to null when pausing
     } else {
       wavesurferRef.current.play();
+      onPlay();  // Set the playing track index to this track's index when playing
     }
-    setIsPlaying(!isPlaying);
   };
+
+  useEffect(() => {
+    if (!playing && wavesurferRef.current) {
+      wavesurferRef.current.pause();
+    }
+  }, [playing]);
 
   useEffect(() => {
     wavesurferRef.current = WaveSurfer.create({
@@ -81,6 +88,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
 const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
+  const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
 
   if (data) {
     return (
@@ -107,6 +115,8 @@ const Release = () => {
                 releasetextColor={data.release_text_color}
                 tracktextColor={data.track_text_color}
                 progressColor={data.progress_color}
+                playing={index === playingTrackIndex}
+                onPlay={() => setPlayingTrackIndex(index)}
                 />
               ))}
           </div>
