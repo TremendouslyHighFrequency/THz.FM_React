@@ -28,9 +28,9 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       onPlay(null);  // Set the playing track index to null when pausing
     } else {
       wavesurferRef.current.play();
-      onPlay(index);  // Set the playing track index to this track's index when playing
+      onPlay();  // Set the playing track index to this track's index when playing
     }
-  };   
+  };  
 
   useEffect(() => {
     if (wavesurferRef.current) {
@@ -43,10 +43,6 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   }, [playing]);
 
   useEffect(() => {
-    if (wavesurferRef.current) {
-      wavesurferRef.current.stop();
-      wavesurferRef.current.destroy();
-    }
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: waveformColor + '99',
@@ -54,30 +50,22 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
-  
+
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
-  
-    wavesurferRef.current.on('finish', function() {
-      onNext();
-    });
-  
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
-      .then(() => {
-        if (playing) {
-          wavesurferRef.current.play();
-        }
-      })
-      .catch(error => console.error(`Error loading audio file: ${error}`));
-  
+
     return () => {
-      wavesurferRef.current.stop();
-      wavesurferRef.current.destroy();
+      wavesurferRef.current && wavesurferRef.current.destroy();
     };
-}, [index, playing, onNext, track]);
+  }, [index]);
+
+  useEffect(() => {
+    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+      .catch(error => console.error(`Error loading audio file: ${error}`));
+  }, [track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
