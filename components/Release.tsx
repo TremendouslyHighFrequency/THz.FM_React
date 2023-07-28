@@ -50,15 +50,21 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       cursorColor: 'rgba(0,0,0,0)',
       height: 50,
     });
+
     wavesurferRef.current.on('audioprocess', function() {
       var currentTime = wavesurferRef.current.getCurrentTime();
       var duration = wavesurferRef.current.getDuration();
       updateTimer(currentTime, duration);
     });
+
+    wavesurferRef.current.on('finish', function() {
+      onNext();
+    });
+
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index]);
+  }, [index, onNext]);
 
   useEffect(() => {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
