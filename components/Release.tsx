@@ -126,10 +126,12 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   );
 };
 
-const Release = ({ setCurrentTrack, setCurrentTime, setDuration }) => {
+const Release = () => {
   const { title } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
+  const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
+  const [duration, setDuration] = useState(0);  // Added duration state
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
@@ -140,15 +142,6 @@ const Release = ({ setCurrentTrack, setCurrentTime, setDuration }) => {
     const prevTrackIndex = playingTrackIndex > 0 ? playingTrackIndex - 1 : data.release_tracks.length - 1;
     setPlayingTrackIndex(prevTrackIndex);
   };
-
-  // Set the current track, current time, and duration when they change
-  useEffect(() => {
-    if (data && playingTrackIndex !== null) {
-      setCurrentTrack(data.release_tracks[playingTrackIndex]);
-      setCurrentTime(/* current time from audio player */);
-      setDuration(/* duration from audio player */);
-    }
-  }, [data, playingTrackIndex]);
 
   if (data) {
     return (
