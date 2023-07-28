@@ -1,5 +1,6 @@
 // FooterPlayer component
 import React from 'react';
+import { useFrappeGetDoc } from 'frappe-react-sdk';
 
 const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   const percentage = (currentTime / duration) * 100;
