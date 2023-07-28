@@ -28,15 +28,19 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       onPlay(null);  // Set the playing track index to null when pausing
     } else {
       wavesurferRef.current.play();
-      onPlay();  // Set the playing track index to this track's index when playing
+      onPlay(index);  // Set the playing track index to this track's index when playing
     }
   };  
 
-  useEffect(() => {
-    if (!playing && wavesurferRef.current) {
+useEffect(() => {
+  if (wavesurferRef.current) {
+    if (!playing) {
       wavesurferRef.current.pause();
+    } else {
+      wavesurferRef.current.play();
     }
-  }, [playing]);
+  }
+}, [playing]);
 
   useEffect(() => {
     wavesurferRef.current = WaveSurfer.create({
@@ -61,7 +65,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index, playing, onNext]);
+  }, [index, onNext]);
 
   useEffect(() => {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
