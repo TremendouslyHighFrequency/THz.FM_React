@@ -61,7 +61,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index]);
+  }, [index, playing, onNext]);
 
   useEffect(() => {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
