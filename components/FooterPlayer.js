@@ -8,7 +8,7 @@ const FooterPlayer = ({ track, currentTime, duration }) => {
     if (!track) {
       return null;
     }
-  
+
     return (
       <div className="footer-player">
         <img src={`https://thz.fm${track.album_artwork}`} alt={track.track_title} />
