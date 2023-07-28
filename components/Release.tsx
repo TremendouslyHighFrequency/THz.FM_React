@@ -42,35 +42,40 @@ useEffect(() => {
   }
 }, [playing]);
 
-  useEffect(() => {
-    wavesurferRef.current = WaveSurfer.create({
-      container: waveformRef.current,
-      waveColor: waveformColor + '99',
-      progressColor: progressColor,
-      cursorColor: 'rgba(0,0,0,0)',
-      height: 50,
-    });
+useEffect(() => {
+  wavesurferRef.current = WaveSurfer.create({
+    container: waveformRef.current,
+    waveColor: waveformColor + '99',
+    progressColor: progressColor,
+    cursorColor: 'rgba(0,0,0,0)',
+    height: 50,
+  });
 
+  wavesurferRef.current.on('audioprocess', function() {
+    var currentTime = wavesurferRef.current.getCurrentTime();
+    var duration = wavesurferRef.current.getDuration();
+    updateTimer(currentTime, duration);
+  });
 
-    wavesurferRef.current.on('audioprocess', function() {
-      var currentTime = wavesurferRef.current.getCurrentTime();
-      var duration = wavesurferRef.current.getDuration();
-      updateTimer(currentTime, duration);
-    });
+  wavesurferRef.current.on('finish', function() {
+    onNext();
+  });
 
-    wavesurferRef.current.on('finish', function() {
-      onNext();
-    });
+  return () => {
+    wavesurferRef.current && wavesurferRef.current.destroy();
+  };
+}, []);  // No dependencies here, so this useEffect will only run once when the component mounts
 
-    return () => {
-      wavesurferRef.current && wavesurferRef.current.destroy();
-    };
-  }, [index, onNext]);
+useEffect(() => {
+  wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+    .then(() => {
+      if (playing) {
+        wavesurferRef.current.play();
+      }
+    })
+    .catch(error => console.error(`Error loading audio file: ${error}`));
+}, [track, playing]);  // This useEffect will run whenever the track prop changes
 
-  useEffect(() => {
-    wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
-      .catch(error => console.error(`Error loading audio file: ${error}`));
-  }, [track]);
 
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
