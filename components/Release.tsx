@@ -33,8 +33,12 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
   };  
 
   useEffect(() => {
-    if (!playing && wavesurferRef.current) {
-      wavesurferRef.current.pause();
+    if (wavesurferRef.current) {
+      if (!playing) {
+        wavesurferRef.current.pause();
+      } else {
+        wavesurferRef.current.play();
+      }
     }
   }, [playing]);
 
