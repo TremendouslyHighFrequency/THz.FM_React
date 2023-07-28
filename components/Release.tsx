@@ -4,8 +4,9 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
+import FooterPlayer from './FooterPlayer';
 
-const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
+const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
 
@@ -44,11 +45,14 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
       .catch(error => console.error(`Error loading audio file: ${error}`));
 
-    wavesurferRef.current.on('audioprocess', function() {
-      var currentTime = wavesurferRef.current.getCurrentTime();
-      var duration = wavesurferRef.current.getDuration();
-      updateTimer(currentTime, duration);
-    });
+  // Inside useEffect where wavesurfer is initialized
+  wavesurferRef.current.on('audioprocess', function() {
+    var currentTime = wavesurferRef.current.getCurrentTime();
+    var duration = wavesurferRef.current.getDuration();
+    setCurrentTime(currentTime);
+    setDuration(duration);
+    updateTimer(currentTime, duration);
+  });
 
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
@@ -146,8 +150,17 @@ const Release = () => {
                 onPlay={() => setPlayingTrackIndex(index)}
                 onNext={onNext}
                 onPrev={onPrev}
+                setCurrentTime={setCurrentTime}
+                setDuration={setDuration}
                 />
               ))}
+               {playingTrackIndex !== null && (
+            <FooterPlayer 
+              track={data.release_tracks[playingTrackIndex]}
+              currentTime={currentTime}
+              duration={duration}
+            />
+          )}
           </div>
         </div>
       <div className="credits">
