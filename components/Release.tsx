@@ -57,24 +57,14 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       updateTimer(currentTime, duration);
     });
 
-    wavesurferRef.current.on('finish', function() {
-      onNext();
-    });
+  wavesurferRef.current.on('finish', function() {
+    onNext();
+  });
 
     return () => {
       wavesurferRef.current && wavesurferRef.current.destroy();
     };
-  }, [index, onNext]);
-
-  useEffect(() => {
-    if (wavesurferRef.current) {
-      if (playing) {
-        wavesurferRef.current.play();
-      } else {
-        wavesurferRef.current.pause();
-      }
-    }
-  }, [playing]);
+  }, [index]);
 
   useEffect(() => {
     wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
