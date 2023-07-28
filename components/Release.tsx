@@ -5,7 +5,7 @@ import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause } from 'react-icons/fa';
 
-const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, trackType }) => {
+const Track = ({ track, index, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,7 +59,7 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
       <p>{track.track_title}</p>
-      <p>{track.track_type} by {track.track_artist}</p>
+      <p> by {track.track_artist}</p>
       <span id={`timer-${index}`}></span>
       </div>
       <div className="play-area">
@@ -100,7 +100,6 @@ const Release = () => {
                 releasetextColor={data.release_text_color}
                 tracktextColor={data.track_text_color}
                 progressColor={data.progress_color}
-                trackType={data.track_type}
                 />
               ))}
           </div>
