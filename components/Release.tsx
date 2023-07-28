@@ -68,12 +68,12 @@ const Track = ({ track, index, containerColor, waveformColor, releasetextColor, 
       <>
         <p>Remix by {track.remixer}</p>
         <p>Original by {track.track_artist}</p>
+        <span id={`timer-${index}`}></span>
       </>
     )
     : <p>{track.track_type} by {track.track_artist}</p>
+    <span id={`timer-${index}`}></span>
       }
-
-      <span id={`timer-${index}`}></span>
     </div>
   );
 }
