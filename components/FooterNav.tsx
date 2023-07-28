@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import THZIcon from '../assets/Terahertz.png';
-import FooterPlayer from './FooterPlayer';
 
 type SidebarItem = {
   title: string;
@@ -11,13 +10,6 @@ type SidebarItem = {
 
 type SidebarData = {
   sidebar_items: SidebarItem[];
-};
-
-// Add the new props
-type FooterNavProps = {
-  track: any; // Replace with the actual type of the track
-  currentTime: number;
-  duration: number;
 };
 
 const routeUrls: Record<string, string> = {
@@ -53,18 +45,10 @@ const FooterNav = () => {
 
   return (
     <div className="footer-nav">
-      <img className="footer-logo" src={THZIcon} alt="logo" />
+        <img className="footer-logo" src={THZIcon} alt="logo" />
       {navItems.map(item => (
         <div className="footer-link"><a target="_blank" key={item.route} href={item.url}>{item.title}</a></div>
       ))}
-      {/* Add the FooterPlayer here */}
-      {track && (
-        <FooterPlayer 
-          track={track}
-          currentTime={currentTime}
-          duration={duration}
-        />
-      )}
     </div>
   );
 };
