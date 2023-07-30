@@ -35,7 +35,7 @@ function App() {
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [txId, setTxId] = useState(null);
+  const [txId, setTxId] = useState<string | null>(null); // Define the txId state and setTxId function here
 
   // Add state for the current track, current time, and duration
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       <FrappeProvider url='https://thz.fm'>
         <div className="App-header" style={{ minHeight: '72px' }}>
-            <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} />
+            <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} data={data} />
         </div>
         <div>
         
