@@ -146,19 +146,17 @@ const [artistData, setArtistData] = useState(null);
 const [errorMessage, setErrorMessage] = useState(null); // Declare a new state for the error message
 
 
+const { data: artistData, error: artistError } = useFrappeGetDoc('Artist', data?.release_artist);
+
 useEffect(() => {
-  if (data?.release_artist) {
-    fetch(`/api/resource/Artist/${data.release_artist}`)
-      .then(response => response.json())
-      .then(data => {
-        if (!data.artist_ergo) {
-          setShowModal(true);
-        }
-        setArtistData(data);
-      })
-      .catch(error => console.error(`Error fetching artist data: ${error}`));
+  if (artistData && artistData.artist_ergo) {
+    setArtistAddress(artistData.artist_ergo);
+    setErrorMessage(null); // Clear the error message when the artist address is found
+  } else if (artistError || !artistData.artist_ergo) {
+    setErrorMessage('No Ergo address for the artist'); // Set the error message when no artist address is found
   }
-}, [data?.release_artist]);
+}, [artistData, artistError]);
+
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
