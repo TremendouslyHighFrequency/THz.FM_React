@@ -15,7 +15,7 @@ var downloadButton =
   '</div>' +
 '</div>';
 
-export async function purchase() {
+export async function purchase(price_erg) {
   const explorerAPI = 'https://explorer.ergoplatform.com/api/v1';
 
   // requests wallet access
@@ -28,7 +28,7 @@ export async function purchase() {
       .to(
         // Add output
         new OutputBuilder(
-          "100000000",
+          price_erg * 100000000,
           "9fjTtRPuaSXU3QuK73EH7w6dCd2Z8oPDnXz5qBptKpD6MUdwiZX"
         )
       )

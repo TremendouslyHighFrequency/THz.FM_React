@@ -156,7 +156,7 @@ const Release = () => {
               ))}</div>
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
-          <button onClick={() => purchase(data.price_erg)}>BUY ∑ {data.price_erg} ERG</button>
+          <button onClick={async () => await purchase(parseFloat(data.price_erg))}>BUY ∑ {data.price_erg} ERG</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
