@@ -13,6 +13,20 @@ html, body, #root, .app {
   height: 100vh;
   margin: 0 auto;
 }
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .genre-item {
   background-color:#4c5a67;
   color: #f2f2f2;

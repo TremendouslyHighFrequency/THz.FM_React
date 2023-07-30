@@ -143,21 +143,22 @@ const Release = () => {
   const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
 // State variable for artist data
 const [artistData, setArtistData] = useState(null);
+const [errorMessage, setErrorMessage] = useState(null); // Declare a new state for the error message
 
-// Fetch the artist data when the release data is available
+
 useEffect(() => {
-  if (data?.release_artist) {
-    fetch(`/api/resource/Artist/${data.release_artist}`)
-      .then(response => response.json())
-      .then(data => {
-        if (!data.artist_ergo) {
-          setShowModal(true);
-        }
-        setArtistData(data);
-      })
-      .catch(error => console.error(`Error fetching artist data: ${error}`));
+  if (data && artistData) {
+    // Fetch the artist_ergo_address from the primary release artist
+    const artistErgoAddress = artistData.artist_ergo;
+
+    if (artistErgoAddress) {
+      setArtistAddress(artistErgoAddress);
+      setErrorMessage(null); // Clear the error message when the artist address is found
+    } else {
+      setErrorMessage('No Ergo address for the artist'); // Set the error message when no artist address is found
+    }
   }
-}, [data?.release_artist]);
+}, [data, artistData]);
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
@@ -255,18 +256,24 @@ useEffect(() => {
             duration={duration}
           />
         )}
-
-<Modal show={showModal} onHide={() => setShowModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>No Ergo address for the artist</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+<div className="modal">
+<Modal 
+  show={!!errorMessage} 
+  onHide={() => setErrorMessage(null)}
+  dialogClassName="modal-90w"
+  aria-labelledby="example-custom-modal-styling-title"
+>
+  <Modal.Header closeButton>
+    <Modal.Title id="example-custom-modal-styling-title">Error</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>{errorMessage}</Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setErrorMessage(null)}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
+  </div>
       </div>
 
     );
