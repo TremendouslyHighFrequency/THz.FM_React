@@ -1,5 +1,8 @@
+//Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
-import { ergoConnector } from './ergoConnector';
+import { SHA256 } from 'crypto-js';
+import { ErgoDappConnector } from 'ergo-dapp-connector';
+import { MintNFT } from './components/MintNFT';
 
 var downloadButton = 
 '<div class="mt-8 bg-white rounded-lg max-w-md mx-auto p-4 fixed float-right overflow-x-none overflow-y-auto right-0 z-20 mb-4 mx-6 absolute">' +
