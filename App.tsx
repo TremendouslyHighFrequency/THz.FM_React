@@ -43,12 +43,12 @@ function App() {
 
   const [transactionConfirmed, setTransactionConfirmed] = useState(false); // Add this line
 
-const paymentMonitorValue = {
-  txId,
-  setTxId,
-  transactionConfirmed, // Add this line
-  setTransactionConfirmed, // And this line
-};
+  const paymentMonitorValue = {
+    txId,
+    setTxId,
+    transactionConfirmed, // Add this line
+    setTransactionConfirmed, // And this line
+  };
 
   useEffect(() => {
     getLoggedUser()
@@ -65,10 +65,6 @@ const paymentMonitorValue = {
     }
   };
 
-  const paymentMonitorValue = {
-    txId,
-    setTxId,
-  };
 
   const { navItems, links } = SideNav();
 
