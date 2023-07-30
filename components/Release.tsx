@@ -7,7 +7,7 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { purchase } from './payment';
-import styles from './App.css';
+import styles from '../App.css';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
