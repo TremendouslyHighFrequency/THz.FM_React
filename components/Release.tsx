@@ -141,12 +141,16 @@ const Release = () => {
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
   const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
-  const [artistData, setArtistData] = useState(null);
+// State variable for artist data
+const [artistData, setArtistData] = useState(null);
 
-// Use effect hook to fetch artist data when `data.release_artist` changes
+// Fetch the artist data when the release data is available
 useEffect(() => {
   if (data?.release_artist) {
-    useFrappeGetDoc('Artist', data.release_artist).then(setArtistData);
+    fetch(`/api/resource/Artist/${data.release_artist}`)
+      .then(response => response.json())
+      .then(data => setArtistData(data))
+      .catch(error => console.error(`Error fetching artist data: ${error}`));
   }
 }, [data?.release_artist]);
 
