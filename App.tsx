@@ -17,8 +17,8 @@ import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 
+// Context
 import { PaymentMonitorContext } from './components/PaymentMonitorContext';
-import { purchase as purchaseFn } from './components/payment';
 
 // Nav Imports
 import SideNav from './components/FrontSideNav';
@@ -32,20 +32,6 @@ import Single from './components/Single';
 
 function App() {
 
-  const [transactionConfirmed, setTransactionConfirmed] = useState(false);
-
-  const checkTransaction = async (txId) => {
-    const explorerAPI = 'https://api.ergoplatform.com/api/v1';
-    var interval = setInterval(async () => {
-      const response = await axios.get(explorerAPI + '/transactions/' + txId)
-      if (response.data) {
-        clearInterval(interval);
-        setTransactionConfirmed(true);
-      }
-    }, 20000);
-  };
-
-
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -53,6 +39,7 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [txId, setTxId] = useState(null);
 
   useEffect(() => {
     getLoggedUser()
@@ -69,83 +56,51 @@ function App() {
     }
   };
 
-async function purchase() {
-  // requests wallet access
-  if (await ergoConnector.nautilus.connect()) {
-    // get the current height from the the dApp Connector
-    const height = await ergo.get_current_height();
-
-    const unsignedTx = new TransactionBuilder(height)
-      .from(await ergo.get_utxos()) // add inputs from dApp Connector
-      .to(
-        // Add output
-        new OutputBuilder(
-          "100000000",
-          "9fjTtRPuaSXU3QuK73EH7w6dCd2Z8oPDnXz5qBptKpD6MUdwiZX"
-        )
-      )
-      .sendChangeTo(await ergo.get_change_address()) // Set the change address to the user's default change address
-      .payMinFee() // set minimal transaction fee
-      .build() // build the transaction
-      .toEIP12Object(); // converts the ErgoUnsignedTransaction instance to an dApp Connector compatible plain object
-
-    // requests the signature
-    const signedTx = await ergo.sign_tx(unsignedTx);
-
-    // send the signed transaction to the mempool
-    const txId = await ergo.submit_tx(signedTx);
-
-    // prints the Transaction ID of the submitted transaction on the console
-    console.log(txId);
-  }
-};
+  const paymentMonitorValue = {
+    txId,
+    setTxId,
+    checkTransaction,
+  };
 
   const { navItems, links } = SideNav();
 
- return (
-    <Router>
-      <PaymentMonitorContext.Provider value={{ 
-        transactionConfirmed, 
-        setTransactionConfirmed,
-        checkTransaction
-      }}>
-    <div className="App">
-      <FrappeProvider url='https://thz.fm'>
-        <div className="App-header" style={{ minHeight: '72px' }}>
-          <Navbar loggedUser={null} notifications={notifications} />
-        </div>
-        <div>
-        
- <div className="App-body">
-           <div className="main-container">
-           {links}
-           </div>
-            <div className="page-content">
-            
-            <Routes>
-  {navItems.map(item => (
-    <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
-  ))}
-    <Route path="/releases/:title/by/:artist" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
-</Routes>
-              <div id="comment-container"></div>
+  return (
+    <PaymentMonitorContext.Provider value={paymentMonitorValue}>
+      <Router>
+        <div className="App">
+          <FrappeProvider url='https://thz.fm'>
+            <div className="App-header" style={{ minHeight: '72px' }}>
+              <Navbar loggedUser={null} notifications={notifications} />
             </div>
-         </div>
-        </div>
-    
-        <div className="App-footer">
-          <div className="footer">
             <div>
-              <div className="footer-links">
-                <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+              <div className="App-body">
+                <div className="main-container">
+                  {links}
+                </div>
+                <div className="page-content">
+                  <Routes>
+                    {navItems.map(item => (
+                      <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
+                    ))}
+                    <Route path="/releases/:title/by/:artist" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
+                  </Routes>
+                  <div id="comment-container"></div>
+                </div>
               </div>
             </div>
-          </div>
+            <div className="App-footer">
+              <div className="footer">
+                <div>
+                  <div className="footer-links">
+                    <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FrappeProvider>
         </div>
-      </FrappeProvider>
-    </div>
+      </Router>
     </PaymentMonitorContext.Provider>
-    </Router>
   );
 }
 

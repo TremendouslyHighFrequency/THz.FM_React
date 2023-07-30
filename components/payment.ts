@@ -20,7 +20,7 @@ var downloadButton =
   '</div>' +
 '</div>';
 
-export async function purchase(price_erg) {
+export async function purchase(price_erg, setTxId) {
   const { checkTransaction } = usePaymentMonitor(); // Import checkTransaction from the context
   const explorerAPI = 'https://api.ergoplatform.com/api/v1';
 
@@ -38,7 +38,7 @@ export async function purchase(price_erg) {
     const signedTx = await ergo.sign_tx(unsignedTx);
     const txId = await ergo.submit_tx(signedTx);
     console.log(txId);
-
+    setTxId(txId);
     window.alert("Your tx ID is:" + txId + " - The album download button will appear once your transaction confirms. Feel free to continue browsing the site while it confirms.");
 
     checkTransaction(txId); // Call checkTransaction after the transaction is created
