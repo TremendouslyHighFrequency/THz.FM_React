@@ -8,14 +8,13 @@ import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
 
-const Navbar = ({ loggedUser, notifications, setTxId }: NavbarProps & { notifications: Notification[] }) => {
+const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const [userImage, setUserImage] = useState<string | null>(null);
-  const [txId, setTxId] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
 
   useEffect(() => {
