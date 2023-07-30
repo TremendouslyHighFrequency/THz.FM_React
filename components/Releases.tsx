@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Releases = () => {
     useEffect(() => {
-        frappe.set_route('releases');
+        window.frappe.set_route('releases');
       }, []);
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {

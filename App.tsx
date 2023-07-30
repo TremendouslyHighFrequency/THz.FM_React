@@ -41,7 +41,7 @@ function App() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    const route = frappe.get_route();
+    const route = window.frappe.get_route();
   }, []);
 
   useEffect(() => {
