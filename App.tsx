@@ -31,6 +31,7 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 
 function App() {
+
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
   const [txId, setTxId] = useState<string | null>(null); // Define the txId state and setTxId function here
@@ -39,10 +40,6 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-
-  useEffect(() => {
-    const route = window.frappe.get_route();
-  }, []);
 
   useEffect(() => {
     getLoggedUser()
