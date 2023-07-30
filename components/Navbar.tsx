@@ -6,8 +6,7 @@ import THZLogo from '../assets/THZFM_logo.png';
 import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
-import axios from 'axios';
-import { useFrappeSearch } from 'frappe-react-sdk'; // Import the useFrappeSearch hook
+import axios from 'axios'; // Import the useFrappeSearch hook
 
 
 const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { notifications: Notification[] }) => {
