@@ -156,8 +156,8 @@ const Release = () => {
               ))}</div>
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
-          <button className="erg-button" onClick={async () => await purchase(parseFloat(data.price_erg))}>BUY ∑ {data.price_erg} ERG</button>
-          <button className="usd-button">BUY $ {data.price_usd} USD</button>
+          <button className={styles['erg-button']} onClick={async () => await purchase(parseFloat(data.price_erg))}>BUY ∑ {data.price_erg} ERG</button>
+          <button className={styles['usd-button']}>BUY $ {data.price_usd} USD</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track 
