@@ -59,13 +59,12 @@ function App() {
   const paymentMonitorValue = {
     txId,
     setTxId,
-    checkTransaction,
   };
 
   const { navItems, links } = SideNav();
 
   return (
-    <PaymentMonitorContext.Provider value={paymentMonitorValue}>
+<PaymentMonitorContext.Provider value={paymentMonitorValue}>
       <Router>
         <div className="App">
           <FrappeProvider url='https://thz.fm'>

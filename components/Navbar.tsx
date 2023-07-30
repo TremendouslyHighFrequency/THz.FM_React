@@ -11,7 +11,7 @@ import { DownloadIcon } from '@primer/octicons-react'; // make sure to import th
 
 
 const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
-  const { transactionConfirmed } = usePaymentMonitor();
+  const { txId, transactionConfirmed } = usePaymentMonitor();
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -46,11 +46,13 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
-          {transactionConfirmed && 
-          <button>
-            <DownloadIcon size={24} />
-          </button>
-        }
+          {txId && (
+        <div>
+          {/* Replace <ProgressIcon> and <DownloadIcon> with the actual icons */}
+          {!transactionConfirmed && <ProgressIcon txId={txId} />}
+          {transactionConfirmed && <DownloadIcon txId={txId} />}
+        </div>
+      )}
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
             <BellIcon size={24} />
           </button>
