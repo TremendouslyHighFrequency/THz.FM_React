@@ -57,7 +57,7 @@ function App() {
 
        // Update the content of the page-content area
        usePageContentStore.setContent(content);
-      };
+
 
     } catch (err) {
       console.error(err);
