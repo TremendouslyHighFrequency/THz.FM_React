@@ -18,7 +18,6 @@ import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 
 import { purchase as purchaseFn } from './components/purchase';
-import { PaymentMonitorContext } from './components/PaymentMonitorContext';
 
 
 // Nav Imports
