@@ -21,7 +21,30 @@ html, body, #root, .app {
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
+.erg-button {
+  background-color: #ffaa55;
+  color: #161616;
+  border-radius: 0.375rem;
+  padding: 0.3em;
+  margin: 0.3em;
+  font-size: 0.8em;
+  font-weight: 500;
+  line-height: 1.5;
+  width: fit-content;
+  display: inline-block;
+}
+.usd-button {
+  background-color: #79cd7a;
+  color: #161616;
+  border-radius: 0.375rem;
+  padding: 0.3em;
+  margin: 0.3em;
+  font-size: 0.8em;
+  font-weight: 500;
+  line-height: 1.5;
+  width: fit-content;
+  display: inline-block;
+}
 .modal {
   display: flex;
   align-items: center;
