@@ -3,13 +3,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //Frappe Imports 
-import { FrappeProvider, useFrappeSearch } from 'frappe-react-sdk';
+import { FrappeProvider } from 'frappe-react-sdk';
 
 //Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
 import { SHA256 } from 'crypto-js';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import { MintNFT } from './components/MintNFT';
+
+// Import the usePageContentStore hook
+import { usePageContentStore } from './pageContentStore';
 
 //App Requirement Imports
 import './App.css';
@@ -51,10 +54,16 @@ function App() {
   const handleButtonClick = async () => {
     try {
       await MintNFT();
+
+       // Update the content of the page-content area
+       usePageContentStore.setContent(content);
+      };
+
     } catch (err) {
       console.error(err);
     }
   };
+
 
   const { navItems, links } = SideNav();
 
@@ -72,7 +81,7 @@ function App() {
            {links}
            </div>
             <div className="page-content">
-            
+             {usePageContentStore((state) => state.content)}
             <Routes>
   {navItems.map(item => (
     <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
