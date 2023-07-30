@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, ClockIcon, DownloadIcon } from '@primer/octicons-react';
+import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
 import THZLogo from '../assets/THZFM_logo.png';
 import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
+import axios from 'axios';
 
 const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
@@ -15,7 +15,6 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const [userImage, setUserImage] = useState<string | null>(null);
-
   const [txId, setTxId] = useState(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState(false);
 
@@ -43,6 +42,13 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
       return () => clearInterval(interval);
     }
   }, [loggedUser, txId]);
+
+  const handleButtonClick = async () => {
+    // Call the function that initiates the transaction and returns the transaction id.
+    // replace this with the actual function
+    const newTxId = await purchase();
+    setTxId(newTxId);
+  };
   
   return (
     <div className="navbar">
