@@ -41,7 +41,6 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
       return () => clearInterval(interval);
     }
   }, [loggedUser, txId]);
-
   
   return (
     <div className="navbar">
