@@ -141,7 +141,7 @@ const Release = () => {
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
-  const { data: artistData } = useFrappeGetDoc('Artist', data.release_artist);
+  const { data: artistData } = useFrappeGetDoc('Artist', data ? data.release_artist : null);
 
   useEffect(() => {
     if (data && data.release_artist) {
