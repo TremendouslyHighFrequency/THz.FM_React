@@ -20,7 +20,7 @@ var downloadButton =
 '</div>';
 
 export async function purchase(price_erg) {
-  const explorerAPI = 'https://explorer.ergoplatform.com/api/v1';
+  const explorerAPI = 'https://api.ergoplatform.com/api/v1';
 
   if (await ergoConnector.nautilus.connect()) {
     const height = await ergo.get_current_height();
