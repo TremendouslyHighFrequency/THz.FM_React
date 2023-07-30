@@ -31,7 +31,8 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 
 function App() {
-
+  useEffect(() => {
+    const route = frappe.get_route();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
   const [txId, setTxId] = useState<string | null>(null); // Define the txId state and setTxId function here
