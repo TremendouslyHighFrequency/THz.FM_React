@@ -141,8 +141,6 @@ const Release = () => {
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
   const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
-// State variable for artist data
-const [artistData, setArtistData] = useState(null);
 const [errorMessage, setErrorMessage] = useState(null); // Declare a new state for the error message
 
 
