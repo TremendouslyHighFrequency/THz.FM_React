@@ -42,12 +42,6 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
     }
   }, [loggedUser, txId]);
 
-  const handleButtonClick = async () => {
-    // Call the function that initiates the transaction and returns the transaction id.
-    const newTxId = await purchase();
-    setTxId(newTxId);
-  };
-
   
   return (
     <div className="navbar">
