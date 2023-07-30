@@ -1,18 +1,11 @@
-import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
+import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-//Ergo / Crypto Imports
-import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
-import { SHA256 } from 'crypto-js';
-import { ErgoDappConnector } from 'ergo-dapp-connector';
-import { MintNFT } from './components/MintNFT';
-
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -139,22 +132,6 @@ const Release = () => {
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
-  const [showModal, setShowModal] = useState(false);
-  const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
-const [errorMessage, setErrorMessage] = useState(null); // Declare a new state for the error message
-
-
-const { data: artistData, error: artistError } = useFrappeGetDoc('Artist', data?.release_artist);
-
-useEffect(() => {
-  if (artistData && artistData.artist_ergo) {
-    setArtistAddress(artistData.artist_ergo);
-    setErrorMessage(null); // Clear the error message when the artist address is found
-  } else if (artistError || !artistData.artist_ergo) {
-    setErrorMessage('No Ergo address for the artist'); // Set the error message when no artist address is found
-  }
-}, [artistData, artistError]);
-
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
@@ -164,41 +141,6 @@ useEffect(() => {
   const onPrev = () => {
     const prevTrackIndex = playingTrackIndex > 0 ? playingTrackIndex - 1 : data.release_tracks.length - 1;
     setPlayingTrackIndex(prevTrackIndex);
-  };
-
-  async function purchase() {
-    if (!artistAddress) {
-      setShowModal(true);
-      return;
-    }
-    // requests wallet access
-    if (await ergoConnector.nautilus.connect()) {
-      // get the current height from the the dApp Connector
-      const height = await ergo.get_current_height();
-  
-      const unsignedTx = new TransactionBuilder(height)
-        .from(await ergo.get_utxos()) // add inputs from dApp Connector
-        .to(
-          // Add output
-          new OutputBuilder(
-            amount.toString(),  // Convert BigInt to string
-            artistAddress  // Use the artist's Ergo address
-          )
-        )
-        .sendChangeTo(await ergo.get_change_address()) // Set the change address to the user's default change address
-        .payMinFee() // set minimal transaction fee
-        .build() // build the transaction
-        .toEIP12Object(); // converts the ErgoUnsignedTransaction instance to an dApp Connector compatible plain object
-  
-      // requests the signature
-      const signedTx = await ergo.sign_tx(unsignedTx);
-  
-      // send the signed transaction to the mempool
-      const txId = await ergo.submit_tx(signedTx);
-  
-      // prints the Transaction ID of the submitted transaction on the console
-      console.log(txId);
-    }
   };
 
   if (data) {
@@ -252,26 +194,7 @@ useEffect(() => {
             duration={duration}
           />
         )}
-<div className="modal">
-<Modal 
-  show={!!errorMessage} 
-  onHide={() => setErrorMessage(null)}
-  dialogClassName="modal-90w"
-  aria-labelledby="example-custom-modal-styling-title"
->
-  <Modal.Header closeButton>
-    <Modal.Title id="example-custom-modal-styling-title">Error</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>{errorMessage}</Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={() => setErrorMessage(null)}>
-      Close
-    </Button>
-  </Modal.Footer>
-</Modal>
-  </div>
       </div>
-
     );
   }
 
