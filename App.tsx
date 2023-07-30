@@ -17,6 +17,9 @@ import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 
+import { PaymentMonitorContext } from './components/PaymentMonitorContext';
+import { purchase as purchaseFn } from './components/payment';
+
 // Nav Imports
 import SideNav from './components/FrontSideNav';
 import FooterNav from './components/FooterNav';
@@ -28,6 +31,20 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 
 function App() {
+
+  const [transactionConfirmed, setTransactionConfirmed] = useState(false);
+
+  const checkTransaction = async (txId) => {
+    const explorerAPI = 'https://api.ergoplatform.com/api/v1';
+    var interval = setInterval(async () => {
+      const response = await axios.get(explorerAPI + '/transactions/' + txId)
+      if (response.data) {
+        clearInterval(interval);
+        setTransactionConfirmed(true);
+      }
+    }, 20000);
+  };
+
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -87,6 +104,11 @@ async function purchase() {
 
  return (
     <Router>
+      <PaymentMonitorContext.Provider value={{ 
+        transactionConfirmed, 
+        setTransactionConfirmed,
+        checkTransaction
+      }}>
     <div className="App">
       <FrappeProvider url='https://thz.fm'>
         <div className="App-header" style={{ minHeight: '72px' }}>
@@ -122,6 +144,7 @@ async function purchase() {
         </div>
       </FrappeProvider>
     </div>
+    </PaymentMonitorContext.Provider>
     </Router>
   );
 }

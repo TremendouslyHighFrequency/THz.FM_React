@@ -4,6 +4,7 @@ import { SHA256 } from 'crypto-js';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import { MintNFT } from './components/MintNFT';
 import axios from 'axios';
+import { usePaymentMonitor } from './PaymentMonitorContext';
 
 var downloadButton = 
 '<div class="mt-8 bg-white rounded-lg max-w-md mx-auto p-4 fixed float-right overflow-x-none overflow-y-auto right-0 z-20 mb-4 mx-6 absolute">' +
@@ -20,6 +21,7 @@ var downloadButton =
 '</div>';
 
 export async function purchase(price_erg) {
+  const { checkTransaction } = usePaymentMonitor(); // Import checkTransaction from the context
   const explorerAPI = 'https://api.ergoplatform.com/api/v1';
 
   if (await ergoConnector.nautilus.connect()) {
@@ -39,13 +41,7 @@ export async function purchase(price_erg) {
 
     window.alert("Your tx ID is:" + txId + " - The album download button will appear once your transaction confirms. Feel free to continue browsing the site while it confirms.");
 
-    var interval = setInterval(checkTransaction, 20000);
-    function checkTransaction() {
-      axios.get(explorerAPI + '/transactions/' + txId)
-      .then(function (response) {
-        clearInterval(interval);
-        console.log(response.data);
-      })
-    }
+    checkTransaction(txId); // Call checkTransaction after the transaction is created
   }
 }
+

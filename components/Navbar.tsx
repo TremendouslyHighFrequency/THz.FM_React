@@ -6,8 +6,12 @@ import THZLogo from '../assets/THZFM_logo.png';
 import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
+import { usePaymentMonitor } from './PaymentMonitorContext';
+import { DownloadIcon } from '@primer/octicons-react'; // make sure to import the DownloadIcon
+
 
 const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
+  const { transactionConfirmed } = usePaymentMonitor();
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -42,7 +46,11 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
-          
+          {transactionConfirmed && 
+          <button>
+            <DownloadIcon size={24} />
+          </button>
+        }
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
             <BellIcon size={24} />
           </button>
