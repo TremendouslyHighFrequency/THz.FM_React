@@ -15,8 +15,8 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const [userImage, setUserImage] = useState<string | null>(null);
-  const [txId, setTxId] = useState(null);
-  const [transactionConfirmed, setTransactionConfirmed] = useState(false);
+  const [txId, setTxId] = useState<string | null>(null);
+  const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
 
   useEffect(() => {
     if (loggedUser) {
@@ -45,7 +45,6 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
 
   const handleButtonClick = async () => {
     // Call the function that initiates the transaction and returns the transaction id.
-    // replace this with the actual function
     const newTxId = await purchase();
     setTxId(newTxId);
   };
