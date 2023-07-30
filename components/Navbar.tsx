@@ -6,8 +6,7 @@ import THZLogo from '../assets/THZFM_logo.png';
 import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
-import axios from 'axios'; // Import the useFrappeSearch hook
-
+import axios from 'axios';
 
 const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
@@ -17,16 +16,6 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
 
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
-
-  const { data: searchResults, error, isValidating } = useFrappeSearch('DocumentType', search);
-
-   // Display search results when available
-   useEffect(() => {
-    if (searchResults) {
-      console.log('Search results:', searchResults);
-    }
-  }, [searchResults]);
-
 
   useEffect(() => {
     if (loggedUser) {
@@ -60,26 +49,15 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           <img className="navbar-logo" src={THZLogo} alt="logo" />
         </a>
         <div className="navbar-items">
-        <input
-        className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
-        type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        onClick={() => setIsExpanded(true)}
-        onBlur={() => setIsExpanded(false)}
-      />
-      
-      {/* Search results */}
-      {isValidating && <div>Loading...</div>}
-      {error && <div>Error: {JSON.stringify(error)}</div>}
-      {searchResults && (
-        <ul>
-          {searchResults.map((result, index) => (
-            <li key={index}>{result.name}</li>
-          ))}
-        </ul>
-      )}
+          <input
+            className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onClick={() => setIsExpanded(true)}
+            onBlur={() => setIsExpanded(false)}
+          />
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
