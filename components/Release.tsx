@@ -149,7 +149,12 @@ useEffect(() => {
   if (data?.release_artist) {
     fetch(`/api/resource/Artist/${data.release_artist}`)
       .then(response => response.json())
-      .then(data => setArtistData(data))
+      .then(data => {
+        if (!data.artist_ergo) {
+          setShowModal(true);
+        }
+        setArtistData(data);
+      })
       .catch(error => console.error(`Error fetching artist data: ${error}`));
   }
 }, [data?.release_artist]);
