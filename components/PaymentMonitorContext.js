@@ -1,7 +1,7 @@
 // PaymentMonitorContext.js
 import { createContext, useContext } from 'react';
 
-const PaymentMonitorContext = createContext({
+export const PaymentMonitorContext = createContext({
   transactionConfirmed: false,
   setTransactionConfirmed: () => {},
   checkTransaction: () => {},
