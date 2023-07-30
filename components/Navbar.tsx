@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, ClockIcon, DownloadIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
@@ -43,7 +43,7 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
       return () => clearInterval(interval);
     }
   }, [loggedUser, txId]);
-
+  
   return (
     <div className="navbar">
       <div className="navContainer">
