@@ -63,7 +63,7 @@ function App() {
     <div className="App">
       <FrappeProvider url='https://thz.fm'>
         <div className="App-header" style={{ minHeight: '72px' }}>
-          <Navbar loggedUser={null} notifications={notifications} />
+          <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} data={data} />
         </div>
         <div>
         
