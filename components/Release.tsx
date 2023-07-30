@@ -6,6 +6,7 @@ import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { purchase } from './payment';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -155,7 +156,7 @@ const Release = () => {
               ))}</div>
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
-            <button>BUY $ {data.price_usd} USD</button>
+          <button onClick={() => purchase(data.price_erg)}>BUY ∑ {data.price_erg} ERG</button>
           <button>BUY ∑ {data.price_erg} ERG</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
