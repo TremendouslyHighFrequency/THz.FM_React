@@ -38,6 +38,7 @@ export async function purchase(price_erg) {
     const txId = await ergo.submit_tx(signedTx);
     setTransaction(txId);
     console.log(txId);
+    setTxId = txId;
 
     window.alert("Your tx ID is:" + txId + " - The album download button will appear once your transaction confirms. Feel free to continue browsing the site while it confirms.");
 
