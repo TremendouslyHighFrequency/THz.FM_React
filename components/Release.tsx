@@ -147,18 +147,18 @@ const [errorMessage, setErrorMessage] = useState(null); // Declare a new state f
 
 
 useEffect(() => {
-  if (data && artistData) {
-    // Fetch the artist_ergo_address from the primary release artist
-    const artistErgoAddress = artistData.artist_ergo;
-
-    if (artistErgoAddress) {
-      setArtistAddress(artistErgoAddress);
-      setErrorMessage(null); // Clear the error message when the artist address is found
-    } else {
-      setErrorMessage('No Ergo address for the artist'); // Set the error message when no artist address is found
-    }
+  if (data?.release_artist) {
+    fetch(`/api/resource/Artist/${data.release_artist}`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.artist_ergo) {
+          setShowModal(true);
+        }
+        setArtistData(data);
+      })
+      .catch(error => console.error(`Error fetching artist data: ${error}`));
   }
-}, [data, artistData]);
+}, [data?.release_artist]);
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
