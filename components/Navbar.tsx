@@ -6,12 +6,12 @@ import THZLogo from '../assets/THZFM_logo.png';
 import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
-import { usePaymentMonitor } from './PaymentMonitorContext';
-import { DownloadIcon } from '@primer/octicons-react'; // make sure to import the DownloadIcon
+import { checkTransaction } from './transactionMonitor';
+import { DownloadIcon, ProgressIcon } from '@primer/octicons-react'; // make sure to import the DownloadIcon
 
 
 const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
-  const { txId, transactionConfirmed } = usePaymentMonitor();
+  const transactionConfirmed = checkTransaction();
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
