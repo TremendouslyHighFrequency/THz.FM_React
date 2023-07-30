@@ -8,6 +8,11 @@ import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+//Ergo / Crypto Imports
+import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
+import { SHA256 } from 'crypto-js';
+import { ErgoDappConnector } from 'ergo-dapp-connector';
+import { MintNFT } from './components/MintNFT';
 
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
@@ -136,17 +141,14 @@ const Release = () => {
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
-
-  const [artistAddress, setArtistAddress] = useState(null);
+  const { data: artistData } = useFrappeGetDoc('Artist', data.release_artist);
 
   useEffect(() => {
-  if (data && data.release_artist) {
-    // Fetch the artist_ergo_address from the primary release artist
-    // Assuming you have a 'getArtist' function which fetches an artist's details
-    const artistDetails = getArtist(data.release_artist);
-    setArtistAddress(artistDetails.artist_ergo);
+    if (data && data.release_artist) {
+      // Fetch the artist_ergo_address from the primary release artist
+      setArtistAddress(artistData.artist_ergo);
     }
-  }, [data]);
+  }, [data, artistData]);
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
