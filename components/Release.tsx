@@ -7,6 +7,8 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
