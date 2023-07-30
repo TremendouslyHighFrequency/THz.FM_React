@@ -17,8 +17,9 @@ import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 
-// Context
+import { purchase as purchaseFn } from './components/purchase';
 import { PaymentMonitorContext } from './components/PaymentMonitorContext';
+
 
 // Nav Imports
 import SideNav from './components/FrontSideNav';
@@ -39,16 +40,6 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [txId, setTxId] = useState(null);
-
-  const [transactionConfirmed, setTransactionConfirmed] = useState(false); // Add this line
-
-  const paymentMonitorValue = {
-    txId,
-    setTxId,
-    transactionConfirmed, // Add this line
-    setTransactionConfirmed, // And this line
-  };
 
   useEffect(() => {
     getLoggedUser()
@@ -65,46 +56,46 @@ function App() {
     }
   };
 
-
   const { navItems, links } = SideNav();
 
-  return (
-<PaymentMonitorContext.Provider value={paymentMonitorValue}>
-      <Router>
-        <div className="App">
-          <FrappeProvider url='https://thz.fm'>
-            <div className="App-header" style={{ minHeight: '72px' }}>
-              <Navbar loggedUser={null} notifications={notifications} />
-            </div>
-            <div>
-              <div className="App-body">
-                <div className="main-container">
-                  {links}
-                </div>
-                <div className="page-content">
-                  <Routes>
-                    {navItems.map(item => (
-                      <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
-                    ))}
-                    <Route path="/releases/:title/by/:artist" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
-                  </Routes>
-                  <div id="comment-container"></div>
-                </div>
-              </div>
-            </div>
-            <div className="App-footer">
-              <div className="footer">
-                <div>
-                  <div className="footer-links">
-                    <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FrappeProvider>
+ return (
+    <Router>
+    <div className="App">
+      <FrappeProvider url='https://thz.fm'>
+        <div className="App-header" style={{ minHeight: '72px' }}>
+          <Navbar loggedUser={null} notifications={notifications} />
         </div>
-      </Router>
-    </PaymentMonitorContext.Provider>
+        <div>
+        
+ <div className="App-body">
+           <div className="main-container">
+           {links}
+           </div>
+            <div className="page-content">
+            
+            <Routes>
+  {navItems.map(item => (
+    <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
+  ))}
+    <Route path="/releases/:title/by/:artist" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
+</Routes>
+              <div id="comment-container"></div>
+            </div>
+         </div>
+        </div>
+    
+        <div className="App-footer">
+          <div className="footer">
+            <div>
+              <div className="footer-links">
+                <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </FrappeProvider>
+    </div>
+    </Router>
   );
 }
 
