@@ -53,6 +53,7 @@ export async function purchase(price_erg) {
         .then(function (response) {
             clearInterval(interval);
             document.getElementById("downloadButton").innerHTML = downloadButton;
-            
-  }
-};
+        })
+      } // Closing of checkTransaction function
+    
+    } // Closing of purchase function
