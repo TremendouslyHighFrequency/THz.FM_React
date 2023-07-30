@@ -150,7 +150,7 @@ const Release = () => {
         {/* Display the data */}
         <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
           <div className="">
-            <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div> by: <p style={{ color: data.release_text_color }}>{data.release_artist}</p></span>
+            <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div><p style={{ color: data.release_text_color }}> by: {data.release_artist}</p></span>
            <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
               ))}</div>
