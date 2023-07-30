@@ -141,14 +141,14 @@ const Release = () => {
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
   const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
-  const { data: artistData, error: artistError, isValidating: artistIsValidating } = useFrappeGetDoc('Artist', data ? data.release_artist : null); // Call useFrappeGetDoc inside useEffect
+  const [artistData, setArtistData] = useState(null);
 
-  useEffect(() => {
-    if (data && data.release_artist) {
-      // Fetch the artist_ergo_address from the primary release artist
-      setArtistAddress(artistData.artist_ergo);
-    }
-  }, [data, artistData]);
+// Use effect hook to fetch artist data when `data.release_artist` changes
+useEffect(() => {
+  if (data?.release_artist) {
+    useFrappeGetDoc('Artist', data.release_artist).then(setArtistData);
+  }
+}, [data?.release_artist]);
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
