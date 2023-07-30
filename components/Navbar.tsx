@@ -7,7 +7,7 @@ import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import { checkTransaction } from './transactionMonitor';
-import { DownloadIcon, ProgressIcon } from '@primer/octicons-react'; // make sure to import the DownloadIcon
+import { DownloadIcon, ClockIcon } from '@primer/octicons-react'; // make sure to import the DownloadIcon
 
 
 const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
@@ -49,7 +49,7 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
           {txId && (
         <div>
           {/* Replace <ProgressIcon> and <DownloadIcon> with the actual icons */}
-          {!transactionConfirmed && <ProgressIcon txId={txId} />}
+          {!transactionConfirmed && <ClockIcon txId={txId} />}
           {transactionConfirmed && <DownloadIcon txId={txId} />}
         </div>
       )}
