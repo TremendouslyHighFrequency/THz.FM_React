@@ -41,6 +41,15 @@ function App() {
   const [duration, setDuration] = useState(0);
   const [txId, setTxId] = useState(null);
 
+  const [transactionConfirmed, setTransactionConfirmed] = useState(false); // Add this line
+
+const paymentMonitorValue = {
+  txId,
+  setTxId,
+  transactionConfirmed, // Add this line
+  setTransactionConfirmed, // And this line
+};
+
   useEffect(() => {
     getLoggedUser()
       .then(loggedUser => getNotifications(loggedUser))
