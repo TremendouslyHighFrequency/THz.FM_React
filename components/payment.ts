@@ -44,7 +44,7 @@ export async function purchase(price_erg) {
       axios.get(explorerAPI + '/transactions/' + txId)
       .then(function (response) {
         clearInterval(interval);
-        document.getElementById("downloadButton").innerHTML = downloadButton;
+        console.log(response.data);
       })
     }
   }
