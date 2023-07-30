@@ -8,7 +8,7 @@ import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
 
-const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: Notification[] }) => {
+const Navbar = ({ loggedUser, notifications, setTxId }: NavbarProps & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -48,6 +48,7 @@ const Navbar = ({ loggedUser, notifications }: NavbarProps & { notifications: No
     const newTxId = await purchase();
     setTxId(newTxId);
   };
+
   
   return (
     <div className="navbar">
