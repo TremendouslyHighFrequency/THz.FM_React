@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
-import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -141,7 +139,8 @@ const Release = () => {
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
   const [showModal, setShowModal] = useState(false);
-  const { data: artistData } = useFrappeGetDoc('Artist', data ? data.release_artist : null);
+  const [artistAddress, setArtistAddress] = useState(null); // Declare artistAddress state
+  const { data: artistData, error: artistError, isValidating: artistIsValidating } = useFrappeGetDoc('Artist', data ? data.release_artist : null); // Call useFrappeGetDoc inside useEffect
 
   useEffect(() => {
     if (data && data.release_artist) {
