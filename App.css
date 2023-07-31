@@ -410,7 +410,17 @@ body[data-theme='dark'] {
   min-width: 50px;
   white-space: nowrap;
 }
-
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20dvh;
+  width: 100vw;
+  flex-grow: 1;
+  margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
 .navbar-items a {
   margin-left: 10px;
   margin-right: 8px;
