@@ -8,6 +8,7 @@ import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
 import MeiliSearch from 'meilisearch'
+import SearchResults from './SearchResults';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -114,19 +115,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
             onClick={() => setIsExpanded(true)}
             onBlur={() => setIsExpanded(false)}
           />
-          <div className="search-results">
-          {
-          searchResults.length > 0 && (
-          <div className="navbar-dropdown show">
-          {searchResults.map((result, index) => (
-          <div key={index} className="navbar-dropdown-item">
-           <p>{ result.title }</p>
-           </div>
-             ))}
-            </div>
-          )
-         }
-      </div>
+          <SearchResults results={searchResults} />
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
