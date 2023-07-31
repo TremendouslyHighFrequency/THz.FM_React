@@ -72,7 +72,7 @@ function App() {
     <Router>
     <div className="App">
       <FrappeProvider url='https://thz.fm'>
-      <TxContext.Provider value={{ txId, transactionConfirmed }}>
+      <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
         <div className="App-header" style={{ minHeight: '72px' }}>
             <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} />
         </div>

@@ -26,7 +26,7 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
   const [searchResults, setSearchResults] = useState([]);
   const [userImage, setUserImage] = useState<string | null>(null);
-  const { txId, transactionConfirmed } = useContext(TxContext);
+  const { txId, transactionConfirmed, setTransactionConfirmed } = useContext(TxContext);
 
   const getSearchResults = (searchTerm) => {
     console.log('Search Term:', searchTerm); // Log the search term
@@ -64,12 +64,12 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
         try {
           const response = await axios.get('https://api.ergoplatform.com/api/v1/transactions/' + txId);
           if (response.status === 200 && response.data) {
-            setTransactionConfirmed(true);
+            set TransactionConfirmed(true);
             clearInterval(interval);
           }
         } catch (error) {
           if (error.response && error.response.status === 404) {
-            setTransactionConfirmed(false);
+            set TransactionConfirmed(false);
           }
         }
       }, 20000);
