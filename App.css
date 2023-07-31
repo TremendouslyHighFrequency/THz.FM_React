@@ -326,6 +326,7 @@ body[data-theme='dark'] {
   position: relative;
   filter: sepia(66%);
   padding: 0.5em;
+  padding-left: 1px;
 }
 .track-items {
   display: flex;
