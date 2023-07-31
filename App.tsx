@@ -1,6 +1,6 @@
 //React Imports
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
@@ -70,44 +70,42 @@ function App() {
 
  return (
   <FrappeProvider url='https://thz.fm'>
-    <Router>
-    <div className="App">
-      <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
-        <div className="App-header" style={{ minHeight: '72px' }}>
-            <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} />
-        </div>
-        <div>
-        
- <div className="App-body">
-           <div className="main-container">
-           {links}
-           </div>
-            <div className="page-content">
-             {usePageContentStore((state) => state.content)}
-            <Routes>
-  {navItems.map(item => (
-    <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
-  ))}
-    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration}  setTransaction={setTxId} />} />
-</Routes>
-              <div id="comment-container"></div>
+      <Router>
+        <div className="App">
+          <TxContext.Provider value={{ transactionConfirmed, setTransactionConfirmed }}>
+            <div className="App-header" style={{ minHeight: '72px' }}>
+                <Navbar loggedUser={null} notifications={notifications} />
             </div>
-         </div>
-        </div>
-    
-        <div className="App-footer">
-          <div className="footer">
             <div>
-              <div className="footer-links">
-                <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+              <div className="App-body">
+                <div className="main-container">
+                  {links}
+                </div>
+                <div className="page-content">
+                  {usePageContentStore((state) => state.content)}
+                  <Routes>
+                    {navItems.map(item => (
+                      <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
+                    ))}
+                    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
+                  </Routes>
+                  <div id="comment-container"></div>
+                </div>
               </div>
             </div>
-          </div>
+
+            <div className="App-footer">
+              <div className="footer">
+                <div>
+                  <div className="footer-links">
+                    <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TxContext.Provider>
         </div>
-        </TxContext.Provider>
-      
-    </div>
-    </Router>
+      </Router>
     </FrappeProvider>
   );
 }
