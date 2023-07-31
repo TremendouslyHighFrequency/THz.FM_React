@@ -1,7 +1,6 @@
 html, body, #root, .app {
   min-height: 100%;
   /* display: flex; */
-  background-color: #263040;
 }
 
 /* Define your colors for each theme */
