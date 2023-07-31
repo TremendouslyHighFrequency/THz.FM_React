@@ -374,10 +374,6 @@ body[data-theme='dark'] {
   height: 32px;
   margin-bottom: 10px;
 }
-.search-container {
-  position: relative;
-}
-
 .navbar-search {
   margin-right: 16px;
   margin-left: 16px;
@@ -397,13 +393,8 @@ body[data-theme='dark'] {
   font-weight: 400;
   line-height: 1.5;
 }
-
 .search-results {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;  /* Width is 100% of the search-container, which is the same width as the search bar */
-  z-index: 10;
+  position: static;
 }
 .navbar-search.full-width {
   width: 100%;
