@@ -130,6 +130,12 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
 const Release = () => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
+
+  // Log the data, error, and loading state
+  console.log("Data:", data);
+  console.log("Error:", error);
+  console.log("Loading:", isValidating);
+
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
