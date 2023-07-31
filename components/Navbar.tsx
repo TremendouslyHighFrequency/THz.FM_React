@@ -20,7 +20,7 @@ const client = new MeiliSearch({
 const index = client.index('releases') // Replace with your index name
 
 
-const Navbar = ({ loggedUser, notifications, txId }: NavbarProps & { notifications: Notification[] }) => {
+const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const Navbar = ({ loggedUser, notifications, txId }: NavbarProps & { notificatio
   const [searchResults, setSearchResults] = useState([]);
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
-  const { txId, transactionConfirmed } = useContext(TxContext);
+  const { txId, transactionConfirmed, txConfirmed } = useContext(TxContext);
 
   const getSearchResults = (searchTerm) => {
     console.log('Search Term:', searchTerm); // Log the search term
