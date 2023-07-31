@@ -7,6 +7,14 @@ import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
+import MeiliSearch from 'meilisearch'
+
+const client = new MeiliSearch({
+  host: '164.92.105.247:8000:7700',
+  apiKey: '566ac3a422417f806cadfe6db46a54c8512445339b0fc1735a6df1f26ebbeb42'
+})
+
+const index = client.index('releases') // Replace with your index name
 
 
 const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { notifications: Notification[] }) => {
@@ -17,6 +25,20 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
 
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
+
+  const getSearchResults = async (searchTerm) => {
+    if (searchTerm === '') {
+      setSearchResults([])
+      return
+    }
+    
+    const searchResults = await index.search(searchTerm)
+    setSearchResults(searchResults.hits)
+  }
+  
+  useEffect(() => {
+    getSearchResults(search)
+  }, [search])
 
   useEffect(() => {
     if (loggedUser) {
@@ -77,6 +99,19 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
             onClick={() => setIsExpanded(true)}
             onBlur={() => setIsExpanded(false)}
           />
+          <div className="search-results">
+          {
+          searchResults.length > 0 && (
+          <div className="navbar-dropdown show">
+          {searchResults.map((result, index) => (
+          <div key={index} className="navbar-dropdown-item">
+           <p>{ result.title }</p>
+           </div>
+             ))}
+            </div>
+          )
+         }
+      </div>
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
