@@ -20,7 +20,7 @@ var downloadButton =
   '</div>' +
 '</div>';
 
-export async function purchase(price_erg) {
+export async function purchase(price_erg, SetTxId) {
   const explorerAPI = 'https://api.ergoplatform.com/api/v1';
 
   if (await ergoConnector.nautilus.connect()) {
@@ -36,6 +36,7 @@ export async function purchase(price_erg) {
 
     const signedTx = await ergo.sign_tx(unsignedTx);
     const txId = await ergo.submit_tx(signedTx);
+    setTxId(txId);  // Call setTxId here
     setTransaction(txId);
     console.log(txId);
 
