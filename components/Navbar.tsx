@@ -106,7 +106,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
       
-      <div className="search-container">
+      
       <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
@@ -131,7 +131,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
          }
       </div>
       
-      </div>
+      
           
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
