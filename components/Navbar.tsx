@@ -26,18 +26,22 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
 
-  const getSearchResults = async (searchTerm) => {
+  const getSearchResults = (searchTerm) => {
     console.log('Search Term:', searchTerm); // Log the search term
   
     if (searchTerm === '') {
-      setSearchResults([])
-      return
+      setSearchResults([]);
+      return;
     }
     
-    const searchResults = await index.search(searchTerm)
-    console.log('Search Results:', searchResults.hits) // Log the search results
-    setSearchResults(searchResults.hits)
-    console.log(searchResults)
+    index.search(searchTerm)
+      .then(searchResults => {
+        console.log('Search Results:', searchResults.hits); // Log the search results
+        setSearchResults(searchResults.hits);
+      })
+      .catch(error => {
+        console.error('Error during search:', error); // Log any errors
+      });
   }
   
   useEffect(() => {
