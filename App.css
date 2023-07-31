@@ -3,6 +3,18 @@ html, body, #root, .app {
   /* display: flex; */
   background-color: #263040;
 }
+
+/* Define your colors for each theme */
+body[data-theme='light'] {
+  --text-color: #000;
+  --bg-color: #f2f2f2;
+}
+
+body[data-theme='dark'] {
+  --text-color: #fff;
+  --bg-color: #263040;
+}
+
 .h1 {
   font-size: 2.5rem;
 }
