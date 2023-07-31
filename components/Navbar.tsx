@@ -117,8 +117,7 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
       <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
-      <ClockIcon txId={txId} />
-      <DownloadIcon txId={txId} />
+
       {txId && (
   <div>
     {!transactionConfirmed && <ClockIcon txId={txId} />}

@@ -127,13 +127,22 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   );
 };
 
-const Release = ({ setTransaction}) => {
+const Release = ({ setTransaction }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
 
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
+  const handleButtonClick = async () => {
+    try {
+      const price_erg = parseFloat(data.price_erg);
+      const txId = await purchase(price_erg);
+      setTransaction(txId);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 
   const onNext = () => {
@@ -158,9 +167,7 @@ const Release = ({ setTransaction}) => {
               ))}</div>
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
-          <button className="erg-button" onClick={async () => {
-    const txId = await purchase(parseFloat(data.price_erg), setTransaction);
-  }}>BUY ∑ {data.price_erg} ERG</button>
+          <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           <button className="usd-button">BUY $ {data.price_usd} USD</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
