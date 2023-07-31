@@ -1,3 +1,4 @@
-import { createContext } from 'react';
+// TxContext.js
+import React from 'react';
 
-export const TxContext = createContext();
+export const TxContext = React.createContext();
