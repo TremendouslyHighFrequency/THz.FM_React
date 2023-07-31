@@ -376,11 +376,11 @@ body[data-theme='dark'] {
 }
 .search-container {
   position: relative;
-  margin-right: 16px;
-  margin-left: 16px;
 }
 
 .navbar-search {
+  margin-right: 16px;
+  margin-left: 16px;
   background-color: #434854;
   width: 300px;
   max-width: 100%;
@@ -404,7 +404,6 @@ body[data-theme='dark'] {
   width: 100%;  /* Width is 100% of the search-container, which is the same width as the search bar */
   z-index: 10;
 }
-
 .navbar-search.full-width {
   width: 100%;
 }
