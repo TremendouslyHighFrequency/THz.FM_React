@@ -127,7 +127,7 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   );
 };
 
-const Release = ({ setTxId }) => {
+const Release = ({ setTransaction}) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
 
