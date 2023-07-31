@@ -370,7 +370,10 @@ body[data-theme='dark'] {
   align-items: center;
   padding-top: 2px
 }
-
+.footer-logo {
+  height: 32px;
+  margin-bottom: 10px;
+}
 .navbar-search {
   margin-right: 16px;
   margin-left: 16px;
