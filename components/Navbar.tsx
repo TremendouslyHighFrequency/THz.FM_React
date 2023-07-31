@@ -105,7 +105,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           <div className="navbar-dropdown show">
           {searchResults.map((result, index) => (
           <div key={index} className="navbar-dropdown-item">
-           <p>{ result.title }</p>
+           <p>{ result.title }
            </div>
              ))}
             </div>
