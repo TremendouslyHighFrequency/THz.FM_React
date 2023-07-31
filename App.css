@@ -360,7 +360,7 @@ body[data-theme='dark'] {
   background: #263040;
   color: #fff;
   min-height: 72px;
-  position: sticky;  
+  position: relative;  
   top: 0; 
   z-index: 999; 
 }
