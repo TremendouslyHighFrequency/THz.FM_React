@@ -69,9 +69,9 @@ function App() {
   const { navItems, links } = SideNav();
 
  return (
+  <FrappeProvider url='https://thz.fm'>
     <Router>
     <div className="App">
-      <FrappeProvider url='https://thz.fm'>
       <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
         <div className="App-header" style={{ minHeight: '72px' }}>
             <Navbar loggedUser={null} notifications={notifications} setTxId={setTxId} />
@@ -105,9 +105,10 @@ function App() {
           </div>
         </div>
         </TxContext.Provider>
-      </FrappeProvider>
+      
     </div>
     </Router>
+    </FrappeProvider>
   );
 }
 
