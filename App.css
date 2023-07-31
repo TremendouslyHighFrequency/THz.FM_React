@@ -1,8 +1,12 @@
-html, body, #root, .app {
+html, #root, .app {
   min-height: 100%;
   /* display: flex; */
 }
-
+body {
+  min-height: 100%;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
 /* Define your colors for each theme */
 body[data-theme='light'] {
   --text-color: #000;
