@@ -159,7 +159,7 @@ const Release = ({ setTxId }) => {
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
           <button className="erg-button" onClick={async () => {
-    const txId = await purchase(parseFloat(data.price_erg), setTxId);
+    const txId = await purchase(parseFloat(data.price_erg), setTransaction);
   }}>BUY ∑ {data.price_erg} ERG</button>
           <button className="usd-button">BUY $ {data.price_usd} USD</button>
           </div>
