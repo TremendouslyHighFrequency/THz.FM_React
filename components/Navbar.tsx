@@ -22,7 +22,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
-
+  const [searchResults, setSearchResults] = useState([]);
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
 
