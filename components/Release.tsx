@@ -129,7 +129,7 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
 
 const Release = () => {
   const { name } = useParams();
-  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
+  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name, title);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state

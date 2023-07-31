@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {
-      fields: ["title", "release_artist","release_artwork"],
+      fields: ["title", "release_artist","release_artwork", "name"],
       limit_start: pageIndex,
       limit: 50,
       orderBy: {
@@ -25,7 +25,7 @@ const Releases = () => {
          return (
           <div className="albums-index">
                   {
-                      data.map(({title, release_artist, release_artwork}, i) => (
+                      data.map(({title, name, release_artist, release_artwork}, i) => (
                           <div key={i} className="album-card" style={{backgroundImage: `url(${release_artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
