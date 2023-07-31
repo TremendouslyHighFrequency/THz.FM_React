@@ -325,10 +325,7 @@ body[data-theme='dark'] {
   margin-left: 12px;
   position: relative;
   filter: sepia(66%);
-  padding-left: 1px;
-  padding-right: 1px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding: 0.5em;
 }
 .track-items {
   display: flex;
