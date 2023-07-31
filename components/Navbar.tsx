@@ -26,6 +26,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
   const [searchResults, setSearchResults] = useState([]);
   const [userImage, setUserImage] = useState<string | null>(null);
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
+  
 
   const getSearchResults = (searchTerm) => {
     console.log('Search Term:', searchTerm); // Log the search term
@@ -134,7 +135,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
 
 
 
-          {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} />}
+          {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
           <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
           <a href="/collection"><RocketIcon size={24} /></a>  
           <a href="/me">
