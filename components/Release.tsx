@@ -127,7 +127,7 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
   );
 };
 
-const Release = () => {
+const Release = ({ setTxId }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
 
@@ -159,8 +159,8 @@ const Release = () => {
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
           <button className="erg-button" onClick={async () => {
-  const txId = await purchase(parseFloat(data.price_erg), setTxId);
-}}>BUY ∑ {data.price_erg} ERG</button>
+    const txId = await purchase(parseFloat(data.price_erg), setTxId);
+  }}>BUY ∑ {data.price_erg} ERG</button>
           <button className="usd-button">BUY $ {data.price_usd} USD</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
