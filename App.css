@@ -394,8 +394,7 @@ body[data-theme='dark'] {
   line-height: 1.5;
 }
 .search-results {
-  left: 0;
-  margin-left: 200px;
+  position: static;
 }
 .navbar-search.full-width {
   width: 100%;
