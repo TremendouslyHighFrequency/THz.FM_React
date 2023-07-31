@@ -106,16 +106,18 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
         <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
-          <input
-            className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onClick={() => setIsExpanded(true)}
-            onBlur={() => setIsExpanded(false)}
-          />
-          <SearchResults results={searchResults} />
+      <div className="search-container">
+  <input
+    className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
+    type="text"
+    placeholder="Search..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    onClick={() => setIsExpanded(true)}
+    onBlur={() => setIsExpanded(false)}
+  />
+  <SearchResults results={searchResults} />
+</div>
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
