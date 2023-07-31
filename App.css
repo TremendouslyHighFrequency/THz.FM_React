@@ -400,7 +400,8 @@ body[data-theme='dark'] {
 
 .search-results {
   position: absolute;
-  top: 100%;
+  top: 0;
+  left: 0;
   width: 100%;  /* Width is 100% of the search-container, which is the same width as the search bar */
   z-index: 10;
 }
