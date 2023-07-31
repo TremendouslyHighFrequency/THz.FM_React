@@ -114,22 +114,24 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
             onBlur={() => setIsExpanded(false)}
           />
 
-<button onClick={toggleTheme}>
+      <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
 
-          <SearchResults results={searchResults} />
-
-          <div className="dapp-button">
-            <ErgoDappConnector color="inkwell" />
-          </div>
-          {txId && (
+      {txId && (
         <div>
           {/* Replace <ProgressIcon> and <DownloadIcon> with the actual icons */}
           {!transactionConfirmed && <ClockIcon txId={txId} />}
           {transactionConfirmed && <DownloadIcon txId={txId} />}
         </div>
       )}
+
+          <SearchResults results={searchResults} />
+
+          <div className="dapp-button">
+            <ErgoDappConnector color="inkwell" />
+          </div>
+
        
 
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
