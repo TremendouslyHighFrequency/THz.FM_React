@@ -49,10 +49,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
         .catch(error => console.error(`Error fetching user data: ${error}`));
     }
 
-    useEffect(() => {
-      console.log('Search Results State:', searchResults) // Log the search results state
-    }, [searchResults])
-
+  
     if (txId) {
       const interval = setInterval(async () => {
         try {
@@ -70,6 +67,11 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
       return () => clearInterval(interval);
     }
   }, [loggedUser, txId]);
+  
+  useEffect(() => {
+    console.log('Search Results State:', searchResults) // Log the search results state
+  }, [searchResults])
+
 
     // Add a state variable for the current theme
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
