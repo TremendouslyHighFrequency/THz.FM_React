@@ -10,7 +10,7 @@ import axios from 'axios';
 import MeiliSearch from 'meilisearch'
 
 const client = new MeiliSearch({
-  host: '164.92.105.247:8000:7700',
+  host: 'http://164.92.105.247:8000',
   apiKey: '566ac3a422417f806cadfe6db46a54c8512445339b0fc1735a6df1f26ebbeb42'
 })
 
@@ -105,7 +105,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           <div className="navbar-dropdown show">
           {searchResults.map((result, index) => (
           <div key={index} className="navbar-dropdown-item">
-           <p>{ result.title }
+           <p>{ result.title }</p>
            </div>
              ))}
             </div>
