@@ -33,11 +33,13 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
     }
     
     const searchResults = await index.search(searchTerm)
+    console.log('Search Results:', searchResults.hits) // Log the search results
     setSearchResults(searchResults.hits)
   }
   
   useEffect(() => {
     getSearchResults(search)
+    console.log(searchResults)
   }, [search])
 
   useEffect(() => {
@@ -46,6 +48,10 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
         .then(image => setUserImage(image))
         .catch(error => console.error(`Error fetching user data: ${error}`));
     }
+
+    useEffect(() => {
+      console.log('Search Results State:', searchResults) // Log the search results state
+    }, [searchResults])
 
     if (txId) {
       const interval = setInterval(async () => {
