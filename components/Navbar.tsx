@@ -10,7 +10,7 @@ import axios from 'axios';
 import MeiliSearch from 'meilisearch'
 
 const client = new MeiliSearch({
-  host: 'https://search.thz.fm:8000',
+  host: 'https://index.thz.fm:8000',
   apiKey: '3a4d299b29d43a790b6550fc0c8ca44aef5889a3b51a166ca6fc8a1ed79d8182'
 })
 
