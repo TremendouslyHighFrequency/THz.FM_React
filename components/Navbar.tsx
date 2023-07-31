@@ -119,12 +119,11 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
       </button>
 
       {txId && (
-        <div>
-          {/* Replace <ProgressIcon> and <DownloadIcon> with the actual icons */}
-          {!transactionConfirmed && <ClockIcon txId={txId} />}
-          {transactionConfirmed && <DownloadIcon txId={txId} />}
-        </div>
-      )}
+  <div>
+    {!transactionConfirmed && <ClockIcon txId={txId} />}
+    {transactionConfirmed && <DownloadIcon txId={txId} />}
+  </div>
+)}
 
           <SearchResults results={searchResults} />
 
