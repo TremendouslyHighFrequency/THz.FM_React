@@ -393,12 +393,7 @@ body[data-theme='dark'] {
   font-weight: 400;
   line-height: 1.5;
 }
-.search-results {
-  top: 100%;  /* Place it at the bottom of the input field */
-  width: 100%;  /* Make it full width */
-  left: 0;  /* Align it to the left */
-  z-index: 10;  /* Ensure it stacks on top of other elements */
-}
+
 .navbar-search.full-width {
   width: 100%;
 }
@@ -414,7 +409,6 @@ body[data-theme='dark'] {
   flex-grow: 1;
   min-width: 50px;
   white-space: nowrap;
-  position: relative;
 }
 .footer {
   display: flex;
