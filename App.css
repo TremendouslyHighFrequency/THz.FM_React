@@ -228,6 +228,7 @@ body[data-theme='dark'] {
 }
 .album-text {
   background-color: #F9FAFB; 
+  color: #263040;
   padding-top: 0.5rem;
   border-bottom-left-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
