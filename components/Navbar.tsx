@@ -104,9 +104,6 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           <img className="navbar-logo" src={THZLogo} alt="logo" />
         </a>
         <div className="navbar-items">
-        <button onClick={toggleTheme}>
-        {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
-      </button>
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
@@ -116,7 +113,13 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
             onClick={() => setIsExpanded(true)}
             onBlur={() => setIsExpanded(false)}
           />
+
+<button onClick={toggleTheme}>
+        {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
+      </button>
+
           <SearchResults results={searchResults} />
+
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
