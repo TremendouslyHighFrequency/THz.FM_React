@@ -147,9 +147,9 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           </a>
          
         </div>
+        
       </div>
-    </div>
-    <div className="search-results">
+      <div className="search-results">
     {searchResults.length > 0 && (
       <div className="navbar-dropdown show">
         {searchResults.map((result, index) => (
@@ -160,6 +160,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
       </div>
     )}
   </div>
+    </div>
   );
 }
 
