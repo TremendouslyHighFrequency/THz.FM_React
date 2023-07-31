@@ -183,7 +183,6 @@ body[data-theme='dark'] {
   -webkit-font-smoothing: antialiased;
   display: block;
 }
-}
 .side-nav[data-theme='light'] {
   background-color: rgba(255, 255, 255, 0);
   border-bottom-left-radius: 6px;
