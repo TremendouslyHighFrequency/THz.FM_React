@@ -9,11 +9,8 @@ type Props = {
   buttonRef: React.RefObject<HTMLButtonElement>;
 };
 
-const NotificationDropdown = ({ notifications, buttonRef }: Props) => {
+const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDropdownVisible }: Props & { dropdownVisible: boolean; setDropdownVisible: (value: boolean) => void }) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const [dropdownVisible, setDropdownVisible] = useState(false); // Add this line
-
-  
 
   const handleClickOutside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && buttonRef.current !== event.target) {
