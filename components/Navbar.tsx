@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon } from '@primer/octicons-react';
+import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon, MoonIcon, SunIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
 import THZLogo from '../assets/THZFM_logo.png';
@@ -7,6 +7,7 @@ import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
+
 
 const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
@@ -41,6 +42,21 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
       return () => clearInterval(interval);
     }
   }, [loggedUser, txId]);
+
+    // Add a state variable for the current theme
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+    // Add a method to toggle the theme
+    const toggleTheme = () => {
+      const newTheme = theme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+  
+    // This will change the theme of the body
+    useEffect(() => {
+      document.body.dataset.theme = theme;
+    }, [theme]);
   
   return (
     <div className="navbar">
@@ -68,6 +84,9 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           {transactionConfirmed && <DownloadIcon txId={txId} />}
         </div>
       )}
+         <button onClick={toggleTheme}>
+        {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
+      </button>
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
             <BellIcon size={24} />
           </button>
