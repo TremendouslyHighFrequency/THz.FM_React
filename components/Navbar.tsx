@@ -27,6 +27,8 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
   const [transactionConfirmed, setTransactionConfirmed] = useState<boolean>(false);
 
   const getSearchResults = async (searchTerm) => {
+    console.log('Search Term:', searchTerm); // Log the search term
+  
     if (searchTerm === '') {
       setSearchResults([])
       return
