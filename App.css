@@ -182,8 +182,10 @@ body[data-theme='dark'] {
   width: 143px;
   -webkit-font-smoothing: antialiased;
   display: block;
+  list-style-type: none;
 }
 .side-nav[data-theme='light'] {
+  list-style-type: none;
   background-color: rgba(255, 255, 255, 0);
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -248,16 +250,15 @@ body[data-theme='dark'] {
   text-align: right;
   right: 0;
 }
-.album-card[data-theme='dark'] {
-margin: 10px;
-min-width: 240px;
-min-height: 240px;
+.album-card {
+  margin: 10px;
+  min-width: 240px;
+  min-height: 240px;
   max-width: 580px;
   border-radius: 0.375rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
-  background-color: #F9FAFB;
   padding-top: 0.5rem;
   border-bottom-left-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
@@ -266,24 +267,14 @@ min-height: 240px;
   display: flex;
   flex-direction: column; /* children will stack vertically */
 }
-.album-card[data-theme='light'] {
-  margin: 10px;
-  min-width: 240px;
-  min-height: 240px;
-    max-width: 580px;
-    border-radius: 0.375rem;
-    border: 1px solid rgba(254, 254, 254, 0.1);
-    border-top-left-radius: 0.375rem;
-    border-top-right-radius: 0.375rem;
-    background-color: #263040;
-    padding-top: 0.5rem;
-    border-bottom-left-radius: 0.375rem;
-    border-bottom-right-radius: 0.375rem;
-    position: relative;
-    /* make it a flex container */
-    display: flex;
-    flex-direction: column; /* children will stack vertically */
-  }
+
+.album-card.dark {
+  background-color: #F9FAFB;
+}
+
+.album-card.light {
+  background-color: #263040;
+}
 .album-text[data-theme='dark'] {
   background-color: #F9FAFB; /* Adjust the color as needed */
   padding-top: 0.5rem; /* Adjust the value as needed */
