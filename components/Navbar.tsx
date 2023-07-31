@@ -115,7 +115,17 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
     onClick={() => setIsExpanded(true)}
     onBlur={() => setIsExpanded(false)}
   />
-  
+  <div className="search-results">
+    {searchResults.length > 0 && (
+      <div className="navbar-dropdown show">
+        {searchResults.map((result, index) => (
+          <div key={index} className="navbar-dropdown-item">
+            <p>{result.title}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
 </div>
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
@@ -147,19 +157,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           </a>
          
         </div>
-        
       </div>
-      <div className="search-results">
-    {searchResults.length > 0 && (
-      <div className="navbar-dropdown show">
-        {searchResults.map((result, index) => (
-          <div key={index} className="navbar-dropdown-item">
-            <p>{result.title}</p>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
     </div>
   );
 }
