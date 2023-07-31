@@ -37,6 +37,7 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
     const searchResults = await index.search(searchTerm)
     console.log('Search Results:', searchResults.hits) // Log the search results
     setSearchResults(searchResults.hits)
+    console.log(searchResults)
   }
   
   useEffect(() => {
