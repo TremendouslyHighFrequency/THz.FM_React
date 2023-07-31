@@ -65,6 +65,9 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           <img className="navbar-logo" src={THZLogo} alt="logo" />
         </a>
         <div className="navbar-items">
+        <button onClick={toggleTheme}>
+        {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
+      </button>
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
@@ -84,12 +87,14 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           {transactionConfirmed && <DownloadIcon txId={txId} />}
         </div>
       )}
-         <button onClick={toggleTheme}>
-        {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
-      </button>
+       
+
           <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
             <BellIcon size={24} />
           </button>
+
+
+
           {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} />}
           <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
           <a href="/collection"><RocketIcon size={24} /></a>  
