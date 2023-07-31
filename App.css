@@ -31,6 +31,10 @@ body[data-theme='dark'] {
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
+.octicon {
+  margin-left: 4px;
+  margin-right: 4px;
+}
 .erg-button {
   background-color: #ffaa55;
   color: #161616;
