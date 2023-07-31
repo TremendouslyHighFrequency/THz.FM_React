@@ -11,7 +11,7 @@ import MeiliSearch from 'meilisearch'
 
 const client = new MeiliSearch({
   host: 'https://search.thz.fm:8000',
-  apiKey: '566ac3a422417f806cadfe6db46a54c8512445339b0fc1735a6df1f26ebbeb42'
+  apiKey: '3a4d299b29d43a790b6550fc0c8ca44aef5889a3b51a166ca6fc8a1ed79d8182'
 })
 
 const index = client.index('releases') // Replace with your index name
