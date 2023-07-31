@@ -32,8 +32,7 @@ body[data-theme='dark'] {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .nav-icon {
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 10px;
 }
 .erg-button {
   background-color: #ffaa55;
