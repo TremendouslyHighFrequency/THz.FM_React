@@ -105,7 +105,16 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
         <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
-      <div className="search-results">
+          <input
+            className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onClick={() => setIsExpanded(true)}
+            onBlur={() => setIsExpanded(false)}
+          />
+          <div className="search-results">
           {
           searchResults.length > 0 && (
           <div className="navbar-dropdown show">
@@ -118,19 +127,6 @@ const Navbar = ({ loggedUser, notifications, setTxId, txId }: NavbarProps & { no
           )
          }
       </div>
-      <div className="search-container">
-        
-      </div>
-          <input
-            className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onClick={() => setIsExpanded(true)}
-            onBlur={() => setIsExpanded(false)}
-          />
-
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
