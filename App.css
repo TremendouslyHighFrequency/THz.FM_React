@@ -541,6 +541,9 @@ body[data-theme='dark'] {
   .search-results {
     width: 100%;
   }
+  .navbar-logo {
+    display: none;
+  }
   .dapp-button {
     display: none; /* Hides Dapp connector element */
   }
