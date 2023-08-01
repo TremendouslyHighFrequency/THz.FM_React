@@ -562,6 +562,7 @@ body[data-theme='dark'] {
   
   .page-content, .navContainer, .navbar {
     width: 100%; /* Less margin */
+    margin-left: 0px;
   }
   .card {
     padding: 1em;
