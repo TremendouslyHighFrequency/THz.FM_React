@@ -87,16 +87,15 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
 
 
   // Add a state variable for the current logo
-  const [logo, setLogo] = useState(theme === 'dark' ? THZLogoDark : THZLogo);
+  const [logo, setLogo] = useState(theme === 'dark' ? THZLogo : THZLogoDark);
 
-
-    // Add a method to toggle the theme
-    const toggleTheme = () => {
-      const newTheme = theme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-      setLogo(newTheme === 'dark' ? THZLogoDark : THZLogo);
-      localStorage.setItem('theme', newTheme);
-    }
+// Add a method to toggle the theme
+const toggleTheme = () => {
+  const newTheme = theme === 'dark' ? 'light' : 'dark';
+  setTheme(newTheme);
+  setLogo(newTheme === 'dark' ? THZLogo : THZLogoDark); // swap the logos here
+  localStorage.setItem('theme', newTheme);
+}
   
     // This will change the theme of the body
     useEffect(() => {
