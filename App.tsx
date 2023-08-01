@@ -87,7 +87,7 @@ function App() {
                     {navItems.map(item => (
                       <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
                     ))}
-                    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />} />
+                    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
                 </div>
