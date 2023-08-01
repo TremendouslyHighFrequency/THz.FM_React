@@ -357,7 +357,6 @@ body[data-theme='dark'] {
   margin: 0 auto;
   padding-left: 1em;
   padding-right: 1em;
-  padding-top: 1em;
   backdrop-filter: blur(10px);
 }
 .navContainer[data-theme='light'] {
