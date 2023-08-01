@@ -120,8 +120,8 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
 
       {txId && (
   <div>
-    {!transactionConfirmed && <ClockIcon txId={txId} />}
-    {transactionConfirmed && <DownloadIcon txId={txId} />}
+    {!transactionConfirmed && <ClockIcon className="nav-icon" size={24} txId={txId} />}
+    {transactionConfirmed && <DownloadIcon className="nav-icon" size={24} txId={txId} />}
   </div>
 )}
 
