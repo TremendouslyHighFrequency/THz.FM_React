@@ -324,7 +324,6 @@ body[data-theme='dark'] {
   margin-right: 12px;
   margin-left: 12px;
   position: relative;
-  filter: sepia(66%);
   padding: 0.5em;
 }
 .dapp-button[data-theme='dark'] {
