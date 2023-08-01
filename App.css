@@ -337,7 +337,6 @@ body[data-theme='dark'] {
   color: #f2f2f2;
 }
 .main-container {
-  padding-top: 1em;
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 1em;
@@ -358,6 +357,7 @@ body[data-theme='dark'] {
   margin: 0 auto;
   padding-left: 1em;
   padding-right: 1em;
+  padding-top: 1em;
   backdrop-filter: blur(10px);
 }
 .navContainer[data-theme='light'] {
