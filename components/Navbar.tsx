@@ -64,12 +64,12 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
         try {
           const response = await axios.get('https://api.ergoplatform.com/api/v1/transactions/' + txId);
           if (response.status === 200 && response.data) {
-            set TransactionConfirmed(true);
+            setTransactionConfirmed(true);
             clearInterval(interval);
           }
         } catch (error) {
           if (error.response && error.response.status === 404) {
-            set TransactionConfirmed(false);
+            setTransactionConfirmed(false);
           }
         }
       }, 20000);
