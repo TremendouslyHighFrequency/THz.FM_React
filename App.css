@@ -136,9 +136,8 @@ body[data-theme='dark'] {
 }
 .side-navContainer {
   height: auto;
-  display: block;
-  position: sticky;
-  width: 180px;
+  display: flex;
+  position: fixed;
 }
 .side-nav {
   list-style-type: none;
@@ -343,6 +342,7 @@ body[data-theme='dark'] {
   padding-right: 1em;
   padding-bottom: 1em;
   height: 100%;
+  margin-left: 180px;
 }
 .page-content {
   flex-grow: 1;
