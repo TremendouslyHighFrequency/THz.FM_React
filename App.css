@@ -138,6 +138,7 @@ body[data-theme='dark'] {
   height: auto;
   display: flex;
   position: fixed;
+  width: 180px;
 }
 .side-nav {
   list-style-type: none;
