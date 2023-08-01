@@ -383,11 +383,11 @@ body[data-theme='dark'] {
 }
 
 .navbar-logo[data-theme='dark'] {
-  background-image: url('/assets/thzfm/nexus/assets/THZFM_logo.png');
+  background-image: url('https://thz.fm/assets/thzfm/nexus/assets/THZFM_logo.png');
 }
 
 .navbar-logo[data-theme='light'] {
-  background-image: url('/assets/thzfm/nexus/assets/THZFM_logo_dark.png');
+  background-image: url('https://thz.fm/assets/thzfm/nexus/assets/THZFM_logo_dark.png');
 }
 
 .footer-logo {
