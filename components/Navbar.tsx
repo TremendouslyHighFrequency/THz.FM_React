@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon, MoonIcon, SunIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
+import THZLogo from '../assets/THZFM_logo.png';
+import THZLogoLight from '../assets/THZFM_logo_dark.png'; // import light logo
+
+import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
@@ -83,10 +87,16 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
     // Add a state variable for the current theme
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
+
+  // Add a state variable for the current logo
+  const [logo, setLogo] = useState(theme === 'dark' ? THZLogoDark : THZLogoLight);
+
+
     // Add a method to toggle the theme
     const toggleTheme = () => {
       const newTheme = theme === 'dark' ? 'light' : 'dark';
       setTheme(newTheme);
+      setLogo(newTheme === 'dark' ? THZLogoDark : THZLogoLight);
       localStorage.setItem('theme', newTheme);
     }
   
@@ -99,7 +109,7 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
     <div className="navbar">
       <div className="navContainer">
         <a href="/">
-        <img className={`navbar-logo ${theme}`} data-theme={theme} alt="logo" />
+        <img className="navbar-logo" src={logo} alt="logo" />
         </a>
         <div className="navbar-items">
           <input
