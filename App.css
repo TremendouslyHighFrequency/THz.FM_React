@@ -137,6 +137,7 @@ body[data-theme='dark'] {
 .side-navContainer {
   height: auto;
   display: flex;
+  position: fixed;
 }
 .side-nav {
   list-style-type: none;
