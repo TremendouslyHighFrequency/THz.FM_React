@@ -135,7 +135,7 @@ body[data-theme='dark'] {
   padding-left: 1em;
 }
 .side-navContainer {
-  height: 100%;
+  height: auto;
   display: flex;
 }
 .side-nav {
