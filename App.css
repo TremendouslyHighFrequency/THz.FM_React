@@ -342,7 +342,6 @@ body[data-theme='dark'] {
   padding-right: 1em;
   padding-bottom: 1em;
   height: 100%;
-  margin-left: 180px;
 }
 .page-content {
   flex-grow: 1;
@@ -350,6 +349,7 @@ body[data-theme='dark'] {
   padding: 1em;
   overflow-y: auto;
   height: 100%;
+  margin-left: 180px;
 }
 .navContainer {
   width: 100%;
