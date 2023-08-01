@@ -379,12 +379,10 @@ body[data-theme='dark'] {
   z-index: 999; 
 }
 .navbar[data-theme='light'] {
-  background: #f2f2f2;
-  color: #263040;
+
 }
 .navbar[data-theme='dark'] {
-  background: #263040;
-  color: #fff;
+
 }
 .navbar-logo {
   height: 24px;
