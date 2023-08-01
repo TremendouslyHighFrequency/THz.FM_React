@@ -327,6 +327,12 @@ body[data-theme='dark'] {
   filter: sepia(66%);
   padding: 0.5em;
 }
+.dapp-button[data-theme='dark'] {
+  filter: sepia(66%);
+}
+.dapp-button[data-theme='light'] {
+  filter: none;
+}
 .track-items {
   display: flex;
   color: #f2f2f2;
@@ -376,20 +382,11 @@ body[data-theme='dark'] {
 .navbar-logo {
   height: 24px;
   align-items: center;
-  padding-top: 2px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  padding-top: 2px
 }
-
-.navbar-logo[data-theme='dark'] {
-  background-image: url('https://thz.fm/assets/thzfm/nexus/assets/THZFM_logo.png');
-}
-
 .navbar-logo[data-theme='light'] {
-  background-image: url('https://thz.fm/assets/thzfm/nexus/assets/THZFM_logo_dark.png');
+  
 }
-
 .footer-logo {
   height: 32px;
   margin-bottom: 10px;
