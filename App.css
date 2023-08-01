@@ -358,6 +358,8 @@ body[data-theme='dark'] {
   margin: 0 auto;
   padding-left: 1em;
   padding-right: 1em;
+  filter: blur(10px);
+  opacity: 0.75;
 }
 .navContainer[data-theme='light'] {
   background: #f2f2f2;
@@ -376,8 +378,6 @@ body[data-theme='dark'] {
   position: fixed;  
   top: 0; 
   z-index: 999; 
-  filter: blur(10px);
-  opacity: 0.75;
 }
 .navbar[data-theme='light'] {
   background: #f2f2f2;
