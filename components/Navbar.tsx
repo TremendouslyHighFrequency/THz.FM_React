@@ -2,8 +2,6 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon, MoonIcon, SunIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
-import THZLogo from '../assets/THZFM_logo.png';
-import THZIcon from '../assets/Terahertz.png';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
@@ -101,7 +99,7 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
     <div className="navbar">
       <div className="navContainer">
         <a href="/">
-          <img className="navbar-logo" src={THZLogo} alt="logo" />
+        <img className={`navbar-logo ${theme}`} data-theme={theme} alt="logo" />
         </a>
         <div className="navbar-items">
           <input

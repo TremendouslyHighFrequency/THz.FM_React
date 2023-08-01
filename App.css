@@ -376,8 +376,20 @@ body[data-theme='dark'] {
 .navbar-logo {
   height: 24px;
   align-items: center;
-  padding-top: 2px
+  padding-top: 2px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
+
+.navbar-logo[data-theme='dark'] {
+  background-image: url('assets/THZFM_logo.png');
+}
+
+.navbar-logo[data-theme='light'] {
+  background-image: url('assets/THZFM_logo_dark.png');
+}
+
 .footer-logo {
   height: 32px;
   margin-bottom: 10px;
