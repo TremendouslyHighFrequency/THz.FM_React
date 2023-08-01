@@ -366,7 +366,7 @@ body[data-theme='dark'] {
   width: 100%;
   align-items: center;
   min-height: 72px;
-  position: relative;  
+  position: sticky;  
   top: 0; 
   z-index: 999; 
 }
