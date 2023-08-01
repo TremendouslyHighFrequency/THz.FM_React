@@ -94,7 +94,7 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
     const toggleTheme = () => {
       const newTheme = theme === 'dark' ? 'light' : 'dark';
       setTheme(newTheme);
-      setLogo(newTheme === 'dark' ? THZLogoDark : THZLogoLight);
+      setLogo(newTheme === 'dark' ? THZLogoDark : THZLogo);
       localStorage.setItem('theme', newTheme);
     }
   
