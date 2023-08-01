@@ -358,6 +358,7 @@ body[data-theme='dark'] {
   padding-left: 1em;
   padding-right: 1em;
   backdrop-filter: blur(10px);
+  min-height: 72px;
 }
 .navContainer[data-theme='light'] {
   background: #f2f2f2;
