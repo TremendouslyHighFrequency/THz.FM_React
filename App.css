@@ -359,7 +359,14 @@ body[data-theme='dark'] {
   padding-left: 1em;
   padding-right: 1em;
 }
-
+.navContainer[data-theme='light'] {
+  background: #f2f2f2;
+  color: #263040;
+}
+.navContainer[data-theme='dark'] {
+  background: #263040;
+  color: #fff;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -382,9 +389,6 @@ body[data-theme='dark'] {
   height: 24px;
   align-items: center;
   padding-top: 2px
-}
-.navbar-logo[data-theme='light'] {
-  
 }
 .footer-logo {
   height: 32px;
