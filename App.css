@@ -136,7 +136,7 @@ body[data-theme='dark'] {
 }
 .side-navContainer {
   height: auto;
-  display: flex;
+  display: block;
   position: fixed;
   width: 180px;
 }
