@@ -362,6 +362,8 @@ body[data-theme='dark'] {
 .navContainer[data-theme='light'] {
   background: #f2f2f2;
   color: #263040;
+  filter: blur(10px);
+  opacity: 0.75;
 }
 .navContainer[data-theme='dark'] {
   background: #263040;
