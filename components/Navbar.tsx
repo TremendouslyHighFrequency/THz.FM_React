@@ -10,7 +10,6 @@ import axios from 'axios';
 import MeiliSearch from 'meilisearch'
 import SearchResults from './SearchResults';
 import { TxContext } from './txContext';
-import { useFrappeAuth } from 'frappe-react-sdk';
 
 
 const client = new MeiliSearch({
@@ -20,47 +19,10 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
-const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
-  const {
-    login,
-    error,
-  } = useFrappeAuth();
-  
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const handleLogin = async () => {
-    try {
-      const user = await login(username, password);
-      onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
-      onClose();
-    } catch (err) {
-      console.error(err);
-      // Handle error here, e.g., show an error message
-    }
-  };
 
-  return isOpen ? (
-    <div>
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={handleLogin}>Login</button>
-      {error && <p>{error.message}</p>}
-      <button onClick={onClose}>Close</button>
-    </div>
-  ) : null;
-};
-
-const Navbar = ({ loggedUser, notifications, onSuccessfulLogin }: Omit<NavbarProps, 'txId'> & { notifications: Notification[] }) => {
+const Navbar = ({ notifications }: { notifications: Notification[] }) => {
+  const { currentUser } = useFrappeAuth();
+  const loggedUser = currentUser;
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -202,7 +164,7 @@ const toggleTheme = () => {
     </a>
   )
 }
-<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} onSuccessfulLogin={onSuccessfulLogin} />
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
 
         </div>
       </div>
