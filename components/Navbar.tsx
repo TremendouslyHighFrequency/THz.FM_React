@@ -32,7 +32,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
   const handleLogin = async () => {
     try {
       const user = await login(username, password);
-      onSuccessfulLogin(user);
+      onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
       onClose();
     } catch (err) {
       console.error(err);
