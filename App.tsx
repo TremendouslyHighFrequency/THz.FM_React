@@ -44,10 +44,18 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [loggedUser, setLoggedUser] = useState<any | null>(null);
+
+  const handleSuccessfulLogin = (user) => {
+    setLoggedUser(user);
+  };
 
   useEffect(() => {
     getLoggedUser()
-      .then(loggedUser => getNotifications(loggedUser))
+      .then(user => {
+        setLoggedUser(user);
+        return getNotifications(user);
+      })
       .then(notificationData => setNotifications(notificationData))
       .catch(error => console.error(`Error fetching data: ${error}`));
   }, []);
@@ -74,7 +82,7 @@ function App() {
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
-                <Navbar loggedUser={null} notifications={notifications} />
+            <Navbar loggedUser={loggedUser} notifications={notifications} onSuccessfulLogin={handleSuccessfulLogin} />
             </div>
             <div>
               <div className="App-body">

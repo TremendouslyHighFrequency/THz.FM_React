@@ -20,7 +20,7 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
   const {
     login,
     error,
@@ -31,7 +31,8 @@ const LoginModal = ({ isOpen, onClose }) => {
   
   const handleLogin = async () => {
     try {
-      await login(username, password);
+      const user = await login(username, password);
+      onSuccessfulLogin(user);
       onClose();
     } catch (err) {
       console.error(err);
@@ -59,7 +60,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   ) : null;
 };
 
-const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { notifications: Notification[] }) => {
+const Navbar = ({ loggedUser, notifications, onSuccessfulLogin }: Omit<NavbarProps, 'txId'> & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -201,7 +202,7 @@ const toggleTheme = () => {
     </a>
   )
 }
-<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} onSuccessfulLogin={onSuccessfulLogin} />
 
         </div>
       </div>
