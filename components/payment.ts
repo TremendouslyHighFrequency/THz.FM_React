@@ -2,7 +2,7 @@ import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import axios from 'axios';
 
-export async function purchase(price_erg) {
+export async function purchase(price_erg, artistErgoAddress) {
   const explorerAPI = 'https://api.ergoplatform.com/api/v1';
 
   if (await ergoConnector.nautilus.connect()) {
@@ -10,7 +10,7 @@ export async function purchase(price_erg) {
 
     const unsignedTx = new TransactionBuilder(height)
       .from(await ergo.get_utxos())
-      .to(new OutputBuilder(price_erg * 1000000000, "9fjTtRPuaSXU3QuK73EH7w6dCd2Z8oPDnXz5qBptKpD6MUdwiZX"))
+      .to(new OutputBuilder(price_erg * 1000000000, artistErgoAddress))
       .sendChangeTo(await ergo.get_change_address())
       .payMinFee()
       .build()
