@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types';
-import { router } from 'frappejs';
+import { Link } from "react-router-dom";
 
 const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
@@ -30,12 +30,7 @@ const Releases = () => {
                           <div className="album-text">
                                   <h4>{title}</h4>
                                   <p>{release_artist}</p>
-                                  <button onClick={(e) => {
-e.preventDefault();
-const newRoute = `releases/${title}/by/${release_artist}/${name}`;
-router.setRoute(newRoute);
-window.location.hash = newRoute;
-}}>View Release</button>
+                                  <Link to={`/releases/${title}/by/${release_artist}/${name}`}>View Release</Link>
                               </div>
                           </div>
   
