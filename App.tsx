@@ -46,11 +46,12 @@ function App() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    getLoggedUser()
-      .then(loggedUser => getNotifications(loggedUser))
-      .then(notificationData => setNotifications(notificationData))
-      .catch(error => console.error(`Error fetching data: ${error}`));
-  }, []);
+    if (loggedUser) {
+      getUserImage(loggedUser)
+        .then(image => setUserImage(image))
+        .catch(error => console.error(`Error fetching user data: ${error}`));
+    }
+  }, [loggedUser]);
 
   const handleButtonClick = async () => {
     try {
