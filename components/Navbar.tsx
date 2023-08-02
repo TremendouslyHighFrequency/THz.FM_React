@@ -105,8 +105,6 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
         })
         .catch(error => console.error(`Error fetching user data: ${error}`));
     }
-  }, [loggedUser]);
-
   
     if (txId) {
       const interval = setInterval(async () => {
