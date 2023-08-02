@@ -61,7 +61,7 @@ const LoginModal = ({ isOpen, onClose, onLogin = () => {} }) => {
   ) : null;
 };
 
-const Navbar = ({ notifications, currentUser. onLogin }: { notifications: Notification[] }) => {
+const Navbar = ({ notifications, currentUser, onLogin }: { notifications: Notification[] }) => {
   const loggedUser = currentUser;
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
