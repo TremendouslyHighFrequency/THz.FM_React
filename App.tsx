@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
 
 //Frappe Imports 
-import { FrappeProvider } from 'frappe-react-sdk';
+import { FrappeProvider, useFrappeAuth } from 'frappe-react-sdk';
 
 //Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
