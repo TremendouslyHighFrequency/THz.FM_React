@@ -192,7 +192,7 @@ const toggleTheme = () => {
       <a href="/collection"><RocketIcon size={24} /></a>
       <a href="/me">
         {userImage ? (
-          <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          <img src="https://thz.fm/{userImage}" alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
         ) : (
           <PersonIcon size={24} />
         )}
