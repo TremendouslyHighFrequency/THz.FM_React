@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { router } from 'frappejs';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
@@ -128,7 +128,7 @@ const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
 };
 
 const Release = ({ setTransaction }) => {
-  const { name } = useParams();
+  const { name } = props.params;
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
 
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
