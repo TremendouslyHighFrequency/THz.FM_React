@@ -27,6 +27,8 @@ const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { not
   const [searchResults, setSearchResults] = useState([]);
   const [userImage, setUserImage] = useState<string | null>(null);
   const { txId, transactionConfirmed, setTransactionConfirmed } = useContext(TxContext);
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+
 
   const getSearchResults = (searchTerm) => {
     console.log('Search Term:', searchTerm); // Log the search term
@@ -137,31 +139,30 @@ const toggleTheme = () => {
           </div>
 
           {
-  loggedUser && (
+  loggedUser ? (
     <>
-
-          <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
-            <BellIcon size={24} />
-          </button>
-
-
-
-          {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
-          <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
-          <a href="/collection"><RocketIcon size={24} /></a>  
-
-          </>
+      <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
+        <BellIcon size={24} />
+      </button>
+      {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
+      <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
+      <a href="/collection"><RocketIcon size={24} /></a>
+      <a href="/me">
+        {userImage ? (
+          <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+        ) : (
+          <PersonIcon size={24} />
+        )}
+      </a>
+    </>
+  ) : (
+    <a onClick={() => setLoginModalOpen(true)}>
+      <PersonIcon size={24} />
+    </a>
   )
 }
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
 
-          <a href="/me">
-            {userImage ? (
-              <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
-            ) : (
-              <PersonIcon size={24} />
-            )}
-          </a>
-         
         </div>
       </div>
     </div>
