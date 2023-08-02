@@ -20,7 +20,7 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
-const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
+const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
   const {
     login,
     error,
