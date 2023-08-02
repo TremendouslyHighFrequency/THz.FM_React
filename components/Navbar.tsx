@@ -99,9 +99,13 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   useEffect(() => {
     if (loggedUser) {
       getUserImage(loggedUser)
-        .then(image => setUserImage(image))
+        .then(image => {
+          setUserImage(image);
+          console.log(userImage); // Add this line
+        })
         .catch(error => console.error(`Error fetching user data: ${error}`));
     }
+  }, [loggedUser]);
 
   
     if (txId) {
@@ -192,7 +196,7 @@ const toggleTheme = () => {
       <a href="/collection"><RocketIcon size={24} /></a>
       <a href="/me">
         {userImage ? (
-          <img src="https://thz.fm/{userImage}" alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
         ) : (
           <PersonIcon size={24} />
         )}
