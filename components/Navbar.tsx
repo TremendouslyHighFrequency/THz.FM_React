@@ -19,6 +19,45 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
+const LoginModal = ({ isOpen, onClose }) => {
+  const {
+    login,
+    error,
+  } = useFrappeAuth();
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const handleLogin = async () => {
+    try {
+      await login(username, password);
+      onClose();
+    } catch (err) {
+      console.error(err);
+      // Handle error here, e.g., show an error message
+    }
+  };
+
+  return isOpen ? (
+    <div>
+      <input
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button onClick={handleLogin}>Login</button>
+      {error && <p>{error.message}</p>}
+      <button onClick={onClose}>Close</button>
+    </div>
+  ) : null;
+};
+
 const Navbar = ({ loggedUser, notifications }: Omit<NavbarProps, 'txId'> & { notifications: Notification[] }) => {
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
