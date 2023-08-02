@@ -11,9 +11,6 @@ import { SHA256 } from 'crypto-js';
 import { ErgoDappConnector } from 'ergo-dapp-connector';
 import { MintNFT } from './components/MintNFT';
 
-// Import the usePageContentStore hook
-import { usePageContentStore } from './pageContentStore';
-
 //App Requirement Imports
 import './App.css';
 import { Notification, TrackItem } from './types';
