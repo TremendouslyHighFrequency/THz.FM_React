@@ -137,9 +137,8 @@ const Release = ({ setTransaction }) => {
   const handleButtonClick = async () => {
     try {
       const price_erg = parseFloat(data.price_erg);
-      const artistErgoAddress = data.ergo_address;
-      const txId = await purchase(price_erg, artistErgoAddress);
-      console.log('artistErgoAddress before purchase:', artistErgoAddress); // Log artistErgoAddress
+      const txId = await purchase(price_erg);
+      const artistErgoAddress = data.custom_ergo_address;
       setTransaction(txId);
     } catch (err) {
       console.error(err);
