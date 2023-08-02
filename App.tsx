@@ -45,13 +45,15 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  const { currentUser } = useFrappeAuth();
+
   useEffect(() => {
-    if (loggedUser) {
-      getUserImage(loggedUser)
+    if (currentUser) {
+      getUserImage(currentUser)
         .then(image => setUserImage(image))
         .catch(error => console.error(`Error fetching user data: ${error}`));
     }
-  }, [loggedUser]);
+  }, [currentUser]);  
 
   const handleButtonClick = async () => {
     try {
