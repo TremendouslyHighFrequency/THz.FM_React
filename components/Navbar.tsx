@@ -10,6 +10,7 @@ import axios from 'axios';
 import MeiliSearch from 'meilisearch'
 import SearchResults from './SearchResults';
 import { TxContext } from './txContext';
+import { useFrappeAuth } from 'frappe-react-sdk';
 
 
 const client = new MeiliSearch({
