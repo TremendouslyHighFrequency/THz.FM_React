@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'r
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
-import { useFrappeAuth } from 'frappe-react-sdk';
+
 //Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
 import { SHA256 } from 'crypto-js';
@@ -45,15 +45,12 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const { currentUser } = useFrappeAuth();
-
   useEffect(() => {
-    if (currentUser) {
-      getUserImage(currentUser)
-        .then(image => setUserImage(image))
-        .catch(error => console.error(`Error fetching user data: ${error}`));
-    }
-  }, [currentUser]);  
+    getLoggedUser()
+      .then(loggedUser => getNotifications(loggedUser))
+      .then(notificationData => setNotifications(notificationData))
+      .catch(error => console.error(`Error fetching data: ${error}`));
+  }, []);
 
   const handleButtonClick = async () => {
     try {
@@ -77,8 +74,8 @@ function App() {
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
-            <Navbar notifications={notifications} currentUser={currentUser} />
-             </div>
+                <Navbar notifications={notifications} />
+            </div>
             <div>
               <div className="App-body">
                 <div className="main-container">
