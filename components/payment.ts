@@ -16,7 +16,6 @@ export async function purchase(price_erg, artistErgoAddress) {
       .build()
       .toEIP12Object();
     
-    console.log('artistErgoAddress:', artistErgoAddress);
     const signedTx = await ergo.sign_tx(unsignedTx);
     const txId = await ergo.submit_tx(signedTx);
     console.log(txId);
