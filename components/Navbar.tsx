@@ -34,7 +34,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
       const user = await login(username, password);
       onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
       onClose();
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 1000);  // Add a 1-second delay before the page reload
     } catch (err) {
       console.error(err);
       // Handle error here, e.g., show an error message
