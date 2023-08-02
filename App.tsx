@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'r
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
+import { useFrappeAuth } from 'frappe-react-sdk';
 
 //Ergo / Crypto Imports
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
