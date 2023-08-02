@@ -60,8 +60,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
   ) : null;
 };
 
-const Navbar = ({ notifications }: { notifications: Notification[] }) => {
-  const { currentUser } = useFrappeAuth();
+const Navbar = ({ notifications, currentUser }: { notifications: Notification[] }) => {
   const loggedUser = currentUser;
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);

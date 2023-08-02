@@ -77,8 +77,8 @@ function App() {
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
-            <Navbar notifications={notifications} />
-            </div>
+            <Navbar notifications={notifications} currentUser={currentUser} />
+             </div>
             <div>
               <div className="App-body">
                 <div className="main-container">
