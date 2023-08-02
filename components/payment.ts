@@ -10,6 +10,7 @@ export async function purchase(price_erg, artistErgoAddress) {
 
     const unsignedTx = new TransactionBuilder(height)
       .from(await ergo.get_utxos())
+      console.log('artistErgoAddress:', artistErgoAddress);
       .to(new OutputBuilder(price_erg * 1000000000, artistErgoAddress))
       .sendChangeTo(await ergo.get_change_address())
       .payMinFee()
