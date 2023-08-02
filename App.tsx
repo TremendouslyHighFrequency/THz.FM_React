@@ -35,7 +35,7 @@ import Single from './components/Single';
 
 
 function App() {
-
+  const { currentUser, login } = useFrappeAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
   const [txId, setTxId] = useState<string | null>(null); // Define the txId state and setTxId function here
@@ -74,7 +74,8 @@ function App() {
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
-                <Navbar notifications={notifications} />
+                <Navbar notifications={notifications} currentUser={currentUser} />
+                <LoginModal onLogin={login} />
             </div>
             <div>
               <div className="App-body">

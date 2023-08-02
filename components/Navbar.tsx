@@ -20,7 +20,7 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
-const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
+const LoginModal = ({ isOpen, onClose, onLogin = () => {} }) => {
   const {
     login,
     error,
@@ -32,7 +32,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
   const handleLogin = async () => {
     try {
       const user = await login(username, password);
-      onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
+      onLogin(user); // Pass the logged-in user to onSuccessfulLogin
       onClose();
       setTimeout(() => window.location.reload(), 1000);  // Add a 1-second delay before the page reload
     } catch (err) {
@@ -61,8 +61,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
   ) : null;
 };
 
-const Navbar = ({ notifications }: { notifications: Notification[] }) => {
-  const { currentUser } = useFrappeAuth();
+const Navbar = ({ notifications, currentUser. onLogin }: { notifications: Notification[] }) => {
   const loggedUser = currentUser;
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -207,7 +206,7 @@ const toggleTheme = () => {
     </a>
   )
 }
-<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} onLogin={onLogin} /> {/* Pass the login function to LoginModal */}
 
         </div>
       </div>
