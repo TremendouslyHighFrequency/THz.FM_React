@@ -34,6 +34,7 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin = () => {} }) => {
       const user = await login(username, password);
       onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
       onClose();
+      window.location.reload();
     } catch (err) {
       console.error(err);
       // Handle error here, e.g., show an error message
