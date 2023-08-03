@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
@@ -145,6 +145,21 @@ const Release = ({ setTransaction }) => {
     }
   };
 
+  const history = useHistory();
+const location = useLocation();
+
+// Initialize localState from the URL
+const initialLocalState = new URLSearchParams(location.search).get('localState');
+const [localState, setLocalState] = useState(initialLocalState || '');
+
+// Call this function whenever you want to update localState and the URL
+const updateLocalState = (newValue) => {
+  setLocalState(newValue);
+  
+  // URL-encode newValue and put it in the URL
+  const newUrl = `/releases/${name}?localState=${encodeURIComponent(newValue)}`;
+  history.push(newUrl);
+};
 
   const onNext = () => {
     const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
