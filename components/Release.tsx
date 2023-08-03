@@ -108,24 +108,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 }
 
 // FooterPlayer component
-const FooterPlayer = ({ track, albumArtwork, currentTime, duration }) => {
-  const percentage = (currentTime / duration) * 100;
 
-  if (!track) {
-    return null;
-  }
-
-  return (
-    <div className="footer-player">
-      <img className="player-art" src={`https://thz.fm${albumArtwork}`} alt={track.track_title} /> 
-      <div className="track-details">
-        <h2>{track.track_title}</h2>
-        <p>{track.track_artist}</p>
-      </div>
-      <ProgressBar now={percentage} />
-    </div>
-  );
-};
 
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
@@ -214,14 +197,7 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
-      {playingTrackIndex !== null && (
-          <FooterPlayer 
-            track={data.release_tracks[playingTrackIndex]}
-            albumArtwork={data.release_artwork}
-            currentTime={currentTime}
-            duration={duration}
-          />
-        )}
+
       </div>
     );
   }

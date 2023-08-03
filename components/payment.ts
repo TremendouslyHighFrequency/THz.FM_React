@@ -1,5 +1,4 @@
 import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
-import { ErgoDappConnector } from 'ergo-dapp-connector';
 import axios from 'axios';
 
 export async function purchase(price_erg, artistErgoAddress) {
@@ -15,7 +14,7 @@ export async function purchase(price_erg, artistErgoAddress) {
       .payMinFee()
       .build()
       .toEIP12Object();
-    
+  
     const signedTx = await ergo.sign_tx(unsignedTx);
     const txId = await ergo.submit_tx(signedTx);
     console.log(txId);
