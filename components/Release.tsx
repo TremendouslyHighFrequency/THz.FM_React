@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
@@ -145,7 +145,7 @@ const Release = ({ setTransaction }) => {
     }
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
 const location = useLocation();
 
 // Initialize localState from the URL
@@ -158,7 +158,7 @@ const updateLocalState = (newValue) => {
   
   // URL-encode newValue and put it in the URL
   const newUrl = `/releases/${name}?localState=${encodeURIComponent(newValue)}`;
-  history.push(newUrl);
+  navigate(newUrl);
 };
 
   const onNext = () => {
