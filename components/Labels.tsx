@@ -29,7 +29,7 @@ const Labels = () => {
                           <div key={i} className="album-card" style={{backgroundImage: `url(${label_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
-                                  <Link to={`/label/${title || 'default-title'}`}>View Label</Link>
+                                  <Link to={`/label/${title}`}>View Label</Link>
                               </div>
                           </div>
   

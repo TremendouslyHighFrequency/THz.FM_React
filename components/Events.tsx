@@ -29,7 +29,7 @@ const Events = () => {
                           <div key={i} className="album-card" style={{backgroundImage: `url(${event_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
-                                  <Link to={`/event/${title || 'default-title'}`}>View Event</Link>
+                                  <Link to={`/event/${title}`}>View Event</Link>
                               </div>
                           </div>
   

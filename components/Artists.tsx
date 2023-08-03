@@ -30,7 +30,7 @@ const Artists = () => {
                           <div key={i} className="album-card" style={{backgroundImage: `url(${artist_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
-                                  <Link to={`/artists/${title || 'default-title'}`}>View Artist</Link>
+                                  <Link to={`/artists/${title}`}>View Artist</Link>
                               </div>
                           </div>
   
