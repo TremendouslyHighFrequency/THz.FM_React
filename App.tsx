@@ -1,6 +1,6 @@
 //React Imports
 import React, { useState, useRef, useEffect } from 'react';
-import { Route, Routes, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
@@ -70,7 +70,7 @@ function App() {
 
  return (
   <FrappeProvider url='https://thz.fm'>
-      <HashRouter basename='nexus'>
+      <Router>
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
@@ -105,7 +105,7 @@ function App() {
             </div>
           </TxContext.Provider>
         </div>
-      </HashRouter>
+      </Router>
     </FrappeProvider>
   );
 }
