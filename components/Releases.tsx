@@ -30,7 +30,7 @@ const Releases = () => {
                           <div className="album-text">
                                   <h4>{title}</h4>
                                   <p>{release_artist}</p>
-                                  <Link to={`/releases/${title}/by/${release_artist}/${name}`}>View Release</Link>
+                                  <Link to={`/releases/${title || 'default-title'}/by/${release_artist || 'default-artist'}/${name || 'default-name'}`}>View Release</Link>
                               </div>
                           </div>
   

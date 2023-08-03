@@ -31,7 +31,7 @@ const Marketplace = () => {
                                   <h4>{title}</h4>
                                   <p>{price_usd}</p>
                                   <p>{price_erg}</p>
-                                  <Link to={`/marketplace/${owner}/product/${title}`}>View Prodct</Link>
+                                  <Link to={`/marketplace/${owner || 'default-owner'}/product/${title || 'default-title'}`}>View Product</Link>
                               </div>
                           </div>
   
