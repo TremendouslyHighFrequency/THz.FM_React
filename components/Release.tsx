@@ -7,6 +7,7 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { purchase } from './payment';
+import { purchaseWithErgoPay } from './ergoPay';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -167,6 +168,7 @@ const updateLocalState = (newValue) => {
             <p style={{ color: data.release_text_color }}>{data.release_description}</p>
           <div style={{ color: data.release_text_color }}>
           <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+          <button className="erg-button" onClick={purchaseWithErgoPay}>BUY ∑ {data.price_erg} ERGOPAY</button>
           <button className="usd-button">BUY $ {data.price_usd} USD</button>
           </div>
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
