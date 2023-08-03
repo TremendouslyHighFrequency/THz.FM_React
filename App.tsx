@@ -1,6 +1,6 @@
 //React Imports
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, HashRouter } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
