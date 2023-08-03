@@ -71,6 +71,7 @@ function App() {
  return (
   <FrappeProvider url='https://thz.fm'>
       <HashRouter basename="/">
+        <Router>
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
@@ -105,6 +106,7 @@ function App() {
             </div>
           </TxContext.Provider>
         </div>
+        </Router>
       </HashRouter>
     </FrappeProvider>
   );
