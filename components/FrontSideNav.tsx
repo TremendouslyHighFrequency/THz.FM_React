@@ -48,6 +48,7 @@ const SideNav = () => {
         // Transform the sidebar items to include the corresponding component
         const newNavItems = sidebarData.sidebar_items.map(item => ({
           ...item,
+          route: item.route.startsWith('/') ? item.route : '/' + item.route,
           component: routeComponents[item.route],
         }));
         setNavItems(newNavItems);
@@ -70,4 +71,3 @@ const SideNav = () => {
 
 export default SideNav;
 export { SidebarItem, routeComponents };
-
