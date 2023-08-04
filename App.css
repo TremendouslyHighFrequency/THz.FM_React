@@ -114,8 +114,7 @@ body[data-theme='dark'] {
 }
 .album-page {
   width: 100%;
-  max-width: 1600px;
-  background: linear-gradient(to bottom right, #161616 66%, transparent);
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1em;
   min-height: 50vh;
