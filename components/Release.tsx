@@ -162,11 +162,11 @@ const updateLocalState = (newValue) => {
     backgroundImage: `url(${data.release_artwork})`,
     width: '100%',
     height: '100%',
-    position: 'relative'
+    position: 'absolute',
   }}>
           <div className="" style={{
       background: 'linear-gradient(to bottom right, #161616 66%, transparent)',
-      position: 'absolute',
+      position: 'relative',
       top: 0,
       left: 0,
       width: '100%',
