@@ -128,11 +128,11 @@ body[data-theme='dark'] {
 }
 .album-page[data-theme='dark'] {
   color: #f2f2f2;
-  background-color: #161616;
+  background-color: #f2f2f2;
 }
 .album-page[data-theme='light'] {
   color: #000000;
-  background-color: #f2f2f2;
+  background-color: #161616;
 }
 .credits {
   padding-left: 1em;
