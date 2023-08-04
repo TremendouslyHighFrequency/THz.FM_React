@@ -121,7 +121,6 @@ body[data-theme='dark'] {
   background-size: cover;
   background-position: center;
   border-radius: 0.175rem;
-  padding-right: 1em;
   overflow-y: auto;
 }
 .album-page[data-theme='dark'] {
