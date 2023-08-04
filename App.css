@@ -115,6 +115,8 @@ body[data-theme='dark'] {
 .album-page {
   width: 100%;
   max-width: 1600px;
+  background-color: #161616;
+  background-filter: opacity(0.9);
   margin: 0 auto;
   padding: 1em;
   min-height: 50vh;
