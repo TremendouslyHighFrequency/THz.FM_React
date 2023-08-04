@@ -115,6 +115,7 @@ body[data-theme='dark'] {
 .album-page {
   width: 100%;
   max-width: 1600px;
+  background-color: #161616;
   background-filter: opacity(0.6);
   margin: 0 auto;
   padding: 1em;
@@ -128,11 +129,9 @@ body[data-theme='dark'] {
 }
 .album-page[data-theme='dark'] {
   color: #f2f2f2;
-  background-color: #f2f2f2;
 }
 .album-page[data-theme='light'] {
   color: #000000;
-  background-color: #161616;
 }
 .credits {
   padding-left: 1em;
