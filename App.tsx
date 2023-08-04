@@ -94,7 +94,7 @@ function App() {
               </div>
             </div>
 
-            <div className="App-footer">
+            {/* <div className="App-footer">
               <div className="footer">
                 <div>
                   <div className="footer-links">
@@ -102,7 +102,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </TxContext.Provider>
         </div>
       </Router>
