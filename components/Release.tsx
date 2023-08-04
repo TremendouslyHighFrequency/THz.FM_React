@@ -161,7 +161,6 @@ const updateLocalState = (newValue) => {
         <div className="album-page" style={{
     backgroundImage: `url(${data.release_artwork})`,
     width: '100%',
-    height: '35%'
   }}>
           <div className="" style={{
       background: 'linear-gradient(to bottom right, #1b1c1e 66%, transparent)',
