@@ -342,7 +342,7 @@ body[data-theme='dark'] {
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 1em;
-  height: 85%;
+  height: 100%;
 }
 .page-content {
   flex-grow: 1;
