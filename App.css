@@ -135,7 +135,7 @@ body[data-theme='dark'] {
 }
 .side-navContainer {
   display: flex;
-  position: fixed;
+  position: static;
 }
 .side-nav {
   list-style-type: none;
