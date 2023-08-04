@@ -134,8 +134,9 @@ body[data-theme='dark'] {
   padding-left: 1em;
 }
 .side-navContainer {
+  height: auto;
   display: flex;
-  position: static;
+  position: fixed;
 }
 .side-nav {
   list-style-type: none;
