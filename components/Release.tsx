@@ -163,7 +163,7 @@ const updateLocalState = (newValue) => {
     width: '100%',
   }}>
           <div className="" style={{
-      background: 'linear-gradient(to bottom right, #1b1c1e 66%, transparent)',
+      background: 'linear-gradient(to bottom right, #1b1c1e 35%, transparent)',
       position: 'relative',
       top: 0,
       left: 0,
