@@ -158,19 +158,8 @@ const updateLocalState = (newValue) => {
     return (
       <div>
         {/* Display the data */}
-        <div className="album-page" style={{
-    backgroundImage: `url(${data.release_artwork})`,
-    width: '100%',
-  }}>
-          <div className="" style={{
-      background: 'linear-gradient(to bottom right, #1b1c1e 35%, transparent)',
-      position: 'relative',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      padding: '1em'
-    }}>
+        <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
+          <div className="">
             <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div><p style={{ color: data.release_text_color }}>{data.release_type} by: {data.release_artist}</p></span>
            <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                 <p className="genre-item" key={index}>{genre.genre}</p>
