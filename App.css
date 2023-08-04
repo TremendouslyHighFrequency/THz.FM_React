@@ -348,7 +348,7 @@ body[data-theme='dark'] {
   flex-grow: 1;
   margin: 0 auto;
   padding: 1em;
-  overflow-y: auto;
+  overflow-y: scroll;
   height: 100%;
   margin-left: 120px;
 }
