@@ -170,7 +170,7 @@ const updateLocalState = (newValue) => {
       top: 0,
       left: 0,
       width: '100%',
-      height: '100%'
+      height: '100%',
       padding: '1em'
     }}>
             <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div><p style={{ color: data.release_text_color }}>{data.release_type} by: {data.release_artist}</p></span>
