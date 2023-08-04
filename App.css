@@ -123,6 +123,7 @@ body[data-theme='dark'] {
   background-position: center;
   border-radius: 0.175rem;
   padding-right: 1em;
+  overflow-y: auto;
 }
 .album-page[data-theme='dark'] {
   color: #f2f2f2;
