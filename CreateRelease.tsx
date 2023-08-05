@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useFrappeCreateDoc, useFrappeFileUpload } from 'frappe-react-sdk';
-import { Fieldset, Label, Input, Progress, Button } from '@radix-ui/react-collection';
+import { Fieldset, Label, Input } from '@radix-ui/react-label';
+import { Progress } from '@radix-ui/react-progress';
+import { Button } from '@radix-ui/react-collection';
 import { useNavigate } from 'react-router-dom';
 import lamejs from 'lamejs';
 
@@ -121,7 +123,7 @@ const CreateRelease = () => {
       release_tracks: trackObjs,
     };
     const navigate = useNavigate();
-    
+
     createDoc('Release', releaseData)
       .then((doc) => {
         console.log(doc);
