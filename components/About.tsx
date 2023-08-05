@@ -1,10 +1,13 @@
+// Venues.jsx
 import React from 'react';
 
-const About = () => (
-  <iframe className="form-frame"
-    src="https://thz.fm/about"
-    width="100%"
-  />
-);
+const About = () => {
+  return (
+    <div className="content">
+      This is the About page.
+    </div>
+  );
+};
 
-export default About
+export default About;
+
