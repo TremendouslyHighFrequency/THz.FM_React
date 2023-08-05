@@ -24,6 +24,7 @@ import { purchase as purchaseFn } from './components/purchase';
 import { TxContext } from './components/txContext.js';
 
 // Nav Imports
+import Dashboard from './components/Dashboard';
 import SideNav from './components/FrontSideNav';
 import FooterNav from './components/FooterNav';
 import Release from './components/Release'; 
