@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useFrappeCreateDoc, useFrappeFileUpload } from 'frappe-react-sdk';
-import { Fieldset, Label, Input } from '@radix-ui/react-label';
+import { Button, Form } from 'react-bootstrap';
 import { Progress } from '@radix-ui/react-progress';
-import { Button } from '@radix-ui/react-collection';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import lamejs from 'lamejs';
 
 type Track = {
@@ -133,75 +132,75 @@ const CreateRelease = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Fieldset>
-        <Label>Title:</Label>
-        <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Artist:</Label>
-        <Input type="text" value={artist} onChange={(e) => setArtist(e.target.value)} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Description:</Label>
-        <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Artwork:</Label>
-        <Input type="file" accept="image/*" onChange={handleArtworkUpload} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Price USD:</Label>
-        <Input type="number" value={priceUsd} onChange={(e) => setPriceUsd(parseFloat(e.target.value))} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Price ERG:</Label>
-        <Input type="number" value={priceErg} onChange={(e) => setPriceErg(parseFloat(e.target.value))} />
-      </Fieldset>
-      <Fieldset>
-        <Label>Tracks:</Label>
-        <Input type="file" accept="audio/*" multiple onChange={handleTrackUpload} />
-      </Fieldset>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Title:</Form.Label>
+        <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Artist:</Form.Label>
+        <Form.Control type="text" value={artist} onChange={(e) => setArtist(e.target.value)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Description:</Form.Label>
+        <Form.Control type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Artwork:</Form.Label>
+        <Form.Control type="file" accept="image/*" onChange={handleArtworkUpload} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Price USD:</Form.Label>
+        <Form.Control type="number" value={priceUsd} onChange={(e) => setPriceUsd(parseFloat(e.target.value))} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Price ERG:</Form.Label>
+        <Form.Control type="number" value={priceErg} onChange={(e) => setPriceErg(parseFloat(e.target.value))} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Tracks:</Form.Label>
+        <Form.Control type="file" accept="audio/*" multiple onChange={handleTrackUpload} />
+      </Form.Group>
       {tracks.map((track, index) => (
         <React.Fragment key={index}>
-          <Fieldset>
-            <Label>Track Title:</Label>
-            <Input type="text" value={track.track_title} onChange={(e) => handleTrackChange(index, 'track_title', e.target.value)} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Track Artist:</Label>
-            <Input type="text" value={track.track_artist} onChange={(e) => handleTrackChange(index, 'track_artist', e.target.value)} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Track Type:</Label>
-            <Input type="text" value={track.track_type} onChange={(e) => handleTrackChange(index, 'track_type', e.target.value)} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Track MP3:</Label>
-            <Input type="file" accept="audio/mp3" onChange={(e) => handleTrackFileChange(index, 'attach_mp3', e)} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Track WAV:</Label>
-            <Input type="file" accept="audio/wav" onChange={(e) => handleTrackFileChange(index, 'attach_wav', e)} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Price USD:</Label>
-            <Input type="number" value={track.price_usd} onChange={(e) => handleTrackChange(index, 'price_usd', parseFloat(e.target.value))} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Price ERG:</Label>
-            <Input type="number" value={track.price_erg} onChange={(e) => handleTrackChange(index, 'price_erg', parseFloat(e.target.value))} />
-          </Fieldset>
-          <Fieldset>
-            <Label>Track Genre:</Label>
-            <Input type="text" value={track.track_genre} onChange={(e) => handleTrackChange(index, 'track_genre', e.target.value)} />
-          </Fieldset>
+          <Form.Group>
+            <Form.Label>Track Title:</Form.Label>
+            <Form.Control type="text" value={track.track_title} onChange={(e) => handleTrackChange(index, 'track_title', e.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Track Artist:</Form.Label>
+            <Form.Control type="text" value={track.track_artist} onChange={(e) => handleTrackChange(index, 'track_artist', e.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Track Type:</Form.Label>
+            <Form.Control type="text" value={track.track_type} onChange={(e) => handleTrackChange(index, 'track_type', e.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Track MP3:</Form.Label>
+            <Form.Control type="file" accept="audio/mp3" onChange={(e) => handleTrackFileChange(index, 'attach_mp3', e)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Track WAV:</Form.Label>
+            <Form.Control type="file" accept="audio/wav" onChange={(e) => handleTrackFileChange(index, 'attach_wav', e)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Price USD:</Form.Label>
+            <Form.Control type="number" value={track.price_usd} onChange={(e) => handleTrackChange(index, 'price_usd', parseFloat(e.target.value))} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Price ERG:</Form.Label>
+            <Form.Control type="number" value={track.price_erg} onChange={(e) => handleTrackChange(index, 'price_erg', parseFloat(e.target.value))} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Track Genre:</Form.Label>
+            <Form.Control type="text" value={track.track_genre} onChange={(e) => handleTrackChange(index, 'track_genre', e.target.value)} />
+          </Form.Group>
         </React.Fragment>
       ))}
-      <Button type="button" onClick={handleAddTrack}>Add Track</Button>
+      <Button variant="primary" type="button" onClick={handleAddTrack}>Add Track</Button>
       <Progress value={progress} />
-      <Button type="submit">Create Release</Button>
-    </form>
+      <Button variant="primary" type="submit">Create Release</Button>
+    </Form>
   );
 };
 
