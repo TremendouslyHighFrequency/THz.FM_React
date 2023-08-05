@@ -191,7 +191,7 @@ const toggleTheme = () => {
       </button>
       {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
       <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
-      <a href="/collection"><RocketIcon size={24} /></a>
+      <a href="/workspace"><RocketIcon size={24} /></a>
       <a href="/me">
         {userImage ? (
           <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
