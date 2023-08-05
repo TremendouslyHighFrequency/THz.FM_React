@@ -108,8 +108,9 @@ function App() {
                   <div id="comment-container"></div>
                 </div>
               </div>
+              <div className="footer">
               <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
-
+              </div>
             </div>
 
             {/* <div className="App-footer">
