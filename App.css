@@ -457,7 +457,7 @@ display: none;
   white-space: nowrap;
 }
 .footer {
-  display: flex;
+  display: fixed;
   justify-content: space-between;
   align-items: center;
   height: 20dvh;
