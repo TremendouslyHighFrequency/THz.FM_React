@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyComponent = () => (
   <iframe className="form-frame"
-    src="https://thz.fm/me/create-release"
+    src="https://thz.fm/me/manage-releases"
     width="100%"
   />
 );
