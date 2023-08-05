@@ -65,6 +65,23 @@ const CreateRelease = () => {
     } : track));
   };
 
+  const handleAddTrack = () => {
+    setTracks(prevTracks => [
+      ...prevTracks,
+      {
+        track_number: prevTracks.length + 1,
+        track_title: '',
+        track_artist: '',
+        track_type: '',
+        attach_mp3: null,
+        attach_wav: null,
+        price_usd: 0,
+        price_erg: 0,
+        track_genre: '',
+      }
+    ]);
+  };
+
   const handleTrackFileChange = (index: number, field: keyof Track, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
