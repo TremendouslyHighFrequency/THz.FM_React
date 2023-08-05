@@ -457,7 +457,8 @@ display: none;
   white-space: nowrap;
 }
 .footer {
-  display: fixed;
+  display: static;
+  bottom: 0;
   justify-content: space-between;
   align-items: center;
   height: 20dvh;
