@@ -4,7 +4,6 @@ import { Button, Form } from 'react-bootstrap';
 import { Progress } from '@radix-ui/react-progress';
 import { useNavigate, useHistory } from 'react-router-dom';
 import lamejs from 'lamejs';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Track = {
   track_number: number;
