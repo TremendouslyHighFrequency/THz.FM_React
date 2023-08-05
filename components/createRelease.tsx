@@ -18,7 +18,7 @@ type Track = {
   track_genre: string;
 }
 
-const createRelease = () => {
+const CreateRelease = () => {
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [description, setDescription] = useState('');
@@ -204,4 +204,4 @@ const createRelease = () => {
   );
 };
 
-export default createRelease;
+export default CreateRelease;
