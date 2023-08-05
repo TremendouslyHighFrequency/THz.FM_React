@@ -25,6 +25,9 @@ body[data-theme='dark'] {
   height: 100vh;
   margin: 0 auto;
 }
+.form-frame .navbar {
+display: none;
+}
 .App-body {
   display: flex;
   justify-content: center;
