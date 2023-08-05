@@ -4,7 +4,6 @@ import { Button, Form } from 'react-bootstrap';
 import { Progress } from '@radix-ui/react-progress';
 import { useNavigate, useHistory } from 'react-router-dom';
 import lamejs from 'lamejs';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Track = {
   track_number: number;
@@ -48,41 +47,6 @@ const CreateRelease = () => {
     }
   };
 
-  const handleTrackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const files = Array.from(e.target.files);
-      setTracks(prevTracks => files.map((file, i) => ({
-        ...prevTracks[i],
-        attach_mp3: file.name.endsWith('.mp3') ? Promise.resolve(file) : null,
-        attach_wav: file.name.endsWith('.wav') ? file : null,
-      })));
-    }
-  };
-  
-  const handleTrackChange = (index: number, field: keyof Track, value: any) => {
-    setTracks(prevTracks => prevTracks.map((track, i) => i === index ? {
-      ...track,
-      [field]: value,
-    } : track));
-  };
-
-  const handleAddTrack = () => {
-    setTracks(prevTracks => [
-      ...prevTracks,
-      {
-        track_number: prevTracks.length + 1,
-        track_title: '',
-        track_artist: '',
-        track_type: '',
-        attach_mp3: null,
-        attach_wav: null,
-        price_usd: 0,
-        price_erg: 0,
-        track_genre: '',
-      }
-    ]);
-  };
-
   const handleTrackFileChange = (index: number, field: keyof Track, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -103,6 +67,23 @@ const CreateRelease = () => {
         handleTrackChange(index, field, file);
       }
     }
+  };
+
+  const handleAddTrack = () => {
+    setTracks(prevTracks => [
+      ...prevTracks,
+      {
+        track_number: prevTracks.length + 1,
+        track_title: '',
+        track_artist: '',
+        track_type: '',
+        attach_mp3: null,
+        attach_wav: null,
+        price_usd: 0,
+        price_erg: 0,
+        track_genre: '',
+      }
+    ]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -193,10 +174,6 @@ const CreateRelease = () => {
         <Form.Label>Price ERG:</Form.Label>
         <Form.Control type="number" value={priceErg} onChange={(e) => setPriceErg(parseFloat(e.target.value))} />
       </Form.Group>
-      <Form.Group>
-        <Form.Label>Tracks:</Form.Label>
-        <Form.Control type="file" accept="audio/*" multiple onChange={handleTrackUpload} />
-      </Form.Group>
       {tracks.map((track, index) => (
         <React.Fragment key={index}>
           <Form.Group>
@@ -210,10 +187,6 @@ const CreateRelease = () => {
           <Form.Group>
             <Form.Label>Track Type:</Form.Label>
             <Form.Control type="text" value={track.track_type} onChange={(e) => handleTrackChange(index, 'track_type', e.target.value)} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Track MP3:</Form.Label>
-            <Form.Control type="file" accept="audio/mp3" onChange={(e) => handleTrackFileChange(index, 'attach_mp3', e)} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Track WAV:</Form.Label>
