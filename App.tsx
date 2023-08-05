@@ -32,7 +32,7 @@ import Artist from './components/Artist';
 import Event from './components/Event';
 import Venue from './components/Venue';
 import Single from './components/Single';
-import CreateRelease from './components/CreateRelease';
+import CreateRelease from './CreateRelease';
 
 
 function App() {
