@@ -89,6 +89,7 @@ function App() {
                       <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
                     ))}
                     <Route path="/manage-releases" element={<CreateRelease />} />
+                    <Route path="/me" element={<Dashboard />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
