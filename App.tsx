@@ -98,7 +98,7 @@ function App() {
                     <Route path="/collection" element={<Collection />} />
                     <Route path="/workspace" element={<Workspace />} />
                     <Route path="/" element={<Home />} />
-                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/us/blog" element={<Blog />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
