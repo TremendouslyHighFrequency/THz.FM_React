@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useFrappeCreateDoc, useFrappeFileUpload } from 'frappe-react-sdk';
-import { Fieldset, Label, Input } from '@radix-ui/react-fieldset';
-import { Progress } from '@radix-ui/react-progress';
-import { Button } from '@radix-ui/react-button';
+import { Fieldset, Label, Input, Progress, Button } from '@radix-ui/react-collection';
 import { navigate } from 'react-router-dom';
 import lamejs from 'lamejs';
 
