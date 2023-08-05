@@ -92,8 +92,8 @@ function App() {
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
+                  <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
                 </div>
-                <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
               </div>
             </div>
 
