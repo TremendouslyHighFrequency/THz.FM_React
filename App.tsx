@@ -32,7 +32,8 @@ import Collection from './components/Collection';
 import Workspace from './components/Workspace';
 import SideNav from './components/FrontSideNav';
 import FooterNav from './components/FooterNav';
-import Release from './components/Release'; 
+import Release from './components/Release';
+import Roadmap from './components/Roadmap'; 
 import Product from './components/Product';
 import Artist from './components/Artist';
 import Event from './components/Event';
@@ -101,6 +102,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/us/blog" element={<Blog />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/roadmap" element={<Roadmap />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
