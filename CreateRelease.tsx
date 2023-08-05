@@ -47,6 +47,24 @@ const CreateRelease = () => {
     }
   };
 
+  const handleTrackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const files = Array.from(e.target.files);
+      setTracks(prevTracks => files.map((file, i) => ({
+        ...prevTracks[i],
+        attach_mp3: file.name.endsWith('.mp3') ? Promise.resolve(file) : null,
+        attach_wav: file.name.endsWith('.wav') ? file : null,
+      })));
+    }
+  };
+  
+  const handleTrackChange = (index: number, field: keyof Track, value: any) => {
+    setTracks(prevTracks => prevTracks.map((track, i) => i === index ? {
+      ...track,
+      [field]: value,
+    } : track));
+  };
+
   const handleTrackFileChange = (index: number, field: keyof Track, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
