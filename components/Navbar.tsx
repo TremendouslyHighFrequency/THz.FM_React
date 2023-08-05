@@ -13,7 +13,6 @@ import { TxContext } from './txContext';
 import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link } from "react-router-dom";
 
-
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
   apiKey: '080d55a6dc325a8c912d4f7a0550dc6b3b25b0f195ae25482e99e676fa6d57c8'
@@ -198,16 +197,14 @@ const toggleTheme = () => {
           <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
         ) : (
           <PersonIcon size={24} />
-        )}
-      </a>
+        )}</Link>  
     </>
   ) : (
     <a onClick={() => setLoginModalOpen(true)}>
       <PersonIcon size={24} />
     </a>
   )
-}</Link>
-
+}
 <LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
 
         </div>
