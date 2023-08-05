@@ -25,6 +25,7 @@ import { TxContext } from './components/txContext.js';
 
 // Nav Imports
 import Dashboard from './components/Dashboard';
+import About from './components/About';
 import Blog from './components/Blog';
 import Home from './components/Home';
 import Collection from './components/Collection';
@@ -99,6 +100,7 @@ function App() {
                     <Route path="/workspace" element={<Workspace />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/us/blog" element={<Blog />} />
+                    <Route path="/us/about" element={<About />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
