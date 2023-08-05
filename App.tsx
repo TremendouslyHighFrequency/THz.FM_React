@@ -100,7 +100,7 @@ function App() {
                     <Route path="/workspace" element={<Workspace />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/us/blog" element={<Blog />} />
-                    <Route path="/us/about" element={<About />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
