@@ -12,6 +12,8 @@ import SearchResults from './SearchResults';
 import { TxContext } from './txContext';
 import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link } from "react-router-dom";
+import * as Popover from '@radix-ui/react-popover';
+import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -20,7 +22,7 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
-const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
+const LoginModal = ({ onSuccessfulLogin }) => {
   const {
     login,
     error,
@@ -33,31 +35,54 @@ const LoginModal = ({ isOpen, onClose, onSuccessfulLogin }) => {
     try {
       const user = await login(username, password);
       onSuccessfulLogin(user); // Pass the logged-in user to onSuccessfulLogin
-      onClose();
     } catch (err) {
       console.error(err);
       // Handle error here, e.g., show an error message
     }
   };
 
-  return isOpen ? (
-    <div>
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={handleLogin}>Login</button>
-      {error && <p>{error.message}</p>}
-      <button onClick={onClose}>Close</button>
-    </div>
-  ) : null;
+  return (
+    <Popover.Root>
+    <Popover.Trigger asChild>
+      <button>
+        <PersonIcon size={24} />
+      </button>
+    </Popover.Trigger>
+    <Popover.Content>
+      <div className="modal-content" style={{ padding: '15px' }}>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <button 
+            onClick={handleLogin}
+            style={{ marginRight: '10px', padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+          >
+            Login
+          </button>
+          <button 
+            // onClick={} // Add an event handler for registration if needed.
+            style={{ marginLeft: '10px', padding: '10px', backgroundColor: '#79cd7a', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+          >
+            Register
+          </button>
+        </div>
+        {error && <p style={{ color: '#FF0000', marginTop: '10px' }}>{error.message}</p>}
+        <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
+      </div>
+    </Popover.Content>
+  </Popover.Root>
+  );
 };
 
 const Navbar = ({ notifications }: { notifications: Notification[] }) => {
@@ -200,12 +225,11 @@ const toggleTheme = () => {
         )}</Link>  
     </>
   ) : (
-    <a onClick={() => setLoginModalOpen(true)}>
-      <PersonIcon size={24} />
-    </a>
+    <LoginModal onSuccessfulLogin={(user) => {
+      // Handle successful login if needed
+    }} />
   )
 }
-<LoginModal isOpen={isLoginModalOpen} onClose={() => setLoginModalOpen(false)} />
 
         </div>
       </div>
