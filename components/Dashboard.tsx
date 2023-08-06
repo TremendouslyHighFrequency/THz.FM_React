@@ -3,8 +3,7 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 
 const Dashboard = () => {
   const {
-    currentUser,
-    logout,
+    currentUser
   } = useFrappeAuth();
 
   return (
@@ -12,7 +11,6 @@ const Dashboard = () => {
       {currentUser ? (
         <>
           <h1>Welcome to your user dashboard, {currentUser}</h1>
-          <button onClick={logout}>Logout</button>
         </>
       ) : (
         <h1>Welcome Guest</h1>
