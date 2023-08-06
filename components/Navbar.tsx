@@ -86,8 +86,34 @@ const LoginModal = ({ onSuccessfulLogin }) => {
   );
 };
 
-const Navbar = ({ notifications }: { notifications: Notification[] }) => {
+const UserPopover = ({ onLogout }) => {
   const { currentUser } = useFrappeAuth();
+  return (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <button>
+          {currentUser.image ? (
+            <img src={currentUser.image} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          ) : (
+            <PersonIcon size={24} />
+          )}
+        </button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <div className="modal-content" style={{ padding: '15px' }}>
+          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
+          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
+            Logout
+          </button>
+          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
+        </div>
+      </Popover.Content>
+    </Popover.Root>
+  );
+};
+
+const Navbar = ({ notifications }: { notifications: Notification[] }) => {
+  const { currentUser, logout } = useFrappeAuth();
   const loggedUser = currentUser;
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -209,27 +235,19 @@ const toggleTheme = () => {
           </div>
 
           {
-  loggedUser ? (
-    <>
-      <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
-        <BellIcon size={24} />
-      </button>
-      {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
-      <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
-      <Link to="/workspace"><RocketIcon size={24} /></Link>
-      <Link to="/me">
-        {userImage ? (
-          <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
-        ) : (
-          <PersonIcon size={24} />
-        )}</Link>  
-    </>
-  ) : (
-    <LoginModal onSuccessfulLogin={(user) => {
-      // Handle successful login if needed
-    }} />
-  )
-}
+ loggedUser ? (
+  <>
+    <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
+      <BellIcon size={24} />
+    </button>
+    {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
+    <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
+    <Link to="/workspace"><RocketIcon size={24} /></Link>
+    <UserPopover onLogout={logout} />
+  </>
+) : (
+  <LoginModal onSuccessfulLogin={(user) => {}} />
+)}
 
         </div>
       </div>
