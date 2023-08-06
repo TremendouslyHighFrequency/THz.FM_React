@@ -151,12 +151,18 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
 
   useEffect(() => {
     if (loggedUser) {
-      getUserImage(loggedUser)
-        .then(image => {
-          setUserImage(image);
-          console.log(userImage); // Add this line
+      // Fetch user details using the email (currentUser)
+      axios.get(`https://thz.fm/api/resource/User/${loggedUser}`)
+        .then(response => {
+          if (response.data && response.data.user_image) {
+            setUserImage(response.data.user_image);
+          }
         })
+        .catch(error => {
+          console.error('Failed to fetch user details:', error);
+        });
     }
+  
   
     if (txId) {
       const interval = setInterval(async () => {
