@@ -37,7 +37,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       onSuccessfulLogin(user);
       window.location.reload();
     } catch (err) {
-      console.error(err);
+      window.alert(err.message || "An error occurred during login.");
       // Handle error here, e.g., show an error message
     }
   };
