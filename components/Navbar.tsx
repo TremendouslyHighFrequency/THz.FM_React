@@ -54,14 +54,14 @@ const LoginModal = ({ onSuccessfulLogin }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
-          style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+          style={{ background: 'fff', display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+          style={{ background: 'fff', display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button 
