@@ -24,6 +24,7 @@ body[data-theme='dark'] {
   align-items: center;
   height: 100vh;
   margin: 0 auto;
+  border-radius: 0.3rem;
 }
 .form-frame .navbar .web-footer {
   display: none;
