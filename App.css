@@ -38,6 +38,7 @@ body[data-theme='dark'] {
 }
 .modal-content {
   background-color: white;
+  color: #000;
   border-radius: 10px;
   margin-right: 24px;
   margin-top: 24px;
