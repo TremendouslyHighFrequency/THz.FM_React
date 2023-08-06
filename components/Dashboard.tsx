@@ -1,28 +1,25 @@
-// Venues.jsx
 import React from 'react';
 import { useFrappeAuth } from 'frappe-react-sdk';
 
 const Dashboard = () => {
   const {
     currentUser,
-    isValidating,
-    isLoading,
-    login,
     logout,
-    error,
-    updateCurrentUser,
-    getUserCookie,
   } = useFrappeAuth();
-  
+
   return (
     <div className="content">
-      This is the Dashboard page.
-
-      <button onClick={logout}>Logout</button>
-
+      {currentUser ? (
+        <>
+          <h1>Welcome {currentUser.name}</h1>
+          <p>This is your Dashboard page.</p>
+          <button onClick={logout}>Logout</button>
+        </>
+      ) : (
+        <h1>Welcome Guest</h1>
+      )}
     </div>
   );
 };
 
 export default Dashboard;
-
