@@ -129,7 +129,6 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
           setUserImage(image);
           console.log(userImage); // Add this line
         })
-        .catch(error => console.error(`Error fetching user data: ${error}`));
     }
   
     if (txId) {
