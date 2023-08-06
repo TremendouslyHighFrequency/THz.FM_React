@@ -11,7 +11,7 @@ const Dashboard = () => {
     <div className="content">
       {currentUser ? (
         <>
-          <h1>Welcome {currentUser.name}</h1>
+          <h1>Welcome {currentUser}</h1>
           <p>This is your Dashboard page.</p>
           <button onClick={logout}>Logout</button>
         </>
