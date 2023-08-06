@@ -88,12 +88,13 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 
 const UserPopover = ({ onLogout }) => {
   const { currentUser } = useFrappeAuth();
+  const userImage = currentUser?.image || null;
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
         <button>
-          {currentUser.image ? (
-            <img src={currentUser.image} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          {userImage ? (
+            <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
           ) : (
             <PersonIcon size={24} />
           )}
