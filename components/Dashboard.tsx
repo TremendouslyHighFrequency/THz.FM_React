@@ -13,7 +13,7 @@ const Dashboard = () => {
           <h1>Welcome to your user dashboard, {currentUser}</h1>
         </>
       ) : (
-        <h1>Welcome Guest</h1>
+        <h1>Please login to view this page.</h1>
       )}
     </div>
   );
