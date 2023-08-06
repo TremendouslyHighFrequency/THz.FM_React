@@ -5,6 +5,9 @@ const Dashboard = () => {
   return (
     <div className="content">
       This is the Dashboard page.
+
+      <button onClick={logout}>Logout</button>
+      
     </div>
   );
 };
