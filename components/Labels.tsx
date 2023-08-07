@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Labels = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<LabelItem>('Label' , {
-      fields: ["title", "label_bio","label_photo"],
+      fields: ["title","label_photo"],
       limit_start: pageIndex,
       limit: 50,
       orderBy: {
@@ -25,8 +25,8 @@ const Labels = () => {
          return (
           <div className="albums-index">
                   {
-                      data.map(({title, label_photo, label_bio}, i) => (
-                          <div key={i} className="album-card" style={{backgroundImage: `url(${label_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                      data.map(({title, label_photo}, i) => (
+                          <div key={i} className="album-card" style={{backgroundImage: `url(http://thz.fm${label_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
                                   <Link to={`/label/${title}`}>View Label</Link>
