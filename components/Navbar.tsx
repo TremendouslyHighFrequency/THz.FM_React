@@ -94,7 +94,7 @@ const UserPopover = ({ onLogout, userImage }) => {
       <Popover.Trigger asChild>
         <button>
           {currentUser ? (
-            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+            <img src={`https://thz.fm/${encodeURI(user_image)}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
           ) : (
             <PersonIcon size={24} />
           )}

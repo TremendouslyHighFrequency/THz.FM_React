@@ -26,7 +26,7 @@ const Labels = () => {
           <div className="albums-index">
                   {
                       data.map(({title, label_photo}, i) => (
-                          <div key={i} className="album-card" style={{backgroundImage: `url(http://thz.fm${label_photo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                          <div key={i} className="album-card" style={{backgroundImage: `url(${encodeURI(label_photo)})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
                                   <h4>{title}</h4>
                                   <Link to={`/label/${title}`}>View Label</Link>
