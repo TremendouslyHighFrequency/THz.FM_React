@@ -210,7 +210,7 @@ const toggleTheme = () => {
         <img className="navbar-logo" src={logo} alt="logo" />
         </a>
         <div className="navbar-items">
-        <div className="search-container">
+        <div className="">
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"

@@ -437,14 +437,10 @@ body[data-theme='dark'] {
   font-weight: 400;
   line-height: 1.5;
 }
-.search-container {
-  position: relative;
-  display: inline-block; /* this allows the container to fit the width of its children */
-  width:
-}
+
 .search-results {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 100%;
   transform: translateX(-50%);
   width: 100%;
