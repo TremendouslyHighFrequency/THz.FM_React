@@ -16,6 +16,8 @@ import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
 
+let userImage = getUserImage;
+
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
   apiKey: '080d55a6dc325a8c912d4f7a0550dc6b3b25b0f195ae25482e99e676fa6d57c8'
