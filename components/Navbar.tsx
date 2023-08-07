@@ -52,6 +52,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     </Popover.Trigger>
     <Popover.Content>
       <div className="modal-content" style={{ padding: '15px' }}>
+        <img src="https://thz.fm/assets/thzfm/nexus/assets/Terahertz-093c6f7e.png" alt="THZ.FM" style={{ width: '120px', marginBottom: '10px' }} />
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
