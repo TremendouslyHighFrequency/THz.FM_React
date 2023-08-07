@@ -8,7 +8,7 @@ const SearchResults = ({ results }) => {
         <div className="search-dropdown show">
           {results.map((result, index) => (
             <div key={index} className="navbar-dropdown-item">
-              <p>{result.title}</p>
+              <p>{result.title} by {result.release_artist}</p>
             </div>
           ))}
         </div>
