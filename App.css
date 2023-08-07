@@ -440,7 +440,7 @@ body[data-theme='dark'] {
 .search-results {
   position: absolute;
   left: 0;
-  margin-left: 200px;
+  margin-left: 175px;
   top: 100%;
   width: 70%;
   z-index: 1000;
@@ -592,7 +592,10 @@ body[data-theme='dark'] {
     align-items: center;
     padding-top: 2px
   }
-  
+  .search-results {
+    margin-left: 0;
+    /* The rest of your .search-results styles */
+  }
   .page-content, .navContainer, .navbar {
     width: 100%; /* Less margin */
     margin-left: 0px;
