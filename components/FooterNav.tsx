@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import THZIcon from '../assets/Terahertz.png';
 
 type SidebarItem = {
   title: string;
@@ -46,7 +45,6 @@ const FooterNav = () => {
 
   return (
     <div className="footer-nav">
-        <img className="footer-logo" src={THZIcon} alt="logo" />
         {navItems.map(item => (
   <div className="footer-link">
     <Link key={item.route} to={item.route}>{item.title}</Link>

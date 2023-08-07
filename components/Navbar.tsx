@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getUserImage } from './api';
+import THZIcon from '../assets/Terahertz.png';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -52,7 +53,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     </Popover.Trigger>
     <Popover.Content>
       <div className="modal-content" style={{ padding: '15px' }}>
-        <img className="footer-logo" src="https://thz.fm/assets/thzfm/nexus/assets/Terahertz-093c6f7e.png" alt="THZ.FM" />
+        <img className="footer-logo" src={ THZIcon } alt="THZ.FM" />
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
