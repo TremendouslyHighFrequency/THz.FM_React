@@ -17,6 +17,9 @@ body[data-theme='dark'] {
 .h1 {
   font-size: 2.5rem;
 }
+.waveform {
+  backdrop-filter: blur(7px);
+}
 .form-frame {
   background-color: #f2f2f2;
   display: flex;
