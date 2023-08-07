@@ -53,7 +53,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     </Popover.Trigger>
     <Popover.Content>
       <div className="modal-content" style={{ padding: '15px' }}>
-        <img className="footer-logo" src={ THZIcon } alt="THZ.FM" />
+        <img className="modal-logo" src={ THZIcon } alt="THZ.FM" />
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
