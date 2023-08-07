@@ -10,7 +10,7 @@ const Tracks = () => {
   useEffect(() => {
     const fetchTracks = async () => {
       try {
-        const trackResponse = await axios.get(`https://thz.fm/api/resource/Track?fields=["track_title","track_number","parent","track_artist","remixer","track_type","attach_wav","attach_mp3","price_usd","price_erg","label","artwork","route","published"]&parent=Release&limit_page_length=10&limit_start=${pageIndex}`);
+        const trackResponse = await axios.get(`https://thz.fm/api/resource/Track?fields=["track_title","track_number","parent","track_artist","remixer","track_type","attach_wav","attach_mp3","price_usd","price_erg","label","artwork","route","published"]&parent=Release&limit_page_length=50&limit_start=${pageIndex}`);
         const trackData = trackResponse.data.data;
 
         const parentNames = trackData.map(track => track.parent);
