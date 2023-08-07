@@ -22,6 +22,33 @@ const client = new MeiliSearch({
 
 const index = client.index('releases') // Replace with your index name
 
+
+const UserPopover = ({ onLogout, userImage }) => {
+  const { currentUser } = useFrappeAuth();
+  return (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <button>
+          {currentUser ? (
+            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          ) : (
+            <PersonIcon size={24} />
+          )}
+        </button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <div className="modal-content" style={{ padding: '15px' }}>
+          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
+          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
+            Logout
+          </button>
+          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
+        </div>
+      </Popover.Content>
+    </Popover.Root>
+  );
+};
+
 const LoginModal = ({ onSuccessfulLogin }) => {
   const {
     login,
@@ -83,32 +110,6 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       </div>
     </Popover.Content>
   </Popover.Root>
-  );
-};
-
-const UserPopover = ({ onLogout, userImage }) => {
-  const { currentUser } = useFrappeAuth();
-  return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
-        <button>
-          {currentUser ? (
-            <img src={`https://thz.fm${userImage}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
-          ) : (
-            <PersonIcon size={24} />
-          )}
-        </button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <div className="modal-content" style={{ padding: '15px' }}>
-          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
-          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
-            Logout
-          </button>
-          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
-        </div>
-      </Popover.Content>
-    </Popover.Root>
   );
 };
 
