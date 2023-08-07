@@ -440,7 +440,7 @@ body[data-theme='dark'] {
 .search-results {
   position: absolute;
   left: 0;
-  margin-left: 143px;
+  margin-left: 200px;
   top: 100%;
   width: 70%;
   z-index: 1000;
