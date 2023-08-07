@@ -438,7 +438,7 @@ body[data-theme='dark'] {
   line-height: 1.5;
 }
 .search-results {
-  position: static;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
