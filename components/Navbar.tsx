@@ -14,6 +14,7 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { getUserImage } from './api';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -21,33 +22,6 @@ const client = new MeiliSearch({
 })
 
 const index = client.index('releases') // Replace with your index name
-
-
-const UserPopover = ({ onLogout, userImage }) => {
-  const { currentUser } = useFrappeAuth();
-  return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
-        <button>
-          {currentUser ? (
-            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
-          ) : (
-            <PersonIcon size={24} />
-          )}
-        </button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <div className="modal-content" style={{ padding: '15px' }}>
-          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
-          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
-            Logout
-          </button>
-          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
-        </div>
-      </Popover.Content>
-    </Popover.Root>
-  );
-};
 
 const LoginModal = ({ onSuccessfulLogin }) => {
   const {
@@ -113,6 +87,32 @@ const LoginModal = ({ onSuccessfulLogin }) => {
   );
 };
 
+const UserPopover = ({ onLogout, userImage }) => {
+  const { currentUser } = useFrappeAuth();
+  return (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <button>
+          {currentUser ? (
+            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
+          ) : (
+            <PersonIcon size={24} />
+          )}
+        </button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <div className="modal-content" style={{ padding: '15px' }}>
+          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
+          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
+            Logout
+          </button>
+          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
+        </div>
+      </Popover.Content>
+    </Popover.Root>
+  );
+};
+
 const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { currentUser, logout } = useFrappeAuth();
   const loggedUser = currentUser;
@@ -152,15 +152,11 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   useEffect(() => {
     if (loggedUser) {
       // Fetch user details using the email (currentUser)
-      axios.get(`https://thz.fm/api/resource/User/${loggedUser}`)
-        .then(response => {
-          if (response.data && response.data.user_image) {
-            setUserImage(response.data.user_image);
-          }
-        })
-        .catch(error => {
-          console.error('Failed to fetch user details:', error);
-        });
+      getUserImage(loggedUser).then(imageUrl => {
+        setUserImage(imageUrl);
+      }).catch(error => {
+        console.error('Failed to fetch user details:', error);
+      });
     }
   
   
