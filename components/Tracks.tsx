@@ -39,6 +39,7 @@ const Tracks = () => {
   return (
     <div className="albums-index">
       {tracks.map((track, i) => (
+        <Link to={`/releases/${parents[track.parent].title}/${track.track_title}/by/${track.track_artist}`}>
         <div 
           key={i} 
           className="album-card" 
@@ -47,9 +48,10 @@ const Tracks = () => {
           <div className="album-text">
             <h4>{track.track_title}</h4>
             <p>{track.track_artist}</p>
-            <Link to={`/releases/${parents[track.parent].title}/${track.track_title}/by/${track.track_artist}`}>View Track</Link>
+           
           </div>
         </div>
+        </Link>
       ))}
       <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
     </div>
