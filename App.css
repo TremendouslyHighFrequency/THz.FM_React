@@ -229,7 +229,6 @@ body[data-theme='dark'] {
   min-height: 240px;
   max-width: 580px;
   border-radius: 0.375rem;
-  background-position: top;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
@@ -250,7 +249,7 @@ body[data-theme='dark'] {
 }
 .album-text {
   background-color: #F9FAFB; 
-  position: static;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
