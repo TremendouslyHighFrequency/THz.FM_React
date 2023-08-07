@@ -36,7 +36,7 @@ const Artists = () => {
   
                       ))
                   }
-                  <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+                  <button class="rounded-md" onClick={() => setPageIndex(pageIndex + 50)}>View more</button>
           </div>
       )
   }
