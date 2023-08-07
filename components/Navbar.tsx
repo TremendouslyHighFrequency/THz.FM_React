@@ -219,6 +219,7 @@ const toggleTheme = () => {
             onClick={() => setIsExpanded(true)}
             onBlur={() => setIsExpanded(false)}
           />
+          <SearchResults results={searchResults} />
 
       <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
@@ -231,7 +232,7 @@ const toggleTheme = () => {
   </div>
 )}
 
-          <SearchResults results={searchResults} />
+          
 
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
