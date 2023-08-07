@@ -26,14 +26,14 @@ const Releases = () => {
           <div className="albums-index">
                   {
                       data.map(({title, name, release_artist, release_artwork}, i) => (
+                        <Link to={`/releases/${title}/by/${release_artist}/${name}`}>
                           <div key={i} className="album-card" style={{backgroundImage: `url(${release_artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                           <div className="album-text">
-                                  <h4>{title}</h4>
+                                    <h4>{title}</h4>
                                   <p>{release_artist}</p>
-                                  <Link to={`/releases/${title}/by/${release_artist}/${name}`}>View Release</Link>
                               </div>
                           </div>
-  
+                            </Link>
                       ))
                   }
                   <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
