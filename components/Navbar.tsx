@@ -88,7 +88,6 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 
 const UserPopover = ({ onLogout, userImage }) => {
   const { currentUser } = useFrappeAuth();
-  const userImage = currentUser?.image || null;
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -250,7 +249,7 @@ const toggleTheme = () => {
     {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
     <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
     <Link to="/workspace"><RocketIcon size={24} /></Link>
-    <UserPopover onLogout={logout} />
+    <UserPopover onLogout={logout} userImage={userImage} />
   </>
 ) : (
   <LoginModal onSuccessfulLogin={(user) => {}} />
