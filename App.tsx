@@ -40,6 +40,7 @@ import Event from './components/Event';
 import Venue from './components/Venue';
 import Single from './components/Single';
 import CreateRelease from './CreateRelease';
+import { getUserImage } from './components/api';
 
 
 function App() {
@@ -82,7 +83,7 @@ function App() {
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
             <div className="App-header" style={{ minHeight: '72px' }}>
-                <Navbar loggedUser={null} notifications={notifications} />
+                <Navbar loggedUser={null} notifications={notifications} userImage={getUserImage} />
             </div>
             <div>
               <div className="App-body">
