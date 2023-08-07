@@ -40,6 +40,7 @@ body[data-theme='dark'] {
   height: 48px;
   margin-bottom: 10px;
   margin-top: 12px;
+}
 .modal-content {
   background-color: white;
   text-align: center;
