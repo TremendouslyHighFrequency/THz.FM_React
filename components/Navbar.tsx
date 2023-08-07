@@ -13,10 +13,8 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import { getUserImage } from './api';
+import userImage as { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
-
-let userImage = getUserImage;
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
