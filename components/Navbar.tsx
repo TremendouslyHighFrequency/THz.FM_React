@@ -153,6 +153,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
       // Fetch user details using the email (currentUser)
       axios.get(`https://thz.fm/api/resource/User/${loggedUser}`)
         .then(response => {
+          console.log('User email:', response.data);
           if (response.data && response.data.user_image) {
             setUserImage(response.data.user_image);
           }
