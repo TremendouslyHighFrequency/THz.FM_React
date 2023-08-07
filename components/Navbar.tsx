@@ -190,6 +190,8 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   // Add a state variable for the current logo
   const [logo, setLogo] = useState(theme === 'dark' ? THZLogo : THZLogoDark);
 
+  const searchRef = useRef(null);
+
 // Add a method to toggle the theme
 const toggleTheme = () => {
   const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -210,17 +212,22 @@ const toggleTheme = () => {
         <img className="navbar-logo" src={logo} alt="logo" />
         </a>
         <div className="navbar-items">
-          <input
+        <div className="search-container">
+          <input ref={searchRef}
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onClick={() => setIsExpanded(true)}
+            onClick={() => {
+              setIsExpanded(true);
+              const width = searchRef.current ? searchRef.current.offsetWidth + "px" : "100%";
+              document.querySelector('.search-results .navbar-dropdown').style.width = width;
+            }}
             onBlur={() => setIsExpanded(false)}
           />
           <SearchResults results={searchResults} />
-
+        </div>
       <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
