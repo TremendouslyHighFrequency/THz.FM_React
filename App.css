@@ -516,6 +516,9 @@ body[data-theme='dark'] {
   color: #263040;
   display: none;
 }
+.search-dropdown.show {
+  display: block;
+}
 .navbar-dropdown.show {
   display: block;
 }
