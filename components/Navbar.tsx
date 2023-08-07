@@ -247,7 +247,7 @@ const toggleTheme = () => {
     {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
     <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
     <Link to="/workspace"><RocketIcon size={24} /></Link>
-    <UserPopover onLogout={logout} userImage={userImage} />
+    <UserPopover onLogout={logout}  userImage={getUserImage} />
   </>
 ) : (
   <LoginModal onSuccessfulLogin={(user) => {}} />
