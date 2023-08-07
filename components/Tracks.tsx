@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState([]);
-  const [parents, setParents] = useState({}); // new state variable to store parent releases
-  const [pageIndex, setPageIndex] = useState(0); // initial value
+  const [parents, setParents] = useState({}); // Store both parent titles and artworks
+  const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -17,8 +17,12 @@ const Tracks = () => {
         const uniqueParentNames = [...new Set(parentNames)];
         const parentPromises = uniqueParentNames.map(name => axios.get(`https://thz.fm/api/resource/Release/${name}`));
         const parentResponses = await Promise.all(parentPromises);
+
         const parentData = parentResponses.reduce((obj, response, i) => {
-          obj[uniqueParentNames[i]] = response.data.data.title;
+          obj[uniqueParentNames[i]] = {
+            title: response.data.data.title,
+            artwork: response.data.data.release_artwork // Fetch the artwork from the parent
+          };
           return obj;
         }, {});
 
@@ -30,7 +34,7 @@ const Tracks = () => {
     };
 
     fetchTracks();
-  }, [pageIndex]); // dependencies
+  }, [pageIndex]);
 
   return (
     <div className="albums-index">
@@ -38,16 +42,16 @@ const Tracks = () => {
         <div 
           key={i} 
           className="album-card" 
-          style={{backgroundImage: `url(${track.artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}
+          style={{backgroundImage: `url(${parents[track.parent].artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}} // Use artwork from the parent
         >
           <div className="album-text">
             <h4>{track.track_title}</h4>
             <p>{track.track_artist}</p>
-            <Link to={`/releases/${parents[track.parent]}/${track.track_title}/by/${track.track_artist}`}>View Track</Link>
+            <Link to={`/releases/${parents[track.parent].title}/${track.track_title}/by/${track.track_artist}`}>View Track</Link>
           </div>
         </div>
       ))}
-      <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+      <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
     </div>
   );
 };
