@@ -4,7 +4,7 @@ import { NavbarProps, Notification } from '../types';
 import { getUserImage } from './api';
 import THZLogo from '../assets/THZFM_logo.png';
 import THZLogoDark from '../assets/THZFM_logo_dark.png'; 
-import { ErgoDappConnector } from 'TremendouslyHighFrequency/dApp-connector-react-package';
+import { ErgoDappConnector } from 'ergo-dapp-connector';
 import NotificationDropdown from './NotificationDropdown';
 import axios from 'axios';
 import MeiliSearch from 'meilisearch'
