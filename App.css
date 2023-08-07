@@ -249,8 +249,7 @@ body[data-theme='dark'] {
 }
 .album-text {
   background-color: #F9FAFB; 
-  background-filter: opacity(0.5);
-  backdrop-filter: blur(10px);
+  backdrop-filter: opacity(0.5), blur(10px);
   position: absolute;
   bottom: 0;
   left: 0;
