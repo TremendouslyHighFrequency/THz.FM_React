@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon, MoonIcon, SunIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
-import { getUserImage } from './api';
 import THZLogo from '../assets/THZFM_logo.png';
 import THZLogoDark from '../assets/THZFM_logo_dark.png'; 
 import { ErgoDappConnector } from 'ergo-dapp-connector';
@@ -14,7 +13,7 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import { userImage } from './api';
+import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
 
 const client = new MeiliSearch({
@@ -123,7 +122,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const notificationButtonRef = useRef<HTMLButtonElement | null>(null);
   const [searchResults, setSearchResults] = useState([]);
-  const [userImage, setUserImage] = useState<string | null>(null);
+  const [getUserImage, setUserImage] = useState<string | null>(null);
   const { txId, transactionConfirmed, setTransactionConfirmed } = useContext(TxContext);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
