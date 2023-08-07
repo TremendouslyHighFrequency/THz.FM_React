@@ -210,7 +210,6 @@ const toggleTheme = () => {
         <img className="navbar-logo" src={logo} alt="logo" />
         </a>
         <div className="navbar-items">
-        <div className="">
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
@@ -221,7 +220,6 @@ const toggleTheme = () => {
             onBlur={() => setIsExpanded(false)}
           />
           <SearchResults results={searchResults} />
-        </div>
       <button onClick={toggleTheme}>
         {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
       </button>
