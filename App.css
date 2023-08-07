@@ -440,11 +440,11 @@ body[data-theme='dark'] {
 .search-container {
   position: relative;
   display: inline-block; /* this allows the container to fit the width of its children */
-  width: 100%;
+  width:
 }
 .search-results {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 100%;
   transform: translateX(-50%);
   width: 100%;
