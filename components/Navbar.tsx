@@ -87,6 +87,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 };
 
 const UserPopover = ({ onLogout, userImage }) => {
+  const { currentUser } = useFrappeAuth();
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
