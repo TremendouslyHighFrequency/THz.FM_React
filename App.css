@@ -438,7 +438,7 @@ body[data-theme='dark'] {
   line-height: 1.5;
 }
 .search-results {
-  position: absolute;
+  position: fixed;
   top: 72px; /* Height of the navbar */
   left: 50%;
   transform: translateX(-50%);
