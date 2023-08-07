@@ -86,7 +86,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
   );
 };
 
-const UserPopover = ({ onLogout }) => {
+const UserPopover = ({ onLogout, userImage }) => {
   const { currentUser } = useFrappeAuth();
   const userImage = currentUser?.image || null;
   return (
