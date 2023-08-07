@@ -440,9 +440,9 @@ body[data-theme='dark'] {
 .search-results {
   position: absolute;
   left: 0;
-  margin-left: 175px;
+  margin-left: 185px;
   top: 100%;
-  width: 70%;
+  width: 50%;
   z-index: 1000;
   /* The rest of your .search-results styles */
 }
