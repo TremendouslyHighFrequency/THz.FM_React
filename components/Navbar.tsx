@@ -87,12 +87,11 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 };
 
 const UserPopover = ({ onLogout, userImage }) => {
-  const { currentUser } = useFrappeAuth();
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
         <button>
-          {userImage ? (
+          {currentUser ? (
             <img src={userImage} alt="User" style={{ borderRadius: '50%', width: '24px', height: '24px' }} />
           ) : (
             <PersonIcon size={24} />
@@ -153,7 +152,6 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
       // Fetch user details using the email (currentUser)
       axios.get(`https://thz.fm/api/resource/User/${loggedUser}`)
         .then(response => {
-          console.log('User email:', response.data);
           if (response.data && response.data.user_image) {
             setUserImage(response.data.user_image);
           }
