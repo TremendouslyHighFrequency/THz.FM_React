@@ -20,7 +20,7 @@ export async function getNotifications(loggedUser: string) {
 
 export async function getUserImage(loggedUser: string) {
   try {
-    const response = await axios.get(`https://thz.fm/api/resource/User/?fields=["user_image"]&filters=[["User","name","=","${loggedUser}"]]`);
+    const response = await axios.get(`https://thz.fm/api/resource/User?fields=["user_image"]&filters=[["User","name","=","${loggedUser}"]]`);
     console.log("User Image Response:", response.data); 
     return response.data.user_image;
   } catch (error) {
