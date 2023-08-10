@@ -15,6 +15,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
+import { ActionBar } from './ActionBar';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -185,6 +186,13 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
         <a href="/">
           <img className="navbar-logo" src={logo} alt="logo" />
         </a>
+        {currentUser ? (
+            <>
+        <ActionBar />
+        </>
+          ) : (
+            <div></div>
+            )}
         <div className="navbar-items">
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}

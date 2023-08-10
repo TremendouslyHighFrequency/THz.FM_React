@@ -1,13 +1,12 @@
-// Venues.jsx
-import React from 'react';
+import React, { useState } from 'react';
 
 const Home = () => {
+
   return (
-    <div className="content">
-      This is the Home page.
+    <div className="m-18">
+     
     </div>
   );
 };
 
 export default Home;
-
