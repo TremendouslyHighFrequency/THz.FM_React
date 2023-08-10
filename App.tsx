@@ -41,6 +41,7 @@ import Venue from './components/Venue';
 import Single from './components/Single';
 import CreateRelease from './CreateRelease';
 import { getUserImage } from './components/api';
+import Register from './components/Register';
 
 
 function App() {
@@ -98,6 +99,7 @@ function App() {
                     ))}
                     <Route path="/manage-releases" element={<CreateRelease />} />
                     <Route path="/me" element={<Dashboard />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/collection" element={<Collection />} />
                     <Route path="/workspace" element={<Workspace />} />
                     <Route path="/" element={<Home />} />

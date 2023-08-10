@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState, useRef, useContext, useHistory } from 'react';
 import { BellIcon, PersonIcon, VersionsIcon, RocketIcon, DownloadIcon, ClockIcon, MoonIcon, SunIcon } from '@primer/octicons-react';
 import { NavbarProps, Notification } from '../types';
 import THZLogo from '../assets/THZFM_logo.png';
@@ -40,6 +40,10 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     }
   };
 
+  const handleRegister = () => { // Define the handleRegister function
+    history.push('/register'); // Redirect to the /register page
+  };
+
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -72,7 +76,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
             </button>
             <button 
               // Add an event handler for registration if needed.
-              style={{ marginLeft: '10px', padding: '10px', backgroundColor: '#79cd7a', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+              onClick={handleRegister} style={{ marginLeft: '10px', padding: '10px', backgroundColor: '#79cd7a', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
             >
               Register
             </button>
