@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,7 +14,7 @@ export const Register = () => {
       password: password,
     };
 
-    fetch('https://thz.fm/api/resource/User', {
+    fetch(`https://thz.fm/api/resource/User`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
