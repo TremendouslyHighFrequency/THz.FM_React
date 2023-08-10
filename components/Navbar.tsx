@@ -25,6 +25,7 @@ const client = new MeiliSearch({
 const index = client.index('releases')
 
 const LoginModal = ({ onSuccessfulLogin }) => {
+  const history = useHistory(); // Define the useHistory hook here
   const { login, error } = useFrappeAuth();
   
   const [username, setUsername] = useState('');
