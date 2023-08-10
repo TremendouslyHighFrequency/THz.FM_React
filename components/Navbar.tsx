@@ -25,8 +25,8 @@ const client = new MeiliSearch({
 const index = client.index('releases')
 
 const LoginModal = ({ onSuccessfulLogin }) => {
+  const navigate = useNavigate(); // Define the useNavigate hook here
   const { login, error } = useFrappeAuth();
-  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
