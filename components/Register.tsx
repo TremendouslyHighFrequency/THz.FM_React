@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFrappeCreateDoc } from 'frappe-react-sdk'; // assuming this hook exists
 
 export const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const db = frappe.db();
+  const navigate = useNavigate();
+
   const handleRegister = () => {
     setLoading(true);
     const userData = {
-      name: email,
       email: email,
       password: password,
     };
 
-    db.createDoc('User', userData)
+    fetch('https://thz.fm/api/resource/User', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+    .then(response => response.json())
     .then(() => {
       setLoading(false);
-      // Redirect to a success page or dashboard
-      useNavigate('/home');
+      navigate('/home'); // Redirect to a success page or dashboard
     })
     .catch((error) => {
       setLoading(false);
       console.error(error);
     });
-};
+  };
 
 return (
     <div className="signup-1 mt-24 items-center relative h-screen">
@@ -55,7 +60,7 @@ return (
               </div>
               <p className="text-sm text-center mt-6">By signing up, you agree to our <a href="#" className="text-indigo-600 hover:underline">Terms</a> and <a href="#" className="text-indigo-600 hover:underline">Privacy Policy</a></p>
               <div className="text-center mt-6 md:mt-12">
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-xl py-2 px-4 md:px-6 rounded transition-colors duration-300" onClick={handleRegister} disabled={loading}>Sign Up <span className="far fa-paper-plane ml-2"></span></button>
+              <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-xl py-2 px-4 md:px-6 rounded transition-colors duration-300" onClick={handleRegister} disabled={loading}>Sign Up <span className="far fa-paper-plane ml-2"></span></button>
               </div>
             </div>
           </div>
