@@ -15,9 +15,10 @@ export const Register = () => {
       password: password,
     };
 
-    fetch('https://thz.fm/api/resource/:User', {
+    fetch('https://thz.fm/api/resource/User', {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
