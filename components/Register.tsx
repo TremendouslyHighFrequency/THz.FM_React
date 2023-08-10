@@ -4,7 +4,7 @@ const Register = () => {
 
   return (
     <div className="m-18">
-     
+     Hello
     </div>
   );
 };
