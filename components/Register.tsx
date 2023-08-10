@@ -16,7 +16,7 @@ export const Register = () => {
     };
 
     fetch('https://thz.fm/api/resource/User', {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
