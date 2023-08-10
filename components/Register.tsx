@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFrappeCreateDoc } from 'frappe-react-sdk'; // assuming this hook exists
 
 export const Register = () => {
   const [username, setUsername] = useState('');
