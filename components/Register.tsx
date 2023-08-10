@@ -7,7 +7,7 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const db = frappe.db();
   const handleRegister = () => {
     setLoading(true);
     const userData = {
