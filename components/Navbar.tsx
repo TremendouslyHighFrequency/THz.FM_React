@@ -10,7 +10,7 @@ import MeiliSearch from 'meilisearch'
 import SearchResults from './SearchResults';
 import { TxContext } from './txContext';
 import { useFrappeAuth } from 'frappe-react-sdk';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getUserImage } from './api';
