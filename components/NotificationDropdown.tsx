@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { BellIcon, XIcon } from '@primer/octicons-react';
+import { XIcon } from '@primer/octicons-react';
 import { Notification } from './types';
 import THZIcon from '../assets/Terahertz.png';
 
 type Props = {
   notifications: Notification[];
   buttonRef: React.RefObject<HTMLButtonElement>;
+  dropdownVisible: boolean;
+  setDropdownVisible: (value: boolean) => void;
 };
 
-const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDropdownVisible }: Props & { dropdownVisible: boolean; setDropdownVisible: (value: boolean) => void }) => {
+const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDropdownVisible }: Props) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -56,15 +58,20 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
                   <span className="notification-text">{notification.from_user}</span>
                   <span>{actionText}</span>
                   <span>{notification.email_content}</span>
-                  {/* Add more fields as needed */}
                 </div>
               </div>
             )
           })
         )}
         <div className="dropdown-footer">
-          <button className="view-notifications" onClick={() => setDropdownVisible(false)}>View all</button>
-          <button className="close-notifications-item" onClick={() => setDropdownVisible(false)}><XIcon /> Close</button>
+          {notifications.length === 0 ? (
+            <div className="no-notifications-text">There are no new notifications.</div>
+          ) : (
+            <>
+              <button className="view-notifications" onClick={() => setDropdownVisible(false)}>View all</button>
+              <button className="close-notifications-item" onClick={() => setDropdownVisible(false)}><XIcon /> Close</button>
+            </>
+          )}
         </div>
       </div>,
       document.getElementById('portal') as Element
