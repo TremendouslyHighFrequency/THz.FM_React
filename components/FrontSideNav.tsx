@@ -13,11 +13,21 @@ import Venues from './Venues';
 import Marketplace from './Marketplace';
 import Dashboard from './Dashboard';
 
-
 type SidebarItem = {
   title: string;
   route: string;
   component?: React.ComponentType<any>;
+};
+
+const componentsMap = {
+  Artists,
+  Publishers,
+  Labels,
+  Releases,
+  Tracks,
+  Events,
+  Venues,
+  Marketplace,
 };
 
 const SideNav = () => {
@@ -31,7 +41,7 @@ const SideNav = () => {
         // Map the sidebar items to the corresponding components
         const newNavItems = sidebarData.map(item => ({
           ...item,
-          component: Components[item.title.replace(/\s+/g, '')],
+          component: componentsMap[item.title],
         }));
         setNavItems(newNavItems);
       })
