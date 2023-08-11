@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const [email, setEmail] = useState('');
+  const [user_image, setUserImage] = useState('');
   const [new_password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ export const Register = () => {
     setLoading(true);
     const userData = {
       email: email,
-      new_password: new_password
+      new_password: new_password,
+      user_image: user_image
     };
 
     fetch(`https://thz.fm/api/resource/User`, {
@@ -57,6 +59,15 @@ return (
                 </div>
                 <div className="flex-1">
                   <input type="password" placeholder="Password" className="h-10 py-1 pr-3 w-full" value={new_password} onChange={e => setPassword(e.target.value)}></input>
+                </div>
+              </div>
+
+              <div className="border-2 border-solid rounded flex items-center mb-4">
+                <div className="w-10 h-10 flex justify-center items-center flex-shrink-0">
+                  <span className="fas fa-lock text-gray-500"></span>
+                </div>
+                <div className="flex-1">
+            <input type="file" name="user_image" onChange={e => setUserImage(e.target.files[0])} />
                 </div>
               </div>
 
