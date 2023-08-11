@@ -36,6 +36,7 @@ const CreateRelease = () => {
   if (data && Array.isArray(data)) {
     return (
       <div className="releases-index">
+        <div className="manageList">
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -60,6 +61,7 @@ const CreateRelease = () => {
           </Table.Body>
         </Table.Root>
         <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+        </div>
       </div>
     );
   }
