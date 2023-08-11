@@ -3,7 +3,7 @@ import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
 import { getLoggedUser } from './components/api'; // Update with the correct path
 import { Table, Button } from '@radix-ui/themes';
-import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { CaretDownIcon } from '@radix-ui/react-icons'; // Import or replace this icon as per your UI library
 import '@radix-ui/themes/styles.css';
 
@@ -18,7 +18,7 @@ const CreateRelease = () => {
   }, []);
 
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
-    fields: ["title", "release_artist","release_artwork", "name", "release_id"], // Update the fields as per the 'Release' document structure
+    fields: ["title", "release_artist", "release_artwork", "name", "release_id"],
     filters: loggedUser ? { "owner": loggedUser } : {},
     limit_start: pageIndex,
     limit: 50,
@@ -57,33 +57,18 @@ const CreateRelease = () => {
                   <Table.Cell>{name}</Table.Cell>
                   <Table.Cell>
                     <DropdownMenu.Root>
-                      <DropdownMenu.Trigger>
-                        <Button variant="soft">
+                      <DropdownMenu.Trigger asChild>
+                        <button>
                           Options
                           <CaretDownIcon />
-                        </Button>
+                        </button>
                       </DropdownMenu.Trigger>
-                      <DropdownMenu.Content>
-                        <DropdownMenu.Item shortcut="⌘ E">Edit</DropdownMenu.Item>
-                        <DropdownMenu.Item shortcut="⌘ D">Duplicate</DropdownMenu.Item>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
-                        <DropdownMenu.Sub>
-                          <DropdownMenu.SubTrigger>More</DropdownMenu.SubTrigger>
-                          <DropdownMenu.SubContent>
-                            <DropdownMenu.Item>Move to project…</DropdownMenu.Item>
-                            <DropdownMenu.Item>Move to folder…</DropdownMenu.Item>
-                            <DropdownMenu.Separator />
-                            <DropdownMenu.Item>Advanced options…</DropdownMenu.Item>
-                          </DropdownMenu.SubContent>
-                        </DropdownMenu.Sub>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item>Share</DropdownMenu.Item>
-                        <DropdownMenu.Item>Add to favorites</DropdownMenu.Item>
-                        <DropdownMenu.Separator />
-                        <DropdownMenu.Item shortcut="⌘ ⌫" color="red">
-                          Delete
-                        </DropdownMenu.Item>
+                      <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
+                        {/* Add the appropriate onSelect functions for each menu item */}
+                        <DropdownMenu.Item className="DropdownMenuItem">Edit</DropdownMenu.Item>
+                        <DropdownMenu.Item className="DropdownMenuItem">Duplicate</DropdownMenu.Item>
+                        <DropdownMenu.Item className="DropdownMenuItem">Archive</DropdownMenu.Item>
+                        <DropdownMenu.Item className="DropdownMenuItem" color="red">Delete</DropdownMenu.Item>
                       </DropdownMenu.Content>
                     </DropdownMenu.Root>
                   </Table.Cell>
