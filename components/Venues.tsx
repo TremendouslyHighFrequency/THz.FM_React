@@ -33,8 +33,9 @@ const Venues = () => {
                           </div>
                       ))
                   }
-                  <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
-          </div>
+{data.length >= 50 && (
+              <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+            )}          </div>
       )
   }
   return null
