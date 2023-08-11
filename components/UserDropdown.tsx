@@ -30,6 +30,9 @@ export const UserDropdown = ({ userImage }) => {
         <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
           Edit Profile
         </DropdownMenu.Item>
+        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/logout')}>
+          Logout
+        </DropdownMenu.Item>
         {/* ... rest of your menu items ... */}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
