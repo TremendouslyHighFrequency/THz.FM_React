@@ -38,7 +38,6 @@ const CreateRelease = () => {
     return (
       <div className="publishedReleases">
         <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
-      </div>
       <div className="releases-index">
         <div className="manageList">
           <Table.Root>
@@ -80,6 +79,7 @@ const CreateRelease = () => {
           </Table.Root>
           <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
         </div>
+      </div>
       </div>
     );
   }
