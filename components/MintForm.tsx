@@ -30,7 +30,7 @@ export const MintForm = () => {
 <>
 
 <div className="">
-<h2 className="text-2xl font-bold mb-4">Mint Your NFT</h2>
+<h2 className="text-2xl font-bold mb-4">Create your `Master Tape`</h2>
       <p className="mb-4">
         Minting an NFT here is akin to creating a master tape recording. It represents the original and authentic version of the asset. 
         We recommend creating only a few copies for management purposes, as these master NFTs will be used to create lower resolution 
