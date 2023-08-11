@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
-import { Link } from "react-router-dom";
 import { getLoggedUser } from './components/api'; // Update with the correct path
-import { Table } from '@radix-ui/themes';
+import { Table, DropdownMenu, Button } from '@radix-ui/themes';
+import { CaretDownIcon } from '@radix-ui/react-icons'; // Import or replace this icon as per your UI library
 import '@radix-ui/themes/styles.css';
 
 const CreateRelease = () => {
@@ -37,30 +37,60 @@ const CreateRelease = () => {
     return (
       <div className="releases-index">
         <div className="manageList">
-        <Table.Root>
-          <Table.Header>
-            <Table.Row className="px-12">
-              <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Release ID</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {data.map(({ title, release_artist, release_id, name }, i) => (
-              <Table.Row key={i}>
-                <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
-                <Table.Cell>{release_artist}</Table.Cell>
-                <Table.Cell>{release_id}</Table.Cell>
-                <Table.Cell>{name}</Table.Cell>
-                <Table.Cell><Link to={`/edit/${loggedUser}/${title}/${name}`}>Manage Release</Link></Table.Cell>
+          <Table.Root>
+            <Table.Header>
+              <Table.Row className="px-12">
+                <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Release ID</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
               </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
-        <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+            </Table.Header>
+            <Table.Body>
+              {data.map(({ title, release_artist, release_id, name }, i) => (
+                <Table.Row key={i}>
+                  <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
+                  <Table.Cell>{release_artist}</Table.Cell>
+                  <Table.Cell>{release_id}</Table.Cell>
+                  <Table.Cell>{name}</Table.Cell>
+                  <Table.Cell>
+                    <DropdownMenu.Root>
+                      <DropdownMenu.Trigger>
+                        <Button variant="soft">
+                          Options
+                          <CaretDownIcon />
+                        </Button>
+                      </DropdownMenu.Trigger>
+                      <DropdownMenu.Content>
+                        <DropdownMenu.Item shortcut="⌘ E">Edit</DropdownMenu.Item>
+                        <DropdownMenu.Item shortcut="⌘ D">Duplicate</DropdownMenu.Item>
+                        <DropdownMenu.Separator />
+                        <DropdownMenu.Item shortcut="⌘ N">Archive</DropdownMenu.Item>
+                        <DropdownMenu.Sub>
+                          <DropdownMenu.SubTrigger>More</DropdownMenu.SubTrigger>
+                          <DropdownMenu.SubContent>
+                            <DropdownMenu.Item>Move to project…</DropdownMenu.Item>
+                            <DropdownMenu.Item>Move to folder…</DropdownMenu.Item>
+                            <DropdownMenu.Separator />
+                            <DropdownMenu.Item>Advanced options…</DropdownMenu.Item>
+                          </DropdownMenu.SubContent>
+                        </DropdownMenu.Sub>
+                        <DropdownMenu.Separator />
+                        <DropdownMenu.Item>Share</DropdownMenu.Item>
+                        <DropdownMenu.Item>Add to favorites</DropdownMenu.Item>
+                        <DropdownMenu.Separator />
+                        <DropdownMenu.Item shortcut="⌘ ⌫" color="red">
+                          Delete
+                        </DropdownMenu.Item>
+                      </DropdownMenu.Content>
+                    </DropdownMenu.Root>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+          <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
         </div>
       </div>
     );
