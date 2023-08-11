@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Menubar from '@radix-ui/react-menubar';
-import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons';
+import { CheckIcon, DotFilledIcon } from '@radix-ui/react-icons';
+import { useFrappeGetDocList } from 'frappe-react-sdk'; // Import the hook
 import './component_styles/ActionBar.css';
 
-const RADIO_ITEMS = ['Swamp Music', 'Terahertz', 'Ergo'];
 const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
 export const ActionBar = () => {
-  const [checkedSelection, setCheckedSelection] = React.useState([CHECK_ITEMS[1]]);
-  const [radioSelection, setRadioSelection] = React.useState(RADIO_ITEMS[2]);
+  const [checkedSelection, setCheckedSelection] = useState([CHECK_ITEMS[1]]);
+  const { data: labels, error, isValidating } = useFrappeGetDocList('Label', {
+    fields: ["title"],
+    limit: 50,
+    orderBy: {
+      field: "creation",
+      order: 'desc'
+    }
+  });
+
+  const RADIO_ITEMS = labels ? labels.map(label => label.title) : [];
+  const [radioSelection, setRadioSelection] = useState(RADIO_ITEMS[2] || null);
 
   return (
     <Menubar.Root className="MenubarRoot">
@@ -67,7 +77,7 @@ export const ActionBar = () => {
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem inset">DAW</Menubar.Item>
-            </Menubar.Content>
+          </Menubar.Content>
         </Menubar.Portal>
       </Menubar.Menu>
 
