@@ -36,6 +36,9 @@ const CreateRelease = () => {
   }
   if (data && Array.isArray(data)) {
     return (
+      <div className="publishedReleases">
+        <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
+      </div>
       <div className="releases-index">
         <div className="manageList">
           <Table.Root>
