@@ -165,13 +165,13 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
         <a href="/">
           <img className="navbar-logo" src={logo} alt="logo" />
         </a>
-        {/* {currentUser ? (
+        {currentUser ? (
             <>
         <ActionBar />
         </>
           ) : (
             <div></div>
-            )} */}
+            )}
         <div className="navbar-items">
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}

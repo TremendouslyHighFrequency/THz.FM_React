@@ -17,30 +17,8 @@ export const ActionBar = () => {
         <Menubar.Portal>
           <Menubar.Content className="MenubarContent" align="start" sideOffset={5} alignOffset={-3}>
             <Menubar.Item className="MenubarItem">
-              New Tab <div className="RightSlot">⌘ T</div>
+              Create New Release <div className="RightSlot">⌘ T</div>
             </Menubar.Item>
-            <Menubar.Item className="MenubarItem">
-              New Window <div className="RightSlot">⌘ N</div>
-            </Menubar.Item>
-            <Menubar.Item className="MenubarItem" disabled>
-              New Incognito Window
-            </Menubar.Item>
-            <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Sub>
-              <Menubar.SubTrigger className="MenubarSubTrigger">
-                Share
-                <div className="RightSlot">
-                  <ChevronRightIcon />
-                </div>
-              </Menubar.SubTrigger>
-              <Menubar.Portal>
-                <Menubar.SubContent className="MenubarSubContent" alignOffset={-5}>
-                  <Menubar.Item className="MenubarItem">Email Link</Menubar.Item>
-                  <Menubar.Item className="MenubarItem">Messages</Menubar.Item>
-                  <Menubar.Item className="MenubarItem">Notes</Menubar.Item>
-                </Menubar.SubContent>
-              </Menubar.Portal>
-            </Menubar.Sub>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem">
               Print… <div className="RightSlot">⌘ P</div>
