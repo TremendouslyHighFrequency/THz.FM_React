@@ -11,7 +11,15 @@ export const Register = () => {
     setLoading(true);
     const userData = {
       email: email,
-      new_password: new_password
+      new_password: new_password,
+      roles: [
+        {
+          role: 'Publisher',
+          parenttype: 'User',
+          parentfield: 'roles',
+          doctype: 'Has Role',
+        },
+      ],
     };
 
     fetch(`https://thz.fm/api/resource/User`, {
@@ -25,7 +33,7 @@ export const Register = () => {
     .then(response => response.json())
     .then(() => {
       setLoading(false);
-      navigate('/home'); // Redirect to a success page or dashboard
+      navigate('/dashboard'); // Redirect to a success page or dashboard
     })
     .catch((error) => {
       setLoading(false);
