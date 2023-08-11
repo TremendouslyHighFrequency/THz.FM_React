@@ -258,7 +258,6 @@ body[data-theme='dark'] {
   color: var(--text-color); /* Using theme variable */
   background: var(--bg-color); /* Using theme variable */
   position: relative;
-  border-bottom: 1px solid #e2e2e2;
   transition: background 0.3s ease-in-out;
 }
 
