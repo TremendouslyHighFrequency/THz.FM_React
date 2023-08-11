@@ -108,7 +108,7 @@ export const ActionBar = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">Artists</Menubar.Trigger>
+        <Menubar.Trigger className="MenubarTrigger">Profiles</Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
             className="MenubarContent"

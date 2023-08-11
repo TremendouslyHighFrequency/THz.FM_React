@@ -166,7 +166,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
           <img className="navbar-logo" src={logo} alt="logo" />
         </a>
         {currentUser ? (
-            <>
+            <> 
         <ActionBar />
         </>
           ) : (
