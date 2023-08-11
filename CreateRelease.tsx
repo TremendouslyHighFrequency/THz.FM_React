@@ -39,7 +39,7 @@ const CreateRelease = () => {
         <div className="manageList">
         <Table.Root>
           <Table.Header>
-            <Table.Row>
+            <Table.Row className="px-12">
               <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Artwork</Table.ColumnHeaderCell>
