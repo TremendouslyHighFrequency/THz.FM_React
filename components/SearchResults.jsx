@@ -1,3 +1,7 @@
+// SearchResults.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 const SearchResults = ({ results }) => {
   console.log("Results:", results); // Log the entire results array to the console
 
