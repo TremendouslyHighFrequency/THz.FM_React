@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateRelease = () => {
+export const CreateRelease = () => {
   return (
     <div className="content">
       This is the Publishers page.
@@ -8,5 +8,4 @@ const CreateRelease = () => {
   );
 };
 
-export default CreateRelease;
 
