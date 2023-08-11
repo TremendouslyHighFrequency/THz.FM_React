@@ -58,8 +58,8 @@ const CreateRelease = () => {
                   <Table.Cell>
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
-                        <button>
-                          Options
+                        <button className="inline-block">
+                          Manage
                           <CaretDownIcon />
                         </button>
                       </DropdownMenu.Trigger>
