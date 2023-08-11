@@ -10,6 +10,7 @@ button {
 .DropdownMenuContent,
 .DropdownMenuSubContent {
   min-width: 220px;
+  margin-right: 36px;
   background-color: white;
   border-radius: 6px;
   padding: 5px;
