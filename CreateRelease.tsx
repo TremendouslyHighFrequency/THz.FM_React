@@ -35,11 +35,11 @@ const CreateRelease = () => {
     return (
       <div className="releases-index">
         {
-          data.map(({ title, release_photo }, i) => (
+          data.map(({ title, release_photo, name }, i) => (
             <div key={i} className="release-card" style={{ backgroundImage: `url(${encodeURI(release_photo)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="release-text">
                 <h4>{title}</h4>
-                <Link to={`/edit/${loggedUser}/${title}`}>Manage Release</Link>
+                <Link to={`/edit/${loggedUser}/${title}/${name}`}>Manage Release</Link>
               </div>
             </div>
           ))
