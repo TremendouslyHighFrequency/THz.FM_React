@@ -3,6 +3,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 import { useFrappeAuth } from 'frappe-react-sdk';
 import './component_styles/UserDropdown.css';
+import { PersonIcon } from '@primer/octicons-react';
 
 export const UserDropdown = ({ userImage }) => {
   const navigate = useNavigate();
