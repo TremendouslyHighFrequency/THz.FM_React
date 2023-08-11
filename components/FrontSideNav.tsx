@@ -40,10 +40,13 @@ const SideNav = () => {
         // Extract the sidebar_items array from the data
         const sidebarData = response.data.data.sidebar_items;
         // Map the sidebar items to the corresponding components
-        const newNavItems = sidebarData.map(item => ({
-          ...item,
-          component: componentsMap[item.title],
-        }));
+        const newNavItems = sidebarData.map(item => {
+          const componentName = item.title.replace(/\s+/g, ''); // Remove spaces
+          return {
+            ...item,
+            component: componentsMap[componentName],
+          };
+        });
         setNavItems(newNavItems);
       })
       .catch(error => {
