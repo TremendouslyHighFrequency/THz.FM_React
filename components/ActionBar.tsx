@@ -89,8 +89,6 @@ export const ActionBar = () => {
                 </Menubar.RadioItem>
               ))}
               <Menubar.Separator className="MenubarSeparator" />
-              <Menubar.Item className="MenubarItem inset">Edit…</Menubar.Item>
-              <Menubar.Separator className="MenubarSeparator" />
               <Menubar.Item className="MenubarItem inset">Add Label…</Menubar.Item>
             </Menubar.RadioGroup>
           </Menubar.Content>
