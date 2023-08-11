@@ -238,16 +238,15 @@ body[data-theme='dark'] {
   top: 0;
   left: 0;
   height: 100%;
-  list-style-type: none;
   margin: 0;
   margin-top: 72px;
   padding-top: 72px;
-  padding: 0;
   background: #f4f4f4; /* Gray background color */
 }
 
 .side-nav {
   padding: 0;
+  list-style-type: none; /* Removes bullet points */
 }
 
 .side-nav li {
@@ -258,7 +257,7 @@ body[data-theme='dark'] {
   display: block;
   height: 5em;
   width: 5em;
-  text-indent: -500em;
+  /* text-indent: -500em; Hides the text */
   line-height: 5em;
   text-align: center;
   color: #5c5c5c; /* Gray color */
@@ -266,23 +265,6 @@ body[data-theme='dark'] {
   position: relative;
   border-bottom: 1px solid #e2e2e2; /* Gray border color */
   transition: background 0.3s ease-in-out;
-}
-
-.side-nav li a:before {
-  font-family: FontAwesome;
-  speak: none;
-  text-indent: 0em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 1.4em;
-}
-
-/* You can add or modify these lines to match the icons you want to use */
-.side-nav li a.home:before {
-  content: "\f015";
 }
 
 .side-nav li a:hover {
@@ -296,36 +278,15 @@ body[data-theme='dark'] {
   color: #fff;
 }
 
-.side-nav li a.active:after {
-  position: absolute;
-  left: 5em;
-  top: 0;
-  content: "";
-  border: 2.5em solid transparent;
-  border-left-color: #5c5c5c; /* Gray active color */
-  border-width: 2.5em 1em;
-}
-
-.side-nav li:after {
-  content: attr(title);
-  position: absolute;
-  left: 5em;
-  top: 0;
-  height: 5em;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  text-transform: uppercase;
-  background: #5c5c5c; /* Gray color */
-  padding: 2em;
-  transition: all 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
-}
-
 .side-nav li:hover:after {
   visibility: visible;
   opacity: 1;
+}
+.side-nav[data-theme='dark'] {
+  color: rgb(245, 245, 245);
+}
+.side-nav[data-theme='light'] {
+  color: #263040;
 }
 .side-nav[data-theme='dark'] {
   color: rgb(245, 245, 245);
