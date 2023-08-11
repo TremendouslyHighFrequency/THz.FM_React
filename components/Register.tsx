@@ -3,27 +3,24 @@ import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const [email, setEmail] = useState('');
-  const [user_image, setUserImage] = useState(null);
   const [new_password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = () => {
     setLoading(true);
-
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('new_password', new_password);
-    if (user_image) {
-      formData.append('user_image', user_image[0]); // Assuming only one file is selected
-    }
+    const userData = {
+      email: email,
+      new_password: new_password
+    };
 
     fetch(`https://thz.fm/api/resource/User`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: formData,
+      body: JSON.stringify(userData),
     })
     .then(response => response.json())
     .then(() => {
@@ -36,7 +33,7 @@ export const Register = () => {
     });
   };
 
-  return (
+return (
     <div className="signup-1 mt-24 items-center relative h-screen">
       <div className="overlay absolute inset-0 z-0"></div>
       <div className="container px-4 mx-auto relative z-10">
@@ -61,16 +58,6 @@ export const Register = () => {
                 <div className="flex-1">
                   <input type="password" placeholder="Password" className="h-10 py-1 pr-3 w-full" value={new_password} onChange={e => setPassword(e.target.value)}></input>
                 </div>
-              </div>
-              <label>User Image:</label>
-              <div className="border-2 border-solid rounded flex items-center mb-4">
-                <div className="w-10 h-10 flex justify-center items-center flex-shrink-0">
-                  <span className="fas fa-lock text-gray-500"></span>
-                </div>
-           
-                <div className="flex-1">
-      <input type="file" name="user_image" onChange={e => setUserImage(e.target.files)} />
-    </div>
               </div>
 
               <p className="text-sm text-center mt-6">By signing up, you agree to our <a href="#" className="text-indigo-600 hover:underline">Terms</a> and <a href="#" className="text-indigo-600 hover:underline">Privacy Policy</a></p>
