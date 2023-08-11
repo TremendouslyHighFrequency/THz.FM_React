@@ -92,6 +92,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 
 const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { currentUser, logout } = useFrappeAuth();
+  const searchInputRef = useRef(null); // Create a reference for the search input field
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -101,6 +102,24 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { txId, transactionConfirmed, setTransactionConfirmed } = useContext(TxContext);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [logo, setLogo] = useState(theme === 'dark' ? THZLogo : THZLogoDark);
+
+  const handleSearchShortcut = (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === '.') {
+      e.preventDefault(); // Prevent the default browser action
+      setIsExpanded(true); // Expand the search bar
+      searchInputRef.current.focus(); // Focus the search input field
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listener
+    window.addEventListener('keydown', handleSearchShortcut);
+
+    // Return a cleanup function to remove the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('keydown', handleSearchShortcut);
+    };
+  }, []); // Make sure to pass in an empty array of dependencies
 
   const getSearchResults = (searchTerm) => {
     if (searchTerm === '') {
@@ -174,6 +193,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
             )}
         <div className="navbar-items">
           <input
+            ref={searchInputRef} // Attach the ref to the input field
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
             type="text"
             placeholder="Search..."
