@@ -98,7 +98,7 @@ function App() {
                     {navItems.map(item => (
                       <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
                     ))}
-                    {/* <Route path="/create-release" element={<CreateRelease />}/> */}
+                    <Route path="/create-release" element={<CreateRelease />}/>
                     <Route path="/manage-releases" element={<ManageReleases />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
