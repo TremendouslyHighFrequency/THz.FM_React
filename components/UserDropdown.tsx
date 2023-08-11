@@ -14,11 +14,6 @@ export const UserDropdown = () => {
   
     return (
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild>
-          <button className="IconButton" aria-label="Customise options">
-            <HamburgerMenuIcon />
-          </button>
-        </DropdownMenu.Trigger>
   
         <DropdownMenu.Portal>
           <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
