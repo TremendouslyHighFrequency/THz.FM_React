@@ -3,6 +3,8 @@ import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
 import { Link } from "react-router-dom";
 import { getLoggedUser } from './components/api'; // Update with the correct path
+import { Table } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 
 const CreateRelease = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -34,16 +36,29 @@ const CreateRelease = () => {
   if (data && Array.isArray(data)) {
     return (
       <div className="releases-index">
-        {
-          data.map(({ title, release_photo, name }, i) => (
-            <div key={i} className="release-card" style={{ backgroundImage: `url(${encodeURI(release_photo)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div className="release-text">
-                <h4>{title}</h4>
-                <Link to={`/edit/${loggedUser}/${title}/${name}`}>Manage Release</Link>
-              </div>
-            </div>
-          ))
-        }
+        <Table.Root>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Artwork</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {data.map(({ title, release_artist, release_artwork, name }, i) => (
+              <Table.Row key={i}>
+                <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
+                <Table.Cell>{release_artist}</Table.Cell>
+                <Table.Cell>{release_artwork}</Table.Cell>
+                <Table.Cell>{name}</Table.Cell>
+                <Table.Cell><Link to={`/edit/${loggedUser}/${title}/${name}`}>Manage Release</Link></Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
         <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
       </div>
     );
