@@ -68,7 +68,7 @@ return (
                 </div>
            
                 <div className="flex-1">
-            <input type="file" name="user_image" onChange={e => setUserImage(e.target.files[0])} />
+            <input type="file" name="user_image" onChange={e => setUserImage(e.target.files)} />
                 </div>
               </div>
 
