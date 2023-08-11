@@ -250,7 +250,8 @@ body[data-theme='dark'] {
   height: 5em;
   width: 5em;
   line-height: 5em;
-  list-style: none;
+  list-style-type: none;
+  padding: 0;
   text-align: center;
   color: var(--text-color); /* Using theme variable */
   background: var(--bg-color); /* Using theme variable */
