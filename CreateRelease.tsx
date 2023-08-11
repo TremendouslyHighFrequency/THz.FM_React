@@ -22,7 +22,7 @@ const CreateRelease = () => {
     limit_start: pageIndex,
     limit: 50,
     orderBy: {
-      field: "creation",
+      field: "release_id",
       order: 'desc'
     }
   });
