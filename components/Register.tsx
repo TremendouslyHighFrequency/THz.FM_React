@@ -66,6 +66,7 @@ return (
                 <div className="w-10 h-10 flex justify-center items-center flex-shrink-0">
                   <span className="fas fa-lock text-gray-500"></span>
                 </div>
+                <label>User Image:</label>
                 <div className="flex-1">
             <input type="file" name="user_image" onChange={e => setUserImage(e.target.files[0])} />
                 </div>
