@@ -17,7 +17,7 @@ const CreateRelease = () => {
   }, []);
 
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
-    fields: ["title", "release_artist","release_artwork", "name"], // Update the fields as per the 'Release' document structure
+    fields: ["title", "release_artist","release_artwork", "name", "release_id"], // Update the fields as per the 'Release' document structure
     filters: loggedUser ? { "owner": loggedUser } : {},
     limit_start: pageIndex,
     limit: 50,
@@ -42,18 +42,18 @@ const CreateRelease = () => {
             <Table.Row className="px-12">
               <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Artwork</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Release ID</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
-            {data.map(({ title, release_artist, release_artwork, name }, i) => (
+            {data.map(({ title, release_artist, release_id, name }, i) => (
               <Table.Row key={i}>
                 <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                 <Table.Cell>{release_artist}</Table.Cell>
-                <Table.Cell>{release_artwork}</Table.Cell>
+                <Table.Cell>{release_id}</Table.Cell>
                 <Table.Cell>{name}</Table.Cell>
                 <Table.Cell><Link to={`/edit/${loggedUser}/${title}/${name}`}>Manage Release</Link></Table.Cell>
               </Table.Row>
