@@ -234,6 +234,7 @@ body[data-theme='dark'] {
 }
 .side-navContainer {
   position: fixed;
+  width: 5em;
   top: 0;
   left: 0;
   height: 100%;
