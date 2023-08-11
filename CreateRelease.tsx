@@ -63,7 +63,7 @@ const CreateRelease = () => {
                   <Table.Cell>
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
-                        <button className="inline-block bg-indigo-400 rounded-md px-3 py-2">
+                        <button className="inline-block bg-indigo-400 rounded-md px-2 py-1 text-sm my-2 shadow-sm">
                           Manage
                         </button>
                       </DropdownMenu.Trigger>
