@@ -34,6 +34,7 @@ export const ActionBar = () => {
   const handleKeyDown = (e) => {
     // Check if the CTRL key or CMD key (on macOS) is pressed and the pressed key is 'G'
     if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+      e.preventDefault(); // Prevent the default browser action
       navigate('/create-release'); // Navigate to create-release page
     }
   };
