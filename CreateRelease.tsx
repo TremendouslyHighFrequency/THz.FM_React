@@ -46,7 +46,7 @@ const CreateRelease = () => {
                 <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Release ID</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Catalog</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Release Date</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
