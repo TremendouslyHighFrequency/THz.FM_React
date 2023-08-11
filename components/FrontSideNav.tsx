@@ -28,6 +28,7 @@ const componentsMap = {
   Events,
   Venues,
   Marketplace,
+  Dashboard,
 };
 
 const SideNav = () => {
