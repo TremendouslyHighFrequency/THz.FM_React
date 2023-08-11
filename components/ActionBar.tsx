@@ -3,13 +3,25 @@ import * as Menubar from '@radix-ui/react-menubar';
 import { CheckIcon, DotFilledIcon } from '@radix-ui/react-icons';
 import { useFrappeGetDocList } from 'frappe-react-sdk'; // Import the hook
 import './component_styles/ActionBar.css';
+import { getLoggedUser } from './api';
 
 const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
 export const ActionBar = () => {
   const [checkedSelection, setCheckedSelection] = useState([CHECK_ITEMS[1]]);
+  const [loggedUser, setLoggedUser] = useState(null);
+  const [radioSelection, setRadioSelection] = useState(null);
+
+  useEffect(() => {
+    // Fetch the logged user
+    getLoggedUser().then(user => {
+      setLoggedUser(user);
+    });
+  }, []);
+
   const { data: labels, error, isValidating } = useFrappeGetDocList('Label', {
     fields: ["title"],
+    filters: loggedUser ? { "owner": loggedUser } : null, // Filter by the owner
     limit: 50,
     orderBy: {
       field: "creation",
@@ -17,8 +29,14 @@ export const ActionBar = () => {
     }
   });
 
+  useEffect(() => {
+    if (labels && labels.length > 0) {
+      setRadioSelection(labels[2].title); // Setting default selection
+    }
+  }, [labels]);
+
   const RADIO_ITEMS = labels ? labels.map(label => label.title) : [];
-  const [radioSelection, setRadioSelection] = useState(RADIO_ITEMS[2] || null);
+
 
   return (
     <Menubar.Root className="MenubarRoot">
