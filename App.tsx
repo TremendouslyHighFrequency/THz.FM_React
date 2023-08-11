@@ -98,7 +98,7 @@ function App() {
                       <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
                     ))}
                     <Route path="/manage-releases" element={<CreateRelease />} />
-                    <Route path="/me" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/collection" element={<Collection />} />
                     <Route path="/workspace" element={<Workspace />} />
