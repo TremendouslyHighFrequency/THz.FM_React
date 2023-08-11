@@ -7,7 +7,7 @@ import { PersonIcon } from '@primer/octicons-react';
 
 export const UserDropdown = ({ userImage }) => {
   const navigate = useNavigate();
-  const { currentUser } = useFrappeAuth();
+  const { currentUser, logout } = useFrappeAuth();
 
   return (
     <DropdownMenu.Root>
@@ -30,7 +30,7 @@ export const UserDropdown = ({ userImage }) => {
         <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
           Edit Profile
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/logout')}>
+        <DropdownMenu.Item onClick={logout} className="DropdownMenuItem" onSelect={() => navigate('/')}>
           Logout
         </DropdownMenu.Item>
         {/* ... rest of your menu items ... */}
