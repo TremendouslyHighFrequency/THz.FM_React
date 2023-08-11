@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
 import { getLoggedUser } from './components/api'; // Update with the correct path
@@ -36,7 +37,9 @@ const CreateRelease = () => {
   if (data && Array.isArray(data)) {
     return (
       <div className="createRelease">
-        <button className="inline-block bg-green-600 rounded-md px-2 py-1 text-slg my-2 shadow-md">Create New Release</button>
+        <button className="inline-block bg-green-600 rounded-md px-2 py-1 text-slg my-2 shadow-md">
+          <Link to={`/create-release}`}>Create New Release</Link>
+          </button>
       <div className="publishedReleases">
         <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
         <div className="releases-index">
