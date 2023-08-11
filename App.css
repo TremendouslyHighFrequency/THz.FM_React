@@ -258,7 +258,7 @@ body[data-theme='dark'] {
   color: var(--text-color); /* Using theme variable */
   background: var(--bg-color); /* Using theme variable */
   position: relative;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.1s ease-in-out;
 }
 
 .side-nav li a:hover {
@@ -270,8 +270,6 @@ body[data-theme='dark'] {
 .side-nav li a.active {
   background: #5e5e5e; /* Gray active color */
   color: #fff;
-/* inset box shadow on the right of the active hover */
-  box-shadow: inset -5px 0 0 0 #ffaa55;
 }
 
 /* Dark theme styling */
