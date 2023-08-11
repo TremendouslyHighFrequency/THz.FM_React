@@ -193,10 +193,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
               {transactionConfirmed && <DownloadIcon className="nav-icon" size={24} txId={txId} />}
             </div>
           )}
-          <div className="dapp-button">
-            <ErgoDappConnector color="inkwell" />
-          </div>
-         
+               
               {currentUser ? (
             <> 
         <ActionBar />
@@ -209,6 +206,9 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
           ) : (
             <LoginModal onSuccessfulLogin={(user) => {}} />
           )}
+           <div className="dapp-button">
+            <ErgoDappConnector color="inkwell" />
+          </div>
         </div>
       </div>
     </div>
