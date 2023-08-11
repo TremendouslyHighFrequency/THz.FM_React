@@ -23,19 +23,19 @@ type SidebarData = {
   sidebar_items: SidebarItem[];
 };
 
-// Create a mapping of routes to components
-const routeComponents: Record<string, React.ComponentType<any>> = {
-  '/artists': Artists,
-  '/publishers': Publishers,
-  '/labels': Labels,
-  '/releases': Releases,
-  '/tracks': Tracks,
-  '/events': Events,
-  '/venues': Venues,
-  '/z': Merch,
-  '/dashboard': Dashboard,
-  // add the route for labels and the other routes here...
-};
+// // Create a mapping of routes to components
+// const routeComponents: Record<string, React.ComponentType<any>> = {
+//   '/artists': Artists,
+//   '/publishers': Publishers,
+//   '/labels': Labels,
+//   '/releases': Releases,
+//   '/tracks': Tracks,
+//   '/events': Events,
+//   '/venues': Venues,
+//   '/z': Marketplace,
+//   '/dashboard': Dashboard,
+//   // add the route for labels and the other routes here...
+// };
 
 const SideNav = () => {
   const [navItems, setNavItems] = useState<SidebarItem[]>([]);
