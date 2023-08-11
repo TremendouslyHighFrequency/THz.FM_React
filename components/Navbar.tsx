@@ -104,7 +104,7 @@ const UserPopover = ({ onLogout, userImage }) => {
         </button>
       </Popover.Trigger>
       <Popover.Content>
-       <UserDropdown />
+        <UserDropdown /> {/* Directly rendering the UserDropdown component */}
       </Popover.Content>
     </Popover.Root>
   );
