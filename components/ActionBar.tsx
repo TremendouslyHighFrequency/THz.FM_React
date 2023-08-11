@@ -19,6 +19,9 @@ export const ActionBar = () => {
             <Menubar.Item className="MenubarItem">
               Create New Release <div className="RightSlot">⌘ G</div>
             </Menubar.Item>
+            <Menubar.Item className="MenubarItem">
+              Manage Releases <div className="RightSlot">⌘ M</div>
+            </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem">
               Print… <div className="RightSlot">⌘ P</div>
