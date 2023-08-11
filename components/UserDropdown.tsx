@@ -8,6 +8,11 @@ export const UserDropdown = () => {
 
   return (
     <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button className="IconButton" aria-label="Customise options">
+          {/* Empty button to act as a trigger */}
+        </button>
+      </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/dashboard')}>
@@ -19,7 +24,6 @@ export const UserDropdown = () => {
           <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
             Edit Profile
           </DropdownMenu.Item>
-
           {/* ... rest of your menu items ... */}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
