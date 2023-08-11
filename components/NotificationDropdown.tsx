@@ -65,7 +65,7 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
         )}
         <div className="dropdown-footer">
           {notifications.length === 0 ? (
-            <div className="no-notifications-text">There are no new notifications.</div>
+            <div></div>
           ) : (
             <>
               <button className="view-notifications" onClick={() => setDropdownVisible(false)}>View all</button>
