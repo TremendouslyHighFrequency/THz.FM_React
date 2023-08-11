@@ -4,6 +4,7 @@ import { CheckIcon, DotFilledIcon } from '@radix-ui/react-icons';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import './component_styles/ActionBar.css';
 import { getLoggedUser } from './api';
+import { useNavigate } from 'react-router-dom';
 
 const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
@@ -29,6 +30,23 @@ export const ActionBar = () => {
   });
 
   const RADIO_ITEMS = labels ? labels.map(label => label.title) : [];
+  const navigate = useNavigate();
+  const handleKeyDown = (e) => {
+    // Check if the CTRL key or CMD key (on macOS) is pressed and the pressed key is 'G'
+    if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+      navigate('/create-release'); // Navigate to create-release page
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listener
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Return a cleanup function to remove the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array so that the effect is only run once
 
   useEffect(() => {
     if (RADIO_ITEMS.length > 0) {
