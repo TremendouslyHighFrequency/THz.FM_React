@@ -16,6 +16,7 @@ import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
 import { ActionBar } from './ActionBar';
+import { UserDropdown } from './UserDropdown';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -103,13 +104,7 @@ const UserPopover = ({ onLogout, userImage }) => {
         </button>
       </Popover.Trigger>
       <Popover.Content>
-        <div className="modal-content" style={{ padding: '15px' }}>
-          <Link to="/me" style={{ display: 'block', marginBottom: '10px' }}>Dashboard</Link>
-          <button onClick={onLogout} style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>
-            Logout
-          </button>
-          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
-        </div>
+       <UserDropdown />
       </Popover.Content>
     </Popover.Root>
   );
