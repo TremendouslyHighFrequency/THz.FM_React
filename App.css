@@ -240,7 +240,6 @@ body[data-theme='dark'] {
   height: 100%;
   margin: 0;
   margin-top: 72px;
-  padding-top: 72px;
   background: var(--bg-color); /* Using theme variable */
   color: var(--text-color); /* Using theme variable */
 }
@@ -258,7 +257,7 @@ body[data-theme='dark'] {
   color: var(--text-color); /* Using theme variable */
   background: var(--bg-color); /* Using theme variable */
   position: relative;
-  transition: background 0.1s ease-in-out;
+  transition: background 0.2s ease-in-out;
 }
 
 .side-nav li a:hover {
