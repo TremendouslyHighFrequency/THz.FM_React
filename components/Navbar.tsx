@@ -165,13 +165,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
         <a href="/">
           <img className="navbar-logo" src={logo} alt="logo" />
         </a>
-        {currentUser ? (
-            <> 
-        <ActionBar />
-        </>
-          ) : (
-            <div></div>
-            )}
+       
         <div className="navbar-items">
           <input
             className={`navbar-search ${isExpanded ? 'full-width' : ''}`}
@@ -201,8 +195,13 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
                 <BellIcon size={24} />
               </button>
               {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
-              <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
-              <Link to="/workspace"><RocketIcon size={24} /></Link>
+              {currentUser ? (
+            <> 
+        <ActionBar />
+        </>
+          ) : (
+            <div></div>
+            )}
               <UserDropdown userImage={userImageUrl} />
             </>
           ) : (
