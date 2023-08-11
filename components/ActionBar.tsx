@@ -70,7 +70,7 @@ export const ActionBar = () => {
             <Link to="/create-release">Create New Release </Link><div className="RightSlot"><Link to="/create-release">⌘ G</Link></div>
             </Menubar.Item>
             <Menubar.Item className="MenubarItem">
-              Manage Releases <div className="RightSlot">⌘ M</div>
+            <Link to="/manage-releases">Manage Releases </Link><div className="RightSlot"><Link to="/manage-releases">⌘ M</Link></div>
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem">
