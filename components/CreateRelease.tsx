@@ -9,3 +9,4 @@ export const CreateRelease = () => {
 };
 
 
+export default CreateRelease;

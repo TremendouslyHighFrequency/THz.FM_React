@@ -40,6 +40,7 @@ import Event from './components/Event';
 import Venue from './components/Venue';
 import Single from './components/Single';
 import ManageReleases from './ManageReleases';
+import CreateRelease from './components/CreateRelease';
 import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
