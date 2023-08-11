@@ -53,7 +53,7 @@ const CreateRelease = () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {data.map(({ title, release_artist, release_id, name, release_label, remixer }, i) => (
+              {data.map(({ title, release_artist, release_id, name, release_label, release_date }, i) => (
                 <Table.Row key={i}>
                   <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                   <Table.Cell>{release_artist}</Table.Cell>
