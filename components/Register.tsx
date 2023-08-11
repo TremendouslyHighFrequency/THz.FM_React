@@ -11,7 +11,7 @@ export const Register = () => {
     setLoading(true);
     const userData = {
       email: email,
-      password: password
+      new_password: new_password
     };
 
     fetch(`https://thz.fm/api/resource/User`, {
@@ -56,7 +56,7 @@ return (
                   <span className="fas fa-lock text-gray-500"></span>
                 </div>
                 <div className="flex-1">
-                  <input type="password" placeholder="Password" className="h-10 py-1 pr-3 w-full" value={password} onChange={e => setPassword(e.target.value)}></input>
+                  <input type="password" placeholder="Password" className="h-10 py-1 pr-3 w-full" value={new_password} onChange={e => setPassword(e.target.value)}></input>
                 </div>
               </div>
 
