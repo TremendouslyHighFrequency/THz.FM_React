@@ -163,7 +163,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
     <div className="navbar">
       <div className="navContainer">
         <a href="/">
-          <img className="navbar-logom mr-4" src={logo} alt="logo" />
+          <img className="navbar-logo mr-4" src={logo} alt="logo" />
         </a>
         {currentUser ? (
             <> 
