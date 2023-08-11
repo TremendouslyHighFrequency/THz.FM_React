@@ -4,7 +4,6 @@ import { ReleaseItem } from '../types'; // Define the ReleaseItem type according
 import { getLoggedUser } from './components/api'; // Update with the correct path
 import { Table, Button } from '@radix-ui/themes';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { CaretDownIcon } from '@radix-ui/react-icons'; // Import or replace this icon as per your UI library
 import '@radix-ui/themes/styles.css';
 
 const CreateRelease = () => {
