@@ -30,11 +30,11 @@ export const MintForm = () => {
 <>
 
 <div className="">
-<h2 className="text-2xl font-bold mb-4">Create your `Master Tape`</h2>
+<h2 className="text-2xl font-bold mb-4">Create your Distinct Digital Master (DDM™)</h2>
       <p className="mb-4">
-        Minting an NFT here is akin to creating a master tape recording. It represents the original and authentic version of the asset. 
-        We recommend creating only a few copies for management purposes, as these master NFTs will be used to create lower resolution 
-        copies for fungible token creation and sales and to prove original asset ownership.
+      Creating a Distinct Digital Master is comparable to producing a master tape recording. 
+      It symbolizes the original and authentic version of the highest resolution possible of the digital asset. 
+      We recommend generating only a limited number of copies for administrative purposes, as these master Distinct Digital Masters will be utilized to craft lower resolution replicas, Digital Distribution Tokens (DDT™), which will be used for distribution and consumption.
       </p>
 
       <div className="workflow-section mb-4">
