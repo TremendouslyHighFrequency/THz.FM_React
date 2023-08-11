@@ -244,13 +244,15 @@ body[data-theme='dark'] {
   background: var(--bg-color); /* Using theme variable */
   color: var(--text-color); /* Using theme variable */
 }
-
+.side-nav {
+  padding: 0;
+  list-style-type: none; /* Removes bullet points */
+}
 .side-nav li a {
   display: block;
   height: 5em;
   width: 5em;
   line-height: 5em;
-  list-style-type: none;
   padding: 0;
   text-align: center;
   color: var(--text-color); /* Using theme variable */
