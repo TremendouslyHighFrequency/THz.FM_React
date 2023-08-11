@@ -36,7 +36,7 @@ const CreateRelease = () => {
   if (data && Array.isArray(data)) {
     return (
       <div className="createRelease">
-        <button className="inline-block bg-green-600 rounded-md px-2 py-1 text-slg my-2 shadow-md">
+        <button className="inline-block bg-green-600 rounded-md px-2 py-1 text-slg my-2 shadow-md">Create New Release</button>
       <div className="publishedReleases">
         <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
         <div className="releases-index">
