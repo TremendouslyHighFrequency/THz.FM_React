@@ -67,9 +67,7 @@ export const ActionBar = () => {
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem inset">DAW</Menubar.Item>
-            <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Item className="MenubarItem inset">P2P</Menubar.Item>
-          </Menubar.Content>
+            </Menubar.Content>
         </Menubar.Portal>
       </Menubar.Menu>
 
