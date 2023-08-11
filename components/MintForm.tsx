@@ -62,7 +62,7 @@ export const MintForm = () => {
       <div>
         <input className="textInput" type="number" placeholder="Decimals" onChange={(e) => setDecimals(e.target.value)} min="0" />
       </div>
-      <label><p>(Decimals should almost always be 0 when dealing with NFT masters)</p></label>
+      <label><p>(Decimals should almost always be 0 when dealing with Distinct Digital Masters.)</p></label>
       <div>
       <div className="flex justify-center">
         <label className="uploadButton">
@@ -70,7 +70,7 @@ export const MintForm = () => {
           Upload Audio File
         </label>
         {uploadComplete && ( // Render the "Mint NFT" button only when upload is complete
-            <button className="uploadButton" onClick={handleMintClick} disabled={!file}>Mint NFT</button>
+            <button className="uploadButton" onClick={handleMintClick} disabled={!file}>Create DDM™</button>
           )}
                 </div>
       </div>
