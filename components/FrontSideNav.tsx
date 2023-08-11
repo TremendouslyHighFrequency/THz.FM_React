@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // Import all components
-import * as Components from './Components';
+import * as Components from '../components';
 
 type SidebarItem = {
   title: string;
