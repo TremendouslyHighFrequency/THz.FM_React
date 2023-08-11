@@ -15,7 +15,7 @@ const CreateRelease = () => {
   }, []);
 
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
-    fields: ["title", "release_photo"], // Update the fields as per the 'Release' document structure
+    fields: ["title", "release_artist","release_artwork", "name"], // Update the fields as per the 'Release' document structure
     filters: loggedUser ? { "owner": loggedUser } : {},
     limit_start: pageIndex,
     limit: 50,
