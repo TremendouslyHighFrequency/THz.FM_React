@@ -9,7 +9,7 @@ const SearchResults = ({ results }) => {
         <div className="search-dropdown show">
           {results.map((result, index) => (
             <div key={index} className="navbar-dropdown-item">
-              <Link to={`/releases/${title}/by/${release_artist}/${name}`}>
+              <Link to={`/releases/${result.title}/by/${result.release_artist}/${result.name}`}>
               <p>{result.title}</p>
             </Link>
             </div>
