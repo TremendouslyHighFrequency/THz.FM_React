@@ -13,7 +13,7 @@ export const ActionBar = () => {
   return (
     <Menubar.Root className="MenubarRoot">
       <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">File</Menubar.Trigger>
+        <Menubar.Trigger className="MenubarTrigger">Publish</Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content className="MenubarContent" align="start" sideOffset={5} alignOffset={-3}>
             <Menubar.Item className="MenubarItem">
