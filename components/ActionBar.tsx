@@ -17,7 +17,7 @@ export const ActionBar = () => {
         <Menubar.Portal>
           <Menubar.Content className="MenubarContent" align="start" sideOffset={5} alignOffset={-3}>
             <Menubar.Item className="MenubarItem">
-              Create New Release <div className="RightSlot">⌘ T</div>
+              Create New Release <div className="RightSlot">⌘ G</div>
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem">
@@ -108,7 +108,7 @@ export const ActionBar = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">Profiles</Menubar.Trigger>
+        <Menubar.Trigger className="MenubarTrigger">Artists</Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
             className="MenubarContent"
