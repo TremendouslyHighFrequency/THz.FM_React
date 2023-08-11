@@ -37,8 +37,8 @@ const CreateRelease = () => {
     return (
       <div className="publishedReleases">
         <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
-      <div className="releases-index">
-        <div className="manageList">
+        <div className="releases-index">
+          <div className="manageList">
           <Table.Root>
             <Table.Header>
               <Table.Row className="px-12">
@@ -79,7 +79,9 @@ const CreateRelease = () => {
               ))}
             </Table.Body>
           </Table.Root>
-          <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+          {data.length >= 50 && (
+              <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+            )}
         </div>
       </div>
       </div>
