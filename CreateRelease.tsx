@@ -18,7 +18,7 @@ const CreateRelease = () => {
   }, []);
 
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
-    fields: ["title", "release_artist", "release_artwork", "name", "release_id", "release_label"],
+    fields: ["title", "release_artist", "release_artwork", "name", "release_id", "release_label", "remixer"],
     filters: loggedUser ? { "owner": loggedUser } : {},
     limit_start: pageIndex,
     limit: 50,
@@ -44,7 +44,8 @@ const CreateRelease = () => {
             <Table.Header>
               <Table.Row className="px-12">
                 <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Artist</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Remixer</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Release ID</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
@@ -52,10 +53,11 @@ const CreateRelease = () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {data.map(({ title, release_artist, release_id, name, release_label }, i) => (
+              {data.map(({ title, release_artist, release_id, name, release_label, remixer }, i) => (
                 <Table.Row key={i}>
                   <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                   <Table.Cell>{release_artist}</Table.Cell>
+                  <Table.Cell>{remixer}</Table.Cell>
                   <Table.Cell>{release_label}</Table.Cell>
                   <Table.Cell>{release_id}</Table.Cell>
                   <Table.Cell>{name}</Table.Cell>
