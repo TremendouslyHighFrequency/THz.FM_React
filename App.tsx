@@ -42,6 +42,7 @@ import Single from './components/Single';
 import CreateRelease from './CreateRelease';
 import { getUserImage } from './components/api';
 import Register from './components/Register';
+import EditProfile from './components/EditProfile';
 
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/collection" element={<Collection />} />
                     <Route path="/workspace" element={<Workspace />} />
+                    <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/us/blog" element={<Blog />} />
                     <Route path="/about" element={<About />} />

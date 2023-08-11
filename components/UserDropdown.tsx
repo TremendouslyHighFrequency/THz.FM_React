@@ -27,7 +27,7 @@ export const UserDropdown = ({ userImage }) => {
         <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/manage-releases')}>
           Manage Releases
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
+        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/edit-profile')}>
           Edit Profile
         </DropdownMenu.Item>
         <DropdownMenu.Item onClick={logout} className="DropdownMenuItem" onSelect={() => navigate('/')}>
