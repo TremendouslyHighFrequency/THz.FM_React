@@ -90,26 +90,6 @@ const LoginModal = ({ onSuccessfulLogin }) => {
   );
 };
 
-const UserPopover = ({ onLogout, userImage }) => {
-  const { currentUser } = useFrappeAuth();
-  return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
-        <button>
-          {currentUser ? (
-            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ marginLeft: '6px', borderRadius: '50%', width: '32px', height: '32px' }} />
-          ) : (
-            <PersonIcon size={24} />
-          )}
-        </button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <UserDropdown /> {/* Directly rendering the UserDropdown component */}
-      </Popover.Content>
-    </Popover.Root>
-  );
-};
-
 const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { currentUser, logout } = useFrappeAuth();
   const [search, setSearch] = useState<string>('');
@@ -223,7 +203,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
               {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
               <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
               <Link to="/workspace"><RocketIcon size={24} /></Link>
-              <UserPopover onLogout={logout}  userImage={userImageUrl} />
+              <UserDropdown userImage={userImageUrl} />
             </>
           ) : (
             <LoginModal onSuccessfulLogin={(user) => {}} />

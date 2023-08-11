@@ -1,32 +1,36 @@
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useNavigate } from 'react-router-dom';
+import { useFrappeAuth } from 'frappe-react-sdk';
 import './component_styles/UserDropdown.css';
 
-export const UserDropdown = () => {
+export const UserDropdown = ({ userImage }) => {
   const navigate = useNavigate();
+  const { currentUser } = useFrappeAuth();
 
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button className="IconButton" aria-label="Customise options">
-          {/* Empty button to act as a trigger */}
+        <button>
+          {currentUser ? (
+            <img src={`https://thz.fm/${userImage}`} alt="User" style={{ marginLeft: '6px', borderRadius: '50%', width: '32px', height: '32px' }} />
+          ) : (
+            <PersonIcon size={24} />
+          )}
         </button>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/dashboard')}>
-            Dashboard
-          </DropdownMenu.Item>
-          <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/manage-releases')}>
-            Manage Releases
-          </DropdownMenu.Item>
-          <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
-            Edit Profile
-          </DropdownMenu.Item>
-          {/* ... rest of your menu items ... */}
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
+      <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
+        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/dashboard')}>
+          Dashboard
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/manage-releases')}>
+          Manage Releases
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/me')}>
+          Edit Profile
+        </DropdownMenu.Item>
+        {/* ... rest of your menu items ... */}
+      </DropdownMenu.Content>
     </DropdownMenu.Root>
   );
 };
