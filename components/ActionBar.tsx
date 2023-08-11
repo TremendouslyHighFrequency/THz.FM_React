@@ -4,7 +4,7 @@ import { CheckIcon, DotFilledIcon } from '@radix-ui/react-icons';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import './component_styles/ActionBar.css';
 import { getLoggedUser } from './api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
