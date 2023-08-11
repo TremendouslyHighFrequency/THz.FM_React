@@ -39,7 +39,7 @@ const CreateRelease = () => {
             <div key={i} className="release-card" style={{ backgroundImage: `url(${encodeURI(release_photo)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="release-text">
                 <h4>{title}</h4>
-                <Link to={`/release/${title}`}>View Release</Link>
+                <Link to={`/edit/${loggedUser}/${title}`}>Manage Release</Link>
               </div>
             </div>
           ))
