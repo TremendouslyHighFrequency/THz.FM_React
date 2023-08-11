@@ -177,9 +177,16 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
             onBlur={() => setIsExpanded(false)}
           />
           <SearchResults results={searchResults} />
+          {currentUser ? (
+            <>
+              <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
+                <BellIcon size={24} />
+              </button>
+              {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
           <button onClick={toggleTheme}>
             {theme === 'dark' ? <SunIcon size={24} /> : <MoonIcon size={24} />}
           </button>
+
           {txId && (
             <div>
               {!transactionConfirmed && <ClockIcon className="nav-icon" size={24} txId={txId} />}
@@ -189,12 +196,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
           <div className="dapp-button">
             <ErgoDappConnector color="inkwell" />
           </div>
-          {currentUser ? (
-            <>
-              <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
-                <BellIcon size={24} />
-              </button>
-              {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
+         
               {currentUser ? (
             <> 
         <ActionBar />
