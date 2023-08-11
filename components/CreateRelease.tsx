@@ -3,7 +3,7 @@ import React from 'react';
 export const CreateRelease = () => {
   return (
     <div className="content">
-      This is the Publishers page.
+      This is the create release page.
     </div>
   );
 };
