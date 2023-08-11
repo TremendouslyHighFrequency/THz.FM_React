@@ -1,11 +1,11 @@
 // Venues.jsx
 import React from 'react';
-import { MintNFT } from './MintNFT';
+import { MintForm } from './MintForm';
 
 const Workspace = () => {
   return (
     <div className="content">
-      <MintNFT />
+      <MintForm />
     </div>
   );
 };
