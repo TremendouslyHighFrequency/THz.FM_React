@@ -9,6 +9,13 @@ const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
 export const ActionBar = () => {
   const [checkedSelection, setCheckedSelection] = useState([CHECK_ITEMS[1]]);
+  const [radioSelection, setRadioSelection] = useState(null);
+  useEffect(() => {
+    if (RADIO_ITEMS.length > 0) {
+      setRadioSelection(RADIO_ITEMS[0]);
+    }
+  }, [RADIO_ITEMS]);
+  
   const [loggedUser, setLoggedUser] = useState(null);
   const { data: labels, error, isValidating } = useFrappeGetDocList('Label', {
     fields: ["title", "owner"],
