@@ -4,7 +4,7 @@ import { ReleaseItem } from '../types'; // Define the ReleaseItem type according
 import { Link } from "react-router-dom";
 import { getLoggedUser } from './components/api'; // Update with the correct path
 
-const ManageReleases = () => {
+const CreateRelease = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
 
@@ -51,4 +51,4 @@ const ManageReleases = () => {
   return null;
 };
 
-export default ManageReleases;
+export default CreateRelease;
