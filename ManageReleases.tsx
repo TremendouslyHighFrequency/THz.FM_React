@@ -6,6 +6,7 @@ import { getLoggedUser } from './components/api'; // Update with the correct pat
 import { Table, Button } from '@radix-ui/themes';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import '@radix-ui/themes/styles.css';
+import { CreateRelease } from './CreateRelease';
 
 const ManageReleases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
@@ -38,7 +39,7 @@ const ManageReleases = () => {
     return (
       <div className="createRelease">
         <button className="inline-block bg-green-600 rounded-md px-2 py-1 text-slg my-2 shadow-md">
-          <Link to={`/create-release}`}>Create New Release</Link>
+          <Link to={`/create-release}`}  element={<CreateRelease />}>Create New Release</Link>
           </button>
       <div className="publishedReleases">
         <h1 className="text-2xl font-bold mb-4">Published Releases</h1>
