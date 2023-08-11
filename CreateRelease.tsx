@@ -66,7 +66,6 @@ const CreateRelease = () => {
                       <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
                         {/* Add the appropriate onSelect functions for each menu item */}
                         <DropdownMenu.Item className="DropdownMenuItem">Edit</DropdownMenu.Item>
-                        <DropdownMenu.Item className="DropdownMenuItem">Duplicate</DropdownMenu.Item>
                         <DropdownMenu.Item className="DropdownMenuItem">Archive</DropdownMenu.Item>
                         <DropdownMenu.Item className="DropdownMenuItem" color="red">Delete</DropdownMenu.Item>
                       </DropdownMenu.Content>
