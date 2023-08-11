@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// Import all components
-import * as Components from '../components';
+// Import your components
+import Artists from './Artists';
+import Publishers from './Publishers';
+import Labels from './Labels';
+import Releases from './Releases';
+import Tracks from './Tracks';
+import Events from './Events';
+import Venues from './Venues';
+import Marketplace from './Marketplace';
+import Dashboard from './Dashboard';
+
 
 type SidebarItem = {
   title: string;
