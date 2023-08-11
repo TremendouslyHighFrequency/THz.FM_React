@@ -7,7 +7,7 @@ import { Table, Button } from '@radix-ui/themes';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import '@radix-ui/themes/styles.css';
 
-const CreateRelease = () => {
+const ManageReleases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
 
@@ -96,4 +96,4 @@ const CreateRelease = () => {
   return null;
 };
 
-export default CreateRelease;
+export default ManageReleases;

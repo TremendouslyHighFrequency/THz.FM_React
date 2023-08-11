@@ -39,7 +39,7 @@ import Artist from './components/Artist';
 import Event from './components/Event';
 import Venue from './components/Venue';
 import Single from './components/Single';
-import CreateRelease from './CreateRelease';
+import ManageReleases from './ManageReleases';
 import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
@@ -98,8 +98,8 @@ function App() {
                     {navItems.map(item => (
                       <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
                     ))}
-                    <Route path="/create-release" />
-                    <Route path="/manage-releases" element={<CreateRelease />} />
+                    <Route path="/create-release" element={<CreateRelease />}/>
+                    <Route path="/manage-releases" element={<ManageReleases />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/collection" element={<Collection />} />
