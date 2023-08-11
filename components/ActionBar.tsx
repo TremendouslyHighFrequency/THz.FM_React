@@ -10,30 +10,14 @@ const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 export const ActionBar = () => {
   const [checkedSelection, setCheckedSelection] = useState([CHECK_ITEMS[1]]);
   const [loggedUser, setLoggedUser] = useState(null);
-  const [radioSelection, setRadioSelection] = useState(null);
-
-  useEffect(() => {
-    // Fetch the logged user
-    getLoggedUser().then(user => {
-      setLoggedUser(user);
-    });
-  }, []);
-
   const { data: labels, error, isValidating } = useFrappeGetDocList('Label', {
-    fields: ["title"],
-    filters: loggedUser ? { "owner": loggedUser } : null, // Filter by the owner
+    fields: ["title", "owner"],
     limit: 50,
     orderBy: {
       field: "creation",
       order: 'desc'
     }
   });
-
-  useEffect(() => {
-    if (labels && labels.length > 0) {
-      setRadioSelection(labels[2].title); // Setting default selection
-    }
-  }, [labels]);
 
   const RADIO_ITEMS = labels ? labels.map(label => label.title) : [];
 
