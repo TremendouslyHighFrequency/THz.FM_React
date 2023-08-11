@@ -233,41 +233,96 @@ body[data-theme='dark'] {
   padding-left: 1em;
 }
 .side-navContainer {
-  height: auto;
-  display: flex;
   position: fixed;
-}
-.side-nav {
+  top: 0;
+  left: 0;
+  height: 100%;
   list-style-type: none;
-  background-color: rgba(0, 0, 0, 0);
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, "helvetica neue", Arial, "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 21px;
-  list-style-image: none;
-  list-style-position: outside;
-  height: 55px;
-  margin-top: 6px;
-  margin-bottom: 4px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: left;
-  text-decoration: none;
-  text-decoration-line: none;
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
-  width: 143px;
-  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4; /* Gray background color */
+}
+
+.side-nav {
+  padding: 0;
+}
+
+.side-nav li {
+  position: relative;
+}
+
+.side-nav li a {
   display: block;
+  height: 5em;
+  width: 5em;
+  text-indent: -500em;
+  line-height: 5em;
+  text-align: center;
+  color: #5c5c5c; /* Gray color */
+  background: #f4f4f4; /* Gray background color */
+  position: relative;
+  border-bottom: 1px solid #e2e2e2; /* Gray border color */
+  transition: background 0.3s ease-in-out;
+}
+
+.side-nav li a:before {
+  font-family: FontAwesome;
+  speak: none;
+  text-indent: 0em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.4em;
+}
+
+/* You can add or modify these lines to match the icons you want to use */
+.side-nav li a.home:before {
+  content: "\f015";
+}
+
+.side-nav li a:hover {
+  background: #5c5c5c; /* Gray hover color */
+  color: #fff;
+}
+
+.side-nav li.current a,
+.side-nav li a.active {
+  background: #5e5e5e; /* Gray active color */
+  color: #fff;
+}
+
+.side-nav li a.active:after {
+  position: absolute;
+  left: 5em;
+  top: 0;
+  content: "";
+  border: 2.5em solid transparent;
+  border-left-color: #5c5c5c; /* Gray active color */
+  border-width: 2.5em 1em;
+}
+
+.side-nav li:after {
+  content: attr(title);
+  position: absolute;
+  left: 5em;
+  top: 0;
+  height: 5em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  background: #5c5c5c; /* Gray color */
+  padding: 2em;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.side-nav li:hover:after {
+  visibility: visible;
+  opacity: 1;
 }
 .side-nav[data-theme='dark'] {
   color: rgb(245, 245, 245);
