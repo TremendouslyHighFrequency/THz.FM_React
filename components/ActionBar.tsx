@@ -4,7 +4,7 @@ import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icon
 import './component_styles/ActionBar.css';
 
 const RADIO_ITEMS = ['Swamp Music', 'Terahertz', 'Ergo'];
-const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs'];
+const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 
 export const ActionBar = () => {
   const [checkedSelection, setCheckedSelection] = React.useState([CHECK_ITEMS[1]]);
@@ -62,7 +62,7 @@ export const ActionBar = () => {
             <Menubar.Item className="MenubarItem inset">
               Samples <div className="RightSlot">⌘ L</div>
             </Menubar.Item>
-            <Menubar.Item className="MenubarItem inset" disabled>
+            <Menubar.Item className="MenubarItem inset">
               Loops <div className="RightSlot">⇧ ⌘ L</div>
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
