@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
 import { getLoggedUser } from './components/api'; // Update with the correct path
-import { Table, DropdownMenu, Button } from '@radix-ui/themes';
+import { Table, Button } from '@radix-ui/themes';
+import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { CaretDownIcon } from '@radix-ui/react-icons'; // Import or replace this icon as per your UI library
 import '@radix-ui/themes/styles.css';
 
