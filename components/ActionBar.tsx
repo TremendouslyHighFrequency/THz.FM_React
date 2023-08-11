@@ -28,7 +28,7 @@ export const ActionBar = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">View</Menubar.Trigger>
+        <Menubar.Trigger className="MenubarTrigger">Workspace</Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
             className="MenubarContent"
