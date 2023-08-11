@@ -67,7 +67,7 @@ export const ActionBar = () => {
         <Menubar.Portal>
           <Menubar.Content className="MenubarContent" align="start" sideOffset={5} alignOffset={-3}>
             <Menubar.Item className="MenubarItem">
-              Create New Release <div className="RightSlot">⌘ G</div>
+              <Link to="/create-release">Create New Release <div className="RightSlot">⌘ G</div></Link>
             </Menubar.Item>
             <Menubar.Item className="MenubarItem">
               Manage Releases <div className="RightSlot">⌘ M</div>
