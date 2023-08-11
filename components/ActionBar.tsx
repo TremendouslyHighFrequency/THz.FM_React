@@ -57,15 +57,15 @@ export const ActionBar = () => {
             ))}
             <Menubar.Separator className="MenubarSeparator" />
             <Menubar.Item className="MenubarItem inset">
-              Reload <div className="RightSlot">⌘ R</div>
+              Samples <div className="RightSlot">⌘ L</div>
             </Menubar.Item>
             <Menubar.Item className="MenubarItem inset" disabled>
-              Force Reload <div className="RightSlot">⇧ ⌘ R</div>
+              Loops <div className="RightSlot">⇧ ⌘ L</div>
             </Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Item className="MenubarItem inset">Toggle Fullscreen</Menubar.Item>
+            <Menubar.Item className="MenubarItem inset">DAW</Menubar.Item>
             <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Item className="MenubarItem inset">Hide Sidebar</Menubar.Item>
+            <Menubar.Item className="MenubarItem inset">P2P</Menubar.Item>
           </Menubar.Content>
         </Menubar.Portal>
       </Menubar.Menu>
