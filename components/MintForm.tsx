@@ -38,14 +38,14 @@ export const MintForm = () => {
       </p>
 
       <div className="workflow-section mb-4">
-        <h3 className="text-xl mb-2">Workflow:</h3>
-        <ol>
-          <li>1. Fill in the Title, Description, and Decimals.</li>
-          <li>2. Upload the audio file (master recording at the highest bitrate/resolution).</li>
-          <li>3. Click "Mint NFT" to create the master NFT.</li>
-          <li>4. Use the master NFT to create fungible tokens as needed.</li>
-        </ol>
-      </div>
+  <h3 className="text-xl mb-2">Workflow:</h3>
+  <ol>
+    <li>1. Fill in the Title, Description, and Decimals.</li>
+    <li>2. Upload the audio file (master recording at the highest bitrate/resolution).</li>
+    <li>3. Click "Create Distinct Digital Master" to generate the master DDM.</li>
+    <li>4. Use the master DDM to create Digital Distribution tokens as needed.</li>
+  </ol>
+</div>
 </div>
   <div className="mintForm">
       {loading && (
