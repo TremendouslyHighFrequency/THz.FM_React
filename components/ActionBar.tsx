@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as Menubar from '@radix-ui/react-menubar';
 import { CheckIcon, DotFilledIcon } from '@radix-ui/react-icons';
-import { useFrappeGetDocList } from 'frappe-react-sdk'; // Import the hook
+import { useFrappeGetDocList } from 'frappe-react-sdk';
 import './component_styles/ActionBar.css';
 import { getLoggedUser } from './api';
 
@@ -10,15 +10,17 @@ const CHECK_ITEMS = ['Show P2P Samples/Loops', 'Show Fiat Samples/Loops'];
 export const ActionBar = () => {
   const [checkedSelection, setCheckedSelection] = useState([CHECK_ITEMS[1]]);
   const [radioSelection, setRadioSelection] = useState(null);
-  useEffect(() => {
-    if (RADIO_ITEMS.length > 0) {
-      setRadioSelection(RADIO_ITEMS[0]);
-    }
-  }, [RADIO_ITEMS]);
-  
   const [loggedUser, setLoggedUser] = useState(null);
+
+  // Fetch the logged-in user
+  useEffect(() => {
+    getLoggedUser().then(user => setLoggedUser(user));
+  }, []);
+
+  // Fetch labels owned by the logged-in user
   const { data: labels, error, isValidating } = useFrappeGetDocList('Label', {
-    fields: ["title", "owner"],
+    fields: ["title"],
+    filters: loggedUser ? { "owner": loggedUser } : null, // Filter by the owner
     limit: 50,
     orderBy: {
       field: "creation",
@@ -27,6 +29,12 @@ export const ActionBar = () => {
   });
 
   const RADIO_ITEMS = labels ? labels.map(label => label.title) : [];
+
+  useEffect(() => {
+    if (RADIO_ITEMS.length > 0) {
+      setRadioSelection(RADIO_ITEMS[0]);
+    }
+  }, [RADIO_ITEMS]);
 
 
   return (
