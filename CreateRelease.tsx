@@ -23,7 +23,7 @@ const CreateRelease = () => {
     limit: 50,
     orderBy: {
       field: "release_id",
-      order: 'desc'
+      order: 'asc'
     }
   });
 
