@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import './component_styles/FooterPlayer.css';
 
-const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
+const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage }) => {
     return (
     <div className="footer-player">
       <div className="album-art">
@@ -25,7 +25,7 @@ const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
         </button>
       </div>
       <div className="progress-bar">
-        <div className="progress" style={{ width: '50%' }}></div>
+        <div className="progress" style={{ width: `${progressPercentage}%` }}></div>
       </div>
     </div>
   );

@@ -154,6 +154,16 @@ const updateLocalState = (newValue) => {
     setPlayingTrackIndex(prevTrackIndex);
   };
 
+  const progressPercentage = (currentTime / duration) * 100;
+
+  const currentTrack = playingTrackIndex !== null ? {
+    url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
+    name: data.release_tracks[playingTrackIndex].track_title,
+    artist: data.release_tracks[playingTrackIndex].track_artist,
+    album: data.title, // Assuming album title is in data.title
+    cover_art_url: data.release_artwork // Assuming cover art URL is in data.release_artwork
+  } : null;
+
   if (data) {
     return (
       <div>
@@ -197,7 +207,14 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
-
+ <FooterPlayer
+        track={currentTrack}
+        playing={playingTrackIndex !== null}
+        onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
+        onNext={onNext}
+        onPrev={onPrev}
+        progressPercentage={progressPercentage}
+      />
       </div>
     );
   }
