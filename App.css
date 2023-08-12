@@ -239,7 +239,7 @@ body[data-theme='dark'] {
   width: 6em;
   top: 0;
   left: 0;
-  height: 100%;
+  height: auto;
   margin: 0;
   margin-top: 72px;
   padding-top: 24px;
