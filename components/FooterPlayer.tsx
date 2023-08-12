@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import './component_styles/FooterPlayer.css';
 
-const FooterPlayer = ({ track, playing, togglePlayPause, onPrev, onNext, progressPercentage }) => {
+const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage }) => {
     return (
     <div className="footer-player">
       <div className="album-art">
@@ -17,7 +17,9 @@ const FooterPlayer = ({ track, playing, togglePlayPause, onPrev, onNext, progres
         <button className="control-button" onClick={onPrev}>
           <FaBackward />
         </button>
-        <button className="control-button" onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
+        <button className="control-button" onClick={onPlay}>
+          {playing ? <FaPause /> : <FaPlay />}
+        </button>
         <button className="control-button" onClick={onNext}>
           <FaForward />
         </button>
