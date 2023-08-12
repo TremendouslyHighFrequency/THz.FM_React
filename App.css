@@ -71,10 +71,7 @@ body[data-theme='dark'] {
   border-radius: 10px;
   cursor: pointer;
 }
-.signup-form {
-  color: var(--text-color);
-  background-color: var(--bg-color);
-}
+
 .uploadButton:hover {
   background-color: slateblue;
 }
@@ -121,14 +118,13 @@ body[data-theme='dark'] {
   margin-bottom: 10px;
 }
 .modal-content {
-  background-color: var(--bg-color);
+  background-color: white;
   text-align: center;
-  color: var(--text-color);
+  color: #000;
   border-radius: 10px;
   box-shadow: 0 10px 15px -3px rgba(0,0,0,.5), 0 4px 6px -2px rgba(0,0,0,.05);
   margin-right: 24px;
   margin-top: 24px;
-  max-width: 600px; 
 }
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
