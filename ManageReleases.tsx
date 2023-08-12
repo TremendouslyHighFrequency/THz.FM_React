@@ -28,9 +28,15 @@ const ManageReleases = () => {
       order: 'asc'
     }
   });
+
+  if (!loggedUser) {
+    return null; // Or you can return a loading state or another placeholder
+  }
+
   if (isValidating) {
     return <>Loading</>;
   }
+
   if (error) {
     return <>{JSON.stringify(error)}</>;
   }
