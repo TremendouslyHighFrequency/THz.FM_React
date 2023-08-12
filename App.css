@@ -71,7 +71,10 @@ body[data-theme='dark'] {
   border-radius: 10px;
   cursor: pointer;
 }
-
+.signup-form {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
 .uploadButton:hover {
   background-color: slateblue;
 }
