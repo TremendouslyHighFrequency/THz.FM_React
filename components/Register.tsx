@@ -42,7 +42,7 @@ export const Register = () => {
   };
 
 return (
-    <div className="mt-24 bg-gray-100 items-center relative h-screen">
+    <div className="mt-24 form-bg items-center relative h-screen">
       <div className="overlay absolute inset-0 z-0"></div>
       <div className="container px-4 mx-auto relative z-10">
         <div className="sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 mx-auto">

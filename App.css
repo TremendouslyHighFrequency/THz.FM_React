@@ -71,7 +71,17 @@ body[data-theme='dark'] {
   border-radius: 10px;
   cursor: pointer;
 }
+.form-bg {
+  background-color: var(--bg-color);
+}
 
+body[data-theme='light'] .form-bg {
+  --bg-color: #f2f2f2;
+}
+
+body[data-theme='dark'] .form-bg {
+  --bg-color: #263040;
+}
 .uploadButton:hover {
   background-color: slateblue;
 }
