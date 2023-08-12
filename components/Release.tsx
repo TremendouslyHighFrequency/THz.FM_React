@@ -113,7 +113,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-
+  const progressPercentage = (currentTime / duration) * 100;
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
@@ -205,7 +205,15 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
-      <FooterPlayer track={currentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />
+      <FooterPlayer
+  track={currentTrack}
+  playing={playingTrackIndex !== null}
+  onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
+  onNext={onNext}
+  onPrev={onPrev}
+  progressPercentage={progressPercentage}
+/>
+
       </div>
     );
   }
