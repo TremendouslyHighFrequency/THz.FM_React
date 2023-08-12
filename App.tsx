@@ -19,7 +19,7 @@ import './App.css';
 import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
-import FooterPlayer from './components/FooterPlayer';
+
 import { purchase as purchaseFn } from './components/purchase';
 import { TxContext } from './components/txContext.js';
 
@@ -53,22 +53,9 @@ function App() {
   const [txId, setTxId] = useState<string | null>(null); // Define the txId state and setTxId function here
   const [transactionConfirmed, setTransactionConfirmed] = useState(false);
   // Add state for the current track, current time, and duration
-  const [playingTrackIndex, setPlayingTrackIndex] = useState<number | null>(null);
-  const [currentTrack, setCurrentTrack] = useState<TrackItem | null>(null); // Assuming TrackItem is the correct type for currentTrack
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-
-  const onNext = () => {
-    const nextTrackIndex = playingTrackIndex < data.release_tracks.length - 1 ? playingTrackIndex + 1 : 0;
-    setPlayingTrackIndex(nextTrackIndex);
-  };
-  
-  const onPrev = () => {
-    const prevTrackIndex = playingTrackIndex > 0 ? playingTrackIndex - 1 : data.release_tracks.length - 1;
-    setPlayingTrackIndex(prevTrackIndex);
-  };
-
-  const progressPercentage = (currentTime / duration) * 100;
 
   useEffect(() => {
     getLoggedUser()
@@ -123,26 +110,14 @@ function App() {
                     <Route path="/us/blog" element={<Blog />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/roadmap" element={<Roadmap />} />
-                    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack}
-                  setCurrentTime={setCurrentTime}
-                  setDuration={setDuration}
-                  setPlayingTrackIndex={setPlayingTrackIndex} // Pass this prop if needed
-                  setTransaction={setTxId} 
-                  />} />
+                    <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
                   <div id="comment-container"></div>
                 </div>
               </div>
               <div className="footer">
               <FooterNav />
-              <FooterPlayer
-              track={currentTrack}
-              playing={playingTrackIndex !== null}
-              onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
-              onNext={onNext}
-              onPrev={onPrev}
-              progressPercentage={progressPercentage}
-            />
+              
               </div>
             </div>
 
