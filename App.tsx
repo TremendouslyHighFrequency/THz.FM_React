@@ -45,6 +45,7 @@ import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
 
+
 function App() {
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -114,17 +115,20 @@ function App() {
                   <div id="comment-container"></div>
                 </div>
               </div>
+              <div className="footer">
+              <FooterNav />
+              </div>
             </div>
 
-            <div className="App-footer">
+            {/* <div className="App-footer">
               <div className="footer">
                 <div>
                   <div className="footer-links">
-                    <FooterNav />
+                    <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </TxContext.Provider>
         </div>
       </Router>
