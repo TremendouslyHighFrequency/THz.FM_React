@@ -19,7 +19,7 @@ import './App.css';
 import { Notification, TrackItem } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
-
+import FooterPlayer from './components/FooterPlayer';
 import { purchase as purchaseFn } from './components/purchase';
 import { TxContext } from './components/txContext.js';
 
@@ -117,6 +117,14 @@ function App() {
               </div>
               <div className="footer">
               <FooterNav />
+              <FooterPlayer
+        track={currentTrack}
+        playing={playingTrackIndex !== null}
+        onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
+        onNext={onNext}
+        onPrev={onPrev}
+        progressPercentage={progressPercentage}
+      />
               </div>
             </div>
 

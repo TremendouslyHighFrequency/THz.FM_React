@@ -4,8 +4,6 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
-import FooterPlayer from './FooterPlayer';
-import ProgressBar from 'react-bootstrap/ProgressBar';
 import { purchase } from './payment';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
@@ -207,14 +205,7 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
- <FooterPlayer
-        track={currentTrack}
-        playing={playingTrackIndex !== null}
-        onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
-        onNext={onNext}
-        onPrev={onPrev}
-        progressPercentage={progressPercentage}
-      />
+
       </div>
     );
   }
