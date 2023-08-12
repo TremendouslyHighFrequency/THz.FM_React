@@ -115,10 +115,7 @@ function App() {
                   <div id="comment-container"></div>
                 </div>
               </div>
-              <div className="footer">
-              <FooterNav />
-              
-              </div>
+  
             </div>
 
             {/* <div className="App-footer">
