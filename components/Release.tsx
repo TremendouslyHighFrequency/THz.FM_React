@@ -88,9 +88,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
         <p>{track.track_title}</p>
       </div>
       <button onClick={onPrev}><FaBackward /></button>
-      <button className="control-button" onClick={onPlay}>
-          {playing ? <FaPause /> : <FaPlay />}
-        </button>
+      <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
       <button onClick={onNext}><FaForward /></button>
       <span id={`timer-${index}`}></span>
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
