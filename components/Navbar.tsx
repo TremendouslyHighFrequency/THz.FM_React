@@ -26,11 +26,11 @@ const client = new MeiliSearch({
 const index = client.index('releases')
 
 const LoginModal = ({ onSuccessfulLogin }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Define the useNavigate hook here
   const { login, error } = useFrappeAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const handleLogin = async () => {
     try {
       const user = await login(username, password);
@@ -41,8 +41,8 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     }
   };
 
-  const handleRegister = () => {
-    navigate('/register');
+  const handleRegister = () => { // Define the handleRegister function
+    navigate('/register'); // Redirect to the /register page
   };
 
   return (
@@ -53,55 +53,42 @@ const LoginModal = ({ onSuccessfulLogin }) => {
         </button>
       </Popover.Trigger>
       <Popover.Content>
-        <div className="modal-content">
-        <div className="w-full p-6 m-auto mx-auto rounded-lg shadow-md">
-          <div className="flex justify-center mx-auto">
-            <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
-          </div>
-          <form className="mt-6">
-            <div>
-              <label htmlFor="username" className="block text-sm text-gray-800">Phone / Email / Username</label>
-              <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="password" className="block text-sm text-gray-800">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div className="flex items-center justify-between mt-4">
-              <button onClick={handleLogin} className="w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
-                Sign In
-              </button>
-            </div>
-          {error && <p className="mt-4 text-xs text-red-600">{error.message}</p>}
-          </form>
-          <p className="mt-8 text-xs font-light text-center text-gray-400">
-            Don't have an account?{' '}
-            <a
-              href="#"
-              onClick={handleRegister}
-              className="font-medium text-gray-700 hover:underline cursor-pointer"
+        <div className="modal-content flex flex-col items-center" style={{ padding: '15px' }}>
+          <img className="modal-logo my-auto mb-12" src={ THZIcon } alt="THZ.FM" />
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            style={{ display: 'block', padding: '10px', marginBottom: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <button 
+              onClick={handleLogin}
+              style={{ marginRight: '10px', padding: '10px', backgroundColor: '#007BFF', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
             >
-              Create One
-            </a>
-          </p>
+              Login
+            </button>
+            <button 
+              // Add an event handler for registration if needed.
+              onClick={handleRegister} style={{ marginLeft: '10px', padding: '10px', backgroundColor: '#79cd7a', color: 'white', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+            >
+              Register
+            </button>
+          </div>
+          {error && <p style={{ color: '#FF0000', marginTop: '10px' }}>{error.message}</p>}
+          <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
         </div>
-        </div>
-        <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
       </Popover.Content>
     </Popover.Root>
   );
 };
-
 
 const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { currentUser, logout } = useFrappeAuth();

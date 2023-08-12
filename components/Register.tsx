@@ -42,7 +42,6 @@ export const Register = () => {
   };
 
 return (
-  <div className="signup-form">
     <div className="signup-1 mt-24 items-center relative h-screen">
       <div className="overlay absolute inset-0 z-0"></div>
       <div className="container px-4 mx-auto relative z-10">
@@ -77,7 +76,6 @@ return (
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
