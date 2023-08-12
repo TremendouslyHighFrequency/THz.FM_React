@@ -82,12 +82,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
                 Sign In
               </button>
             </div>
-            <div className="flex items-center justify-between mt-4">
-              <button onClick={handleRegister} className="w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
-                Register
-              </button>
-            </div>
-            {error && <p className="mt-4 text-xs text-red-600">{error.message}</p>}
+          {error && <p className="mt-4 text-xs text-red-600">{error.message}</p>}
           </form>
           <p className="mt-8 text-xs font-light text-center text-gray-400">
             Don't have an account?{' '}
