@@ -195,7 +195,7 @@ const updateLocalState = (newValue) => {
               ))}
           </div>
         </div>
-      <div className="credits">
+      <div className="credits mt-12">
       <p>Released On: {data.release_date}</p>
       <p>Publisher: {data.release_label}</p>
         <p>Credits:</p>
