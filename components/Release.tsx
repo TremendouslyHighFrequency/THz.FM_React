@@ -4,9 +4,9 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
+import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { purchase } from './payment';
-import  FooterPlayer from './FooterPlayer';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -138,6 +138,14 @@ const [localState, setLocalState] = useState(initialLocalState || '');
 // Call this function whenever you want to update localState and the URL
 const updateLocalState = (newValue) => {
   setLocalState(newValue);
+
+  const currentTrack = playingTrackIndex !== null ? {
+    url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
+    name: data.release_tracks[playingTrackIndex].track_title,
+    artist: data.release_tracks[playingTrackIndex].track_artist,
+    album: data.title, // Assuming album title is in data.title
+    cover_art_url: data.release_artwork // Assuming cover art URL is in data.release_artwork
+  } : null;
   
   // URL-encode newValue and put it in the URL
   const newUrl = `/releases/${name}?localState=${encodeURIComponent(newValue)}`;
@@ -155,14 +163,6 @@ const updateLocalState = (newValue) => {
   };
 
   if (data) {
-    const currentTrack = playingTrackIndex !== null ? {
-      url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
-      name: data.release_tracks[playingTrackIndex].track_title,
-      artist: data.release_tracks[playingTrackIndex].track_artist,
-      album: data.title, // Assuming album title is in data.title
-      cover_art_url: data.release_artwork // Assuming cover art URL is in data.release_artwork
-    } : null;
-  
     return (
       <div>
         {/* Display the data */}
@@ -206,14 +206,13 @@ const updateLocalState = (newValue) => {
               ))}
       </div>
       <FooterPlayer
-  track={currentTrack}
-  playing={playingTrackIndex !== null}
-  onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
-  onNext={onNext}
-  onPrev={onPrev}
-  progressPercentage={progressPercentage}
-/>
-
+        track={currentTrack}
+        playing={playingTrackIndex !== null}
+        onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
+        onNext={onNext}
+        onPrev={onPrev}
+        progressPercentage={progressPercentage}
+      />
       </div>
     );
   }
