@@ -54,7 +54,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       </Popover.Trigger>
       <Popover.Content>
         <div className="modal-content">
-        <div className="rounded-lg shadow-md">
+        <div className="w-full p-6 m-auto mx-auto rounded-lg shadow-md">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
           </div>
@@ -77,7 +77,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-            <div className="mt-6">
+            <div className="flex items-center justify-between mt-4">
               <button onClick={handleLogin} className="w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
                 Sign In
               </button>
