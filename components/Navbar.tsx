@@ -60,7 +60,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
           </div>
           <form className="mt-6">
             <div>
-              <label htmlFor="username" className="block text-sm text-gray-800">Username</label>
+              <label htmlFor="username" className="block text-sm text-gray-800">Phone / Email / Username</label>
               <input
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
