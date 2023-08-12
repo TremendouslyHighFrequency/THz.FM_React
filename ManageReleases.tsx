@@ -61,10 +61,10 @@ const ManageReleases = () => {
               </div>
             </div>
           </section>
-          <div className="releases-index">
-            <div className="manageList">
-              <Table.Root>
-                <Table.Header>
+          <div className="releases-index inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="manageList overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+              <Table.Root className="min-w-full divide-y divide-gray-200">
+                <Table.Header className="bg-gray-50">
                   <Table.Row className="px-12">
                     <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
