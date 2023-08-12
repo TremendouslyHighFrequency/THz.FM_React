@@ -241,10 +241,9 @@ body[data-theme='dark'] {
   left: 0;
   height: auto;
   margin: 0;
-  margin-top: 72px;
-  padding-top: 24px;
-  background: var(--bg-color); /* Using theme variable */
-  color: var(--text-color); /* Using theme variable */
+  margin-top: 96px;
+  background: #f4f4f4; /* Using theme variable */
+  color: #000000; /* Using theme variable */
 }
 .side-nav {
   padding: 0;
