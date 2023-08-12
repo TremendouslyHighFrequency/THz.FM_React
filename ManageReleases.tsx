@@ -116,7 +116,7 @@ const ManageReleases = () => {
         </div>
       </div>
     );
-  } else {
+  } if (data && Array.isArray(data) && data.length === 0) {
     return (
       <div className="flex items-center mt-6 text-center border rounded-lg h-96 dark:border-gray-700">
         <div className="flex flex-col w-full max-w-sm px-4 mx-auto">
