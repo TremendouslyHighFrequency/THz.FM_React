@@ -243,7 +243,6 @@ body[data-theme='dark'] {
   margin: 0;
   margin-left: 2em;
   margin-top: 96px;
-  background: #f4f4f4; /* Using theme variable */
   color: #000000; /* Using theme variable */
 }
 .side-nav {
