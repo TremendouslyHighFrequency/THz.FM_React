@@ -67,19 +67,19 @@ const ManageReleases = () => {
                     <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Catalog</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Release Date</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Unique ID</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Cover Art</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  {data.map(({ title, release_artist, release_id, name, release_label, release_date }, i) => (
+                  {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork }, i) => (
                     <Table.Row key={i}>
                       <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                       <Table.Cell>{release_artist}</Table.Cell>
                       <Table.Cell>{release_label}</Table.Cell>
                       <Table.Cell>{release_id}</Table.Cell>
                       <Table.Cell>{release_date}</Table.Cell>
-                      <Table.Cell>{name}</Table.Cell>
+                      <Table.Cell><img src={release_artwork} /></Table.Cell>
                       <Table.Cell>
                         <DropdownMenu.Root>
                           <DropdownMenu.Trigger asChild>
