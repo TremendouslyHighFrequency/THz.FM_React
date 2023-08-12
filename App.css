@@ -6,11 +6,11 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
 }
-body[data-theme='light'] .modal-content {
+body[data-theme='light'] {
   --text-color: #000;
   --bg-color: #f2f2f2;
 }
-body[data-theme='dark'] .modal-content {
+body[data-theme='dark'] {
   --text-color: #fff;
   --bg-color: #263040;
 }
