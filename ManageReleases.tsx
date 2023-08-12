@@ -138,7 +138,10 @@ const ManageReleases = () => {
           </div>
         </div>
       </div>
-    );
-  }
-};
-export default ManageReleases;
+      );
+    }
+  
+    return null;
+  };
+  
+  export default ManageReleases;
