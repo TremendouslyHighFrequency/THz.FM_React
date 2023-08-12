@@ -54,7 +54,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       </Popover.Trigger>
       <Popover.Content>
         <div className="modal-content">
-        <div className="w-full p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div className="rounded-lg shadow-md">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
           </div>
@@ -94,7 +94,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
             <a
               href="#"
               onClick={handleRegister}
-              className="font-medium text-gray-700 dark:text-gray-200 hover:underline cursor-pointer"
+              className="font-medium text-gray-700 hover:underline cursor-pointer"
             >
               Create One
             </a>
