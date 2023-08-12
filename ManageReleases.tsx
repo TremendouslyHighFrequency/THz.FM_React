@@ -79,7 +79,7 @@ const ManageReleases = () => {
                       <Table.Cell>{release_label}</Table.Cell>
                       <Table.Cell>{release_id}</Table.Cell>
                       <Table.Cell>{release_date}</Table.Cell>
-                      <Table.Cell><img src={release_artwork} /></Table.Cell>
+                      <Table.Cell><img width={96} height={96} src={release_artwork} /></Table.Cell>
                       <Table.Cell>
                         <DropdownMenu.Root>
                           <DropdownMenu.Trigger asChild>
