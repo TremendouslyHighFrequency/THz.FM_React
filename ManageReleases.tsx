@@ -61,7 +61,7 @@ const ManageReleases = () => {
             <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
               <Table.Root className="min-w-full divide-y divide-gray-200">
                 <Table.Header className="bg-gray-50">
-                  <Table.Row className="px-12">
+                  <Table.Row className="px-12 bg-gray-50">
                     <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
