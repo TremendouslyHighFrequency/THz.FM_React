@@ -109,7 +109,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-
+  const [togglePlayPause, setTogglePlayPause] = useState(false);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
@@ -210,6 +210,7 @@ const updateLocalState = (newValue) => {
         onNext={onNext}
         onPrev={onPrev}
         progressPercentage={progressPercentage}
+        togglePlayPause={togglePlayPause}
       />
       </div>
     );
