@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import './component_styles/FooterPlayer.css';
 
-const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
+export const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
   return (
     <div className="footer-player">
       <div className="album-art">
@@ -30,5 +30,3 @@ const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
     </div>
   );
 };
-
-export default FooterPlayer;
