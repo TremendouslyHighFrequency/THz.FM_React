@@ -60,6 +60,17 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
     };
   }, []);  // Empty dependency array so this useEffect only runs once
 
+  useEffect(() => {
+    if (playing) {
+      wavesurferRef.current.load(`https://thz.fm${track.attach_mp3}`)
+        .catch(error => console.error(`Error loading audio file: ${error}`));
+    }
+
+    return () => {
+      wavesurferRef.current && wavesurferRef.current.destroy();
+    };
+  }, [playing]); 
+
   // useEffect hook to update 'finish' event listener when onNext prop changes
   useEffect(() => {
     const handleFinish = () => {
@@ -109,7 +120,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-
+  const wavesurferRef = useRef(null);
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
@@ -150,6 +161,18 @@ const updateLocalState = (newValue) => {
     setPlayingTrackIndex(prevTrackIndex);
   };
 
+  const togglePlayPause = () => {
+    if (playingTrackIndex !== null) {
+      if (playing) {
+        wavesurferRef.current.pause();
+        setPlayingTrackIndex(null);
+      } else {
+        wavesurferRef.current.play();
+        setPlayingTrackIndex(playingTrackIndex);
+      }
+    }
+  };
+
   const progressPercentage = (currentTime / duration) * 100;
 
   const currentTrack = playingTrackIndex !== null ? {
@@ -186,6 +209,7 @@ const updateLocalState = (newValue) => {
                 tracktextColor={data.track_text_color}
                 progressColor={data.progress_color}
                 playing={index === playingTrackIndex}
+                togglePlayPause={togglePlayPause}
                 onPlay={() => setPlayingTrackIndex(index)}
                 onNext={onNext}
                 onPrev={onPrev}
@@ -210,6 +234,7 @@ const updateLocalState = (newValue) => {
         onNext={onNext}
         onPrev={onPrev}
         progressPercentage={progressPercentage}
+        togglePlayPause={togglePlayPause}
       />
       </div>
     );
