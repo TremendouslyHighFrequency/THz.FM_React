@@ -54,7 +54,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       </Popover.Trigger>
       <Popover.Content>
         <div className="modal-content">
-        <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div className="w-full p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
           </div>
