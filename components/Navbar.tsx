@@ -53,8 +53,8 @@ const LoginModal = ({ onSuccessfulLogin }) => {
         </button>
       </Popover.Trigger>
       <Popover.Content>
-        <div className="modal-content">
-        <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div className="modal-content" data-theme={theme}>
+        <div className="w-full max-w-sm p-6 m-auto mx-auto rounded-lg shadow-md">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
           </div>
@@ -65,7 +65,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-gray-700  border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mt-4">
@@ -74,11 +74,11 @@ const LoginModal = ({ onSuccessfulLogin }) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-gray-700  border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="flex items-center justify-between mt-4">
-              <button onClick={handleLogin} className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+              <button onClick={handleLogin} className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                 Sign In
               </button>
             </div>
@@ -89,7 +89,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
             <a
               href="#"
               onClick={handleRegister}
-              className="font-medium text-gray-700 dark:text-gray-200 hover:underline cursor-pointer"
+              className="font-medium text-gray-700 hover:underline cursor-pointer"
             >
               Create One
             </a>
