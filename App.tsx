@@ -120,15 +120,16 @@ function App() {
               </div>
             </div>
 
-            {/* <div className="App-footer">
+            <div className="App-footer">
               <div className="footer">
                 <div>
                   <div className="footer-links">
                     <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
+                    <FooterPlayer track={currentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
           </TxContext.Provider>
         </div>
       </Router>

@@ -205,7 +205,6 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
-      <FooterPlayer track={currentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />
       </div>
     );
   }
