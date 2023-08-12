@@ -43,9 +43,9 @@ export const Register = () => {
 
 return (
     <div className="mt-24 form-bg items-center relative h-screen">
-      <div className="overlay absolute inset-0 z-0"></div>
-      <div className="mx-4 mx-auto relative z-10">
-        <div className="sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 mx-auto">
+      <div className="overlay form-bg absolute inset-0 z-0"></div>
+      <div className="mx-4 mx-auto relative form-bg z-10">
+        <div className="sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 form-bg mx-auto">
           <div className="rounded-lg box bg-white p-6 md:px-12 md:pt-12 border-t-10 border-solid border-indigo-600 shadow-lg">
             <h2 className="text-3xl text-gray-800 text-center">Create Your Account</h2>
             <div className="signup-form mt-6 md:mt-12">
