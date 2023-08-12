@@ -3,7 +3,7 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import './component_styles/FooterPlayer.css';
 
 const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext }) => {
-  return (
+    return (
     <div className="footer-player">
       <div className="album-art">
         <img src={track?.cover_art_url} alt={track?.name} />
