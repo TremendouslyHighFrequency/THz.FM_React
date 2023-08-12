@@ -4,9 +4,9 @@ import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
-import FooterPlayer from './FooterPlayer.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { purchase } from './payment';
+import { FooterPlayer } from './FooterPlayer.tsx';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -155,6 +155,14 @@ const updateLocalState = (newValue) => {
   };
 
   if (data) {
+    const currentTrack = playingTrackIndex !== null ? {
+      url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
+      name: data.release_tracks[playingTrackIndex].track_title,
+      artist: data.release_tracks[playingTrackIndex].track_artist,
+      album: data.title, // Assuming album title is in data.title
+      cover_art_url: data.release_artwork // Assuming cover art URL is in data.release_artwork
+    } : null;
+  
     return (
       <div>
         {/* Display the data */}
@@ -197,7 +205,7 @@ const updateLocalState = (newValue) => {
                 <p key={index}>{credit.credit_type}: {credit.name__title}</p>
               ))}
       </div>
-
+      <FooterPlayer track={currentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />
       </div>
     );
   }
