@@ -40,7 +40,7 @@ const ManageReleases = () => {
   if (error) {
     return <>{JSON.stringify(error)}</>;
   }
-  if (data && Array.isArray(data)) {
+  if (data && Array.isArray(data) && data.length > 0) {
     return (
       <div className="createRelease">
         <div className="publishedReleases">
