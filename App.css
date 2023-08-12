@@ -243,8 +243,8 @@ body[data-theme='dark'] {
   margin-left: 2em;
   margin-top: 96px;
   backdrop-filter: blur(7px);
-  background-color: rgba(var(--bg-color), 0.5); /* Added opacity */
   color: var(--text-color);
+  background-color: var(--bg-color);
   box-shadow: 0 2px 4px -2px rgba(0,0,0,.5), 0 1px 2px -2px rgba(0,0,0,.05);
 }
 .side-nav {
@@ -273,7 +273,7 @@ body[data-theme='dark'] {
 
 .side-nav li.current a,
 .side-nav li a.active {
-  background-color: rgba(249, 250, 251, 0.5);
+    background-color: rgba(249, 250, 251, 0.5);
   backdrop-filter: blur(7px);
 }
 
