@@ -44,7 +44,6 @@ import CreateRelease from './components/CreateRelease';
 import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
-import FooterPlayer from './components/FooterPlayer';
 
 function App() {
 
@@ -122,7 +121,6 @@ function App() {
                 <div>
                   <div className="footer-links">
                     <FooterNav />
-                    <FooterPlayer track={currentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} />
                   </div>
                 </div>
               </div>
