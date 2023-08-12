@@ -243,6 +243,7 @@ body[data-theme='dark'] {
   margin: 0;
   margin-left: 2em;
   margin-top: 96px;
+  background: #f4f4f4; /* Using theme variable */
   color: #000000; /* Using theme variable */
 }
 .side-nav {
@@ -258,8 +259,8 @@ body[data-theme='dark'] {
   padding: 0;
   border-bottom: 1px solid #5c5c5c; /* Gray border */
   text-align: center;
-  color: var(--text-color); /* Using theme variable */
-  background: var(--bg-color); /* Using theme variable */
+  color: #000000; /* Using theme variable */
+  background: #f4f4f4; /* Using theme variable */
   position: relative;
   transition: background 0.2s ease-in-out;
 }
