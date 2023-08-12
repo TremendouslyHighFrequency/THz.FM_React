@@ -53,6 +53,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
         </button>
       </Popover.Trigger>
       <Popover.Content>
+        <div className="modal-content">
         <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
@@ -93,6 +94,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
               Create One
             </a>
           </p>
+        </div>
         </div>
         <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
       </Popover.Content>
