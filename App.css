@@ -135,11 +135,11 @@ body[data-theme='dark'] {
   margin-right: 24px;
   margin-top: 24px;
 }
-.modal-content[.dapp-button[data-theme='dark']] {
+.modal-content[data-theme='dark'] {
   background-color: #f2f2f2;
   color: #263040;
 }
-.modal-content[.dapp-button[data-theme='light']] {
+.modal-content[data-theme='light'] {
   background-color: #263040;
   color: #f2f2f2;
 }
