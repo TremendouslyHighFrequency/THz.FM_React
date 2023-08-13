@@ -212,8 +212,8 @@ const deleteSelectedTracks = () => {
           <thead className="bg-gray-50">
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
-              <th className="align-middle text-center border"> </th>
-              <th className="align-middle text-center border">Track Number</th>
+              <th className="align-middle text-center border w-4"> </th>
+              <th className="align-middle text-center border w-4">Track Number</th>
               <th className="align-middle text-center border">Title</th>
               <th className="align-middle text-center border">Artist</th>
               <th className="align-middle text-center border">Type</th>
