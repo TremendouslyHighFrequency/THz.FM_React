@@ -208,8 +208,8 @@ const deleteSelectedTracks = () => {
 
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50 rounded-t-md">
+        <table className="min-w-full divide-y divide-gray-200 rounded-md">
+          <thead className="bg-gray-50">
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
               <th className="align-middle text-center border"> </th>
@@ -223,9 +223,9 @@ const deleteSelectedTracks = () => {
               <th className="align-middle text-center border">Published</th>
             </tr>
           </thead>
-          <tbody className="rounded-b-md">
+          <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50">
+    <tr key={idx} className="bg-gray-50 rounded-b-md">
           <td className="border">
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
