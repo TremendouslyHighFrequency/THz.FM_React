@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
+import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRelease = () => {
   const [tracks, setTracks] = useState([]);
@@ -79,16 +80,26 @@ const handleSubmit = (e) => {
     release_tracks: formattedTracks
   };
 
-  useFrappeCreateDoc('Release', releaseData)
-    .then(doc => {
-      console.log("Successfully created release:", doc);
+    // Using the fetch API instead of the hook
+    fetch(`https://thz.fm/api/resource/Release`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(releaseData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Successfully created release:", data);
+      useNavigate('/manage-releases');
       // Consider resetting your component state here or redirecting the user
     })
     .catch(error => {
       console.error("Error creating release:", error);
       setFetchError(error.message);
     });
-};
+  };
 
 useEffect(() => {
   if (userArtists) {
