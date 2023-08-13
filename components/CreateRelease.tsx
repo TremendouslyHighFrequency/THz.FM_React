@@ -12,6 +12,8 @@ const CreateRelease = () => {
   const [loggedUser, setLoggedUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const [releaseGenres, setReleaseGenres] = useState([]); // State variable for 'Release Genres'
+  const [releaseCredits, setReleaseCredits] = useState([]); // State variable for 'Release Credits'
 
   // Fetch the logged-in user
   useEffect(() => {
@@ -126,6 +128,24 @@ useEffect(() => {
       }
   }, [userLabels, error]);
 
+   // Fetch 'Release Genres' from Frappe
+   const { data: fetchedReleaseGenres, error: releaseGenreError } = useFrappeGetDocList('Release Genres', {
+    fields: ["name"],
+    limit: 50,
+    orderBy: {
+      field: "creation",
+      order: 'desc'
+    }
+  });
+
+  useEffect(() => {
+    if (fetchedReleaseGenres) {
+      setReleaseGenres(fetchedReleaseGenres.map(rg => rg.name));
+    } else if (releaseGenreError) {
+      setFetchError(releaseGenreError);
+    }
+  }, [fetchedReleaseGenres, releaseGenreError]);
+
   const addTrack = () => {
     // Adding a track object with auto-incremented track_number to the tracks array
     const newTrack = { track_number: tracks.length + 1 };
@@ -179,6 +199,14 @@ const deleteSelectedTracks = () => {
             ))}
           </select>
         </div>
+        <div>
+        <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
+        <select id="release_genre" className="block w-full px-4 py-2 mt-2">
+          {releaseGenres.map(genre => (
+            <option key={genre} value={genre}>{genre}</option>
+          ))}
+        </select>
+      </div>
         <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
             <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
@@ -295,6 +323,29 @@ const deleteSelectedTracks = () => {
           <button type="button" onClick={deleteSelectedTracks} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Tracks</button>
         }
       </div>
+
+
+ {/* Release Credits Table */}
+ <h2 className="mt-4">Release Credits</h2>
+      <table className="min-w-full divide-y divide-gray-200 rounded-md">
+        <thead className="bg-gray-50">
+          <tr>
+            {/* Add the appropriate headers for your Release Credits fields */}
+            <th className="align-middle text-center border">Credit Name</th>
+            {/* ... other headers ... */}
+          </tr>
+        </thead>
+        <tbody>
+          {releaseCredits.map((credit, idx) => (
+            <tr key={idx} className="bg-gray-50">
+              {/* Render the appropriate fields for your Release Credits */}
+              <td className="border">{credit.name}</td>
+              {/* ... other fields ... */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
         {/* Submit Button */}
         <div className="flex justify-end mt-6">
           <button onClick={handleSubmit} className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
