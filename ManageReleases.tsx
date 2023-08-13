@@ -80,9 +80,9 @@ const ManageReleases = () => {
                       <Table.Cell className="align-middle text-center">{release_label}</Table.Cell>
                       <Table.Cell className="align-middle text-center">  
                         {published ? 
-                       <Badge className="px-2 py-1 rounded-sm" color="green">Published</Badge> 
+                       <span className="px-2 py-1 rounded-sm bg-green-300 text-green-900">Published</span> 
                         : 
-                        <Badge className="px-2 py-1 rounded-sm" color="orange">Draft</Badge>
+                        <span className="px-2 py-1 rounded-sm bg-orange-300 text-orange-900">Draft</span>
                         }
                         </Table.Cell>
                       <Table.Cell className="align-middle text-center">{release_id}</Table.Cell>
