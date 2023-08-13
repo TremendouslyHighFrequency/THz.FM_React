@@ -178,20 +178,20 @@ const deleteSelectedTracks = () => {
 };
 
 
-  return (
-    <div className="releaseForm">
-      <form>
-        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-          {/* Release Main Details */}
-          <div>
-            <label className=" text-gray-700" htmlFor="title">Title</label>
-            <input id="title" type="text" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_id">Release ID</label>
-            <input id="release_id" type="text" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
+return (
+  <div className="releaseForm">
+    <form>
+      <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        {/* Release Main Details */}
+        <div>
+          <label className=" text-gray-700" htmlFor="title">Title</label>
+          <input id="title" type="text" className="block w-full px-4 py-2 mt-2" />
+        </div>
+        <div>
+          <label className=" text-gray-700" htmlFor="release_id">Release ID</label>
+          <input id="release_id" type="text" className="block w-full px-4 py-2 mt-2" />
+        </div>
+        <div>
           <label className=" text-gray-700" htmlFor="release_artist">Release Artist</label>
           <select id="release_artist" className="block w-full px-4 py-2 mt-2">
             {artists.map(artist => (
@@ -216,53 +216,56 @@ const deleteSelectedTracks = () => {
           </select>
         </div>
         <div>
-  <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
-  <input
-    id="release_genre"
-    className="block w-full px-4 py-2 mt-2"
-    value={genreInput}
-    onChange={(e) => setGenreInput(e.target.value)}
-    autoComplete="off"
-  />
-  {filteredGenres.length > 0 && (
-    <div className="relative">
-      <div className="absolute top-full left-0 z-10 w-full bg-white border border-gray-200 rounded-md shadow-lg">
-        {filteredGenres.slice(0, 10).map((genre, index) => (
- <div
- key={index}
- className="cursor-pointer hover:bg-gray-200 p-2"
- onClick={() => {
-   if (selectedGenres.length < 10 && !selectedGenres.includes(genre)) {
-     setSelectedGenres([...selectedGenres, genre]);
-   }
-   setGenreInput('');
-   setFilteredGenres([]);
- }}
->
- {genre}
-</div>
-<div className="mt-2">
-  {selectedGenres.map((genre, idx) => (
-    <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
-      {genre}
-      <button
-        className="ml-2 text-sm"
-        onClick={() => {
-          const newSelected = [...selectedGenres];
-          newSelected.splice(idx, 1);
-          setSelectedGenres(newSelected);
-        }}
-      >
-        ×
-      </button>
-    </span>
-  ))}
-</div>
-        ))}
+          <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
+          <input
+            id="release_genre"
+            className="block w-full px-4 py-2 mt-2"
+            value={genreInput}
+            onChange={(e) => setGenreInput(e.target.value)}
+            autoComplete="off"
+          />
+          {filteredGenres.length > 0 && (
+            <div className="relative">
+              <div className="absolute top-full left-0 z-10 w-full bg-white border border-gray-200 rounded-md shadow-lg">
+                {filteredGenres.slice(0, 10).map((genre, index) => (
+                  <div
+                    key={index}
+                    className="cursor-pointer hover:bg-gray-200 p-2"
+                    onClick={() => {
+                      if (selectedGenres.length < 10 && !selectedGenres.includes(genre)) {
+                        setSelectedGenres([...selectedGenres, genre]);
+                      }
+                      setGenreInput('');
+                      setFilteredGenres([]);
+                    }}
+                  >
+                    {genre}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="mt-2">
+            {selectedGenres.map((genre, idx) => (
+              <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
+                {genre}
+                <button
+                  className="ml-2 text-sm"
+                  onClick={() => {
+                    const newSelected = [...selectedGenres];
+                    newSelected.splice(idx, 1);
+                    setSelectedGenres(newSelected);
+                  }}
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  )}
-</div>
+
+
         <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
             <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
