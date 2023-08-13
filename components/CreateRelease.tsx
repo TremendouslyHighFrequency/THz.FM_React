@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const CreateRelease = () => {
   const [tracks, setTracks] = useState([]);
+  const [selectedTracks, setSelectedTracks] = useState({});  
 
   const addTrack = () => {
     // Adding a track object with auto-incremented track_number to the tracks array
