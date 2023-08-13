@@ -68,14 +68,14 @@ const ManageReleases = () => {
                     <Table.ColumnHeaderCell className="align-middle text-center">Status</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Catalog</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Release Date</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell className="align-middle text-center">Cover Art</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Cover Art</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Action</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
                   {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork, published }, i) => (
                     <Table.Row key={i} className="bg-gray-50">
-                      <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
+                      <Table.RowHeaderCell className="align-middle text-center">{title}</Table.RowHeaderCell>
                       <Table.Cell className="align-middle text-center">{release_artist}</Table.Cell>
                       <Table.Cell className="align-middle text-center">{release_label}</Table.Cell>
                       <Table.Cell className="align-middle text-center">  
@@ -87,7 +87,7 @@ const ManageReleases = () => {
                         </Table.Cell>
                       <Table.Cell className="align-middle text-center">{release_id}</Table.Cell>
                       <Table.Cell className="align-middle text-center">{release_date}</Table.Cell>
-                      <Table.Cell className="align-middle text-center"><img width={96} height={96} src={release_artwork} /></Table.Cell>
+                      <Table.Cell><img width={96} height={96} src={release_artwork} /></Table.Cell>
                       <Table.Cell className="align-middle text-center">
                         <DropdownMenu.Root>
                           <DropdownMenu.Trigger asChild>
