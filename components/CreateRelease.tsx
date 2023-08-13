@@ -70,10 +70,9 @@ const CreateRelease = () => {
               <th className="border px-4 py-2">Track Number</th>
               <th className="border px-4 py-2">Artist</th>
               <th className="border px-4 py-2">Type</th>
-              <th className="border px-4 py-2">MP3</th>
+              <th className="border px-4 py-2">WAV File</th>
               <th className="border px-4 py-2">Price (USD)</th>
               <th className="border px-4 py-2">Price (ERG)</th>
-              <th className="border px-4 py-2">Route</th>
               <th className="border px-4 py-2">Published</th>
             </tr>
           </thead>
@@ -86,8 +85,7 @@ const CreateRelease = () => {
                 <td className="border px-4 py-2"><input type="text" /></td>
                 <td className="border px-4 py-2"><input type="file" /></td>
                 <td className="border px-4 py-2"><input type="number" step="0.01" /></td>
-                <td className="border px-4 py-2"><input type="number" step="0.01" /></td>
-                <td className="border px-4 py-2"><input type="text" /></td>
+                <td className="border px-4 py-2"><input type="float" step="0.0001" /></td>
                 <td className="border px-4 py-2"><input type="checkbox" /></td>
               </tr>
             ))}
