@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFrappeGetDocList, db } from 'frappe-react-sdk';
+import { useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
 
 const CreateRelease = () => {
