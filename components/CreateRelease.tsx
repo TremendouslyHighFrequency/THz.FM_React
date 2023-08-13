@@ -57,7 +57,7 @@ useEffect(() => {
   }
 
   if (userReleaseTypes) {
-    setReleaseTypes(userReleaseTypes.map(releaseType => releaseType.type));
+    setReleaseTypes(userReleaseTypes.map(releaseType => releaseType.name));
   } else if (releaseTypeError) {
     setFetchError(releaseTypeError);
   }
@@ -121,8 +121,8 @@ const deleteSelectedTracks = () => {
         <div>
           <label className="text-gray-700 dark:text-gray-200" htmlFor="release_type">Release Type</label>
           <select id="release_type" className="block w-full px-4 py-2 mt-2">
-            {releaseTypes.map(type => (
-              <option key={type} value={type}>{type}</option>
+            {releaseTypes.map(name => (
+              <option key={name} value={name}>{name}</option>
             ))}
           </select>
         </div>
