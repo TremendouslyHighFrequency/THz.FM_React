@@ -212,20 +212,20 @@ const deleteSelectedTracks = () => {
           <thead className="bg-gray-50">
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
-              <th className="align-middle text-center border w-2"> </th>
+              <th className="align-middle text-center border w-4"> </th>
               <th className="align-middle text-center border w-4">Track Number</th>
-              <th className="align-middle text-center border w-10">Title</th>
-              <th className="align-middle text-center border w-10">Artist</th>
-              <th className="align-middle text-center border w-10">Type</th>
-              <th className="align-middle text-center border w-10">WAV File</th>
-              <th className="align-middle text-center border w-6">Price (USD)</th>
-              <th className="align-middle text-center border w-6">Price (ERG)</th>
-              <th className="align-middle text-center border w-2">Published</th>
+              <th className="align-middle text-center border">Title</th>
+              <th className="align-middle text-center border">Artist</th>
+              <th className="align-middle text-center border">Type</th>
+              <th className="align-middle text-center border">WAV File</th>
+              <th className="align-middle text-center border">Price (USD)</th>
+              <th className="align-middle text-center border">Price (ERG)</th>
+              <th className="align-middle text-center border w-4">Published</th>
             </tr>
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50 w-">
+    <tr key={idx} className="bg-gray-50 w-4">
           <td className="border">
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
@@ -237,48 +237,48 @@ const deleteSelectedTracks = () => {
         }} />
       </td>
       <td className="border">
-        <input className="bg-gray-50 w-10" type="text" name="title" value={track.title || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="title" value={track.title || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].title = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-        <input className="bg-gray-50 w-10" type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_artist = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-        <input className="bg-gray-50 w-10" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_type = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-    <input className="bg-gray-50 w-10" type="file" name="attach_wav" onChange={(e) => {
+    <input className="bg-gray-50" type="file" name="attach_wav" onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].attach_wav = e.target.files[0]; // Adjusted for file input
         setTracks(newTracks);
     }} />
 </td>
-      <td className="border w-6">
+      <td className="border">
         <input className="bg-gray-50" type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_usd = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border w-6">
+      <td className="border">
     <input className="bg-gray-50" type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].price_erg = e.target.value;
         setTracks(newTracks);
     }} />
 </td>
-      <td className="border w-2">
+      <td className="border w-4">
         <input className="bg-gray-50" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].published = e.target.checked ? "1" : "0";
