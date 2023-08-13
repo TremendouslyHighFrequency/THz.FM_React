@@ -216,31 +216,6 @@ return (
             ))}
           </select>
         </div>
-
-        <div>
-            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
-            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
-            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
-            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
-            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
-        </div>
         <div>
           <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
           <input
@@ -292,7 +267,32 @@ return (
       </div>
 
 
-
+        <div>
+            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
+            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
+        </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
+            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
+            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
+            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
+            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
+            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          {/* ... Additional fields ... */}
+        </div>
 
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
@@ -392,9 +392,6 @@ return (
           <tr>
             {/* Add the appropriate headers for your Release Credits fields */}
             <th className="align-middle text-center border">Credit Name</th>
-            <th className="align-middle text-center border">Credit Type</th>
-            <th className="align-middle text-center border">Credited On</th>
-
             {/* ... other headers ... */}
           </tr>
         </thead>
@@ -402,9 +399,7 @@ return (
           {releaseCredits.map((credit, idx) => (
             <tr key={idx} className="bg-gray-50">
               {/* Render the appropriate fields for your Release Credits */}
-              <td className="border">{credit.name__title}</td>
-              <td className="border">{credit.credit_type}</td>
-              <td className="border">{credit.track_if_applicable}</td>
+              <td className="border">{credit.name}</td>
               {/* ... other fields ... */}
             </tr>
           ))}
