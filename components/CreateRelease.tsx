@@ -237,7 +237,10 @@ return (
             <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
             <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
           </div>
-
+          <div>
+            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
+            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
+        </div>
         <div>
           <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
           <input
@@ -289,12 +292,7 @@ return (
       </div>
 
 
-        <div>
-            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
-            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
-          
-          {/* ... Additional fields ... */}
-        </div>
+
 
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
