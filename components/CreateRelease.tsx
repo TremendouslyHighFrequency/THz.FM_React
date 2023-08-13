@@ -208,7 +208,7 @@ const deleteSelectedTracks = () => {
 
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="min-w-full divide-y divide-gray-200 rounded-md">
           <thead className="bg-gray-50">
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
@@ -230,56 +230,56 @@ const deleteSelectedTracks = () => {
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
       <td className="border">
-        <input type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_number = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-        <input type="text" name="title" value={track.title || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="title" value={track.title || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].title = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-        <input type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_artist = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-        <input type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
+        <input className="bg-gray-50" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_type = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-    <input type="file" name="attach_wav" onChange={(e) => {
+    <input className="bg-gray-50" type="file" name="attach_wav" onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].attach_wav = e.target.files[0]; // Adjusted for file input
         setTracks(newTracks);
     }} />
 </td>
       <td className="border">
-        <input type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
+        <input className="bg-gray-50" type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_usd = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-    <input type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
+    <input className="bg-gray-50" type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].price_erg = e.target.value;
         setTracks(newTracks);
     }} />
 </td>
       <td className="border">
-        <input type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
+        <input className="bg-gray-50" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].published = e.target.checked ? "1" : "0";
           setTracks(newTracks);
