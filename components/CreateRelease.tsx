@@ -77,6 +77,7 @@ const deleteSelectedTracks = () => {
           <thead>
             <tr>
               {/* Table headers based on track fields */}
+              <th className="border"> </th>
               <th className="border">Track Number</th>
               <th className="border">Title</th>
               <th className="border">Artist</th>
@@ -85,12 +86,14 @@ const deleteSelectedTracks = () => {
               <th className="border">Price (USD)</th>
               <th className="border">Price (ERG)</th>
               <th className="border">Published</th>
-              <th className="border">Delete</th>
             </tr>
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
     <tr key={idx}>
+          <td className="border">
+                <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
+              </td>
       <td className="border">
         <input type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
@@ -147,9 +150,6 @@ const deleteSelectedTracks = () => {
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border">
-                <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
-              </td>
     </tr>
   ))}
 </tbody>
