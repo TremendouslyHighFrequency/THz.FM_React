@@ -14,7 +14,7 @@ const CreateRelease = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [releaseGenres, setReleaseGenres] = useState([]); // State variable for 'Release Genres'
-  const [credits, setReleaseCredits] = useState([]); // State variable for 'Release Credits'
+  const [credits, setCredits] = useState([]); // State variable for 'Release Credits'
   const [selectedCredits, setSelectedCredits] = useState({});
   const [genreInput, setGenreInput] = useState(''); // What user types
   const [filteredGenres, setFilteredGenres] = useState([]); // Filtered results based on input
