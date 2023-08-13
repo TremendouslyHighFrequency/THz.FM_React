@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types'; // Define the ReleaseItem type according to the Release document structure
 import { getLoggedUser } from './components/api'; // Update with the correct path
-import { Table, Button } from '@radix-ui/themes';
+import { Table, Button, Badge } from '@radix-ui/themes';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import '@radix-ui/themes/styles.css';
 import { CreateRelease } from './components/CreateRelease';
@@ -19,7 +19,7 @@ const ManageReleases = () => {
   }, []);
 
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
-    fields: ["title", "release_artist", "release_artwork", "name", "release_id", "release_label", "release_date"],
+    fields: ["title", "release_artist", "release_artwork", "name", "release_id", "release_label", "release_date", "published"],
     filters: loggedUser ? { "owner": loggedUser } : {},
     limit_start: pageIndex,
     limit: 50,
@@ -64,6 +64,7 @@ const ManageReleases = () => {
                   <Table.Row className="px-12 bg-gray-50">
                     <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Published</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Catalog</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Release Date</Table.ColumnHeaderCell>
@@ -72,10 +73,17 @@ const ManageReleases = () => {
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork }, i) => (
+                  {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork, published }, i) => (
                     <Table.Row key={i}>
                       <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                       <Table.Cell>{release_artist}</Table.Cell>
+                      <Table.Cell>  
+                        {published ? 
+                       <Badge color="green">Published</Badge> 
+                        : 
+                        <Badge color="orange">Draft</Badge>
+                        }
+                        </Table.Cell>
                       <Table.Cell>{release_label}</Table.Cell>
                       <Table.Cell>{release_id}</Table.Cell>
                       <Table.Cell>{release_date}</Table.Cell>
