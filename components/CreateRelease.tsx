@@ -287,7 +287,6 @@ return (
         </button>
     </span>
 ))}
-          </div>
         </div>
         </div>
 
