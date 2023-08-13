@@ -66,8 +66,8 @@ const CreateRelease = () => {
           <thead>
             <tr>
               {/* Table headers based on track fields */}
-              <th className="border px-4 py-2">Title</th>
               <th className="border px-4 py-2">Track Number</th>
+              <th className="border px-4 py-2">Title</th>
               <th className="border px-4 py-2">Artist</th>
               <th className="border px-4 py-2">Type</th>
               <th className="border px-4 py-2">WAV File</th>
@@ -77,19 +77,70 @@ const CreateRelease = () => {
             </tr>
           </thead>
           <tbody>
-            {tracks.map((_, idx) => (
-              <tr key={idx}>
-                <td className="border px-4 py-2"><input type="text" /></td>
-                <td className="border px-4 py-2"><input type="number" /></td>
-                <td className="border px-4 py-2"><input type="text" /></td>
-                <td className="border px-4 py-2"><input type="text" /></td>
-                <td className="border px-4 py-2"><input type="file" /></td>
-                <td className="border px-4 py-2"><input type="number" step="0.01" /></td>
-                <td className="border px-4 py-2"><input type="float" step="0.0001" /></td>
-                <td className="border px-4 py-2"><input type="checkbox" /></td>
-              </tr>
-            ))}
-          </tbody>
+  {tracks.map((track, idx) => (
+    <tr key={idx}>
+      <td className="border px-4 py-2">
+        <input type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].track_number = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="text" name="title" value={track.title || ''} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].title = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].track_artist = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].track_type = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="file" name="attach_wav" value={track.attach_wav || ''} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].track_type = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="file" name="attach_mp3" />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].price_usd = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="float" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].price_erg = e.target.value;
+          setTracks(newTracks);
+        }} />
+      </td>
+      <td className="border px-4 py-2">
+        <input type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
+          let newTracks = [...tracks];
+          newTracks[idx].published = e.target.checked ? "1" : "0";
+          setTracks(newTracks);
+        }} />
+      </td>
+    </tr>
+  ))}
+</tbody>
         </table>
         <button type="button" onClick={addTrack} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Add Track</button>
 
