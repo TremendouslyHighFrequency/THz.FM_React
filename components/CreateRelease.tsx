@@ -3,6 +3,7 @@ import { useFrappeGetDocList, useFrappeFileUpload } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
 import { useNavigate } from 'react-router-dom';
 
+
 const CreateRelease = () => {
   const [tracks, setTracks] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState({});
@@ -14,6 +15,10 @@ const CreateRelease = () => {
   const [fetchError, setFetchError] = useState(null);
   const [releaseGenres, setReleaseGenres] = useState([]); // State variable for 'Release Genres'
   const [releaseCredits, setReleaseCredits] = useState([]); // State variable for 'Release Credits'
+  const [genreInput, setGenreInput] = useState(''); // What user types
+  const [filteredGenres, setFilteredGenres] = useState([]); // Filtered results based on input
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch the logged-in user
   useEffect(() => {
@@ -94,7 +99,7 @@ const handleSubmit = (e) => {
     .then(response => response.json())
     .then(data => {
       console.log("Successfully created release:", data);
-      useNavigate('/manage-releases');
+      navigate('/manage-releases');
       // Consider resetting your component state here or redirecting the user
     })
     .catch(error => {
@@ -129,9 +134,8 @@ useEffect(() => {
   }, [userLabels, error]);
 
    // Fetch 'Release Genres' from Frappe
-   const { data: fetchedReleaseGenres, error: releaseGenreError } = useFrappeGetDocList('Release Genres', {
+   const { data: fetchedReleaseGenres, error: releaseGenreError } = useFrappeGetDocList('Genre List', {
     fields: ["name"],
-    limit: 50,
     orderBy: {
       field: "creation",
       order: 'desc'
@@ -145,6 +149,18 @@ useEffect(() => {
       setFetchError(releaseGenreError);
     }
   }, [fetchedReleaseGenres, releaseGenreError]);
+
+  useEffect(() => {
+    if (genreInput) {
+      const lowerCaseInput = genreInput.toLowerCase();
+      const filtered = releaseGenres.filter(genre =>
+        genre.toLowerCase().includes(lowerCaseInput) && !selectedGenres.includes(genre)
+      );
+      setFilteredGenres(filtered);
+    } else {
+      setFilteredGenres([]);
+    }
+  }, [genreInput, releaseGenres, selectedGenres]);
 
   const addTrack = () => {
     // Adding a track object with auto-incremented track_number to the tracks array
@@ -200,13 +216,53 @@ const deleteSelectedTracks = () => {
           </select>
         </div>
         <div>
-        <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
-        <select id="release_genre" className="block w-full px-4 py-2 mt-2">
-          {releaseGenres.map(genre => (
-            <option key={genre} value={genre}>{genre}</option>
-          ))}
-        </select>
+  <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
+  <input
+    id="release_genre"
+    className="block w-full px-4 py-2 mt-2"
+    value={genreInput}
+    onChange={(e) => setGenreInput(e.target.value)}
+    autoComplete="off"
+  />
+  {filteredGenres.length > 0 && (
+    <div className="relative">
+      <div className="absolute top-full left-0 z-10 w-full bg-white border border-gray-200 rounded-md shadow-lg">
+        {filteredGenres.slice(0, 10).map((genre, index) => (
+ <div
+ key={index}
+ className="cursor-pointer hover:bg-gray-200 p-2"
+ onClick={() => {
+   if (selectedGenres.length < 10 && !selectedGenres.includes(genre)) {
+     setSelectedGenres([...selectedGenres, genre]);
+   }
+   setGenreInput('');
+   setFilteredGenres([]);
+ }}
+>
+ {genre}
+</div>
+<div className="mt-2">
+  {selectedGenres.map((genre, idx) => (
+    <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
+      {genre}
+      <button
+        className="ml-2 text-sm"
+        onClick={() => {
+          const newSelected = [...selectedGenres];
+          newSelected.splice(idx, 1);
+          setSelectedGenres(newSelected);
+        }}
+      >
+        ×
+      </button>
+    </span>
+  ))}
+</div>
+        ))}
       </div>
+    </div>
+  )}
+</div>
         <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
             <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
