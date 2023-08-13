@@ -225,11 +225,11 @@ const deleteSelectedTracks = () => {
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50 w-4">
-          <td className="border">
-                <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
+    <tr key={idx} className="bg-gray-50">
+          <td className="border w-4">
+                <input className="w-4" type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
-      <td className="border">
+      <td className="border w-4">
         <input className="bg-gray-50 w-4" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_number = e.target.value;
@@ -279,7 +279,7 @@ const deleteSelectedTracks = () => {
     }} />
 </td>
       <td className="border w-4">
-        <input className="bg-gray-50" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
+        <input className="bg-gray-50 w-4" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].published = e.target.checked ? "1" : "0";
           setTracks(newTracks);
