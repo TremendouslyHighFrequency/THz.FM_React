@@ -115,9 +115,6 @@ const CreateRelease = () => {
         }} />
       </td>
       <td className="border px-4 py-2">
-        <input type="file" name="attach_mp3" />
-      </td>
-      <td className="border px-4 py-2">
         <input type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_usd = e.target.value;
