@@ -225,12 +225,12 @@ const deleteSelectedTracks = () => {
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50">
+    <tr key={idx} className="bg-gray-50 w-4">
           <td className="border">
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
       <td className="border">
-        <input className="bg-gray-50" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
+        <input className="bg-gray-50 w-4" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_number = e.target.value;
           setTracks(newTracks);
