@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
 
-const createDoc = useFrappeCreateDoc();
-
 const CreateRelease = () => {
   const [tracks, setTracks] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState({});
@@ -81,7 +79,7 @@ const handleSubmit = (e) => {
     release_tracks: formattedTracks
   };
 
-  createDoc('Release', releaseData)
+  useFrappeCreateDoc('Release', releaseData)
     .then(doc => {
       console.log("Successfully created release:", doc);
       // Consider resetting your component state here or redirecting the user
