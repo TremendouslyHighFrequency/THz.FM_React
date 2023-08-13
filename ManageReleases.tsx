@@ -74,7 +74,7 @@ const ManageReleases = () => {
                 </Table.Header>
                 <Table.Body>
                   {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork, published }, i) => (
-                    <Table.Row key={i}>
+                    <Table.Row key={i} className="bg-gray-50">
                       <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                       <Table.Cell>{release_artist}</Table.Cell>
                       <Table.Cell>{release_label}</Table.Cell>
