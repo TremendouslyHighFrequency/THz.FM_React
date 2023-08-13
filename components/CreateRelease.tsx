@@ -1,6 +1,6 @@
 import React from 'react'; // This line can be omitted if you're using React version 17 or above.
 
-export const CreateRelease = () => {
+const CreateRelease = () => {
   return (
     <div className="content">
        <form>
@@ -33,3 +33,5 @@ export const CreateRelease = () => {
     </div>
   );
 };
+
+export default CreateRelease;
