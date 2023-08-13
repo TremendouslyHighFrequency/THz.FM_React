@@ -93,7 +93,7 @@ const deleteSelectedTracks = () => {
         </div>
             <label className="text-gray-700 dark:text-gray-200" htmlFor="release_artwork">Release Artwork URL</label>
             <input id="release_artwork" type="url" className="block w-full px-4 py-2 mt-2" />
-          </div>
+         
           <div>
             <label className="text-gray-700 dark:text-gray-200" htmlFor="release_description">Release Description</label>
             <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
@@ -116,7 +116,7 @@ const deleteSelectedTracks = () => {
           </div>
           {/* ... Additional fields ... */}
         </div>
-</div>
+
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
         <table className="min-w-full border">
