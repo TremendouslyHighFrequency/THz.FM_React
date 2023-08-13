@@ -136,6 +136,7 @@ useEffect(() => {
    // Fetch 'Release Genres' from Frappe
    const { data: fetchedReleaseGenres, error: releaseGenreError } = useFrappeGetDocList('Genre List', {
     fields: ["name"],
+    limit: 6000,
     orderBy: {
       field: "creation",
       order: 'desc'
