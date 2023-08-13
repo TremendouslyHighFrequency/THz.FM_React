@@ -391,6 +391,9 @@ return (
           <tr>
             {/* Add the appropriate headers for your Release Credits fields */}
             <th className="align-middle text-center border">Credit Name</th>
+            <th className="align-middle text-center border">Credit Type</th>
+            <th className="align-middle text-center border">Credited On</th>
+
             {/* ... other headers ... */}
           </tr>
         </thead>
@@ -398,7 +401,9 @@ return (
           {releaseCredits.map((credit, idx) => (
             <tr key={idx} className="bg-gray-50">
               {/* Render the appropriate fields for your Release Credits */}
-              <td className="border">{credit.name}</td>
+              <td className="border">{credit.name__title}</td>
+              <td className="border">{credit.credit_type}</td>
+              <td className="border">{credit.track_if_applicable}</td>
               {/* ... other fields ... */}
             </tr>
           ))}
