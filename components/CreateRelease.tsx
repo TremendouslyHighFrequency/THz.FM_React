@@ -27,6 +27,41 @@ const CreateRelease = () => {
       order: 'desc'
     }
   });
+
+  // Fetch artists owned by the logged-in user
+const { data: userArtists, error: artistError } = useFrappeGetDocList('Artist', {
+  fields: ["name"],  // assuming 'name' is a field in the 'Artist' doctype
+  filters: loggedUser ? { "owner": loggedUser } : null, 
+  limit: 50,
+  orderBy: {
+    field: "creation",
+    order: 'desc'
+  }
+});
+
+// Fetch release types
+const { data: userReleaseTypes, error: releaseTypeError } = useFrappeGetDocList('ReleaseType', {
+  fields: ["type"],  // assuming 'type' is a field in the 'ReleaseType' doctype
+  limit: 50,
+  orderBy: {
+    field: "creation",
+    order: 'desc'
+  }
+});
+
+useEffect(() => {
+  if (userArtists) {
+    setArtists(userArtists.map(artist => artist.name));
+  } else if (artistError) {
+    setFetchError(artistError);
+  }
+
+  if (userReleaseTypes) {
+    setReleaseTypes(userReleaseTypes.map(releaseType => releaseType.type));
+  } else if (releaseTypeError) {
+    setFetchError(releaseTypeError);
+  }
+}, [userArtists, artistError, userReleaseTypes, releaseTypeError]);
   
   // Then, within your useEffect for fetching labels:
   useEffect(() => {
