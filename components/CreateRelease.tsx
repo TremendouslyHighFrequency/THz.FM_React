@@ -4,9 +4,10 @@ const CreateRelease = () => {
   const [tracks, setTracks] = useState([]);
 
   const addTrack = () => {
-    // Adding an empty track object to the tracks array
-    setTracks([...tracks, {}]);
-  };
+    // Adding a track object with auto-incremented track_number to the tracks array
+    const newTrack = { track_number: tracks.length + 1 };
+    setTracks([...tracks, newTrack]);
+};
 
   return (
     <div className="content">
