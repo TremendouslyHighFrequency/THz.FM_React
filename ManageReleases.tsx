@@ -68,7 +68,7 @@ const ManageReleases = () => {
                     <Table.ColumnHeaderCell className="align-middle text-center">Status</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Catalog</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Release Date</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Cover Art</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Cover Artwork</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="align-middle text-center">Action</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
