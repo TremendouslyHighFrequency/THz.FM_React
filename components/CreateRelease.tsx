@@ -208,24 +208,24 @@ const deleteSelectedTracks = () => {
 
          {/* Tracks Table */}
          <h2 className="mt-4">Tracks</h2>
-        <table className="min-w-full border">
-          <thead>
-            <tr>
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
-              <th className="border"> </th>
-              <th className="border">Track Number</th>
-              <th className="border">Title</th>
-              <th className="border">Artist</th>
-              <th className="border">Type</th>
-              <th className="border">WAV File</th>
-              <th className="border">Price (USD)</th>
-              <th className="border">Price (ERG)</th>
-              <th className="border">Published</th>
+              <th className="align-middle text-center border"> </th>
+              <th className="align-middle text-center border">Track Number</th>
+              <th className="align-middle text-center border">Title</th>
+              <th className="align-middle text-center border">Artist</th>
+              <th className="align-middle text-center border">Type</th>
+              <th className="align-middle text-center border">WAV File</th>
+              <th className="align-middle text-center border">Price (USD)</th>
+              <th className="align-middle text-center border">Price (ERG)</th>
+              <th className="align-middle text-center border">Published</th>
             </tr>
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx}>
+    <tr key={idx} className="bg-gray-50">
           <td className="border">
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
