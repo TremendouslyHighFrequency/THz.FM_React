@@ -264,22 +264,22 @@ const deleteSelectedTracks = () => {
         setTracks(newTracks);
     }} />
 </td>
-      <td className="border">
-        <input className="bg-gray-50 w-6" type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
+      <td className="border w-6">
+        <input className="bg-gray-50" type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_usd = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border">
-    <input className="bg-gray-50 w-6" type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
+      <td className="border w-6">
+    <input className="bg-gray-50" type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].price_erg = e.target.value;
         setTracks(newTracks);
     }} />
 </td>
-      <td className="border">
-        <input className="bg-gray-50 w-4" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
+      <td className="border w-4">
+        <input className="bg-gray-50" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].published = e.target.checked ? "1" : "0";
           setTracks(newTracks);
