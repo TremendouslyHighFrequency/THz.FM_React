@@ -165,7 +165,12 @@ useEffect(() => {
   }, [genreInput, releaseGenres, selectedGenres]);
 
   const addCredit = () => {
-    const newCredit = {}; // Define the structure of a credit object
+    const newCredit = {
+      name__title: '', // Default value for the credit's name
+      credit_type: '', // Default value for the credit type
+      track_if_applicable: '' // Default value for the credited track
+      // ... add other default values for credit properties as necessary ...
+    };
     setCredits([...credits, newCredit]);
   };
   
