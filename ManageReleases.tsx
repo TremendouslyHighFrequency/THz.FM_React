@@ -6,7 +6,7 @@ import { getLoggedUser } from './components/api'; // Update with the correct pat
 import { Table, Button, Badge } from '@radix-ui/themes';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import '@radix-ui/themes/styles.css';
-import { CreateRelease } from './components/CreateRelease';
+import CreateRelease from './components/CreateRelease';
 
 const ManageReleases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
