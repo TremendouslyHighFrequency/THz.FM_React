@@ -62,33 +62,33 @@ const ManageReleases = () => {
               <Table.Root className="min-w-full divide-y divide-gray-200">
                 <Table.Header className="bg-gray-50">
                   <Table.Row className="px-12 bg-gray-50">
-                    <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Catalog</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Release Date</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Cover Art</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Title</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Primary Artist</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Label</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Status</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Catalog</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Release Date</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Cover Art</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="align-middle text-center">Action</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
                   {data.map(({ title, release_artist, release_id, name, release_label, release_date, release_artwork, published }, i) => (
                     <Table.Row key={i} className="bg-gray-50">
                       <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
-                      <Table.Cell>{release_artist}</Table.Cell>
-                      <Table.Cell>{release_label}</Table.Cell>
-                      <Table.Cell>  
+                      <Table.Cell className="align-middle text-center">{release_artist}</Table.Cell>
+                      <Table.Cell className="align-middle text-center">{release_label}</Table.Cell>
+                      <Table.Cell className="align-middle text-center">  
                         {published ? 
                        <Badge color="green">Published</Badge> 
                         : 
                         <Badge color="orange">Draft</Badge>
                         }
                         </Table.Cell>
-                      <Table.Cell>{release_id}</Table.Cell>
-                      <Table.Cell>{release_date}</Table.Cell>
-                      <Table.Cell><img width={96} height={96} src={release_artwork} /></Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className="align-middle text-center">{release_id}</Table.Cell>
+                      <Table.Cell className="align-middle text-center">{release_date}</Table.Cell>
+                      <Table.Cell className="align-middle text-center"><img width={96} height={96} src={release_artwork} /></Table.Cell>
+                      <Table.Cell className="align-middle text-center">
                         <DropdownMenu.Root>
                           <DropdownMenu.Trigger asChild>
                           <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
