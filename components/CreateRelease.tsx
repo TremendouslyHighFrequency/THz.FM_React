@@ -270,8 +270,10 @@ return (
 
 
         <div>
+          <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
             <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
+            </div>
           <div>
             <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
             <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
