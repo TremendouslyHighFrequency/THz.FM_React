@@ -66,14 +66,14 @@ const CreateRelease = () => {
           <thead>
             <tr>
               {/* Table headers based on track fields */}
-              <th className="border px-4 py-2">Track Number</th>
-              <th className="border px-4 py-2">Title</th>
-              <th className="border px-4 py-2">Artist</th>
-              <th className="border px-4 py-2">Type</th>
-              <th className="border px-4 py-2">WAV File</th>
-              <th className="border px-4 py-2">Price (USD)</th>
-              <th className="border px-4 py-2">Price (ERG)</th>
-              <th className="border px-4 py-2">Published</th>
+              <th className="border">Track Number</th>
+              <th className="border">Title</th>
+              <th className="border">Artist</th>
+              <th className="border">Type</th>
+              <th className="border">WAV File</th>
+              <th className="border">Price (USD)</th>
+              <th className="border">Price (ERG)</th>
+              <th className="border">Published</th>
             </tr>
           </thead>
           <tbody>
