@@ -18,7 +18,7 @@ const CreateRelease = () => {
   }, []);
 
   // Fetch labels owned by the logged-in user
-  const { data: userLabels } = useFrappeGetDocList('Label', {
+  const { data: userLabels, error } = useFrappeGetDocList('Label', {
     fields: ["title"],
     filters: loggedUser ? { "owner": loggedUser } : null, // Filter by the owner
     limit: 50,
@@ -112,7 +112,7 @@ const deleteSelectedTracks = () => {
           </div>
           <div>
             <label className="text-gray-700 dark:text-gray-200" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.01" className="block w-full px-4 py-2 mt-2" />
+            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
           </div>
           {/* ... Additional fields ... */}
         </div>
@@ -169,11 +169,11 @@ const deleteSelectedTracks = () => {
         }} />
       </td>
       <td className="border">
-  <input type="file" name="attach_wav" value={track.attach_wav || ''} onChange={(e) => {
-    let newTracks = [...tracks];
-    newTracks[idx].attach_wav = e.target.value; // Corrected here
-    setTracks(newTracks);
-  }} />
+    <input type="file" name="attach_wav" onChange={(e) => {
+        let newTracks = [...tracks];
+        newTracks[idx].attach_wav = e.target.files[0]; // Adjusted for file input
+        setTracks(newTracks);
+    }} />
 </td>
       <td className="border">
         <input type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
@@ -183,12 +183,12 @@ const deleteSelectedTracks = () => {
         }} />
       </td>
       <td className="border">
-        <input type="float" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].price_erg = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
+    <input type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
+        let newTracks = [...tracks];
+        newTracks[idx].price_erg = e.target.value;
+        setTracks(newTracks);
+    }} />
+</td>
       <td className="border">
         <input type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
