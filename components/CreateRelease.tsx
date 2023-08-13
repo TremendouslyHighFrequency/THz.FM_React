@@ -157,7 +157,7 @@ const deleteSelectedTracks = () => {
         <div className="flex mt-4">
         <button type="button" onClick={addTrack} className="px-4 py-2 bg-blue-500 text-white rounded">Add Track</button>
         {Object.values(selectedTracks).some(val => val) && 
-          <button type="button" onClick={deleteSelectedTracks} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Track</button>
+          <button type="button" onClick={deleteSelectedTracks} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Tracks</button>
         }
       </div>
         {/* Submit Button */}
