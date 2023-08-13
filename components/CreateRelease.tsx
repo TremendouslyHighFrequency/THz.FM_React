@@ -136,7 +136,7 @@ useEffect(() => {
    // Fetch 'Release Genres' from Frappe
    const { data: fetchedReleaseGenres, error: releaseGenreError } = useFrappeGetDocList('Genre List', {
     fields: ["name"],
-    limit: 6000,
+    limit: 0,
     orderBy: {
       field: "creation",
       order: 'desc'
@@ -217,30 +217,7 @@ return (
           </select>
         </div>
         <div>
-            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
-            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
-          <div>
-            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
-            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
-            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
-            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-          <label className="text-gray-700" htmlFor="release_genre">Release Genre</label>
+          <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
           <input
             id="release_genre"
             className="block w-full px-4 py-2 mt-2"
@@ -270,24 +247,49 @@ return (
             </div>
           )}
           <div className="mt-2">
-           {selectedGenres.map((genre, idx) => (
-    <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
-        {genre}
-        <button
-            className="ml-2 text-sm"
-            onClick={(e) => {
-                e.preventDefault(); // Prevent the default behavior
-                e.stopPropagation(); // Stop the event from bubbling up
-                const newSelected = [...selectedGenres];
-                newSelected.splice(idx, 1);
-                setSelectedGenres(newSelected);
-            }}
-        >
-            ×
-        </button>
-    </span>
-))}
+            {selectedGenres.map((genre, idx) => (
+              <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
+                {genre}
+                <button
+                  className="ml-2 text-sm"
+                  onClick={() => {
+                    const newSelected = [...selectedGenres];
+                    newSelected.splice(idx, 1);
+                    setSelectedGenres(newSelected);
+                  }}
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
         </div>
+
+
+        <div>
+            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
+            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
+          <div>
+            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
+            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
+            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
+            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
+            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
+            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          {/* ... Additional fields ... */}
         </div>
 
          {/* Tracks Table */}
