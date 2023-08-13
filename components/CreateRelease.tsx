@@ -216,6 +216,28 @@ return (
             ))}
           </select>
         </div>
+
+        <div>
+            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
+            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
+            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
+            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
+            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+          </div>
+          <div>
+            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
+            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
+          </div>
+
         <div>
           <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
           <input
@@ -270,26 +292,7 @@ return (
         <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
             <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
-          <div>
-            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
-            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
-            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
-            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
-          </div>
+          
           {/* ... Additional fields ... */}
         </div>
 
