@@ -251,15 +251,16 @@ return (
               <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
                 {genre}
                 <button
-                  className="ml-2 text-sm"
-                  onClick={() => {
-                    const newSelected = [...selectedGenres];
-                    newSelected.splice(idx, 1);
-                    setSelectedGenres(newSelected);
-                  }}
-                >
-                  ×
-                </button>
+      className="ml-2 text-sm"
+      onClick={(e) => {
+        e.preventDefault();  // Prevent the default action
+        const newSelected = [...selectedGenres];
+        newSelected.splice(idx, 1);
+        setSelectedGenres(newSelected);
+      }}
+    >
+      ×
+    </button>
               </span>
             ))}
           </div>
