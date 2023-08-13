@@ -216,8 +216,8 @@ const deleteSelectedTracks = () => {
               <th className="align-middle text-center border w-4">Track Number</th>
               <th className="align-middle text-center border w-12">Title</th>
               <th className="align-middle text-center border w-12">Artist</th>
-              <th className="align-middle text-center border w-8">Type</th>
-              <th className="align-middle text-center border w-6">WAV File</th>
+              <th className="align-middle text-center border w-12">Type</th>
+              <th className="align-middle text-center border w-12">WAV File</th>
               <th className="align-middle text-center border w-6">Price (USD)</th>
               <th className="align-middle text-center border w-6">Price (ERG)</th>
               <th className="align-middle text-center border w-4">Published</th>
@@ -251,14 +251,14 @@ const deleteSelectedTracks = () => {
         }} />
       </td>
       <td className="border">
-        <input className="bg-gray-50 w-8" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
+        <input className="bg-gray-50 w-12" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_type = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
       <td className="border">
-    <input className="bg-gray-50 w-6" type="file" name="attach_wav" onChange={(e) => {
+    <input className="bg-gray-50 w-12" type="file" name="attach_wav" onChange={(e) => {
         let newTracks = [...tracks];
         newTracks[idx].attach_wav = e.target.files[0]; // Adjusted for file input
         setTracks(newTracks);
