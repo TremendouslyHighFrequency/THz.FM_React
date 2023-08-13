@@ -9,6 +9,15 @@ const CreateRelease = () => {
     setTracks([...tracks, newTrack]);
 };
 
+const handleTrackSelection = (idx, isChecked) => {
+  setSelectedTracks(prevState => ({ ...prevState, [idx]: isChecked }));
+};
+
+const deleteSelectedTracks = () => {
+  setTracks(tracks.filter((_, idx) => !selectedTracks[idx]));
+  setSelectedTracks({}); // Reset selected tracks
+};
+
   return (
     <div className="content">
       <form>
@@ -75,6 +84,7 @@ const CreateRelease = () => {
               <th className="border">Price (USD)</th>
               <th className="border">Price (ERG)</th>
               <th className="border">Published</th>
+              <th className="border">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -136,12 +146,20 @@ const CreateRelease = () => {
           setTracks(newTracks);
         }} />
       </td>
+      <td className="border">
+                <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
+              </td>
     </tr>
   ))}
 </tbody>
         </table>
         <button type="button" onClick={addTrack} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Add Track</button>
-
+        <div className="flex mt-4">
+        <button type="button" onClick={addTrack} className="px-4 py-2 bg-blue-500 text-white rounded">Add Track</button>
+        {Object.values(selectedTracks).some(val => val) && 
+          <button type="button" onClick={deleteSelectedTracks} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Track</button>
+        }
+      </div>
         {/* Submit Button */}
         <div className="flex justify-end mt-6">
           <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
