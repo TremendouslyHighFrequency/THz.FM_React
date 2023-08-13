@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFrappeGetDocList } from 'frappe-react-sdk';
+import { useFrappeGetDocList, db } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
 
 const CreateRelease = () => {
@@ -48,6 +48,47 @@ const { data: userReleaseTypes, error: releaseTypeError } = useFrappeGetDocList(
     order: 'desc'
   }
 });
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const formattedTracks = tracks.map(track => ({
+    track_number: track.track_number,
+    track_title: track.title,
+    track_artist: track.track_artist,
+    track_type: track.track_type,
+    attach_wav: track.attach_wav,  // This may need further processing if you want to upload the file to Frappe
+    price_usd: parseFloat(track.price_usd),
+    price_erg: parseFloat(track.price_erg),
+    published: track.published,
+    // Add other fields as necessary
+    doctype: "Track"
+  }));
+
+  const releaseData = {
+    title: document.getElementById('title').value,
+    release_id: document.getElementById('release_id').value,
+    release_artist: document.getElementById('release_artist').value,
+    release_label: document.getElementById('release_label').value,
+    release_type: document.getElementById('release_type').value,
+    release_artwork: document.getElementById('release_artwork').files[0], // Assuming it's a file input
+    release_description: document.getElementById('release_description').value,
+    release_date: document.getElementById('release_date').value,
+    price_usd: parseFloat(document.getElementById('price_usd').value),
+    price_erg: parseFloat(document.getElementById('price_erg').value),
+    release_ergo_address: document.getElementById('release_ergo_address').value,
+    release_tracks: formattedTracks
+  };
+
+  db.createDoc('Release', releaseData)
+    .then(doc => {
+      console.log("Successfully created release:", doc);
+      // Consider resetting your component state here or redirecting the user
+    })
+    .catch(error => {
+      console.error("Error creating release:", error);
+      setFetchError(error.message);
+    });
+};
 
 useEffect(() => {
   if (userArtists) {
@@ -88,6 +129,7 @@ const deleteSelectedTracks = () => {
   setTracks(tracks.filter((_, idx) => !selectedTracks[idx]));
   setSelectedTracks({}); // Reset selected tracks
 };
+
 
   return (
     <div className="releaseForm">
