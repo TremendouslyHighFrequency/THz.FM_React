@@ -79,56 +79,56 @@ const CreateRelease = () => {
           <tbody>
   {tracks.map((track, idx) => (
     <tr key={idx}>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_number = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="text" name="title" value={track.title || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].title = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_artist = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_type = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="file" name="attach_wav" value={track.attach_wav || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_type = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_usd = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="float" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].price_erg = e.target.value;
           setTracks(newTracks);
         }} />
       </td>
-      <td className="border px-4 py-2">
+      <td className="border">
         <input type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].published = e.target.checked ? "1" : "0";
