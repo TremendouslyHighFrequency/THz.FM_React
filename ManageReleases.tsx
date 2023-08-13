@@ -99,7 +99,7 @@ const ManageReleases = () => {
                           </DropdownMenu.Trigger>
                           <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
                             <DropdownMenu.Item className="DropdownMenuItem">Edit</DropdownMenu.Item>
-                            <DropdownMenu.Item className="DropdownMenuItem">Archive</DropdownMenu.Item>
+                            <DropdownMenu.Item className="DropdownMenuItem">Publish / Unpublish</DropdownMenu.Item>
                             <DropdownMenu.Item className="DropdownMenuItem" color="red">Delete</DropdownMenu.Item>
                           </DropdownMenu.Content>
                         </DropdownMenu.Root>
