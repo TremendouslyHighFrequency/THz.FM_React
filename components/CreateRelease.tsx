@@ -419,23 +419,53 @@ return (
         </tr>
     </thead>
     <tbody>
-        {credits.map((credit, idx) => (
-            <tr key={idx} className="bg-gray-50">
-                <td className="border">
-                    <input 
-                        type="checkbox" 
-                        checked={!!selectedCredits[idx]} 
-                        onChange={(e) => handleCreditSelection(idx, e.target.checked)} 
-                    />
-                </td>
-                {/* Render the appropriate fields for your Release Credits */}
-                <td className="border">{credit.name__title}</td>
-                <td className="border">{credit.credit_type}</td>
-                <td className="border">{credit.track_if_applicable}</td>
-                {/* ... other fields ... */}
-            </tr>
-        ))}
-    </tbody>
+  {credits.map((credit, idx) => (
+    <tr key={idx} className="bg-gray-50">
+      <td className="border">
+        <input 
+          type="checkbox" 
+          checked={!!selectedCredits[idx]} 
+          onChange={(e) => handleCreditSelection(idx, e.target.checked)} 
+        />
+      </td>
+      {/* Render the input fields for your Release Credits */}
+      <td className="border">
+        <input
+          type="text"
+          value={credit.name__title}
+          onChange={(e) => {
+            const updatedCredits = [...credits];
+            updatedCredits[idx].name__title = e.target.value;
+            setCredits(updatedCredits);
+          }}
+        />
+      </td>
+      <td className="border">
+        <input
+          type="text"
+          value={credit.credit_type}
+          onChange={(e) => {
+            const updatedCredits = [...credits];
+            updatedCredits[idx].credit_type = e.target.value;
+            setCredits(updatedCredits);
+          }}
+        />
+      </td>
+      <td className="border">
+        <input
+          type="text"
+          value={credit.track_if_applicable}
+          onChange={(e) => {
+            const updatedCredits = [...credits];
+            updatedCredits[idx].track_if_applicable = e.target.value;
+            setCredits(updatedCredits);
+          }}
+        />
+      </td>
+      {/* ... other fields ... */}
+    </tr>
+  ))}
+</tbody>
 </table>
 <div className="flex mt-4">
     <button type="button" onClick={addCredit} className="px-4 py-2 bg-blue-500 text-white rounded">Add Credit</button>
