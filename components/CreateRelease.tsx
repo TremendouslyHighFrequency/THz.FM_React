@@ -54,8 +54,8 @@ const CreateRelease = () => {
             <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
           </div>
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="zip_file_path">ZIP File Path</label>
-            <input id="zip_file_path" type="text" className="block w-full px-4 py-2 mt-2" />
+            <label className="text-gray-700 dark:text-gray-200" htmlFor="price_erg">Ergo Address</label>
+            <input id="release_ergo_address" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
           </div>
           {/* ... Additional fields ... */}
         </div>
