@@ -64,8 +64,8 @@ const ManageReleases = () => {
                   <Table.Row className="px-12 bg-gray-50">
                     <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Primary Artist</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Published</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Label</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Catalog</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Release Date</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Cover Art</Table.ColumnHeaderCell>
@@ -77,6 +77,7 @@ const ManageReleases = () => {
                     <Table.Row key={i}>
                       <Table.RowHeaderCell>{title}</Table.RowHeaderCell>
                       <Table.Cell>{release_artist}</Table.Cell>
+                      <Table.Cell>{release_label}</Table.Cell>
                       <Table.Cell>  
                         {published ? 
                        <Badge color="green">Published</Badge> 
@@ -84,7 +85,6 @@ const ManageReleases = () => {
                         <Badge color="orange">Draft</Badge>
                         }
                         </Table.Cell>
-                      <Table.Cell>{release_label}</Table.Cell>
                       <Table.Cell>{release_id}</Table.Cell>
                       <Table.Cell>{release_date}</Table.Cell>
                       <Table.Cell><img width={96} height={96} src={release_artwork} /></Table.Cell>
