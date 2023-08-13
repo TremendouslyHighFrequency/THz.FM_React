@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0)
   const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {
-      fields: ["title", "release_artist","release_artwork", "name"],
+      fields: ["title", "release_artist","release_artwork", "name", "published"],
       limit_start: pageIndex,
       limit: 50,
+      filters: {
+          published: 1
+      },
       orderBy: {
           field: "creation",
           order: 'desc'
