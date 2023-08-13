@@ -14,7 +14,8 @@ const CreateRelease = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [releaseGenres, setReleaseGenres] = useState([]); // State variable for 'Release Genres'
-  const [releaseCredits, setReleaseCredits] = useState([]); // State variable for 'Release Credits'
+  const [credits, setReleaseCredits] = useState([]); // State variable for 'Release Credits'
+  const [selectedCredits, setSelectedCredits] = useState({});
   const [genreInput, setGenreInput] = useState(''); // What user types
   const [filteredGenres, setFilteredGenres] = useState([]); // Filtered results based on input
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -162,6 +163,20 @@ useEffect(() => {
       setFilteredGenres([]);
     }
   }, [genreInput, releaseGenres, selectedGenres]);
+
+  const addCredit = () => {
+    const newCredit = {}; // Define the structure of a credit object
+    setCredits([...credits, newCredit]);
+  };
+  
+  const handleCreditSelection = (idx, isChecked) => {
+    setSelectedCredits(prevState => ({ ...prevState, [idx]: isChecked }));
+  };
+  
+  const deleteSelectedCredits = () => {
+    setCredits(credits.filter((_, idx) => !selectedCredits[idx]));
+    setSelectedCredits({}); // Reset selected credits
+  };
 
   const addTrack = () => {
     // Adding a track object with auto-incremented track_number to the tracks array
@@ -388,28 +403,41 @@ return (
 
  {/* Release Credits Table */}
  <h2 className="mt-4">Release Credits</h2>
-      <table className="min-w-full divide-y divide-gray-200 rounded-md">
-        <thead className="bg-gray-50">
-          <tr>
-            {/* Add the appropriate headers for your Release Credits fields */}
+<table className="min-w-full divide-y divide-gray-200 rounded-md">
+    <thead className="bg-gray-50">
+        <tr>
+            <th className="align-middle text-center border w-4"> </th> {/* Checkbox header */}
             <th className="align-middle text-center border">Credit Name</th>
             <th className="align-middle text-center border">Credit Type</th>
             <th className="align-middle text-center border">Credited On</th>
             {/* ... other headers ... */}
-          </tr>
-        </thead>
-        <tbody>
-          {releaseCredits.map((credit, idx) => (
+        </tr>
+    </thead>
+    <tbody>
+        {credits.map((credit, idx) => (
             <tr key={idx} className="bg-gray-50">
-              {/* Render the appropriate fields for your Release Credits */}
-              <td className="border">{credit.name__title}</td>
-              <td className="border">{credit.credit_type}</td>
-              <td className="border">{credit.track_if_applicable}</td>
-              {/* ... other fields ... */}
+                <td className="border">
+                    <input 
+                        type="checkbox" 
+                        checked={!!selectedCredits[idx]} 
+                        onChange={(e) => handleCreditSelection(idx, e.target.checked)} 
+                    />
+                </td>
+                {/* Render the appropriate fields for your Release Credits */}
+                <td className="border">{credit.name__title}</td>
+                <td className="border">{credit.credit_type}</td>
+                <td className="border">{credit.track_if_applicable}</td>
+                {/* ... other fields ... */}
             </tr>
-          ))}
-        </tbody>
-      </table>
+        ))}
+    </tbody>
+</table>
+<div className="flex mt-4">
+    <button type="button" onClick={addCredit} className="px-4 py-2 bg-blue-500 text-white rounded">Add Credit</button>
+    {Object.values(selectedCredits).some(val => val) && 
+        <button type="button" onClick={deleteSelectedCredits} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Credits</button>
+    }
+</div>
 
    {/* Submit Button */}
    <div className="flex justify-end mt-6">
