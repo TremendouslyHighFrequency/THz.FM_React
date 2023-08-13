@@ -40,8 +40,8 @@ const { data: userArtists, error: artistError } = useFrappeGetDocList('Artist', 
 });
 
 // Fetch release types
-const { data: userReleaseTypes, error: releaseTypeError } = useFrappeGetDocList('ReleaseType', {
-  fields: ["type"],  // assuming 'type' is a field in the 'ReleaseType' doctype
+const { data: userReleaseTypes, error: releaseTypeError } = useFrappeGetDocList('Release Type', {
+  fields: ["name"],  // assuming 'type' is a field in the 'ReleaseType' doctype
   limit: 50,
   orderBy: {
     field: "creation",
