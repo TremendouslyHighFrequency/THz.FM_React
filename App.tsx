@@ -89,7 +89,7 @@ function App() {
     // Pass a custom function that returns the token as a string - this could be fetched from LocalStorage or auth providers like Firebase, Auth0 etc.
     token: getTokenFromLocalStorage(),
     // This can be "Bearer" or "token"
-    type: "token"
+    type: "Bearer"
 }}  >
       <Router>
         <div className="App">
