@@ -84,13 +84,7 @@ function App() {
   const { navItems, links } = SideNav();
 
  return (
-  <FrappeProvider url='https://thz.fm/' tokenParams={{
-    useToken: true,
-    // Pass a custom function that returns the token as a string - this could be fetched from LocalStorage or auth providers like Firebase, Auth0 etc.
-    token: getTokenFromLocalStorage(),
-    // This can be "Bearer" or "token"
-    type: "token"
-}}  >
+  <FrappeProvider url='https://thz.fm/' >
       <Router>
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
