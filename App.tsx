@@ -56,6 +56,9 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const currentDomain = window.location.hostname;
+
+  const frappeURL = (currentDomain !== 'thz.fm') ? `https://${currentDomain}` : 'https://thz.fm';
 
   useEffect(() => {
     getLoggedUser()
@@ -81,7 +84,7 @@ function App() {
   const { navItems, links } = SideNav();
 
  return (
-  <FrappeProvider url='https://thz.fm'>
+  <FrappeProvider url={frappeURL} >
       <Router>
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
