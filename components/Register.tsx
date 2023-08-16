@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import crypto from 'crypto'; // Import the crypto module
 
 export const Register = () => {
   const [email, setEmail] = useState('');
@@ -7,8 +8,17 @@ export const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Function to generate a random API key and secret
+  const generateAPIKeys = () => {
+    const apiKey = crypto.randomBytes(16).toString('hex');
+    const apiSecret = crypto.randomBytes(32).toString('hex');
+    return { apiKey, apiSecret };
+  }
+
   const handleRegister = () => {
     setLoading(true);
+    const { apiKey, apiSecret } = generateAPIKeys(); // Generate the API key and secret
+
     const userData = {
       email: email,
       new_password: new_password,
@@ -20,6 +30,8 @@ export const Register = () => {
           doctype: 'Has Role',
         },
       ],
+      api_key: apiKey,      // Add API key to the user data
+      api_secret: apiSecret // Add API secret to the user data
     };
 
     fetch(`https://thz.fm/api/resource/User`, {
