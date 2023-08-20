@@ -4,47 +4,65 @@ import { ReleaseItem } from '../types';
 import { Link } from "react-router-dom";
 
 const Releases = () => {
-  const [pageIndex, setPageIndex] = useState<number>(0)
-  const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release' , {
-      fields: ["title", "release_artist","release_artwork", "name", "published"],
-      limit_start: pageIndex,
-      limit: 50,
-      filters: {
-          published: 1
-      },
-      orderBy: {
-          field: "creation",
-          order: 'desc'
-      }
+  const [pageIndex, setPageIndex] = useState<number>(0);
+  const { data, error, isValidating } = useFrappeGetDocList<ReleaseItem>('Release', {
+    fields: ["title", "release_artist", "release_artwork", "name", "published"],
+    limit_start: pageIndex,
+    limit: 50,
+    filters: {
+      published: 1
+    },
+    orderBy: {
+      field: "creation",
+      order: 'desc'
+    }
   });
 
   if (isValidating) {
-      return <>Loading</>
+    return <>Loading...</>;
   }
+
   if (error) {
-      return <>{JSON.stringify(error)}</>
+    return <>{JSON.stringify(error)}</>;
   }
+  
   if (data && Array.isArray(data)) {
-         return (
-          <div className="albums-index">
-                  {
-                      data.map(({title, name, release_artist, release_artwork}, i) => (
-                        <Link to={`/releases/${title}/by/${release_artist}/${name}`}>
-                          <div key={i} className="album-card" style={{backgroundImage: `url(${release_artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                          <div className="album-text">
-                                    <h4>{title}</h4>
-                                  <p>{release_artist}</p>
-                              </div>
-                          </div>
-                            </Link>
-                      ))
-                  }
-{data.length >= 50 && (
-              <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
-            )}          </div>
-      )
+    return (
+      <div className="flex flex-col w-screen min-h-screen text-gray-800">
+        <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-4">
+          {data.map(release => (
+            <div key={release.name}>
+              <Link 
+                to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} 
+                className="block h-64 rounded-lg shadow-lg bg-white" 
+                style={{ backgroundImage: `url('${release.release_artwork}')` }}
+              ></Link>
+              <div className="flex items-center justify-between mt-3">
+                <div>
+                  <Link to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} className="font-medium">{release.title}</Link>
+                  <Link to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} className="flex items-center">
+                    <span className="text-xs font-medium text-gray-600">by</span>
+                    <span className="text-xs font-medium ml-1 text-indigo-500">{release.release_artist}</span>
+                  </Link>
+                </div>
+                <div className="flex space-x-4">
+                <span>❤️</span> 
+                  <span>🛒</span> 
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-10 space-x-1">
+          <button onClick={() => setPageIndex(prevIndex => prevIndex - 50)} className="flex items-center justify-center h-8 px-2 rounded text-sm font-medium text-gray-400">Prev</button>
+          <button onClick={() => setPageIndex(prevIndex => prevIndex + 50)} className="flex items-center justify-center h-8 px-2 rounded hover:bg-indigo-200 text-sm font-medium text-gray-600 hover:text-indigo-600">Next</button>
+        </div>
+      </div>
+    )
   }
-  return null
+
+  return null;
 };
 
 export default Releases;
