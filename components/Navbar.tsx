@@ -118,6 +118,12 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [logo, setLogo] = useState(theme === 'dark' ? THZLogo : THZLogoDark);
   const release = useReleaseData();
+  const [hasNewNotifications, setHasNewNotifications] = useState(false);
+
+  useEffect(() => {
+    const unreadNotifications = notifications.some(notification => !notification.read);
+    setHasNewNotifications(unreadNotifications);
+  }, [notifications]);
 
   const handleSearchShortcut = (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === '.') {
@@ -236,8 +242,9 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
           {currentUser ? (
             <>
               <button className="bell" ref={notificationButtonRef} onClick={() => setDropdownVisible(prev => !prev)}>
-                <BellIcon size={24} />
-              </button>
+  <BellIcon size={24} />
+  {hasNewNotifications && <span className="red-dot"></span>}
+</button>
               {dropdownVisible && <NotificationDropdown notifications={notifications} buttonRef={notificationButtonRef} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} />}
               <button className="bell"><a href="/collection"><VersionsIcon size={24} /></a></button>
               <Link to="/workspace"><RocketIcon size={24} /></Link>
