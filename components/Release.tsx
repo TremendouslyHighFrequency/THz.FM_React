@@ -7,7 +7,10 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import { purchase } from './payment';
 import FooterPlayer from './FooterPlayer';
 import Breadcrumbs from './Breadcrumbs';
-
+import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import './component_styles/Dialog.css';
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -161,8 +164,8 @@ const updateLocalState = (newValue) => {
   useEffect(() => {
     setPlayingTrackIndex(null);
   }, [name]);
-  
 
+  
   const currentTrack = playingTrackIndex !== null ? {
     url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
     name: data.release_tracks[playingTrackIndex].track_title,
@@ -189,18 +192,55 @@ const updateLocalState = (newValue) => {
               </div>
               <p className="mb-12 text-lg">{data.release_description}</p>
               <div className="mt-8">
-                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
-                <button className="usd-button">BUY $ {data.price_usd} USD</button>
+                 
+              <Dialog.Root>
+    <Dialog.Trigger asChild>
+      <button className="Button violet">Purchase</button>
+    </Dialog.Trigger>
+    <Dialog.Portal>
+      <Dialog.Overlay className="DialogOverlay" />
+      <Dialog.Content className="DialogContent">
+        <Dialog.Title className="DialogTitle">Choose payment method</Dialog.Title>
+        <Dialog.Description className="DialogDescription">
+          This artist accepts both USD and ERG.<br />        
+          <span className="text-xs">(ERG payment requires Nautilus wallet connection.)</span>
+        </Dialog.Description>
+ 
+          <div className="flex space-x-4">
+          <button className="Button green">BUY $ {data.price_usd} USD</button>
+          <PayPalButtons />
+          <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+          </div>
+
+        <Dialog.Close asChild>
+          <button className="IconButton" aria-label="Close">
+            <Cross2Icon />
+          </button>
+        </Dialog.Close>
+      </Dialog.Content>
+    </Dialog.Portal>
+  </Dialog.Root>
+
+          
+                  
+              
+                
               </div>
-              <div className="credits mt-12">
+              <div className="flex justify-between">
+              <div className="metadata mt-12">
+                <p>ISRC: {data.isrc}</p>
+                <p>UPC: {data.upc}</p>
+                <p>Release ID: {data.release_id}</p>
+              </div>
+              <div className="credits mr-24">
                 <p>Released On: {data.release_date}</p>
                 <p>Publisher: {data.release_label}</p>
                 <p>Credits:</p>
                 {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                   <p key={index}>{credit.credit_type}: {credit.name__title}</p>
                 ))}
-              </div>
-             
+              </div>       
+             </div>
              
             </div>
 
