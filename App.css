@@ -34,6 +34,7 @@ body[data-theme='dark'] {
 .h1 {
   font-size: 2.5rem;
 }
+
 .mintForm {
   text-align: center;
   color: #000;
@@ -688,7 +689,7 @@ body[data-theme='light'] .side-nav li a {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   bottom: 0;
-  z-index: 1000; 
+
 }
 .navbar-items a {
   margin-left: 10px;

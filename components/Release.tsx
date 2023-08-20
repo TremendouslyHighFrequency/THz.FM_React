@@ -303,7 +303,7 @@ const updateLocalState = (newValue) => {
                  
               <Dialog.Root>
     <Dialog.Trigger asChild>
-      <button className="Button violet">Purchase</button>
+      <button className="Button violet mr-12">Purchase</button>
     </Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="DialogOverlay" />
@@ -328,8 +328,9 @@ const updateLocalState = (newValue) => {
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>
+  
   <ShareModal data={data} />
-            <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
+          <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
           
               
                 

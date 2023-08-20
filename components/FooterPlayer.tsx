@@ -4,7 +4,7 @@ import './component_styles/FooterPlayer.css';
 
 const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage, progressColor }) => {
     return (
-    <div className="footerPlayer mr-12 mt-24 mb-24">
+    <div className="footerPlayer mr-12 mt-24 mb-24 z-1">
       <div className="track-details">
 
       </div>
