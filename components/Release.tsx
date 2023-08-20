@@ -179,15 +179,15 @@ const updateLocalState = (newValue) => {
           <div className="album-info">
             {/* Text and Details Container */}
             <div className="album-text-info">
-              <div className="h1" style={{ color: data.release_text_color }}>{data.title}</div>
-              <p style={{ color: data.release_text_color }}>{data.release_type} by: {data.release_artist}</p>
+              <div className="h1">{data.title}</div>
+              <p>{data.release_type} by: {data.release_artist}</p>
               <div>
                 {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                   <p className="genre-item" key={index}>{genre.genre}</p>
                 ))}
               </div>
-              <p style={{ color: data.release_text_color }}>{data.release_description}</p>
-              <div style={{ color: data.release_text_color }}>
+              <p>{data.release_description}</p>
+              <div>
                 <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
                 <button className="usd-button">BUY $ {data.price_usd} USD</button>
               </div>
