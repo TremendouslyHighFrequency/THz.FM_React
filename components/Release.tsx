@@ -9,6 +9,7 @@ import FooterPlayer from './FooterPlayer';
 import Breadcrumbs from './Breadcrumbs';
 import { useReleaseData } from './ReleaseContext';
 
+
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
@@ -88,11 +89,15 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
         <p>{track.track_title}</p>
-      </div>
+        <div className="track-controls">
       <button onClick={onPrev}><FaBackward /></button>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
       <button onClick={onNext}><FaForward /></button>
+ 
       <span id={`timer-${index}`}></span>
+      </div>
+      </div>
+
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
         track.track_type === 'Remix'
@@ -186,7 +191,11 @@ const updateLocalState = (newValue) => {
                   <p className="genre-item" key={index}>{genre.genre}</p>
                 ))}
               </div>
-              <p className="mb-12">{data.release_description}</p>
+              <p className="mb-12 text-lg">{data.release_description}</p>
+              <div className="mt-8">
+                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+                <button className="usd-button">BUY $ {data.price_usd} USD</button>
+              </div>
               <div className="credits mt-12">
                 <p>Released On: {data.release_date}</p>
                 <p>Publisher: {data.release_label}</p>
@@ -195,10 +204,7 @@ const updateLocalState = (newValue) => {
                   <p key={index}>{credit.credit_type}: {credit.name__title}</p>
                 ))}
               </div>
-              <div>
-                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
-                <button className="usd-button">BUY $ {data.price_usd} USD</button>
-              </div>
+             
              
             </div>
 
