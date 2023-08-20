@@ -179,8 +179,8 @@ const updateLocalState = (newValue) => {
           <div className="album-info">
             {/* Text and Details Container */}
             <div className="album-text-info">
-              <div className="h1 mb-4">{data.title}</div>
-              <p>{data.release_type} by: {data.release_artist}</p>
+              <div className="h1 mb-2">{data.title}</div>
+              <p className="mb-4">{data.release_type} by: {data.release_artist}</p>
               <div className="mb-12">
                 {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                   <p className="genre-item" key={index}>{genre.genre}</p>
