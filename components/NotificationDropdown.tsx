@@ -59,7 +59,7 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
                 <div className="notification">
                   <img className="notification-image" src={notification.user_image || THZIcon} alt="user_image" />
                   <span className="notification-text">{notification.from_user}</span>
-                  <span>{actionText}</span>
+                  <span> {actionText} </span>
                   <span>{notification.email_content}</span>
                 </div>
               </div>
