@@ -250,11 +250,13 @@ body[data-theme='dark'] {
   justify-content: space-between;
   align-items: start;
   flex-wrap: wrap; /* Allows the content to wrap onto the next line when necessary */
+  color: var(--text-color);
 }
 
 .album-text-info {
   flex: 1; 
   padding-right: 1em; /* Optional: Add some spacing between the text and the artwork */
+  color: var(--text-color);
 }
 
 .display-artwork {
