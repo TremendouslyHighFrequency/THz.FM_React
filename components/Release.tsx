@@ -13,7 +13,7 @@ import './component_styles/Dialog.css';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { getLoggedUser } from './api';
 
-const Track = ({ track, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
+const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const formatTime = (seconds) => {
@@ -323,6 +323,8 @@ const updateLocalState = (newValue) => {
                 setCurrentTime={setCurrentTime}
                 setDuration={setDuration}
                 handleFavoriteClick={handleFavoriteClick}
+                loading={loading}
+                setLoading={setLoading}
                 />
               ))}
               </div>
