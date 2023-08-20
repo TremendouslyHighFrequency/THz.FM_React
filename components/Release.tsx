@@ -155,8 +155,6 @@ const handleFavoriteClick = async (type, data) => {
           "for_user": data.owner,
           "type": "Alert",
           "email_content": `${data.track_title}`,
-          "document_type": "Track",
-          "parent": "Release",
           "read": "0",
           "document_name": data.name,
           "from_user": loggedUser
