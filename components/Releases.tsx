@@ -28,6 +28,10 @@ const Releases = () => {
   
   if (data && Array.isArray(data)) {
     return (
+    <div>
+        <div className="rounded-lg w-full h-96 mb-12 bg-slate-600">
+Featured release
+            </div>
       <div className="flex flex-col w-screen min-h-screen text-gray-800">
         <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-4">
           {data.map(release => (
@@ -58,6 +62,7 @@ const Releases = () => {
           <button onClick={() => setPageIndex(prevIndex => prevIndex - 50)} className="flex items-center justify-center h-8 px-2 rounded text-sm font-medium text-gray-400">Prev</button>
           <button onClick={() => setPageIndex(prevIndex => prevIndex + 50)} className="flex items-center justify-center h-8 px-2 rounded hover:bg-indigo-200 text-sm font-medium text-gray-600 hover:text-indigo-600">Next</button>
         </div>
+      </div>
       </div>
     )
   }
