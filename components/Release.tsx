@@ -96,7 +96,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
      
       </div>
       <div onClick={togglePlayPause} className="track-items" key={index} style={{ color: tracktextColor }}>
-        <p>Track {track.track_number}: {track.track_title}</p>
+        <p><span className="text-xs"># {track.track_number}: </span><b>{track.track_title}</b></p>
  
       </div>
       
