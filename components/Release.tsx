@@ -154,66 +154,64 @@ const Release = ({ setTransaction }) => {
 
 const ShareModal = ({ data }) => {
   const location = useLocation();
-  const currentURL = window.location.origin + location.pathname;
-  const share = (platform) => {
-    const currentURL = window.location.origin + location.pathname;
-    const title = data.title; // Adjust this if it's not the correct title you want to share
-  
+  const currentURL = window.location.origin + location.pathname; // Define it here
+
+  const generateShareURL = (platform) => {
+    const title = data.title; 
+    
+
     let shareURL = "";
-  
     switch (platform) {
       case "facebook":
-          shareURL = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+        break;
       case "googleplus":
-          shareURL = `https://plus.google.com/share?url=${encodeURIComponent(currentURL)}`;
-          break;
+        shareURL = `https://plus.google.com/share?url=${encodeURIComponent(currentURL)}`;
+        break;
       case "twitter":
-          shareURL = `https://twitter.com/share?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://twitter.com/share?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(title)}`;
+        break;
       case "linkedin":
-          shareURL = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "reddit":
-          shareURL = `http://reddit.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `http://reddit.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "hackernews":
-          shareURL = `http://news.ycombinator.com/submitlink?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `http://news.ycombinator.com/submitlink?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+        break;
       case "buffer":
-          shareURL = `http://bufferapp.com/add?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentURL)}`;
-          break;
+        shareURL = `http://bufferapp.com/add?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentURL)}`;
+        break;
       case "digg":
-          shareURL = `https://digg.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://digg.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "tumblr":
-          shareURL = `https://www.tumblr.com/share/link?url=${encodeURIComponent(currentURL)}&name=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://www.tumblr.com/share/link?url=${encodeURIComponent(currentURL)}&name=${encodeURIComponent(title)}`;
+        break;
       case "stumbleupon":
-          shareURL = `http://www.stumbleupon.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `http://www.stumbleupon.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "delicious":
-          shareURL = `https://delicious.com/save?v=5&noui&jump=close&url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://delicious.com/save?v=5&noui&jump=close&url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "evernote":
-          shareURL = `http://www.evernote.com/clip.action?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `http://www.evernote.com/clip.action?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "wordpress":
-          shareURL = `http://wordpress.com/press-this.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `http://wordpress.com/press-this.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+        break;
       case "pocket":
-          shareURL = `https://getpocket.com/save?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://getpocket.com/save?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+        break;
       case "pinterest":
-          shareURL = `https://pinterest.com/pin/create/bookmarklet/?url=${encodeURIComponent(currentURL)}&description=${encodeURIComponent(title)}`;
-          break;
+        shareURL = `https://pinterest.com/pin/create/bookmarklet/?url=${encodeURIComponent(currentURL)}&description=${encodeURIComponent(title)}`;
+        break;
       default:
-          return;
-  }
-  
-    window.open(shareURL, '_blank');
+        return "#";
+    }
+    return shareURL;
   };
-
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -223,65 +221,58 @@ const ShareModal = ({ data }) => {
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
           <Dialog.Title className="DialogTitle">Share this Release</Dialog.Title>
-          
-          {/* Display Release Information */}
           <img src={data.release_artwork} alt="Album Artwork" className="share-artwork" />
           <p>{data.title}</p>
           <p>{data.release_artist}</p>
           <p>URL: {currentURL}</p>
-          
-          {/* Social Sharing Buttons - Placeholder */}
           <p>Share on:</p>
           <ul className="social-buttons">
-
-  <li className="button__share button__share--facebook">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("facebook"); }}>Facebook</a>
-  </li>
-  <li className="button__share button__share--googleplus">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("googleplus"); }}>Google+</a>
-  </li>
-  <li className="button__share button__share--twitter">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("twitter"); }}>Twitter</a>
-  </li>
-  <li className="button__share button__share--linkedin">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("linkedin"); }}>LinkedIn</a>
-  </li>
-  <li className="button__share button__share--reddit">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("reddit"); }}>Reddit</a>
-  </li>
-  <li className="button__share button__share--hackernews">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("hackernews"); }}>Hacker News</a>
-  </li>
-  <li className="button__share button__share--buffer">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("buffer"); }}>Buffer</a>
-  </li>
-  <li className="button__share button__share--digg">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("digg"); }}>Digg</a>
-  </li>
-  <li className="button__share button__share--tumblr">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("tumblr"); }}>Tumblr</a>
-  </li>
-  <li className="button__share button__share--stumbleupon">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("stumbleupon"); }}>StumbleUpon</a>
-  </li>
-  <li className="button__share button__share--delicious">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("delicious"); }}>Delicious</a>
-  </li>
-  <li className="button__share button__share--evernote">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("evernote"); }}>Evernote</a>
-  </li>
-  <li className="button__share button__share--wordpress">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("wordpress"); }}>Wordpress</a>
-  </li>
-  <li className="button__share button__share--pocket">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("pocket"); }}>Pocket</a>
-  </li>
-  <li className="button__share button__share--pinterest">
-    <a href="#" onClick={(e) => { e.preventDefault(); share("pinterest"); }}>Pinterest</a>
-  </li>
-</ul>
-
-
+            <li className="button__share button__share--facebook">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("facebook")}>Facebook</a>
+            </li>
+            <li className="button__share button__share--googleplus">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("googleplus")}>Google+</a>
+            </li>
+            <li className="button__share button__share--twitter">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("twitter")}>Twitter</a>
+            </li>
+            <li className="button__share button__share--linkedin">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("linkedin")}>LinkedIn</a>
+            </li>
+            <li className="button__share button__share--reddit">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("reddit")}>Reddit</a>
+            </li>
+            <li className="button__share button__share--hackernews">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("hackernews")}>Hacker News</a>
+            </li>
+            <li className="button__share button__share--buffer">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("buffer")}>Buffer</a>
+            </li>
+            <li className="button__share button__share--digg">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("digg")}>Digg</a>
+            </li>
+            <li className="button__share button__share--tumblr">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("tumblr")}>Tumblr</a>
+            </li>
+            <li className="button__share button__share--stumbleupon">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("stumbleupon")}>StumbleUpon</a>
+            </li>
+            <li className="button__share button__share--delicious">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("delicious")}>Delicious</a>
+            </li>
+            <li className="button__share button__share--evernote">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("evernote")}>Evernote</a>
+            </li>
+            <li className="button__share button__share--wordpress">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("wordpress")}>Wordpress</a>
+            </li>
+            <li className="button__share button__share--pocket">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("pocket")}>Pocket</a>
+            </li>
+            <li className="button__share button__share--pinterest">
+              <a target="_blank" rel="noopener noreferrer" href={generateShareURL("pinterest")}>Pinterest</a>
+            </li>
+          </ul>
           <Dialog.Close asChild>
             <button className="IconButton" aria-label="Close">
               <Cross2Icon />
@@ -292,7 +283,6 @@ const ShareModal = ({ data }) => {
     </Dialog.Root>
   );
 };
-
 const [loading, setLoading] = useState({});
 
 const handleFavoriteClick = async (type, data, index) => {
