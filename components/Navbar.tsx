@@ -105,7 +105,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 };
 
 
-const Navbar = ({ notifications }: { notifications: Notification[] }) => {
+const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => { 
   const { currentUser, logout } = useFrappeAuth();
   const searchInputRef = useRef(null); // Create a reference for the search input field
   const [search, setSearch] = useState<string>('');

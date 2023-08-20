@@ -152,6 +152,43 @@ const Release = ({ setTransaction }) => {
     setPlayingTrackIndex(index);
 };
 
+const ShareModal = ({ data }) => {
+  const location = useLocation();
+  const currentURL = window.location.origin + location.pathname;
+
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <button className="Button gray">Share</button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="DialogOverlay" />
+        <Dialog.Content className="DialogContent">
+          <Dialog.Title className="DialogTitle">Share this Release</Dialog.Title>
+          
+          {/* Display Release Information */}
+          <img src={data.release_artwork} alt="Album Artwork" className="share-artwork" />
+          <p>{data.title}</p>
+          <p>{data.release_artist}</p>
+          <p>URL: {currentURL}</p>
+          
+          {/* Social Sharing Buttons - Placeholder */}
+          <p>Share on:</p>
+          <button>Facebook</button>
+          <button>Twitter</button>
+          <button>WhatsApp</button>
+
+          <Dialog.Close asChild>
+            <button className="IconButton" aria-label="Close">
+              <Cross2Icon />
+            </button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+};
+
 const [loading, setLoading] = useState({});
 
 const handleFavoriteClick = async (type, data, index) => {
@@ -291,8 +328,8 @@ const updateLocalState = (newValue) => {
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>
-  <button className="Button gray ml-12">Share</button>
-          <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
+  <ShareModal data={data} />
+            <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
           
               
                 
