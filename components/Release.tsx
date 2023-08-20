@@ -88,7 +88,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
   }, [playing]); // This useEffect runs whenever the playing prop changes
   
   return (
-    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
+    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '90', color: releasetextColor }}>
              <div className="track-controls mb-2">
              <span className="mr-4" id={`timer-${index}`}></span>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
@@ -102,18 +102,27 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
       
 
       <div className="waveform mb-2" id={`waveform-${index}`} ref={waveformRef}></div>
+      <div className="flex space-x-4 float-right">
+                 
+                 
+                  <span>❤️</span> {/* Replace with heart SVG icon */}
+                </div>
       {
         track.track_type === 'Remix'
         ? (
           <>
             <p>Remix by {track.remixer}</p>
             <p>Original by {track.track_artist}</p>
+            
           </>
         )
         : <p>{track.track_type} by {track.track_artist}</p>
       }
+  
     </div>
+    
   );
+  
 }
 
 const Release = ({ setTransaction }) => {
@@ -226,9 +235,9 @@ const updateLocalState = (newValue) => {
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>
-
+  <button className="Button gray ml-12">Share</button>
+          <button className="Button gray ml-12">Add to Favorites</button>
           
-                  
               
                 
               </div>
