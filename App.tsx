@@ -32,7 +32,7 @@ import Home from './components/Home';
 import Collection from './components/Collection';
 import Workspace from './components/Workspace';
 import SideNav from './components/FrontSideNav';
-import FooterNav from './components/FooterNav';
+import FooterPlayer from './components/FooterPlayer';
 import Release from './components/Release';
 import Roadmap from './components/Roadmap'; 
 import Product from './components/Product';

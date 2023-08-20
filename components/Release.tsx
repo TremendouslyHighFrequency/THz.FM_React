@@ -227,14 +227,7 @@ const updateLocalState = (newValue) => {
               </div>
           </div>
     
-      <FooterPlayer
-        track={currentTrack}
-        playing={playingTrackIndex !== null}
-        onPlay={() => setPlayingTrackIndex(playingTrackIndex === null ? 0 : null)}
-        onNext={onNext}
-        onPrev={onPrev}
-        progressPercentage={progressPercentage}
-      />
+
       </div>
     );
   }

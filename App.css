@@ -661,6 +661,12 @@ body[data-theme='light'] .side-nav li a {
   padding-left: 1em;
   padding-right: 1em;
 }
+.footerPlayer {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  bottom: 0;
+  z-index: 1000; 
+}
 .navbar-items a {
   margin-left: 10px;
   margin-right: 8px;
