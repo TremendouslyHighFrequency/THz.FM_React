@@ -187,10 +187,6 @@ const updateLocalState = (newValue) => {
                 ))}
               </div>
               <p className="mb-12">{data.release_description}</p>
-              <div>
-                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
-                <button className="usd-button">BUY $ {data.price_usd} USD</button>
-              </div>
               <div className="credits mt-12">
                 <p>Released On: {data.release_date}</p>
                 <p>Publisher: {data.release_label}</p>
@@ -199,6 +195,11 @@ const updateLocalState = (newValue) => {
                   <p key={index}>{credit.credit_type}: {credit.name__title}</p>
                 ))}
               </div>
+              <div>
+                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+                <button className="usd-button">BUY $ {data.price_usd} USD</button>
+              </div>
+             
             </div>
 
             {/* Album Artwork */}
