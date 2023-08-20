@@ -70,7 +70,7 @@ input {
   background-color: var(--mauve-3);
 }
 .Button.violet:focus {
-  box-shadow: 0 0 0 2px black;
+
 }
 .Button.orange {
     background-color: var(--orange-4);
