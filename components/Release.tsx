@@ -11,6 +11,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import './component_styles/Dialog.css';
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { getLoggedUser } from './api';
 
 const Track = ({ track, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -156,7 +157,8 @@ const handleFavoriteClick = async (type, data) => {
           "email_content": `${data.track_title} has been liked.`,
           "document_type": "Track",
           "read": "0",
-          "document_name": data.track_title
+          "document_name": data.track_title,
+          "from_user": getLoggedUser()
       };
   } else if (type === "release") {
       requestBody = {
@@ -166,7 +168,8 @@ const handleFavoriteClick = async (type, data) => {
           "email_content": `${data.title} has been liked.`,
           "document_type": "Release",
           "read": "0",
-          "document_name": data.title
+          "document_name": data.title,
+          "from_user": getLoggedUser()
       };
   }
 
