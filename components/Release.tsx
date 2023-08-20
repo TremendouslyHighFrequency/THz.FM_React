@@ -21,48 +21,6 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
     return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
   };
 
-  const handleFavoriteClick = async (type, data) => {
-    let requestBody;
-
-    if (type === "track") {
-        requestBody = {
-            "subject": "Like",
-            "for_user": data.track_artist, // Example: this might vary based on your data structure
-            "type": "Alert",
-            "email_content": `${data.track_title} has been liked.`,
-            "document_type": "Track",
-            "read": "0",
-            "document_name": data.track_title
-        };
-    } else if (type === "release") {
-        requestBody = {
-            "subject": "Like",
-            "for_user": data.release_artist,
-            "type": "Alert",
-            "email_content": `${data.title} has been liked.`,
-            "document_type": "Release",
-            "read": "0",
-            "document_name": data.title
-        };
-    }
-
-    try {
-        const response = await fetch('https://thz.fm/api/resource/Notification Log', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to send like notification.');
-        }
-    } catch (error) {
-        console.error(error);
-    }
-};
-
   const updateTimer = (currentTime, duration) => {
     var currentTimeFormatted = formatTime(currentTime);
     var durationFormatted = formatTime(duration);
@@ -185,6 +143,48 @@ const Release = ({ setTransaction }) => {
   };
   const onPlay = (index) => {
     setPlayingTrackIndex(index);
+};
+
+const handleFavoriteClick = async (type, data) => {
+  let requestBody;
+
+  if (type === "track") {
+      requestBody = {
+          "subject": "Like",
+          "for_user": data.track_artist, // Example: this might vary based on your data structure
+          "type": "Alert",
+          "email_content": `${data.track_title} has been liked.`,
+          "document_type": "Track",
+          "read": "0",
+          "document_name": data.track_title
+      };
+  } else if (type === "release") {
+      requestBody = {
+          "subject": "Like",
+          "for_user": data.release_artist,
+          "type": "Alert",
+          "email_content": `${data.title} has been liked.`,
+          "document_type": "Release",
+          "read": "0",
+          "document_name": data.title
+      };
+  }
+
+  try {
+      const response = await fetch('https://thz.fm/api/resource/Notification Log', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to send like notification.');
+      }
+  } catch (error) {
+      console.error(error);
+  }
 };
 
   const navigate = useNavigate();
