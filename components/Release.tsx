@@ -89,19 +89,19 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
   
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
-             <div className="track-controls">
-             <span id={`timer-${index}`}></span>
+             <div className="track-controls mb-2">
+             <span className="mr-4" id={`timer-${index}`}></span>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
  
      
       </div>
       <div onClick={togglePlayPause} className="track-items" key={index} style={{ color: tracktextColor }}>
-        <p>{track.track_title}</p>
+        <p>Track {track.track_number}: {track.track_title}</p>
  
       </div>
       
 
-      <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
+      <div className="waveform mb-2" id={`waveform-${index}`} ref={waveformRef}></div>
       {
         track.track_type === 'Remix'
         ? (
