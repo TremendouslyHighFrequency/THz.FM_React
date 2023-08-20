@@ -261,12 +261,8 @@ const updateLocalState = (newValue) => {
               </div>
           </div>
           <div className="flex space-x-8 mt-24">
-              <div className="ml-12 metadata mt-12">
-                <p>ISRC: {data.isrc}</p>
-                <p>UPC: {data.upc}</p>
-                <p>Release ID: {data.release_id}</p>
-              </div>
-              <div className="credits ml-24 mt-12">
+          
+              <div className="credits ml-12 mt-12">
                 <p>Released On: {data.release_date}</p>
                 <p>Publisher: {data.release_label}</p>
                 <p>Credits:</p>
@@ -274,6 +270,11 @@ const updateLocalState = (newValue) => {
                   <p key={index}>{credit.credit_type}: {credit.name__title}</p>
                 ))}
               </div>       
+              <div className="ml-24 metadata mt-12">
+                <p>ISRC: {data.isrc}</p>
+                <p>UPC: {data.upc}</p>
+                <p>Release ID: {data.release_id}</p>
+              </div>
              </div>
              
 
