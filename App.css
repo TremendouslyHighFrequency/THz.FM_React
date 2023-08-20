@@ -26,7 +26,7 @@ body[data-theme='dark'] {
   height: 10px;
   background-color: red;
   border-radius: 50%; /* Makes it a circle */
-  border: 2px solid white; /* Optional: Adds a white border around the dot for better visibility */
+  border: 2px solid #f2f2f2; /* Optional: Adds a white border around the dot for better visibility */
 }
 .spin {
   animation: spin 1s linear infinite;
