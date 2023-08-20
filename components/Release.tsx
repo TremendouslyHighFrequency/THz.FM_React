@@ -232,22 +232,7 @@ const updateLocalState = (newValue) => {
               
                 
               </div>
-              <div className="flex justify-between">
-              <div className="metadata mt-12">
-                <p>ISRC: {data.isrc}</p>
-                <p>UPC: {data.upc}</p>
-                <p>Release ID: {data.release_id}</p>
-              </div>
-              <div className="credits mr-24">
-                <p>Released On: {data.release_date}</p>
-                <p>Publisher: {data.release_label}</p>
-                <p>Credits:</p>
-                {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
-                  <p key={index}>{credit.credit_type}: {credit.name__title}</p>
-                ))}
-              </div>       
-             </div>
-             
+            
             </div>
 
             {/* Album Artwork */}
@@ -275,7 +260,22 @@ const updateLocalState = (newValue) => {
               ))}
               </div>
           </div>
-    
+          <div className="flex space-x-8 mt-24">
+              <div className="ml-12 metadata mt-12">
+                <p>ISRC: {data.isrc}</p>
+                <p>UPC: {data.upc}</p>
+                <p>Release ID: {data.release_id}</p>
+              </div>
+              <div className="credits ml-24 mt-12">
+                <p>Released On: {data.release_date}</p>
+                <p>Publisher: {data.release_label}</p>
+                <p>Credits:</p>
+                {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
+                  <p key={index}>{credit.credit_type}: {credit.name__title}</p>
+                ))}
+              </div>       
+             </div>
+             
 
       </div>
     );
