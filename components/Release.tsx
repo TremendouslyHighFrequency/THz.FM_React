@@ -179,14 +179,14 @@ const updateLocalState = (newValue) => {
           <div className="album-info">
             {/* Text and Details Container */}
             <div className="album-text-info">
-              <div className="h1">{data.title}</div>
+              <div className="h1 mb-4">{data.title}</div>
               <p>{data.release_type} by: {data.release_artist}</p>
-              <div>
+              <div className="mb-12">
                 {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                   <p className="genre-item" key={index}>{genre.genre}</p>
                 ))}
               </div>
-              <p>{data.release_description}</p>
+              <p className="mb-12">{data.release_description}</p>
               <div>
                 <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
                 <button className="usd-button">BUY $ {data.price_usd} USD</button>
