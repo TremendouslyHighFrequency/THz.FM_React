@@ -212,6 +212,10 @@ const ShareModal = ({ data }) => {
 }
   
     window.open(shareURL, '_blank');
+    const popup = window.open(shareURL, '_blank');
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        alert("Pop-up blocked! Please allow pop-ups from this site to share.");
+    }
   };
 
   return (
