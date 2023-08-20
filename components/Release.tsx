@@ -88,7 +88,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
   }, [playing]); // This useEffect runs whenever the playing prop changes
   
   return (
-    <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '90', color: releasetextColor }}>
+    <div className="tracklist border-b-4" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor, borderColor: progressColor }}>
              <div className="track-controls mb-2">
              <span className="mr-4" id={`timer-${index}`}></span>
       <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
