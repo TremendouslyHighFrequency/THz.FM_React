@@ -17,6 +17,8 @@ import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
 import { ActionBar } from './ActionBar';
 import { UserDropdown } from './UserDropdown';
+import Breadcrumbs from './Breadcrumbs';
+import { useReleaseData } from './ReleaseContext.tsx';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -115,6 +117,7 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
   const { txId, transactionConfirmed, setTransactionConfirmed } = useContext(TxContext);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [logo, setLogo] = useState(theme === 'dark' ? THZLogo : THZLogoDark);
+  const release = useReleaseData();
 
   const handleSearchShortcut = (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === '.') {
@@ -197,12 +200,14 @@ const Navbar = ({ notifications }: { notifications: Notification[] }) => {
         <a href="/">
           <img className="navbar-logo mr-4" src={logo} alt="logo" />
         </a>
+       
         {currentUser ? (
             <> 
         <ActionBar />
         </>
           ) : (
-            <div></div>
+            <div>
+            </div>
             )}
         <div className="navbar-items">
           <input

@@ -1,6 +1,7 @@
 //React Imports
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
+import { ReleaseProvider } from './components/ReleaseContext';
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
@@ -84,7 +85,8 @@ function App() {
   const { navItems, links } = SideNav();
 
  return (
-  <FrappeProvider url='https://thz.fm/' >
+  <FrappeProvider url='https://thz.fm/'>
+     <ReleaseProvider>
       <Router>
         <div className="App">
           <TxContext.Provider value={{ txId, transactionConfirmed, setTransactionConfirmed }}>
@@ -133,6 +135,7 @@ function App() {
           </TxContext.Provider>
         </div>
       </Router>
+      </ReleaseProvider>
     </FrappeProvider>
   );
 }

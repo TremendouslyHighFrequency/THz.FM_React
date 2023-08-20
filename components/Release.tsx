@@ -6,6 +6,8 @@ import WaveSurfer from 'wavesurfer.js';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import { purchase } from './payment';
 import FooterPlayer from './FooterPlayer';
+import Breadcrumbs from './Breadcrumbs';
+import { useReleaseData } from './ReleaseContext';
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -108,11 +110,18 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
-  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-
+  const { data: fetchedData, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
+  const { data, setData } = useReleaseData();
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
-  const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
-  const [duration, setDuration] = useState(0);  // Added duration state
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);  
+
+  useEffect(() => {
+    if (fetchedData) {
+      setData(fetchedData);
+    }
+  }, [fetchedData, setData]);
+
   const handleButtonClick = async () => {
     try {
       const price_erg = parseFloat(data.price_erg);
@@ -151,6 +160,7 @@ const updateLocalState = (newValue) => {
   };
 
   const progressPercentage = (currentTime / duration) * 100;
+  
 
   const currentTrack = playingTrackIndex !== null ? {
     url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
@@ -164,17 +174,38 @@ const updateLocalState = (newValue) => {
     return (
       <div>
         {/* Display the data */}
-        <div className="album-page" style={{backgroundImage: `url(${data.release_artwork})`}}>
-          <div className="">
-            <span><div className="h1" style={{ color: data.release_text_color }}>{data.title}</div><p style={{ color: data.release_text_color }}>{data.release_type} by: {data.release_artist}</p></span>
-           <div>{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
-                <p className="genre-item" key={index}>{genre.genre}</p>
-              ))}</div>
-            <p style={{ color: data.release_text_color }}>{data.release_description}</p>
-          <div style={{ color: data.release_text_color }}>
-          <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
-          <button className="usd-button">BUY $ {data.price_usd} USD</button>
+        
+        <div className="album-page">   
+          <div className="album-info">
+            {/* Text and Details Container */}
+            <div className="album-text-info">
+              <div className="h1" style={{ color: data.release_text_color }}>{data.title}</div>
+              <p style={{ color: data.release_text_color }}>{data.release_type} by: {data.release_artist}</p>
+              <div>
+                {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
+                  <p className="genre-item" key={index}>{genre.genre}</p>
+                ))}
+              </div>
+              <p style={{ color: data.release_text_color }}>{data.release_description}</p>
+              <div style={{ color: data.release_text_color }}>
+                <button className="erg-button" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+                <button className="usd-button">BUY $ {data.price_usd} USD</button>
+              </div>
+              <div className="credits mt-12">
+                <p>Released On: {data.release_date}</p>
+                <p>Publisher: {data.release_label}</p>
+                <p>Credits:</p>
+                {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
+                  <p key={index}>{credit.credit_type}: {credit.name__title}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* Album Artwork */}
+            <div className="display-artwork" style={{ backgroundImage: `url('https://www.creativeboom.com/uploads/articles/db/db1a6b372e7c23636f9b8d88f879a9a815c6825c_810.jpeg')` }}></div>
           </div>
+          
+          <div className="tracklist-container">
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track 
                 track={track} 
@@ -193,16 +224,9 @@ const updateLocalState = (newValue) => {
                 setDuration={setDuration}
                 />
               ))}
+              </div>
           </div>
-        </div>
-      <div className="credits mt-12">
-      <p>Released On: {data.release_date}</p>
-      <p>Publisher: {data.release_label}</p>
-        <p>Credits:</p>
-              {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
-                <p key={index}>{credit.credit_type}: {credit.name__title}</p>
-              ))}
-      </div>
+    
       <FooterPlayer
         track={currentTrack}
         playing={playingTrackIndex !== null}
