@@ -105,7 +105,7 @@ const Track = ({ track, handleFavoriteClick, index, setCurrentTime, setDuration,
       <div className="flex space-x-4 float-right">
                  
                  
-      <span onClick={() => handleFavoriteClick("track", track)}>❤️</span>
+      <button onClick={() => handleFavoriteClick("track", track)}>❤️</button>
                 </div>
       {
         track.track_type === 'Remix'
