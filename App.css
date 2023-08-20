@@ -651,7 +651,97 @@ body[data-theme='light'] .side-nav li a {
 .navbar-search.full-width {
   width: 100%;
 }
-
+.social-buttons {
+  list-style-type: none;
+  box-sizing: border-box;
+  *zoom: 1;
+}
+.social-buttons:before,
+.social-buttons:after {
+  box-sizing: border-box;
+}
+.social-buttons:before,
+.social-buttons:after {
+  content: " ";
+  display: table;
+  line-height: 0;
+}
+.social-buttons:after {
+  clear: both;
+}
+.button__share {
+  float: left;
+  background-color: #888;
+  margin-right: .7em;
+  margin-bottom: .7em;
+  border-radius: 4px;
+}
+.button__share:last-child {
+  margin-right: 0;
+}
+.button__share:hover {
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+  filter: alpha(opacity=80);
+}
+.button__share a {
+  color: #fff;
+  font-family: Arial, Helvetica, -apple-system, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.33;
+  text-decoration: none;
+  padding: .35em .7em;
+  display: inline-block;
+}
+.button__share--facebook {
+  background-color: #3b5998;
+}
+.button__share--googleplus {
+  background-color: #dc4e41;
+}
+.button__share--twitter {
+  background-color: #55acee;
+}
+.button__share--linkedin {
+  background-color: #0077b5;
+}
+.button__share--reddit {
+  background-color: #ff4500;
+}
+.button__share--hackernews {
+  background-color: #ff6600;
+}
+.button__share--buffer {
+  background-color: #323b43;
+}
+.button__share--digg {
+  background-color: #000000;
+}
+.button__share--tumblr {
+  background-color: #35465c;
+}
+.button__share--stumbleupon {
+  background-color: #eb4924;
+}
+.button__share--delicious {
+  background-color: #3399ff;
+}
+.button__share--evernote {
+  background-color: #7ac142;
+}
+.button__share--wordpress {
+  background-color: #21759b;
+}
+.button__share--pocket {
+  background-color: #ef4056;
+}
+.button__share--pinterest {
+  background-color: #bd081c;
+}
 .navbar-search:focus {
   outline: none;
 }

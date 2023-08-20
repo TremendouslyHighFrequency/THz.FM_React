@@ -174,9 +174,27 @@ const ShareModal = ({ data }) => {
           
           {/* Social Sharing Buttons - Placeholder */}
           <p>Share on:</p>
-          <button>Facebook</button>
-          <button>Twitter</button>
-          <button>WhatsApp</button>
+          
+<ul class="social-buttons">
+  <li class="button__share button__share--facebook"><a href="javascript:void(window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location) + '?t=' + encodeURIComponent(document.title),'_blank'))">Facebook</a></li>
+  <li class="button__share button__share--googleplus"><a href="javascript:void(window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.location),'_blank'))">Google+ Share</a></li>
+  <li class="button__share button__share--twitter"><a href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=fabienb&amp;hashtags=koandesign','_blank'))">Twitter</a></li>
+
+  <li class="button__share button__share--linkedin"><a href="javascript:void(window.open('https://www.linkedin.com/shareArticle?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Linkedin</a></li>
+
+  <li class="button__share button__share--reddit"><a href="javascript:void(window.open('http://reddit.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Reddit</a></li>
+  <li class="button__share button__share--hackernews"><a href="javascript:void(window.open('http://news.ycombinator.com/submitlink?u=' + encodeURIComponent(document.location) + '&amp;t=' + encodeURIComponent(document.title),'_blank'))">Hacker News</a></li>
+  <li class="button__share button__share--buffer"><a href="javascript:void(window.open('http://bufferapp.com/add?text=' + encodeURIComponent(document.title) + '&amp;url=' + encodeURIComponent(document.location),'_blank'))">Buffer</a></li>
+  <li class="button__share button__share--digg"><a href="javascript:void(window.open('https://digg.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Digg</a></li>
+  <li class="button__share button__share--tumblr"><a href="javascript:void(window.open('https://www.tumblr.com/share/link?url=' + encodeURIComponent(document.location) + '&amp;name=' + encodeURIComponent(document.title),'_blank'))">Tumblr</a></li>
+
+  <li class="button__share button__share--stumbleupon"><a href="javascript:void(window.open('http://www.stumbleupon.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">StumbleUpon</a></li>
+  <li class="button__share button__share--delicious"><a href="javascript:void(window.open('https://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Delicious</a></li>
+  <li class="button__share button__share--evernote"><a href="javascript:void(window.open('http://www.evernote.com/clip.action?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Evernote</a></li>
+  <li class="button__share button__share--wordpress"><a href="javascript:void(window.open('http://wordpress.com/press-this.php?u=' + encodeURIComponent(document.location) + '&amp;t=' + encodeURIComponent(document.title),'_blank'))">Wordpress</a></li>
+  <li class="button__share button__share--pocket"><a href="javascript:void(window.open('https://getpocket.com/save?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Pocket</a></li>
+  <li class="button__share button__share--pinterest"><a href="javascript:void(window.open('https://pinterest.com/pin/create/bookmarklet/?url=' + encodeURIComponent(document.location) + '&amp;description=' + encodeURIComponent(document.title),'_blank'))">Pinterest</a></li>
+</ul>
 
           <Dialog.Close asChild>
             <button className="IconButton" aria-label="Close">
