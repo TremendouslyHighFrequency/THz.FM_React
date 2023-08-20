@@ -59,8 +59,11 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
                 <div className="flex notification">
                   <img className="notification-image" src={notification.user_image || THZIcon} alt="user_image" />
                   <div className="items-start justify-between">
-                  <span className="notification-text">{notification.from_user.includes('@') ? notification.from_user.split('@')[0] : notification.from_user}</span>
-                  <span> {actionText} </span>
+                  <span className="notification-text">
+  {notification.from_user && notification.from_user.includes('@') 
+   ? notification.from_user.split('@')[0] 
+   : notification.from_user}
+</span>                  <span> {actionText} </span>
                   <span>{notification.email_content}</span>
                 </div>
                 </div>
