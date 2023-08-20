@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import './component_styles/FooterPlayer.css';
 
-const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage }) => {
+const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage, progressColor }) => {
     return (
     <div className="footerPlayer mr-12 mt-24 mb-24">
       <div className="track-details">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
 import { ReleaseItem } from '../types';
 import WaveSurfer from 'wavesurfer.js';
@@ -197,7 +197,7 @@ const updateLocalState = (newValue) => {
             {/* Text and Details Container */}
             <div className="album-text-info">
               <div className="h1 mb-2">{data.title}</div>
-              <p className="mb-4">{data.release_type} by: {data.release_artist}</p>
+              <p className="mb-4">{data.release_type} by: <Link to={`/artists/${data.release_artist}`}>{data.release_artist}</Link></p>
               <div className="mb-12">
                 {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
                   <p className="genre-item" key={index}>{genre.genre}</p>
@@ -273,7 +273,7 @@ const updateLocalState = (newValue) => {
           
               <div className="credits ml-12 mt-12">
                 <p>Released On: {data.release_date}</p>
-                <p>Publisher: {data.release_label}</p>
+                <p>Publisher: <Link to={`/labels/${data.release_label}`}>{data.release_label}</Link></p>
                 <p>Credits:</p>
                 {Array.isArray(data.release_credits) && data.release_credits.map((credit, index) => (
                   <p key={index}>{credit.credit_type}: {credit.name__title}</p>
@@ -283,6 +283,7 @@ const updateLocalState = (newValue) => {
                 <p>ISRC: {data.isrc}</p>
                 <p>UPC: {data.upc}</p>
                 <p>Release ID: {data.release_id}</p>
+                <p>Contract Addr: </p>
               </div>
              </div>
              
