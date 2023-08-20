@@ -155,6 +155,64 @@ const Release = ({ setTransaction }) => {
 const ShareModal = ({ data }) => {
   const location = useLocation();
   const currentURL = window.location.origin + location.pathname;
+  const share = (platform) => {
+    const currentURL = window.location.origin + location.pathname;
+    const title = data.title; // Adjust this if it's not the correct title you want to share
+  
+    let shareURL = "";
+  
+    switch (platform) {
+      case "facebook":
+          shareURL = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+          break;
+      case "googleplus":
+          shareURL = `https://plus.google.com/share?url=${encodeURIComponent(currentURL)}`;
+          break;
+      case "twitter":
+          shareURL = `https://twitter.com/share?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(title)}`;
+          break;
+      case "linkedin":
+          shareURL = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "reddit":
+          shareURL = `http://reddit.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "hackernews":
+          shareURL = `http://news.ycombinator.com/submitlink?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+          break;
+      case "buffer":
+          shareURL = `http://bufferapp.com/add?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentURL)}`;
+          break;
+      case "digg":
+          shareURL = `https://digg.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "tumblr":
+          shareURL = `https://www.tumblr.com/share/link?url=${encodeURIComponent(currentURL)}&name=${encodeURIComponent(title)}`;
+          break;
+      case "stumbleupon":
+          shareURL = `http://www.stumbleupon.com/submit?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "delicious":
+          shareURL = `https://delicious.com/save?v=5&noui&jump=close&url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "evernote":
+          shareURL = `http://www.evernote.com/clip.action?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "wordpress":
+          shareURL = `http://wordpress.com/press-this.php?u=${encodeURIComponent(currentURL)}&t=${encodeURIComponent(title)}`;
+          break;
+      case "pocket":
+          shareURL = `https://getpocket.com/save?url=${encodeURIComponent(currentURL)}&title=${encodeURIComponent(title)}`;
+          break;
+      case "pinterest":
+          shareURL = `https://pinterest.com/pin/create/bookmarklet/?url=${encodeURIComponent(currentURL)}&description=${encodeURIComponent(title)}`;
+          break;
+      default:
+          return;
+  }
+  
+    window.open(shareURL, '_blank');
+  };
 
   return (
     <Dialog.Root>
@@ -174,27 +232,55 @@ const ShareModal = ({ data }) => {
           
           {/* Social Sharing Buttons - Placeholder */}
           <p>Share on:</p>
-          
-<ul class="social-buttons">
-  <li class="button__share button__share--facebook"><a href="javascript:void(window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location) + '?t=' + encodeURIComponent(document.title),'_blank'))">Facebook</a></li>
-  <li class="button__share button__share--googleplus"><a href="javascript:void(window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.location),'_blank'))">Google+ Share</a></li>
-  <li class="button__share button__share--twitter"><a href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=fabienb&amp;hashtags=koandesign','_blank'))">Twitter</a></li>
+          <ul className="social-buttons">
 
-  <li class="button__share button__share--linkedin"><a href="javascript:void(window.open('https://www.linkedin.com/shareArticle?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Linkedin</a></li>
-
-  <li class="button__share button__share--reddit"><a href="javascript:void(window.open('http://reddit.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Reddit</a></li>
-  <li class="button__share button__share--hackernews"><a href="javascript:void(window.open('http://news.ycombinator.com/submitlink?u=' + encodeURIComponent(document.location) + '&amp;t=' + encodeURIComponent(document.title),'_blank'))">Hacker News</a></li>
-  <li class="button__share button__share--buffer"><a href="javascript:void(window.open('http://bufferapp.com/add?text=' + encodeURIComponent(document.title) + '&amp;url=' + encodeURIComponent(document.location),'_blank'))">Buffer</a></li>
-  <li class="button__share button__share--digg"><a href="javascript:void(window.open('https://digg.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Digg</a></li>
-  <li class="button__share button__share--tumblr"><a href="javascript:void(window.open('https://www.tumblr.com/share/link?url=' + encodeURIComponent(document.location) + '&amp;name=' + encodeURIComponent(document.title),'_blank'))">Tumblr</a></li>
-
-  <li class="button__share button__share--stumbleupon"><a href="javascript:void(window.open('http://www.stumbleupon.com/submit?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">StumbleUpon</a></li>
-  <li class="button__share button__share--delicious"><a href="javascript:void(window.open('https://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Delicious</a></li>
-  <li class="button__share button__share--evernote"><a href="javascript:void(window.open('http://www.evernote.com/clip.action?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Evernote</a></li>
-  <li class="button__share button__share--wordpress"><a href="javascript:void(window.open('http://wordpress.com/press-this.php?u=' + encodeURIComponent(document.location) + '&amp;t=' + encodeURIComponent(document.title),'_blank'))">Wordpress</a></li>
-  <li class="button__share button__share--pocket"><a href="javascript:void(window.open('https://getpocket.com/save?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))">Pocket</a></li>
-  <li class="button__share button__share--pinterest"><a href="javascript:void(window.open('https://pinterest.com/pin/create/bookmarklet/?url=' + encodeURIComponent(document.location) + '&amp;description=' + encodeURIComponent(document.title),'_blank'))">Pinterest</a></li>
+  <li className="button__share button__share--facebook">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("facebook"); }}>Facebook</a>
+  </li>
+  <li className="button__share button__share--googleplus">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("googleplus"); }}>Google+</a>
+  </li>
+  <li className="button__share button__share--twitter">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("twitter"); }}>Twitter</a>
+  </li>
+  <li className="button__share button__share--linkedin">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("linkedin"); }}>LinkedIn</a>
+  </li>
+  <li className="button__share button__share--reddit">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("reddit"); }}>Reddit</a>
+  </li>
+  <li className="button__share button__share--hackernews">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("hackernews"); }}>Hacker News</a>
+  </li>
+  <li className="button__share button__share--buffer">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("buffer"); }}>Buffer</a>
+  </li>
+  <li className="button__share button__share--digg">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("digg"); }}>Digg</a>
+  </li>
+  <li className="button__share button__share--tumblr">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("tumblr"); }}>Tumblr</a>
+  </li>
+  <li className="button__share button__share--stumbleupon">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("stumbleupon"); }}>StumbleUpon</a>
+  </li>
+  <li className="button__share button__share--delicious">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("delicious"); }}>Delicious</a>
+  </li>
+  <li className="button__share button__share--evernote">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("evernote"); }}>Evernote</a>
+  </li>
+  <li className="button__share button__share--wordpress">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("wordpress"); }}>Wordpress</a>
+  </li>
+  <li className="button__share button__share--pocket">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("pocket"); }}>Pocket</a>
+  </li>
+  <li className="button__share button__share--pinterest">
+    <a href="#" onClick={(e) => { e.preventDefault(); share("pinterest"); }}>Pinterest</a>
+  </li>
 </ul>
+
 
           <Dialog.Close asChild>
             <button className="IconButton" aria-label="Close">
