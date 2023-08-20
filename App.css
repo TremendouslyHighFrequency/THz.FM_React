@@ -261,8 +261,8 @@ body[data-theme='dark'] {
 
 .display-artwork {
   float: right;
-  width: 25vw;
-  height: 25vw;
+  width: 22vw;
+  height: 22vw;
   min-height: 350px;
   min-width: 350px;
   max-width: 50%;
