@@ -306,6 +306,7 @@ const updateLocalState = (newValue) => {
                 onPrev={onPrev}
                 setCurrentTime={setCurrentTime}
                 setDuration={setDuration}
+                handleFavoriteClick={handleFavoriteClick}
                 />
               ))}
               </div>
