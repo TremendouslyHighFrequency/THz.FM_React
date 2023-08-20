@@ -152,7 +152,7 @@ const handleFavoriteClick = async (type, data) => {
   if (type === "track") {
       requestBody = {
           "subject": "Like",
-          "for_user": data.owner, // Example: this might vary based on your data structure
+          "for_user": data.owner,
           "type": "Alert",
           "email_content": `${data.track_title} has been liked.`,
           "document_type": "Track",
@@ -172,6 +172,8 @@ const handleFavoriteClick = async (type, data) => {
           "from_user": getLoggedUser()
       };
   }
+
+  console.log("Sending request with body:", requestBody);  // <-- Add this line to log the request body
 
   try {
       const response = await fetch('https://thz.fm/api/resource/Notification Log', {
