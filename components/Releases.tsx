@@ -35,7 +35,7 @@ const Releases = () => {
               <Link 
                 to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} 
                 className="block h-64 rounded-lg shadow-lg bg-white" 
-                style={{ backgroundImage: `url('${release.release_artwork}')` }}
+                style={{ backgroundImage: `url('${release.release_artwork}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               ></Link>
               <div className="flex items-center justify-between mt-3">
                 <div>
