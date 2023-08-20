@@ -40,16 +40,16 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
             let actionText;
             switch (notification.type) {
               case 'Share':
-                actionText = `has shared ${notification.document_name}`;
+                actionText = `shared ${notification.document_name}`;
                 break;
               case 'Like':
-                actionText = `has liked ${notification.document_name}`;
+                actionText = `liked ${notification.document_name}`;
                 break;
               case 'Alert':
-                actionText = `has liked`;
+                actionText = `liked`;
                 break;
               case 'Comment':
-                actionText = `has commented on ${notification.document_name}`;
+                actionText = `commented on ${notification.document_name}`;
                 break;
               default:
                 actionText = notification.type;
