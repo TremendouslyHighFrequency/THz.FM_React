@@ -107,7 +107,7 @@ const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurr
                  
       <button onClick={() => handleFavoriteClick("track", track)} disabled={loading}>
     {loading ? (
-        <div className="w-4 h-4 border-t-2 border-transparent border-solid rounded-full animate-spin"></div>
+      <div className="w-4 h-4 border-t-2 border-transparent border-solid rounded-full spin"></div>
     ) : '❤️'}
 </button>
 

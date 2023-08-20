@@ -14,6 +14,14 @@ body[data-theme='dark'] {
   --text-color: #fff;
   --bg-color: #263040;
 }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
 .h1 {
   font-size: 2.5rem;
 }
