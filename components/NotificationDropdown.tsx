@@ -45,6 +45,9 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
               case 'Like':
                 actionText = `has liked ${notification.document_name}`;
                 break;
+                case 'Alert':
+                  actionText = `has liked ${notification.document_name}`;
+                  break;
               case 'Comment':
                 actionText = `has commented on ${notification.document_name}`;
                 break;
