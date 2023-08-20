@@ -34,7 +34,7 @@ const Releases = () => {
             <div key={release.name}>
               <Link 
                 to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} 
-                className="block h-64 rounded-lg shadow-lg bg-white" 
+                className="block h-96 w-96 rounded-lg shadow-lg bg-white" 
                 style={{ backgroundImage: `url('${release.release_artwork}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               ></Link>
               <div className="flex items-center justify-between mt-3">
@@ -45,7 +45,7 @@ const Releases = () => {
                     <span className="text-xs font-medium ml-1 text-indigo-500">{release.release_artist}</span>
                   </Link>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 mr-12">
                 <span>❤️</span> 
                   <span>🛒</span> 
                 </div>
