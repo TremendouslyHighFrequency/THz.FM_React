@@ -157,7 +157,7 @@ const handleFavoriteClick = async (type, data) => {
           "email_content": `${data.track_title} has been liked.`,
           "document_type": "Track",
           "read": "0",
-          "document_name": data.track_title,
+          "document_name": data.name,
           "from_user": loggedUser
       };
   } else if (type === "release") {
@@ -168,7 +168,7 @@ const handleFavoriteClick = async (type, data) => {
           "email_content": `${data.title} has been liked.`,
           "document_type": "Release",
           "read": "0",
-          "document_name": data.title,
+          "document_name": data.name,
           "from_user": loggedUser
       };
   }
