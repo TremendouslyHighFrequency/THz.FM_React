@@ -12,7 +12,7 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import './component_styles/Dialog.css';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
-const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
+const Track = ({ track, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
   const formatTime = (seconds) => {
