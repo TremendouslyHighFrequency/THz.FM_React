@@ -31,10 +31,10 @@ const Releases = () => {
       <div className="flex flex-col w-screen min-h-screen text-gray-800">
         <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-4">
           {data.map(release => (
-            <div key={release.name}>
+            <div key={release.name} className="w-96">
               <Link 
                 to={`/releases/${release.title}/by/${release.release_artist}/${release.name}`} 
-                className="block h-96 w-96 rounded-lg shadow-lg bg-white" 
+                className="block h-96 rounded-lg shadow-lg bg-white" 
                 style={{ backgroundImage: `url('${release.release_artwork}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               ></Link>
               <div className="flex items-center justify-between mt-3">
@@ -45,9 +45,9 @@ const Releases = () => {
                     <span className="text-xs font-medium ml-1 text-indigo-500">{release.release_artist}</span>
                   </Link>
                 </div>
-                <div className="flex space-x-4 mr-12">
-                <span>❤️</span> 
-                  <span>🛒</span> 
+                <div className="flex space-x-4">
+                  <span>❤️</span> {/* Replace with heart SVG icon */}
+                  <span>🛒</span> {/* Replace with cart SVG icon */}
                 </div>
               </div>
             </div>
