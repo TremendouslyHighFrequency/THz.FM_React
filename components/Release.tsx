@@ -105,10 +105,10 @@ const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurr
       <div className="flex space-x-4 float-right">
                  
                  
-      <button onClick={() => handleFavoriteClick("track", track)} disabled={loading}>
-    {loading ? (
-      <div className="w-4 h-4 border-t-2 border-transparent border-solid rounded-full spin"></div>
-    ) : '❤️'}
+      <button onClick={() => handleFavoriteClick("track", track, index)} disabled={loading[index]}>
+  {loading[index] ? (
+    <div className="w-4 h-4 border-t-2 border-transparent border-solid rounded-full spin"></div>
+  ) : '❤️'}
 </button>
 
 
@@ -152,12 +152,11 @@ const Release = ({ setTransaction }) => {
     setPlayingTrackIndex(index);
 };
 
-const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState({});
 
-
-const handleFavoriteClick = async (type, data) => {
-  if (loading) return;  
-  setLoading(true);  
+const handleFavoriteClick = async (type, data, index) => {
+  if (loading[index]) return; 
+  setLoading(prev => ({ ...prev, [index]: true }));
   let requestBody;
   const loggedUser = await getLoggedUser();
   if (type === "track") {
@@ -200,7 +199,7 @@ const handleFavoriteClick = async (type, data) => {
   } catch (error) {
       console.error(error);
   }
-  setLoading(false);
+  setLoading(prev => ({ ...prev, [index]: false }));
 };
 
   const navigate = useNavigate();
