@@ -152,7 +152,7 @@ const handleFavoriteClick = async (type, data) => {
   if (type === "track") {
       requestBody = {
           "subject": "Like",
-          "for_user": data.track_artist, // Example: this might vary based on your data structure
+          "for_user": data.owner, // Example: this might vary based on your data structure
           "type": "Alert",
           "email_content": `${data.track_title} has been liked.`,
           "document_type": "Track",
@@ -163,7 +163,7 @@ const handleFavoriteClick = async (type, data) => {
   } else if (type === "release") {
       requestBody = {
           "subject": "Like",
-          "for_user": data.release_artist,
+          "for_user": data.owner,
           "type": "Alert",
           "email_content": `${data.title} has been liked.`,
           "document_type": "Release",
