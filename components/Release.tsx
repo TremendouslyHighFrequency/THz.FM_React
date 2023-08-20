@@ -202,7 +202,7 @@ const updateLocalState = (newValue) => {
             </div>
 
             {/* Album Artwork */}
-            <div className="display-artwork" style={{ backgroundImage: `url('https://www.creativeboom.com/uploads/articles/db/db1a6b372e7c23636f9b8d88f879a9a815c6825c_810.jpeg')` }}></div>
+            <div className="display-artwork" style={{backgroundImage: `url(${data.release_artwork})`}}></div>
           </div>
           
           <div className="tracklist-container">
