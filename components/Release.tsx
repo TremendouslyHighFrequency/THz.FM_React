@@ -148,7 +148,7 @@ const Release = ({ setTransaction }) => {
 
 const handleFavoriteClick = async (type, data) => {
   let requestBody;
-
+  const loggedUser = await getLoggedUser();
   if (type === "track") {
       requestBody = {
           "subject": "Like",
@@ -158,7 +158,7 @@ const handleFavoriteClick = async (type, data) => {
           "document_type": "Track",
           "read": "0",
           "document_name": data.track_title,
-          "from_user": getLoggedUser()
+          "from_user": loggedUser
       };
   } else if (type === "release") {
       requestBody = {
@@ -169,7 +169,7 @@ const handleFavoriteClick = async (type, data) => {
           "document_type": "Release",
           "read": "0",
           "document_name": data.title,
-          "from_user": getLoggedUser()
+          "from_user": loggedUser
       };
   }
 
