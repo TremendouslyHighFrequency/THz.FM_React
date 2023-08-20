@@ -89,16 +89,17 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
   
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
+             <div className="track-controls">
+             <span id={`timer-${index}`}></span>
+      <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
+ 
+     
+      </div>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
         <p>{track.track_title}</p>
-        <div className="track-controls">
-      <button onClick={onPrev}><FaBackward /></button>
-      <button onClick={togglePlayPause}>{playing ? <FaPause /> : <FaPlay />}</button>
-      <button onClick={onNext}><FaForward /></button>
  
-      <span id={`timer-${index}`}></span>
       </div>
-      </div>
+      
 
       <div className="waveform" id={`waveform-${index}`} ref={waveformRef}></div>
       {
@@ -132,6 +133,9 @@ const Release = ({ setTransaction }) => {
       console.error(err);
     }
   };
+  const onPlay = (index) => {
+    setPlayingTrackIndex(index);
+};
 
   const navigate = useNavigate();
 const location = useLocation();
@@ -190,7 +194,9 @@ const updateLocalState = (newValue) => {
                   <p className="genre-item" key={index}>{genre.genre}</p>
                 ))}
               </div>
+              
               <p className="mb-12 text-lg">{data.release_description}</p>
+              <FooterPlayer track={currentTrack} playing={playingTrackIndex !== null} onPlay={onPlay} onPrev={onPrev} onNext={onNext} progressPercentage={progressPercentage} />
               <div className="mt-8">
                  
               <Dialog.Root>

@@ -5,13 +5,8 @@ import './component_styles/FooterPlayer.css';
 const FooterPlayer = ({ track, playing, onPlay, onPrev, onNext, progressPercentage }) => {
     return (
     <div className="footerPlayer">
-      <div className="album-art">
-        <img src={track?.cover_art_url} alt={track?.name} />
-      </div>
       <div className="track-details">
-        <span className="track-name">{track?.name}</span>
-        <span className="track-artist">{track?.artist}</span>
-        <span className="track-album">{track?.album}</span>
+
       </div>
       <div className="player-controls">
         <button className="control-button" onClick={onPrev}>
