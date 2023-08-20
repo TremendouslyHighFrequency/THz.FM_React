@@ -15,12 +15,53 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
-
   const formatTime = (seconds) => {
     var minutes = Math.floor(seconds / 60);
     var remainingSeconds = Math.floor(seconds % 60);
     return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
   };
+
+  const handleFavoriteClick = async (type, data) => {
+    let requestBody;
+
+    if (type === "track") {
+        requestBody = {
+            "subject": "Like",
+            "for_user": data.track_artist, // Example: this might vary based on your data structure
+            "type": "Alert",
+            "email_content": `${data.track_title} has been liked.`,
+            "document_type": "Track",
+            "read": "0",
+            "document_name": data.track_title
+        };
+    } else if (type === "release") {
+        requestBody = {
+            "subject": "Like",
+            "for_user": data.release_artist,
+            "type": "Alert",
+            "email_content": `${data.title} has been liked.`,
+            "document_type": "Release",
+            "read": "0",
+            "document_name": data.title
+        };
+    }
+
+    try {
+        const response = await fetch('https://thz.fm/api/resource/Notification Log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to send like notification.');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
 
   const updateTimer = (currentTime, duration) => {
     var currentTimeFormatted = formatTime(currentTime);
@@ -105,7 +146,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
       <div className="flex space-x-4 float-right">
                  
                  
-                  <span>❤️</span> {/* Replace with heart SVG icon */}
+      <span onClick={() => handleFavoriteClick("track", track)}>❤️</span>
                 </div>
       {
         track.track_type === 'Remix'
@@ -236,7 +277,7 @@ const updateLocalState = (newValue) => {
     </Dialog.Portal>
   </Dialog.Root>
   <button className="Button gray ml-12">Share</button>
-          <button className="Button gray ml-12">Add to Favorites</button>
+          <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
           
               
                 
