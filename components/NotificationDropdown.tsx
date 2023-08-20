@@ -56,7 +56,7 @@ const NotificationDropdown = ({ notifications, buttonRef, dropdownVisible, setDr
             }
             return (
               <div key={index} className="notification-item">
-                <div className="flex space-between notification">
+                <div className="flex justify-between notification">
                   <img className="notification-image" src={notification.user_image || THZIcon} alt="user_image" />
                   <span className="notification-text">{notification.from_user.split('@')[0]}</span>
                   <span> {actionText} </span>
