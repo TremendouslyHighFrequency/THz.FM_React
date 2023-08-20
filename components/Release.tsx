@@ -7,7 +7,6 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import { purchase } from './payment';
 import FooterPlayer from './FooterPlayer';
 import Breadcrumbs from './Breadcrumbs';
-import { useReleaseData } from './ReleaseContext';
 
 
 const Track = ({ track, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
@@ -58,9 +57,9 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
     updateTimer(currentTime, duration);
   });
 
-    return () => {
-      wavesurferRef.current && wavesurferRef.current.destroy();
-    };
+  return () => {
+    wavesurferRef.current && wavesurferRef.current.destroy();
+  };
   }, []);  // Empty dependency array so this useEffect only runs once
 
   // useEffect hook to update 'finish' event listener when onNext prop changes
@@ -84,7 +83,7 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
       wavesurferRef.current.pause();
     }
   }, [playing]); // This useEffect runs whenever the playing prop changes
-
+  
   return (
     <div className="tracklist" key={index} style={{ backgroundColor: containerColor + '80', color: releasetextColor }}>
       <div className="track-items" key={index} style={{ color: tracktextColor }}>
@@ -115,18 +114,11 @@ const Track = ({ track, index, setCurrentTime, setDuration, containerColor, wave
 
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
-  const { data: fetchedData, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-  const { data, setData } = useReleaseData();
+  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
+
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);  
-
-  useEffect(() => {
-    if (fetchedData) {
-      setData(fetchedData);
-    }
-  }, [fetchedData, setData]);
-
+  const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
+  const [duration, setDuration] = useState(0);  // Added duration state
   const handleButtonClick = async () => {
     try {
       const price_erg = parseFloat(data.price_erg);
@@ -165,6 +157,10 @@ const updateLocalState = (newValue) => {
   };
 
   const progressPercentage = (currentTime / duration) * 100;
+  
+  useEffect(() => {
+    setPlayingTrackIndex(null);
+  }, [name]);
   
 
   const currentTrack = playingTrackIndex !== null ? {
@@ -217,7 +213,7 @@ const updateLocalState = (newValue) => {
                 <Track 
                 track={track} 
                 index={index} 
-                key={index} 
+                key={`${name}-${index}`}
                 containerColor={data.container_color} 
                 waveformColor={data.waveform_color}  
                 releasetextColor={data.release_text_color}
