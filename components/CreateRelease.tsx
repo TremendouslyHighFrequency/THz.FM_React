@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useFrappeGetDocList, useFrappeFileUpload } from 'frappe-react-sdk';
 import { getLoggedUser } from './api';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const CreateRelease = () => {
@@ -197,290 +198,68 @@ const deleteSelectedTracks = () => {
   setTracks(tracks.filter((_, idx) => !selectedTracks[idx]));
   setSelectedTracks({}); // Reset selected tracks
 };
+const [formStructure, setFormStructure] = useState(null); // To store the fetched form structure
+
+useEffect(() => {
+  async function fetchFormStructure() {
+    // Assuming you have multiple URLs to fetch form fields from
+    const urls = [
+      'https://thz.fm/api/resource/Web%20Form/create-release',
+      // ... other URLs
+    ];
+
+    try {
+      // Make parallel requests to all URLs
+      const responses = await Promise.all(urls.map(url => axios.get(url)));
+
+      // Combine the results from all requests
+      const combinedFields = responses.flatMap(response => response.data.data.web_form_fields);
+
+      setFormStructure(combinedFields);
+    } catch (error) {
+      console.error("Error fetching the form structure:", error);
+      setFetchError(error.message);
+    }
+  }
+
+  fetchFormStructure();
+}, []);
+
+const renderFieldsFromStructure = () => {
+  if (!formStructure || !Array.isArray(formStructure)) return null;
+
+  return formStructure.map((field) => {
+    // For debugging, let's print all fields to see the structure
+    console.log(field);
+
+    if (field.fieldtype === 'Data') {
+      return (
+        <div key={field.name}>
+          <label className="text-gray-700" htmlFor={field.fieldname}>{field.label}</label>
+          <input id={field.fieldname} type="text" className="block w-full px-4 py-2 mt-2" />
+        </div>
+      );
+    }
+    return null; // for unhandled field types
+  });
+};
+
 
 
 return (
   <div className="releaseForm">
     <form>
       <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-        {/* Release Main Details */}
-        <div>
-          <label className=" text-gray-700" htmlFor="title">Title</label>
-          <input id="title" type="text" className="block w-full px-4 py-2 mt-2" />
-        </div>
-        <div>
-          <label className=" text-gray-700" htmlFor="release_id">Release ID</label>
-          <input id="release_id" type="text" className="block w-full px-4 py-2 mt-2" />
-        </div>
-        <div>
-          <label className=" text-gray-700" htmlFor="release_artist">Release Artist</label>
-          <select id="release_artist" className="block w-full px-4 py-2 mt-2">
-            {artists.map(artist => (
-              <option key={artist} value={artist}>{artist}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className=" text-gray-700" htmlFor="release_label">Release Label</label>
-          <select id="release_label" className="block w-full px-4 py-2 mt-2">
-            {labels.map(label => (
-              <option key={label} value={label}>{label}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className=" text-gray-700" htmlFor="release_type">Release Type</label>
-          <select id="release_type" className="block w-full px-4 py-2 mt-2">
-            {releaseTypes.map(name => (
-              <option key={name} value={name}>{name}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
-          <input
-            id="release_genre"
-            className="block w-full px-4 py-2 mt-2"
-            value={genreInput}
-            onChange={(e) => setGenreInput(e.target.value)}
-            autoComplete="off"
-          />
-          {filteredGenres.length > 0 && (
-            <div className="relative">
-              <div className="absolute top-full left-0 z-10 w-full bg-white border border-gray-200 rounded-md shadow-lg">
-                {filteredGenres.slice(0, 10).map((genre, index) => (
-                  <div
-                    key={index}
-                    className="cursor-pointer hover:bg-gray-200 p-2"
-                    onClick={() => {
-                      if (selectedGenres.length < 10 && !selectedGenres.includes(genre)) {
-                        setSelectedGenres([...selectedGenres, genre]);
-                      }
-                      setGenreInput('');
-                      setFilteredGenres([]);
-                    }}
-                  >
-                    {genre}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          <div className="mt-2">
-            {selectedGenres.map((genre, idx) => (
-              <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2 mb-2">
-                {genre}
-                <button
-      className="ml-2 text-sm"
-      onClick={(e) => {
-        e.preventDefault();  // Prevent the default action
-        const newSelected = [...selectedGenres];
-        newSelected.splice(idx, 1);
-        setSelectedGenres(newSelected);
-      }}
-    >
-      ×
-    </button>
-              </span>
-            ))}
-          </div>
-       
+        {/* Dynamic fields */}
+        {renderFieldsFromStructure()}
+
+        {/* You can keep the parts that are not dynamic as they are */}
       </div>
 
-
-        <div>
-            <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
-            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
-        </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
-            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
-            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
-            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          <div>
-            <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
-          </div>
-          {/* ... Additional fields ... */}
-        </div>
-
-         {/* Tracks Table */}
-         <h2 className="mt-4">Tracks</h2>
-        <table className="min-w-full divide-y divide-gray-200 rounded-md">
-          <thead className="bg-gray-50">
-            <tr className="px-12 bg-gray-50">
-              {/* Table headers based on track fields */}
-              <th className="align-middle text-center border w-4"> </th>
-              <th className="align-middle text-center border">Track Number</th>
-              <th className="align-middle text-center border">Title</th>
-              <th className="align-middle text-center border">Artist</th>
-              <th className="align-middle text-center border">Type</th>
-              <th className="align-middle text-center border">WAV File</th>
-              <th className="align-middle text-center border">Price (USD)</th>
-              <th className="align-middle text-center border">Price (ERG)</th>
-              <th className="align-middle text-center border w-4">Published</th>
-            </tr>
-          </thead>
-          <tbody>
-  {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50">
-          <td className="border">
-                <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
-              </td>
-      <td className="border">
-        <input className="bg-gray-50" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].track_number = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
-      <td className="border">
-        <input className="bg-gray-50" type="text" name="title" value={track.title || ''} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].title = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
-      <td className="border">
-        <input className="bg-gray-50" type="text" name="track_artist" value={track.track_artist || ''} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].track_artist = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
-      <td className="border">
-        <input className="bg-gray-50" type="text" name="track_type" value={track.track_type || ''} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].track_type = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
-      <td className="border">
-    <input className="bg-gray-50" type="file" name="attach_wav" onChange={(e) => {
-        let newTracks = [...tracks];
-        newTracks[idx].attach_wav = e.target.files[0]; // Adjusted for file input
-        setTracks(newTracks);
-    }} />
-</td>
-      <td className="border">
-        <input className="bg-gray-50" type="number" step="0.01" name="price_usd" value={track.price_usd || 0} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].price_usd = e.target.value;
-          setTracks(newTracks);
-        }} />
-      </td>
-      <td className="border">
-    <input className="bg-gray-50" type="number" step="0.0001" name="price_erg" value={track.price_erg || 0} onChange={(e) => {
-        let newTracks = [...tracks];
-        newTracks[idx].price_erg = e.target.value;
-        setTracks(newTracks);
-    }} />
-</td>
-      <td className="border">
-        <input className="bg-gray-50" type="checkbox" name="published" checked={track.published === "1"} onChange={(e) => {
-          let newTracks = [...tracks];
-          newTracks[idx].published = e.target.checked ? "1" : "0";
-          setTracks(newTracks);
-        }} />
-      </td>
-    </tr>
-  ))}
-</tbody>
-        </table>
-        <div className="flex mt-4">
-        <button type="button" onClick={addTrack} className="px-4 py-2 bg-blue-500 text-white rounded">Add Track</button>
-        {Object.values(selectedTracks).some(val => val) && 
-          <button type="button" onClick={deleteSelectedTracks} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Tracks</button>
-        }
-      </div>
-
-
- {/* Release Credits Table */}
- <h2 className="mt-4">Release Credits</h2>
-<table className="min-w-full divide-y divide-gray-200 rounded-md">
-    <thead className="bg-gray-50">
-        <tr>
-            <th className="align-middle text-center border w-4"> </th> {/* Checkbox header */}
-            <th className="align-middle text-center border">Credit Name</th>
-            <th className="align-middle text-center border">Credit Type</th>
-            <th className="align-middle text-center border">Credited On</th>
-            {/* ... other headers ... */}
-        </tr>
-    </thead>
-    <tbody>
-  {credits.map((credit, idx) => (
-    <tr key={idx} className="bg-gray-50">
-      <td className="border">
-        <input 
-          type="checkbox" 
-          checked={!!selectedCredits[idx]} 
-          onChange={(e) => handleCreditSelection(idx, e.target.checked)} 
-        />
-      </td>
-      {/* Render the input fields for your Release Credits */}
-      <td className="border">
-        <input
-          type="text"
-          value={credit.name__title}
-          onChange={(e) => {
-            const updatedCredits = [...credits];
-            updatedCredits[idx].name__title = e.target.value;
-            setCredits(updatedCredits);
-          }}
-        />
-      </td>
-      <td className="border">
-        <input
-          type="text"
-          value={credit.credit_type}
-          onChange={(e) => {
-            const updatedCredits = [...credits];
-            updatedCredits[idx].credit_type = e.target.value;
-            setCredits(updatedCredits);
-          }}
-        />
-      </td>
-      <td className="border">
-        <input
-          type="text"
-          value={credit.track_if_applicable}
-          onChange={(e) => {
-            const updatedCredits = [...credits];
-            updatedCredits[idx].track_if_applicable = e.target.value;
-            setCredits(updatedCredits);
-          }}
-        />
-      </td>
-      {/* ... other fields ... */}
-    </tr>
-  ))}
-</tbody>
-</table>
-<div className="flex mt-4">
-    <button type="button" onClick={addCredit} className="px-4 py-2 bg-blue-500 text-white rounded">Add Credit</button>
-    {Object.values(selectedCredits).some(val => val) && 
-        <button type="button" onClick={deleteSelectedCredits} className="ml-4 px-4 py-2 bg-red-500 text-white rounded">Remove Credits</button>
-    }
-</div>
-
-   {/* Submit Button */}
-   <div className="flex justify-end mt-6">
-          <button onClick={handleSubmit} className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
-        </div>
-      </form>
-    </div>
-  );
+      {/* ... Rest of your form ... */}
+    </form>
+  </div>
+);
 };
 
 export default CreateRelease;
