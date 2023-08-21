@@ -185,10 +185,19 @@ body[data-theme='dark'] {
   margin-right: 12px;
   margin-top: 12px;
 }
+.releaseForm input[type="checkbox"] {
+  min-width: 20px;  /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+  background-color: white;  /* Adjust as needed */
+}
+.releaseForm input[type="number"] {
+  min-width: 40px;  /* Adjust as needed */
+  background-color: white;  /* Adjust as needed */
+}
 .releaseForm Label {
   color: var(--text-color);
 }
-.releaseForm Input {
+.releaseForm Input[type="text"] {
   color: #000000;
 }
 .releaseForm Select {

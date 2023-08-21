@@ -306,7 +306,7 @@ return (
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full bg-white py-2 mt-2" />
+            <input id="price_erg" type="number" step="0.001" className="block w-full bg-white py-2 mt-2" />
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
@@ -322,7 +322,7 @@ return (
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
               <th className="align-middle text-center border w-4">Select</th>
-              <th className="align-middle text-center border ">Track Number</th>
+              <th className="align-middle text-center border w-4">Track Number</th>
               <th className="align-middle text-center border">Title</th>
               <th className="align-middle text-center border">Artist</th>
               <th className="align-middle text-center border">Type</th>
