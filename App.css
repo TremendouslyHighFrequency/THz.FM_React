@@ -185,6 +185,18 @@ body[data-theme='dark'] {
   margin-right: 12px;
   margin-top: 12px;
 }
+.releaseForm Label {
+  color: var(--text-color);
+}
+.releaseForm Input {
+  color: #000000;
+}
+.releaseForm Select {
+  color: #000000;
+}
+.releaseForm Table tr {
+  color: #000000;
+}
 .erg-button:hover {
   background-color: #e3e3e3;
   color: #161616;

@@ -206,15 +206,15 @@ return (
         {/* Release Main Details */}
         <div>
           <label className=" text-gray-700" htmlFor="title">Title</label>
-          <input id="title" type="text" className="block w-full px-4 py-2 mt-2" />
+          <input id="title" type="text" className="block w-full bg-white py-2 mt-2" />
         </div>
         <div>
           <label className=" text-gray-700" htmlFor="release_id">Release ID</label>
-          <input id="release_id" type="text" className="block w-full px-4 py-2 mt-2" />
+          <input id="release_id" type="text" className="block w-full bg-white py-2 mt-2" />
         </div>
         <div>
           <label className=" text-gray-700" htmlFor="release_artist">Release Artist</label>
-          <select id="release_artist" className="block w-full px-4 py-2 mt-2">
+          <select id="release_artist" className="block w-full bg-white py-2 mt-2">
             {artists.map(artist => (
               <option key={artist} value={artist}>{artist}</option>
             ))}
@@ -222,7 +222,7 @@ return (
         </div>
         <div>
           <label className=" text-gray-700" htmlFor="release_label">Release Label</label>
-          <select id="release_label" className="block w-full px-4 py-2 mt-2">
+          <select id="release_label" className="block w-full bg-white py-2 mt-2">
             {labels.map(label => (
               <option key={label} value={label}>{label}</option>
             ))}
@@ -230,7 +230,7 @@ return (
         </div>
         <div>
           <label className=" text-gray-700" htmlFor="release_type">Release Type</label>
-          <select id="release_type" className="block w-full px-4 py-2 mt-2">
+          <select id="release_type" className="block w-full bg-white py-2 mt-2">
             {releaseTypes.map(name => (
               <option key={name} value={name}>{name}</option>
             ))}
@@ -240,7 +240,7 @@ return (
           <label className="text-gray-700" htmlFor="release_genre">Release Genres</label>
           <input
             id="release_genre"
-            className="block w-full px-4 py-2 mt-2"
+            className="block w-full bg-white py-2 mt-2"
             value={genreInput}
             onChange={(e) => setGenreInput(e.target.value)}
             autoComplete="off"
@@ -290,27 +290,27 @@ return (
 
         <div>
             <label className=" text-gray-700" htmlFor="release_artwork">Release Artwork</label>
-            <input id="release_artwork" type="file" className="block w-full px-4 py-2 mt-2" />
+            <input id="release_artwork" type="file" className="block w-full py-2 mt-2" />
         </div>
           <div>
             <label className=" text-gray-700" htmlFor="release_description">Release Description</label>
-            <textarea id="release_description" className="block w-full px-4 py-2 mt-2"></textarea>
+            <textarea id="release_description" className="block w-full bg-white py-2 mt-2"></textarea>
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="release_date">Release Date</label>
-            <input id="release_date" type="date" className="block w-full px-4 py-2 mt-2" />
+            <input id="release_date" type="date" className="block w-full bg-white py-2 mt-2" />
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="price_usd">Price (USD)</label>
-            <input id="price_usd" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+            <input id="price_usd" type="number" step="0.01" className="block w-full bg-white py-2 mt-2" />
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="price_erg">Price (ERG)</label>
-            <input id="price_erg" type="number" step="0.01" className="block w-full px-4 py-2 mt-2" />
+            <input id="price_erg" type="number" step="0.01" className="block w-full bg-white py-2 mt-2" />
           </div>
           <div>
             <label className=" text-gray-700" htmlFor="release_ergo_address">Ergo Address</label>
-            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full px-4 py-2 mt-2" />
+            <input id="release_ergo_address" type="text" step="0.0001" className="block w-full bg-white py-2 mt-2" />
           </div>
           {/* ... Additional fields ... */}
         </div>
@@ -321,8 +321,8 @@ return (
           <thead className="bg-gray-50">
             <tr className="px-12 bg-gray-50">
               {/* Table headers based on track fields */}
-              <th className="align-middle text-center border w-4"> </th>
-              <th className="align-middle text-center border">Track Number</th>
+              <th className="align-middle text-center border w-4">Select</th>
+              <th className="align-middle text-center border ">Track Number</th>
               <th className="align-middle text-center border">Title</th>
               <th className="align-middle text-center border">Artist</th>
               <th className="align-middle text-center border">Type</th>
@@ -334,12 +334,12 @@ return (
           </thead>
           <tbody>
   {tracks.map((track, idx) => (
-    <tr key={idx} className="bg-gray-50">
+    <tr key={idx} className="bg-gray-50 w-4">
           <td className="border">
                 <input type="checkbox" checked={!!selectedTracks[idx]} onChange={(e) => handleTrackSelection(idx, e.target.checked)} />
               </td>
       <td className="border">
-        <input className="bg-gray-50" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
+        <input className="bg-gray-50 w-4" type="number" name="track_number" value={track.track_number || ''} onChange={(e) => {
           let newTracks = [...tracks];
           newTracks[idx].track_number = e.target.value;
           setTracks(newTracks);
