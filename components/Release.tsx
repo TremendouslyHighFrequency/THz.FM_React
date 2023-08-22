@@ -10,7 +10,6 @@ import Breadcrumbs from './Breadcrumbs';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import './component_styles/Dialog.css';
-import { PayPalButtons } from "@paypal/react-paypal-js";
 import { getLoggedUser } from './api';
 
 const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
@@ -151,6 +150,36 @@ const Release = ({ setTransaction }) => {
   const onPlay = (index) => {
     setPlayingTrackIndex(index);
 };
+
+function purchaseWithPaypal(event, amount: number) {
+  event.preventDefault(); // to prevent any default behavior
+  // URL for the Frappe endpoint, adjust the path according to your setup
+  const apiUrl = "https://thz.fm/api/method/frappe.create_order.create_paypal_order";
+
+  fetch(apiUrl, {
+      method: "POST",
+      headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount_usd: amount })
+  })
+  .then(response => response.json())
+  .then(data => {
+      // Assuming the Frappe method returns the approval_url
+      const approvalUrl = data.message;
+      if (approvalUrl) {
+          // Redirect the user to PayPal for completing the transaction
+          window.location.href = approvalUrl;
+      } else {
+          // Handle error - show a message or take another action
+          console.error("Error getting PayPal approval URL");
+      }
+  })
+  .catch(error => {
+      console.error("Error making PayPal order:", error);
+  });
+}
 
 const ShareModal = ({ data }) => {
   const location = useLocation();
@@ -422,8 +451,8 @@ const updateLocalState = (newValue) => {
         </Dialog.Description>
  
           <div className="flex space-x-4">
-          <button className="Button green">BUY $ {data.price_usd} USD</button>
-          <PayPalButtons />
+          <button onClick={(e) => purchaseWithPaypal(e, data.price_usd)} className="Button green">BUY $ {data.price_usd} USD</button>
+   
           <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           </div>
 

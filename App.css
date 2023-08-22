@@ -186,9 +186,11 @@ body[data-theme='dark'] {
   margin-top: 12px;
 }
 .releaseForm input[type="checkbox"] {
-  min-width: 20px;  /* Adjust as needed */
-  height: 20px; /* Adjust as needed */
-  background-color: white;  /* Adjust as needed */
+  min-width: 40px;  /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  z-index: 2;
 }
 .releaseForm input[type="number"] {
   min-width: 40px;  /* Adjust as needed */
