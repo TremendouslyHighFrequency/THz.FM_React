@@ -13,7 +13,6 @@ import './component_styles/Dialog.css';
 import { getLoggedUser } from './api';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
-
 const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
@@ -156,16 +155,17 @@ const Release = ({ setTransaction }) => {
 
 const [message, setMessage] = useState('');
 
-  const createPayPalOrder = async (amountUsd) => {
-    try {
-      const response = await fetch(`https://thz.fm/api/create_paypal_order?amount_usd=${amountUsd}`);
-      const data = await response.json();
-      return data.orderID;
-    } catch (error) {
-      console.error('Failed to create PayPal order:', error);
-      throw new Error('Failed to create PayPal order.');
-    }
-  };
+const createPayPalOrder = async (amountUsd) => {
+  try {
+    const url = `https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${data.price_usd}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.orderID;
+  } catch (error) {
+    console.error('Failed to create PayPal order:', error);
+    throw new Error('Failed to create PayPal order.');
+  }
+};
 
   const capturePayPalOrder = async (orderID) => {
     try {
@@ -418,6 +418,21 @@ const updateLocalState = (newValue) => {
     setPlayingTrackIndex(null);
   }, [name]);
 
+  const payload = (orderData) => {
+    return {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: orderData.amount_usd,
+          },
+        },
+      ],
+    };
+  };
+
+
   
   const currentTrack = playingTrackIndex !== null ? {
     url: `https://thz.fm${data.release_tracks[playingTrackIndex].attach_mp3}`,
@@ -463,14 +478,35 @@ const updateLocalState = (newValue) => {
  
           <div className="flex space-x-4">
          
-          <PayPalButtons
-        createOrder={(data, actions) => {
-          return createPayPalOrder(data.purchase_units[0].amount.value)
-            .then(response => response.orderID);
-        }}
-        onApprove={onApprove}
-        orderID={orderID} 
-      />
+          {data.price_usd && (
+  <PayPalButtons
+    price_usd={data.price_usd}
+    createOrder={(orderData, actions) => {
+      const amount_usd = data.price_usd; // Access price_usd from component's props
+      return fetch(`https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount_usd}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log("API Response:", data); // Add this line to log the API response
+          if (data.orderID) {
+            return data.orderID; // Return the order ID
+          } else {
+            throw new Error('Failed to create PayPal order');
+          }
+        });
+    }}
+    onApprove={async (data, actions) => {
+      console.log("onApprove Data:", data); // Add this line to log the data received in onApprove
+      try {
+        const orderID = data.orderID; // Use the orderID returned from PayPal
+        console.log("Received orderID:", orderID); // Add this line to log the orderID
+        const capturedStatus = await capturePayPalOrder(orderID);
+        setMessage(`Payment captured: ${capturedStatus}`);
+      } catch (error) {
+        setMessage('Failed to capture payment.');
+      }
+    }}
+  />
+)}
 
           <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           </div>
