@@ -155,42 +155,7 @@ const Release = ({ setTransaction }) => {
 
 const [message, setMessage] = useState('');
 
-const createPayPalOrder = async (amountUsd) => {
-  try {
-    const url = `https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${data.price_usd}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.orderID;
-  } catch (error) {
-    console.error('Failed to create PayPal order:', error);
-    throw new Error('Failed to create PayPal order.');
-  }
-};
 
-  const capturePayPalOrder = async (orderID) => {
-    try {
-      const response = await fetch(`https://thz.fm/api/capture_paypal_order?order_id=${orderID}`);
-      const data = await response.json();
-      return data.status;
-    } catch (error) {
-      console.error('Failed to capture PayPal order:', error);
-      throw new Error('Failed to capture PayPal order.');
-    }
-  };
-
-  const onApprove = async (data, actions) => {
-    try {
-      const capturedStatus = await capturePayPalOrder(data.orderID);
-      setMessage(`Payment captured: ${capturedStatus}`);
-      // Set the captured orderID using the setOrderID function
-      actions.order.capture().then(details => {
-        const capturedOrderID = details.id;
-        setOrderID(capturedOrderID);
-      });
-    } catch (error) {
-      setMessage('Failed to capture payment.');
-    }
-  };
 
 const ShareModal = ({ data }) => {
   const location = useLocation();
@@ -481,24 +446,28 @@ const updateLocalState = (newValue) => {
           {data.price_usd && (
   <PayPalButtons
     price_usd={data.price_usd}
-    createOrder={(orderData, actions) => {
+    createOrder={async (orderData, actions) => {
       const amount_usd = data.price_usd; // Access price_usd from component's props
-      return fetch(`https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount_usd}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log("API Response:", data); // Add this line to log the API response
-          if (data.orderID) {
-            return data.orderID; // Return the order ID
-          } else {
-            throw new Error('Failed to create PayPal order');
-          }
-        });
+      try {
+        const response = await fetch(`https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount_usd}`);
+        const responseData = await response.json();
+        console.log("API Response:", responseData);
+
+        if (responseData.orderID) {
+          return responseData.orderID; // Return the order ID
+        } else {
+          throw new Error('Failed to create PayPal order');
+        }
+      } catch (error) {
+        console.error("Error creating PayPal order:", error);
+        throw error; // Rethrow the error to propagate it
+      }
     }}
     onApprove={async (data, actions) => {
-      console.log("onApprove Data:", data); // Add this line to log the data received in onApprove
+      console.log("onApprove Data:", data);
       try {
-        const orderID = data.orderID; // Use the orderID returned from PayPal
-        console.log("Received orderID:", orderID); // Add this line to log the orderID
+        const orderID = data.orderID;
+        console.log("Received orderID:", orderID);
         const capturedStatus = await capturePayPalOrder(orderID);
         setMessage(`Payment captured: ${capturedStatus}`);
       } catch (error) {
@@ -507,7 +476,6 @@ const updateLocalState = (newValue) => {
     }}
   />
 )}
-
           <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           </div>
 
