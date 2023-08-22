@@ -452,10 +452,11 @@ const updateLocalState = (newValue) => {
         const responseData = await response.json();
         console.log("API Response:", responseData);
 
-        if (responseData.orderID) {
-          return responseData.orderID; // Return the order ID
+        if (responseData.message && responseData.message.orderID) {
+          return responseData.message.orderID; // Return the nested order ID
         } else {
-          throw new Error('Failed to create PayPal order');
+          const errorMsg = responseData.error ? responseData.error : 'Failed to create PayPal order';
+          throw new Error(errorMsg);
         }
       } catch (error) {
         console.error("Error creating PayPal order:", error);
@@ -467,9 +468,25 @@ const updateLocalState = (newValue) => {
       try {
         const orderID = data.orderID;
         console.log("Received orderID:", orderID);
-        const capturedStatus = await capturePayPalOrder(orderID);
-        setMessage(`Payment captured: ${capturedStatus}`);
+        
+        // Make a POST call to capture the PayPal order
+        const response = await fetch(`https://thz.fm/api/method/frappe.create_order.capture_paypal_order`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ order_id: orderID })
+        });
+        const captureResponse = await response.json();
+
+        if (captureResponse && !captureResponse.error) {
+          setMessage(`Payment captured successfully!`);
+        } else {
+          throw new Error(captureResponse.error || 'Failed to capture payment.');
+        }
+
       } catch (error) {
+        console.error("Error capturing PayPal order:", error);
         setMessage('Failed to capture payment.');
       }
     }}
