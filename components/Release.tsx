@@ -155,8 +155,6 @@ const Release = ({ setTransaction }) => {
 
 const [message, setMessage] = useState('');
 
-
-
 const ShareModal = ({ data }) => {
   const location = useLocation();
   const currentURL = window.location.origin + location.pathname;
@@ -437,11 +435,12 @@ const updateLocalState = (newValue) => {
       <Dialog.Content className="DialogContent">
         <Dialog.Title className="DialogTitle">Choose payment method</Dialog.Title>
         <Dialog.Description className="DialogDescription">
-          This artist accepts both USD and ERG.<br />        
+          This artist accepts both ERG and USD.<br />        
           <span className="text-xs">(ERG payment requires Nautilus wallet connection.)</span>
         </Dialog.Description>
  
           <div className="flex space-x-4">
+          <button className="Button orange w-full" onClick={handleButtonClick}><b>BUY {data.price_erg} ERG</b></button>
          
           {data.price_usd && (
   <PayPalButtons
@@ -476,7 +475,8 @@ const updateLocalState = (newValue) => {
     }}
   />
 )}
-          <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
+          
+      
           </div>
 
         <Dialog.Close asChild>
