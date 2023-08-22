@@ -135,10 +135,11 @@ const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurr
 const Release = ({ setTransaction }) => {
   const { name } = useParams();
   const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', name);
-
+  const [orderID, setOrderID] = useState(null); // Add this line to define orderID state
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
+
   const handleButtonClick = async () => {
     try {
       const price_erg = parseFloat(data.price_erg);
@@ -153,31 +154,43 @@ const Release = ({ setTransaction }) => {
     setPlayingTrackIndex(index);
 };
 
-function purchaseWithPaypal(event, amount: number) {
-  event.preventDefault(); // to prevent any default behavior
-  // URL for the Frappe endpoint, adjust the path according to your setup
-  const apiUrl = `https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount}`;
-  fetch(apiUrl, {
-    headers: {
-        "Accept": "application/json",
+const [message, setMessage] = useState('');
+
+  const createPayPalOrder = async (amountUsd) => {
+    try {
+      const response = await fetch(`https://thz.fm/api/create_paypal_order?amount_usd=${amountUsd}`);
+      const data = await response.json();
+      return data.orderID;
+    } catch (error) {
+      console.error('Failed to create PayPal order:', error);
+      throw new Error('Failed to create PayPal order.');
     }
-})
-  .then(response => response.json())
-  .then(data => {
-      // Assuming the Frappe method returns the approval_url
-      const approvalUrl = data.message;
-      if (approvalUrl) {
-          // Redirect the user to PayPal for completing the transaction
-          window.location.href = approvalUrl;
-      } else {
-          // Handle error - show a message or take another action
-          console.error("Error getting PayPal approval URL");
-      }
-  })
-  .catch(error => {
-      console.error("Error making PayPal order:", error);
-  });
-}
+  };
+
+  const capturePayPalOrder = async (orderID) => {
+    try {
+      const response = await fetch(`https://thz.fm/api/capture_paypal_order?order_id=${orderID}`);
+      const data = await response.json();
+      return data.status;
+    } catch (error) {
+      console.error('Failed to capture PayPal order:', error);
+      throw new Error('Failed to capture PayPal order.');
+    }
+  };
+
+  const onApprove = async (data, actions) => {
+    try {
+      const capturedStatus = await capturePayPalOrder(data.orderID);
+      setMessage(`Payment captured: ${capturedStatus}`);
+      // Set the captured orderID using the setOrderID function
+      actions.order.capture().then(details => {
+        const capturedOrderID = details.id;
+        setOrderID(capturedOrderID);
+      });
+    } catch (error) {
+      setMessage('Failed to capture payment.');
+    }
+  };
 
 const ShareModal = ({ data }) => {
   const location = useLocation();
@@ -449,34 +462,16 @@ const updateLocalState = (newValue) => {
         </Dialog.Description>
  
           <div className="flex space-x-4">
+         
           <PayPalButtons
-    createOrder={(data, actions) => {
-        console.log("Price in USD: ", data.price_usd); // Let's log the value
-        return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    currency_code: "USD",
-                    value: String(data.price_usd)  // Convert the price to a string
-                }
-            }],
-            application_context: {
-                return_url: "https://thz.fm/collection",
-                cancel_url: "https://thz.fm/me"
-            }
-        });
-    }}
-    onApprove={(data, actions) => {
-        return actions.order.capture().then(function(details) {
-            // Handle the successful payment here, e.g., show a confirmation message
-            console.log("Payment approved and captured: ", details);
-        });
-    }}
-    onError={(err) => {
-        console.error(err);
-        // Handle errors here
-    }}
-/>
-   
+        createOrder={(data, actions) => {
+          return createPayPalOrder(data.purchase_units[0].amount.value)
+            .then(response => response.orderID);
+        }}
+        onApprove={onApprove}
+        orderID={orderID} 
+      />
+
           <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           </div>
 
