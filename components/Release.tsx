@@ -157,7 +157,7 @@ function purchaseWithPaypal(event, amount: number) {
   const apiUrl = "https://thz.fm/api/method/frappe.create_order.create_paypal_order";
 
   fetch(apiUrl, {
-      method: "POST",
+      method: "GET",
       headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
