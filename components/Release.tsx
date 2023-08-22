@@ -11,6 +11,8 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import './component_styles/Dialog.css';
 import { getLoggedUser } from './api';
+import { PayPalButtons } from "@paypal/react-paypal-js";
+
 
 const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurrentTime, setDuration, containerColor, waveformColor, releasetextColor, tracktextColor, progressColor, playing, onPlay, onPrev, onNext }) => {
   const waveformRef = useRef(null);
@@ -447,7 +449,33 @@ const updateLocalState = (newValue) => {
         </Dialog.Description>
  
           <div className="flex space-x-4">
-          <button onClick={(e) => purchaseWithPaypal(e, data.price_usd)} className="Button green">BUY $ {data.price_usd} USD</button>
+          <PayPalButtons
+    createOrder={(data, actions) => {
+        console.log("Price in USD: ", data.price_usd); // Let's log the value
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    currency_code: "USD",
+                    value: String(data.price_usd)  // Convert the price to a string
+                }
+            }],
+            application_context: {
+                return_url: "https://thz.fm/collection",
+                cancel_url: "https://thz.fm/me"
+            }
+        });
+    }}
+    onApprove={(data, actions) => {
+        return actions.order.capture().then(function(details) {
+            // Handle the successful payment here, e.g., show a confirmation message
+            console.log("Payment approved and captured: ", details);
+        });
+    }}
+    onError={(err) => {
+        console.error(err);
+        // Handle errors here
+    }}
+/>
    
           <button className="Button orange" onClick={handleButtonClick}>BUY ∑ {data.price_erg} ERG</button>
           </div>

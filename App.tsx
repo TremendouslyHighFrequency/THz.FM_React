@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
 import { ReleaseProvider } from './components/ReleaseContext';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
@@ -48,6 +48,7 @@ import Register from './components/Register';
 import EditProfile from './components/EditProfile';
 
 
+
 function App() {
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -87,7 +88,7 @@ function App() {
 
  return (
   <FrappeProvider url='https://thz.fm/'>
-    <PayPalScriptProvider deferLoading={true} options={{ "client-id": "AQ6VDEXsgjtNcqDLSZIs-9NNKNMQ6ZTCwp1DjsIpzWqnmivwSFFfEaQW5jM2i8-pZ1andVyoKYHdZ_DK" }}>
+    <PayPalScriptProvider options={{ "client-id": "AQ6VDEXsgjtNcqDLSZIs-9NNKNMQ6ZTCwp1DjsIpzWqnmivwSFFfEaQW5jM2i8-pZ1andVyoKYHdZ_DK" }}>
      <ReleaseProvider>
       <Router>
         <div className="App">
