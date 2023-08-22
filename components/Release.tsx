@@ -154,16 +154,12 @@ const Release = ({ setTransaction }) => {
 function purchaseWithPaypal(event, amount: number) {
   event.preventDefault(); // to prevent any default behavior
   // URL for the Frappe endpoint, adjust the path according to your setup
-  const apiUrl = "https://thz.fm/api/method/frappe.create_order.create_paypal_order";
-
+  const apiUrl = `https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount}`;
   fetch(apiUrl, {
-      method: "GET",
-      headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount_usd: amount })
-  })
+    headers: {
+        "Accept": "application/json",
+    }
+})
   .then(response => response.json())
   .then(data => {
       // Assuming the Frappe method returns the approval_url
