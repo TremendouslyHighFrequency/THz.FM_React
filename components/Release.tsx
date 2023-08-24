@@ -122,7 +122,7 @@ const Track = ({ track, loading, setLoading, handleFavoriteClick, index, setCurr
             
           </>
         )
-        : <p>{track.track_type} by {track.track_artist}</p>
+        : <p>{track.track_type} by <Link to={`/artists/${track.track_artist}`}>{track.track_artist}</Link></p>
       }
   
     </div>
@@ -418,10 +418,10 @@ const updateLocalState = (newValue) => {
             {/* Text and Details Container */}
             <div className="album-text-info">
               <div className="h1 mb-2">{data.title}</div>
-              <p className="mb-4">{data.release_type} by: <Link to={`/artists/${data.release_artist}`}>{data.release_artist}</Link></p>
+              <p className="mb-4"><Link to={`/search/type/${data.release_type}`}>{data.release_type}</Link> by: <Link to={`/artists/${data.release_artist}`}>{data.release_artist}</Link></p>
               <div className="mb-12">
                 {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
-                  <p className="genre-item" key={index}>{genre.genre}</p>
+                  <Link to={`/search/genre/${genre.genre}`}><p className="genre-item" key={index}>{genre.genre}</p></Link>
                 ))}
               </div>
               
