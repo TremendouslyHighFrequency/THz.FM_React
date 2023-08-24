@@ -238,7 +238,6 @@ const ShareModal = ({ data }) => {
           <img src={data.release_artwork} alt="Album Artwork" className="share-artwork" />
           <p>{data.title}</p>
           <p>{data.release_artist}</p>
-          <p>URL: {currentURL}</p>
           
           {/* Social Sharing Buttons - Placeholder */}
           <p>Share on:</p>
