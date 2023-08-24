@@ -30,10 +30,17 @@ export const UserDropdown = ({ userImage }) => {
         <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/edit-profile')}>
           Edit Profile
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="DropdownMenuItem" onClick={() => {
-  logout();
-  window.location.href = '/';
-}}>
+        <DropdownMenu.Item
+  className="DropdownMenuItem"
+  onClick={() => {
+    // Clear authentication-related data (this is just an example, adjust it based on your authentication setup)
+    localStorage.removeItem('accessToken'); // Clear access token from local storage
+    // You might need to clear cookies or other data depending on your authentication method
+
+    // Navigate to the login page or home page
+    navigate('/'); // Navigate to the desired location after logout
+  }}
+>
   Logout
 </DropdownMenu.Item>
         {/* ... rest of your menu items ... */}
