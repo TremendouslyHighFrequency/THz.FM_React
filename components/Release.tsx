@@ -138,8 +138,10 @@ const Release = ({ setTransaction }) => {
   const [playingTrackIndex, setPlayingTrackIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);  // Added currentTime state
   const [duration, setDuration] = useState(0);  // Added duration state
+  const [showPayPalButtons, setShowPayPalButtons] = useState(false);
 
   const handleButtonClick = async () => {
+    setShowLoading(true); // Show loading spinner/modal
     try {
       const price_erg = parseFloat(data.price_erg);
       const artistErgoAddress = data.custom_ergo_address;
@@ -148,6 +150,7 @@ const Release = ({ setTransaction }) => {
     } catch (err) {
       console.error(err);
     }
+    setShowLoading(false); // Hide loading spinner/modal
   };
   const onPlay = (index) => {
     setPlayingTrackIndex(index);
@@ -351,6 +354,7 @@ const handleFavoriteClick = async (type, data, index) => {
 
   const navigate = useNavigate();
 const location = useLocation();
+const [showLoading, setShowLoading] = useState(false);
 
 // Initialize localState from the URL
 const initialLocalState = new URLSearchParams(location.search).get('localState');
@@ -440,9 +444,17 @@ const updateLocalState = (newValue) => {
         </Dialog.Description>
  
           <div className="flex space-x-4">
-          <button className="Button orange w-full" onClick={handleButtonClick}><b>BUY {data.price_erg} ERG</b></button>
-         
-          {data.price_usd && (
+          {
+    !showPayPalButtons && (
+        <>
+          <button className="Button orange w-full text-lg" onClick={handleButtonClick} style={{ fontFamily: "'Russo One', sans-serif" }}><span><b>∑ </b>{data.price_erg} ERG</span></button>
+          <button className="Button green w-full text-lg" onClick={() => setShowPayPalButtons(true)} style={{ fontFamily: "'Russo One', sans-serif" }}><span>${data.price_usd} USD</span></button>
+          </>
+    )
+}
+
+{showPayPalButtons && data.price_usd && (
+   <>
   <PayPalButtons
     price_usd={data.price_usd}
     createOrder={async (orderData, actions) => {
@@ -491,6 +503,13 @@ const updateLocalState = (newValue) => {
       }
     }}
   />
+  <button 
+                className="Button gray w-full text-lg" 
+                onClick={() => setShowPayPalButtons(false)} 
+                style={{ fontFamily: "'Russo One', sans-serif", marginLeft: '10px' }}>
+                    <span>Back</span>
+            </button>
+             </>
 )}
           
       
@@ -559,8 +578,17 @@ const updateLocalState = (newValue) => {
                 <p>Contract Addr: </p>
               </div>
              </div>
-             
 
+     { showLoading && (
+ <div className="loading-modal">
+
+ <img className="nautilus-logo w-32 mb-4" src="https://thz.fm/files/m-512.png" alt="Nautilus Logo"/>
+ 
+ <span className="p-24 bg-white rounded-lg shadow-lg text-black">Waiting for Nautilus wallet...</span>
+</div>
+)}        
+
+     
       </div>
     );
   }

@@ -73,12 +73,12 @@ input {
 
 }
 .Button.orange {
-    background-color: var(--orange-4);
+    background-color: var(--orange-6);
     color: var(--orange-11);
  
   }
   .Button.orange:hover {
-    background-color: var(--orange-3);
+    background-color: var(--orange-5);
   }
 
 .Button.green {
