@@ -30,15 +30,9 @@ export const UserDropdown = ({ userImage }) => {
         <DropdownMenu.Item className="DropdownMenuItem" onSelect={() => navigate('/edit-profile')}>
           Edit Profile
         </DropdownMenu.Item>
-        <DropdownMenu.Item
-  className="DropdownMenuItem"
-  onClick={() => {
-    logout(); // Call the logout function
-    navigate('/'); // Navigate to the desired location after logout
-  }}
->
-  Logout
-</DropdownMenu.Item>
+        <DropdownMenu.Item onClick={logout} className="DropdownMenuItem" onSelect={() => navigate('/')}>
+          Logout
+        </DropdownMenu.Item>
         {/* ... rest of your menu items ... */}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
