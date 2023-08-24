@@ -32,7 +32,7 @@ export const UserDropdown = ({ userImage }) => {
         </DropdownMenu.Item>
         <DropdownMenu.Item
   className="DropdownMenuItem"
-  onSelect={() => {
+  onClick={() => {
     logout(); // Call the logout function
     navigate('/'); // Navigate to the desired location after logout
   }}
