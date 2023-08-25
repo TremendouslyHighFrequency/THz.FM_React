@@ -8,7 +8,7 @@ const ChatBox = () => {
 
 useEffect(() => {
     // Establish a socket connection using the native WebSocket API
-    const socket = new WebSocket('wss://thz.fm/socket.io/'); // Adjust the URL if needed
+    const socket = new WebSocket('wss://thz.fm:9000/socket.io/'); // Adjust the URL if needed
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
