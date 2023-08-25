@@ -46,7 +46,7 @@ import CreateRelease from './components/CreateRelease';
 import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
-
+import AlbumReleaseListeningParty from './components/ListeningParty';
 
 
 function App() {
@@ -104,9 +104,10 @@ function App() {
                 <div className="page-content">
                   {usePageContentStore((state) => state.content)}
                   <Routes>
-                    {navItems.map(item => (
-                      <Route key={item.route} path={item.route} element={React.createElement(item.component)} />
-                    ))}
+                  {navItems.map(item => (
+  <Route key={item.route} path={item.route} element={<item.component />} />
+))}
+                      <Route path="/releases/:title/by/:artist/:id/listening-party" element={AlbumReleaseListeningParty} />
                     <Route path="/create-release" element={<CreateRelease />}/>
                     <Route path="/manage-releases" element={<ManageReleases />} />
                     <Route path="/dashboard" element={<Dashboard />} />

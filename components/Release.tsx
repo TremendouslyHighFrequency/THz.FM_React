@@ -426,6 +426,7 @@ const updateLocalState = (newValue) => {
               </div>
               
               <p className="mb-12 text-lg">{data.release_description}</p>
+              <Link to={`/releases/${data.title}/by/${data.release_artist}/${data.name}/listening-party`}>Join Listening Party</Link>
               <FooterPlayer track={currentTrack} playing={playingTrackIndex !== null} onPlay={onPlay} onPrev={onPrev} onNext={onNext} progressPercentage={progressPercentage} />
               <div className="mt-8">
                  
