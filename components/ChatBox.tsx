@@ -4,12 +4,13 @@ import io from 'socket.io-client';
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
-  const socket = io('https://thz.fm:9000');
+  const socket = io('https://thz.fm:9000', { transports: ['websocket'] });
   const messagesEndRef = useRef(null);
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
     socket.on('receive-message', (msg) => {
+        console.log("Received message:", msg);
       const isAtBottom = chatBoxRef.current.scrollHeight - chatBoxRef.current.scrollTop === chatBoxRef.current.clientHeight;
       setChat(prevChat => [...prevChat, msg]);
       if (isAtBottom) {
@@ -20,6 +21,7 @@ const ChatBox = () => {
   }, []);
 
   const sendMessage = () => {
+    console.log("Sending message:", message);
     socket.emit('send-message', message);
     setMessage('');
   }
