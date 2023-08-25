@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { io } from 'socket.io-client';
+import axios from 'axios';
 
 const ChatBox = () => {
     const [message, setMessage] = useState('');
@@ -6,47 +8,39 @@ const ChatBox = () => {
     const chatBoxRef = useRef(null);
     const messagesEndRef = useRef(null);
 
-useEffect(() => {
-    // Establish a socket connection using the native WebSocket API
-    const socket = new WebSocket('wss://thz.fm:9000/socket.io/'); // Adjust the URL if needed
+    useEffect(() => {
+      // Establish a socket connection using Socket.IO client
+      const socket = io('https://thz.fm:9000', { transports: ['websocket'] });
 
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.event === 'receive-message') {
+      socket.on('message_event', (data) => {
+        console.log("Received data:", data);
         const msg = data.message;
-        const isAtBottom = chatBoxRef.current.scrollHeight - chatBoxRef.current.scrollTop === chatBoxRef.current.clientHeight;
-        setChat(prevChat => [...prevChat, msg]);
-        if (isAtBottom) {
-          messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    };
+          const isAtBottom = chatBoxRef.current.scrollHeight - chatBoxRef.current.scrollTop === chatBoxRef.current.clientHeight;
+          setChat(prevChat => [...prevChat, msg]);
+          if (isAtBottom) {
+              messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+          }
+      });
 
-    return () => socket.close(); // Close the socket connection on component unmount
-}, []);
+      return () => socket.disconnect(); // Disconnect the socket on component unmount
+    }, []);
 
-const sendMessage = () => {
-    // Use standard fetch to make an API call to Frappe to broadcast the message
-    fetch('https://thz.fm/api/method/frappe.socketio.send_message?message=' + encodeURIComponent(message), {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === "Message broadcasted successfully") {
-        setMessage(''); // Clear input only if message was successfully sent
-      } else {
-        console.error("Error sending message:", data.error);
-      }
-    })
-    .catch(error => {
-        console.error("Error calling the API:", error);
-    });
-}
-
+    const sendMessage = () => {
+      axios.get(`https://thz.fm/api/method/frappe.socketio.send_message?message=` + encodeURIComponent(message))
+      .then(response => {
+          const responseData = response.data; // Extract data from Axios response
+          if (responseData.message && responseData.message.status === "Message broadcasted successfully") {
+              setMessage('');
+          } else if (responseData.message && responseData.message.error) {
+              console.error("Error sending message:", responseData.message.error);
+          } else {
+              console.error("Unexpected API response:", responseData);
+          }
+      })
+      .catch(error => {
+          console.error("Error calling the API:", error);
+      });
+  }
 
   return (
     <div>
