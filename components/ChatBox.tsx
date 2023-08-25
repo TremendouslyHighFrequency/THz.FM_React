@@ -10,7 +10,7 @@ const ChatBox = () => {
 
     useEffect(() => {
       // Establish a socket connection using Socket.IO client
-      const socket = io('https://thz.fm:9000', { transports: ['websocket'] });
+      const socket = io('https://thz.fm:9000/socket.io', { transports: ['polling'] });
 
       socket.on('message_event', (data) => {
         console.log("Received data:", data);
