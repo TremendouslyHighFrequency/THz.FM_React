@@ -107,7 +107,7 @@ function App() {
                   {navItems.map(item => (
   <Route key={item.route} path={item.route} element={<item.component />} />
 ))}
-                      <Route path="/releases/:title/by/:artist/:id/listening-party" element={AlbumReleaseListeningParty} />
+                      <Route path="/releases/:title/by/:artist/:name/listening-party" element={<AlbumReleaseListeningParty />} />
                     <Route path="/create-release" element={<CreateRelease />}/>
                     <Route path="/manage-releases" element={<ManageReleases />} />
                     <Route path="/dashboard" element={<Dashboard />} />

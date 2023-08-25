@@ -6,21 +6,18 @@ import FooterPlayer from './FooterPlayer';
 import ChatBox from './ChatBox'; // Assuming you have a ChatBox component
 
 const AlbumReleaseListeningParty = () => {
-  const { id } = useParams(); // Assuming the route parameter is "id" for the album
-  const { data: album, error } = useFrappeGetDoc('Album', id); // Using 'Album' as the document type, adjust as necessary
+  const { name } = useParams(); // Assuming the route parameter is "id" for the release
+  const { data: release, error } = useFrappeGetDoc('Release', name); // Using 'Album' as the document type, adjust as necessary
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const { connect, sendMessage, messages } = usePartyKit(); // Simplified usage based on README
+
 
   useEffect(() => {
-    if (!album) return;
+    if (!release) return;
 
-    // Connect to PartyKit room for the listening party
-    connect(`listening-party-${album.id}`);
-
-    // Start the album at the specified timestamp
-    const playStartTime = new Date(album.playTimestamp).getTime();
+    // Start the release at the specified timestamp
+    const playStartTime = new Date(release.playTimestamp).getTime();
     const currentTime = Date.now();
     if (currentTime >= playStartTime) {
       setPlaying(true);
@@ -29,29 +26,29 @@ const AlbumReleaseListeningParty = () => {
         setPlaying(true);
       }, playStartTime - currentTime);
     }
-  }, [album]);
+  }, [release]);
 
   const handleSendMessage = (message) => {
     sendMessage(message);
   };
 
   if (error) {
-    return <div>Error fetching album data!</div>;
+    return <div>Error fetching release data!</div>;
   }
 
-  if (!album) {
+  if (!release) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="listening-party-container">
-      <div className="album-art-and-chat">
-        <img src={album.artworkUrl} alt={album.title} className="album-art" />
-        <ChatBox messages={messages} onSendMessage={handleSendMessage} />
+      <div className="release-art-and-chat">
+        <img src={release.artworkUrl} alt={release.title} className="release-art" />
+<ChatBox messages={[]} onSendMessage={handleSendMessage} />
       </div>
       <FooterPlayer
         playing={playing}
-        track={album}
+        track={release}
         currentTime={currentTime}
         duration={duration}
       />
