@@ -37,7 +37,6 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     try {
       const user = await login(username, password);
       onSuccessfulLogin(user);
-      window.location.reload();
     } catch (err) {
       window.alert(err.message || "An error occurred during login.");
     }
