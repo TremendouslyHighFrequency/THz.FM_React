@@ -48,11 +48,11 @@ const Dashboard = () => {
               </Card>
             </Grid>
             <div className="mt-6">
-              <Card>
-                <div className="h-80">
+             
+              
                   <DashboardGraph />
-                </div>
-              </Card>
+                
+              
             </div>
           </TabPanel>
           <TabPanel>
