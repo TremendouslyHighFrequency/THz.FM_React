@@ -13,7 +13,7 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link, useNavigate } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import { getUserImage } from './api';
+import { getUserImage, getLoggedUser } from './api';
 import THZIcon from '../assets/Terahertz.png';
 import { ActionBar } from './ActionBar';
 import { UserDropdown } from './UserDropdown';
@@ -168,6 +168,7 @@ const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => {
         console.error('Failed to fetch user details:', error);
       });
     }
+  }, [currentUser]);
 
     if (txId) {
       const interval = setInterval(async () => {
