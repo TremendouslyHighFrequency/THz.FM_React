@@ -13,6 +13,12 @@ import {
   TabGroup,
   TabPanel,
   TabPanels,
+  Metric
+  Title,
+  Subtitle,
+  Text,
+  Bold,
+  Italic,
 } from "@tremor/react";
 
 const Dashboard = () => {
@@ -25,8 +31,7 @@ const Dashboard = () => {
       {currentUser ? (
         <>
           <main>
-      <Title>Dashboard</Title>
-      <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
+      <Metric>Dashboard</Metric>
 
       <TabGroup className="mt-6">
         <TabList>
