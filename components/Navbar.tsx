@@ -30,15 +30,13 @@ const index = client.index('releases')
 const LoginModal = ({ onSuccessfulLogin }) => {
   const navigate = useNavigate();
   const { login, error } = useFrappeAuth();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const enteredUsername = e.target.elements.username.value;
-    const enteredPassword = e.target.elements.password.value;
+    const enteredUsername = e.target.username.value;
+    const enteredPassword = e.target.password.value;
     try {
-      const user = await login(username, password);
+      const user = await login(enteredUsername, enteredPassword);
       onSuccessfulLogin(user);
     } catch (err) {
       window.alert(err.message || "An error occurred during login.");
@@ -58,47 +56,45 @@ const LoginModal = ({ onSuccessfulLogin }) => {
       </Popover.Trigger>
       <Popover.Content>
         <div className="modal-content bg-gray-50">
-        <div className="w-full max-w-sm p-6 m-auto mx-auto rounded-lg shadow-md">
-          <div className="flex justify-center mx-auto">
-            <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
+          <div className="w-full max-w-sm p-6 m-auto mx-auto rounded-lg shadow-md">
+            <div className="flex justify-center mx-auto">
+              <img className="w-auto h-7 sm:h-8" src={THZIcon} alt="THZ.FM" />
+            </div>
+            <form onSubmit={handleLogin} className="mt-6">
+              <div>
+                <label htmlFor="username" className="block text-sm">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                />
+              </div>
+              <div className="mt-4">
+                <label htmlFor="password" className="block text-sm">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="block w-full px-4 py-2 mt-2 border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                />
+              </div>
+              <div className="flex items-center justify-between mt-4">
+                <button type="submit" className="w-full bg-indigo-600 px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                  Sign In
+                </button>
+              </div>
+              {error && <p className="mt-4 text-xs text-red-600">{error.message}</p>}
+            </form>
+            <p className="mt-8 text-xs font-light text-center">
+              Don't have an account?{' '}
+              <a
+                href="#"
+                onClick={handleRegister}
+                className="font-medium hover:underline cursor-pointer"
+              >
+                Create One
+              </a>
+            </p>
           </div>
-          <form className="mt-6">
-            <div>
-              <label htmlFor="username" className="block text-sm">Username</label>
-              <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700  border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="password" className="block text-sm">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-4 py-2 mt-2 border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div className="flex items-center justify-between mt-4">
-              <button onClick={handleLogin} className="w-full bg-indigo-600 px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                Sign In
-              </button>
-            </div>
-            {error && <p className="mt-4 text-xs text-red-600">{error.message}</p>}
-          </form>
-          <p className="mt-8 text-xs font-light text-center">
-            Don't have an account?{' '}
-            <a
-              href="#"
-              onClick={handleRegister}
-              className="font-medium hover:underline cursor-pointer"
-            >
-              Create One
-            </a>
-          </p>
-        </div>
         </div>
         <Popover.Close as={Cross2Icon} style={{ cursor: 'pointer', position: 'absolute', top: '5px', right: '5px' }} />
       </Popover.Content>
