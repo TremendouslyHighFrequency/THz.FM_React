@@ -19,8 +19,8 @@ const Dashboard = () => {
 
   return (
     <div className="content">
-      {/* {currentUser ? (
-        <> */}
+      {currentUser ? (
+        <>
           <main>
       <Title>Dashboard</Title>
       <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
@@ -62,10 +62,10 @@ const Dashboard = () => {
         </TabPanels>
       </TabGroup>
     </main>
-        {/* </>
+        </>
       ) : (
         <h1>Please login to view this page.</h1>
-      )} */}
+      )}
     </div>
   );
 };
