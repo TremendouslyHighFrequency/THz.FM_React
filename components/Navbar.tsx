@@ -28,26 +28,25 @@ const client = new MeiliSearch({
 const index = client.index('releases')
 
 const LoginModal = ({ onSuccessfulLogin }) => {
-  const navigate = useNavigate(); // Define the useNavigate hook here
+  const navigate = useNavigate();
   const { login, error } = useFrappeAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    const enteredUsername = e.target.elements.username.value;
+    const enteredPassword = e.target.elements.password.value;
     try {
-      console.log('Trying to log in with:', username, password);
       const user = await login(username, password);
-      console.log('Logged in user:', user);
       onSuccessfulLogin(user);
     } catch (err) {
-      console.error('Login error:', err);
       window.alert(err.message || "An error occurred during login.");
     }
   };
 
-  const handleRegister = () => { // Define the handleRegister function
-    navigate('/register'); // Redirect to the /register page
+  const handleRegister = () => {
+    navigate('/register');
   };
 
   return (
@@ -106,7 +105,6 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     </Popover.Root>
   );
 };
-
 
 const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => { 
   const { currentUser, logout } = useFrappeAuth();
