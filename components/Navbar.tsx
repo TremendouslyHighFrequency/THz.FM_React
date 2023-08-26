@@ -33,11 +33,15 @@ const LoginModal = ({ onSuccessfulLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
+      console.log('Trying to log in with:', username, password);
       const user = await login(username, password);
+      console.log('Logged in user:', user);
       onSuccessfulLogin(user);
     } catch (err) {
+      console.error('Login error:', err);
       window.alert(err.message || "An error occurred during login.");
     }
   };
