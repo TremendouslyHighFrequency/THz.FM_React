@@ -13,7 +13,7 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { Link, useNavigate } from "react-router-dom";
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import { getUserImage, getLoggedUser } from './api';
+import { getUserImage } from './api';
 import THZIcon from '../assets/Terahertz.png';
 import { ActionBar } from './ActionBar';
 import { UserDropdown } from './UserDropdown';
@@ -38,6 +38,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     try {
       const user = await login(enteredUsername, enteredPassword);
       onSuccessfulLogin(user);
+      window.location.reload();
       navigate('/dashboard');
     } catch (err) {
       window.alert(err.message || "An error occurred during login.");
@@ -168,7 +169,6 @@ const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => {
         console.error('Failed to fetch user details:', error);
       });
     }
-  }, [currentUser]);
 
     if (txId) {
       const interval = setInterval(async () => {
