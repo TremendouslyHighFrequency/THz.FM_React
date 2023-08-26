@@ -10,11 +10,22 @@ const ChatBox = () => {
 
     useEffect(() => {
       // Establish a socket connection using Socket.IO client
-      const socket = io('https://thz.fm:9000/socket.io', { transports: ['polling'] });
+      const socket = io('https://thz.fm:9000');
+      socket.on('connect', () => {
+        console.log('Connected to the server.');
+    });
+    
+    socket.on('disconnect', (reason) => {
+        console.log('Disconnected from the server. Reason:', reason);
+    });
+    
+    socket.on('error', (error) => {
+        console.error('Socket encountered an error:', error);
+    });
 
       socket.on('message_event', (data) => {
         console.log("Received data:", data);
-        const msg = data.message;
+        const msg = data.message.message;
           const isAtBottom = chatBoxRef.current.scrollHeight - chatBoxRef.current.scrollTop === chatBoxRef.current.clientHeight;
           setChat(prevChat => [...prevChat, msg]);
           if (isAtBottom) {

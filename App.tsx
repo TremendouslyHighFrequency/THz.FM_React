@@ -47,6 +47,7 @@ import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
 import AlbumReleaseListeningParty from './components/ListeningParty';
+import MusicPage from './components/MusicHome.js';
 
 
 function App() {
