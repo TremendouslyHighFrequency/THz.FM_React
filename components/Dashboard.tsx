@@ -37,17 +37,13 @@ const Dashboard = () => {
           <Tab>Social Campaigns</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            
+          <TabPanel>  
               <DashboardCards />
             <div className="mt-6">
-             
-              
                   <DashboardGraph />
-                
-              
-            </div>
+             </div>
           </TabPanel>
+
           <TabPanel>
             <div className="mt-6">
               <Card>
@@ -55,6 +51,15 @@ const Dashboard = () => {
               </Card>
             </div>
           </TabPanel>
+
+          <TabPanel>
+            <div className="mt-6">
+              <Card>
+                <div className="h-96" />
+              </Card>
+            </div>
+          </TabPanel>
+
         </TabPanels>
       </TabGroup>
     </main>
