@@ -27,7 +27,7 @@ const client = new MeiliSearch({
 
 const index = client.index('releases')
 
-const LoginModal = ({ onSuccessfulLogin }) => {
+const LoginModal = ({ onSuccessfulLogin, setCurrentUser }) => {
   const navigate = useNavigate();
   const { login, error } = useFrappeAuth();
 
@@ -37,6 +37,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     const enteredPassword = e.target.password.value;
     try {
       const user = await login(enteredUsername, enteredPassword);
+      setCurrentUser(user);  // Update the currentUser state in Navbar
       onSuccessfulLogin(user);
       navigate('/dashboard');
     } catch (err) {
@@ -104,7 +105,8 @@ const LoginModal = ({ onSuccessfulLogin }) => {
 };
 
 const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => { 
-  const { currentUser, logout } = useFrappeAuth();
+  const { login, logout, error, currentUser: authCurrentUser } = useFrappeAuth();
+  const [currentUser, setCurrentUser] = useState(authCurrentUser);  // Create a local state for currentUser
   const searchInputRef = useRef(null); // Create a reference for the search input field
   const [search, setSearch] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -249,8 +251,8 @@ const Navbar = ({ notifications = [] }: { notifications?: Notification[] }) => {
               <UserDropdown userImage={userImageUrl} />
             </>
           ) : (
-            <LoginModal onSuccessfulLogin={(user) => {}} />
-          )}
+            <LoginModal onSuccessfulLogin={(user) => {}} setCurrentUser={setCurrentUser} />
+            )}
         </div>
       </div>
     </div>
