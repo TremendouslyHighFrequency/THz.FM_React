@@ -52,17 +52,19 @@ const ManageReleases = () => {
   return (
     
     <div className="createRelease">
-       {currentUser ? (
-        <>
+       {/* {currentUser ? (
+        <> */}
               <div className="publishedReleases">
         <section className="container px-4 mx-auto">
-          <Flex justifyContent="space-between" className="items-center">
+          <Flex>
+            <div justifyContent="space-between" className="items-center">
             <Title>Releases:</Title>
             <Button>
               <Link to={`/create-release`} element={<CreateRelease />}>
                 Add Release
               </Link>
             </Button>
+            </div>
           </Flex>
         </section>
 
@@ -98,7 +100,7 @@ const ManageReleases = () => {
                   <TableCell>
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger>
-                        ⋮
+                      <Button size="xs" variant="secondary" color="gray">Edit</Button>
                       </DropdownMenu.Trigger>
                       <DropdownMenu.Content>
                         <DropdownMenu.Item>Edit</DropdownMenu.Item>
@@ -131,10 +133,10 @@ const ManageReleases = () => {
           </div>
         )}
       </div>
-      </>
+      {/* </>
       ) : (
         <h1>Please login to view this page.</h1>
-      )}
+      )} */}
     </div>
     
   );
