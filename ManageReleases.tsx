@@ -56,7 +56,7 @@ const ManageReleases = () => {
         <>
               <div className="publishedReleases">
         <section className="container px-4 mx-auto">
-          <Flex justifyContent="start" className="space-x-2">
+          <Flex justifyContent="space-between" className="items-center">
             <Title>Releases:</Title>
             <Button>
               <Link to={`/create-release`} element={<CreateRelease />}>
