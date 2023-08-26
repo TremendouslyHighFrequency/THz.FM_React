@@ -38,6 +38,7 @@ const LoginModal = ({ onSuccessfulLogin }) => {
     try {
       const user = await login(enteredUsername, enteredPassword);
       onSuccessfulLogin(user);
+      navigate('/dashboard');
     } catch (err) {
       window.alert(err.message || "An error occurred during login.");
     }
