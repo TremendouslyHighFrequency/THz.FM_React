@@ -5,9 +5,6 @@ import DashboardCards from './DashboardCards';
 
 import {
   Card,
-  Grid,
-  Title,
-  Text,
   Tab,
   TabList,
   TabGroup,
