@@ -21,6 +21,10 @@ import '@radix-ui/themes/styles.css';
 import CreateRelease from './components/CreateRelease';
 
 const ManageReleases = () => {
+  const {
+    currentUser
+  } = useFrappeAuth();
+
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
 
@@ -46,8 +50,11 @@ const ManageReleases = () => {
   if (error) return <>{JSON.stringify(error)}</>;
 
   return (
+    
     <div className="createRelease">
-      <div className="publishedReleases">
+       {currentUser ? (
+        <>
+              <div className="publishedReleases">
         <section className="container px-4 mx-auto">
           <Flex justifyContent="start" className="space-x-2">
             <Title>Releases:</Title>
@@ -124,7 +131,12 @@ const ManageReleases = () => {
           </div>
         )}
       </div>
+      </>
+      ) : (
+        <h1>Please login to view this page.</h1>
+      )}
     </div>
+    
   );
 };
 
