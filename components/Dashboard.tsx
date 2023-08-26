@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFrappeAuth } from 'frappe-react-sdk';
+import DashboardGraph from './DashboardGraph';
 import {
   Card,
   Grid,
@@ -48,7 +49,9 @@ const Dashboard = () => {
             </Grid>
             <div className="mt-6">
               <Card>
-                <div className="h-80" />
+                <div className="h-80">
+                  <DashboardGraph />
+                </div>
               </Card>
             </div>
           </TabPanel>
