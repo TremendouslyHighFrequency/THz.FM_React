@@ -10,7 +10,7 @@ import {
   TabGroup,
   TabPanel,
   TabPanels,
-  Metric
+  Metric,
   Title,
   Subtitle,
   Text,
