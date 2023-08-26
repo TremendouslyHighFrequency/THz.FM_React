@@ -32,6 +32,7 @@ const Dashboard = () => {
         <TabList>
           <Tab>Sales</Tab>
           <Tab>Release Metrics</Tab>
+          <Tab>Social Campaigns</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
