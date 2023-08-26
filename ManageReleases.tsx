@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFrappeGetDocList } from 'frappe-react-sdk';
+import { useFrappeGetDocList, useFrappeAuth } from 'frappe-react-sdk';
 import { ReleaseItem } from '../types';
 import { getLoggedUser } from './components/api';
 import {
