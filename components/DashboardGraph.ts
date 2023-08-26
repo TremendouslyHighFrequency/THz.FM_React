@@ -35,8 +35,8 @@ const data = [
 const dataFormatter = (number: number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 export default function DashboardGraph() {
-  const [selectedPeriod, setSelectedPeriod] = useState("Max");
-
+    const [selectedIndex, setSelectedIndex] = useState(4); // Assuming "Max" corresponds to the last index
+  
   const getDate = (dateString: string) => {
     const [day, month, year] = dateString.split(".").map(Number);
     return new Date(year, month - 1, day);
@@ -150,5 +150,3 @@ export default function DashboardGraph() {
     </Card>
   );
 }
-
-export default DashboardGraph;
