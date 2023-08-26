@@ -103,9 +103,11 @@ const ManageReleases = () => {
                       <Button size="xs" variant="secondary" color="gray">Edit</Button>
                       </DropdownMenu.Trigger>
                       <DropdownMenu.Content>
+                        <div className="rounded-lg bg-white shadow-sm">
                         <DropdownMenu.Item>Edit</DropdownMenu.Item>
                         <DropdownMenu.Item>Publish / Unpublish</DropdownMenu.Item>
                         <DropdownMenu.Item>Delete</DropdownMenu.Item>
+                        </div>
                       </DropdownMenu.Content>
                     </DropdownMenu.Root>
                   </TableCell>
