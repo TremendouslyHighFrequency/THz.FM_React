@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HomeFeature from './FeaturedHomeBlock';
+import HomeFeature from './HomeFeature';
 
 const Home = () => {
 

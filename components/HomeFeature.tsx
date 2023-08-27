@@ -3,9 +3,7 @@ import { Card, Title, Text, Grid, Col } from "@tremor/react";
 export default function HomeFeature() {
   return (
     <main>
-      <Title>Dashboard</Title>
-      <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text>
-
+      
       <Grid numItemsLg={6} className="gap-6 mt-6">
         {/* Main section */}
         <Col numColSpanLg={4}>
