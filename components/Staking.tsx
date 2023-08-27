@@ -107,7 +107,7 @@ const totalStaked = [
           className="h-40 mt-4"
           data={category.data}
           index="Month"
-          categories={["This year", selectedIndex === 0 ? "SigUSD" : "THz"]} {/* Adjusted tab labels */}
+          categories={["This year", selectedIndex === 0 ? "SigUSD" : "THz"]}
           colors={["blue", "slate"]}
           valueFormatter={category.valueFormatter}
           showXAxis={true}
