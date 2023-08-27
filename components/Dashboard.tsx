@@ -2,6 +2,7 @@ import React from 'react';
 import { useFrappeAuth } from 'frappe-react-sdk';
 import DashboardGraph from './DashboardGraph';
 import DashboardCards from './DashboardCards';
+import ReleaseMetrics from './ReleaseMetrics';
 
 import {
   Card,
@@ -54,11 +55,7 @@ const Dashboard = () => {
           </TabPanel>
 
           <TabPanel>
-            <div className="mt-6">
-              <Card>
-                <div className="h-96" />
-              </Card>
-            </div>
+            <ReleaseMetrics />
           </TabPanel>
 
           <TabPanel>
