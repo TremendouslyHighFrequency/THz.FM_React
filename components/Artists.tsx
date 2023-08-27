@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useFrappeGetDocList } from 'frappe-react-sdk';
 import { ArtistItem } from '../types';
 import { Link } from "react-router-dom";
-import { Grid, Col, Card, Text } from "@tremor/react";
+import { Grid, Col, Card, Text, MultiSelect, MultiSelectItem } from "@tremor/react";
+
 
 const Artists = () => {
     const [pageIndex, setPageIndex] = useState<number>(0);
@@ -25,6 +26,11 @@ const Artists = () => {
     if (data && Array.isArray(data)) {
         return (
             <>
+            <MultiSelect className="w-96">
+                <MultiSelectItem value="1">1</MultiSelectItem>
+                <MultiSelectItem value="2">2</MultiSelectItem>
+                <MultiSelectItem value="3">3</MultiSelectItem>
+            </MultiSelect>
                 <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
                     {
                         data.map(({ title, artist_bio, artist_photo }, i) => (

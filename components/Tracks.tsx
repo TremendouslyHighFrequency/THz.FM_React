@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { Grid, Col, Card, Text } from "@tremor/react";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState([]);
@@ -37,24 +38,23 @@ const Tracks = () => {
   }, [pageIndex]);
 
   return (
-    <div className="albums-index">
-      {tracks.map((track, i) => (
-        <Link to={`/releases/${parents[track.parent].title}/${track.track_title}/by/${track.track_artist}`}>
-        <div 
-          key={i} 
-          className="album-card" 
-          style={{backgroundImage: `url(${parents[track.parent].artwork})`, backgroundSize: 'cover', backgroundPosition: 'center'}} // Use artwork from the parent
-        >
-          <div className="album-text">
-            <h4>{track.track_title}</h4>
-            <p>{track.track_artist}</p>
-           
-          </div>
-        </div>
-        </Link>
-      ))}
+    <>
+      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
+        {tracks.map((track, i) => (
+          <Col key={i}>
+            <Link to={`/releases/${parents[track.parent].title}/${track.track_title}/by/${track.track_artist}`}>
+              <Card>
+                <div className="artist-card-bg" style={{ position: 'relative', padding: '16px', backgroundImage: `url(${parents[track.parent].artwork})` }}>
+                  <Text>{track.track_title}</Text>
+                  <p>{track.track_artist}</p>
+                </div>
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Grid>
       <button onClick={() => setPageIndex(pageIndex + 10)}>Next page</button>
-    </div>
+    </>
   );
 };
 
