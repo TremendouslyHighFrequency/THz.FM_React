@@ -50,8 +50,8 @@ const Releases = () => {
                   </Link>
                 </div>
                 {/* <div className="flex space-x-4">
-                  <span>❤️</span> {/* Replace with heart SVG icon */}
-                  <span>🛒</span> {/* Replace with cart SVG icon */}
+                  <span>❤️</span> 
+                  <span>🛒</span> 
                 </div> */}
               </div>
             </div>
