@@ -30,7 +30,7 @@ const categories: {
   },
 ];
 
-export default function Example() {
+export default function DashboardCards() {
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
       {categories.map((item) => (

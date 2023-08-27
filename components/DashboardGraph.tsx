@@ -35,8 +35,8 @@ const data = [
 const dataFormatter = (number: number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 export default function DashboardGraph() {
-    const [selectedIndex, setSelectedIndex] = useState(4); // Assuming "Max" corresponds to the last index
-  
+  const [selectedIndex, setSelectedIndex] = useState(4);
+
   const getDate = (dateString: string) => {
     const [day, month, year] = dateString.split(".").map(Number);
     return new Date(year, month - 1, day);
@@ -74,8 +74,8 @@ export default function DashboardGraph() {
 
   return (
     <Card>
-      <Title>Share Price</Title>
-      <Text>Daily share price of a fictive company</Text>
+      <Title>Overall Sales to Date</Title> {/* Adjusted title */}
+      <Text>Total sales of a fictive company over time</Text> {/* Adjusted text */}
       <TabGroup index={selectedIndex} onIndexChange={setSelectedIndex} className="mt-10">
         <TabList variant="line">
           <Tab>1M</Tab>
@@ -85,66 +85,20 @@ export default function DashboardGraph() {
           <Tab>Max</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <LineChart
-              className="h-80 mt-8"
-              data={getFilteredData(selectedIndex)}
-              index="Date"
-              categories={["Price"]}
-              colors={["blue"]}
-              valueFormatter={dataFormatter}
-              showLegend={false}
-              yAxisWidth={48}
-            />
-          </TabPanel>
-          <TabPanel>
-            <LineChart
-              className="h-80 mt-8"
-              data={getFilteredData(selectedIndex)}
-              index="Date"
-              categories={["Price"]}
-              colors={["blue"]}
-              valueFormatter={dataFormatter}
-              showLegend={false}
-              yAxisWidth={48}
-            />
-          </TabPanel>
-          <TabPanel>
-            <LineChart
-              className="h-80 mt-8"
-              data={getFilteredData(selectedIndex)}
-              index="Date"
-              categories={["Price"]}
-              colors={["blue"]}
-              valueFormatter={dataFormatter}
-              showLegend={false}
-              yAxisWidth={48}
-            />
-          </TabPanel>
-          <TabPanel>
-            <LineChart
-              className="h-80 mt-8"
-              data={getFilteredData(selectedIndex)}
-              index="Date"
-              categories={["Price"]}
-              colors={["blue"]}
-              valueFormatter={dataFormatter}
-              showLegend={false}
-              yAxisWidth={48}
-            />
-          </TabPanel>
-          <TabPanel>
-            <LineChart
-              className="h-80 mt-8"
-              data={getFilteredData(selectedIndex)}
-              index="Date"
-              categories={["Price"]}
-              colors={["blue"]}
-              valueFormatter={dataFormatter}
-              showLegend={false}
-              yAxisWidth={48}
-            />
-          </TabPanel>
+          {["1M", "2M", "6M", "YTD", "Max"].map((period) => (
+            <TabPanel key={period}>
+              <LineChart
+                className="h-80 mt-8"
+                data={getFilteredData(period)}
+                index="Date"
+                categories={["Sales"]}
+                colors={["blue"]}
+                valueFormatter={dataFormatter}
+                showLegend={false}
+                yAxisWidth={48}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </TabGroup>
     </Card>
