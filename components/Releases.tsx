@@ -58,7 +58,7 @@ const Releases = () => {
                 <div className="flex items-center justify-between mt-3">
                   <div>
                     <Link to={`/releases/${release.title}/by/${release.release_artist}/${release.id}`} className="font-medium">{release.title}</Link>
-                    <Link to={`/releases/${release.title}/by/${release.release_artist}/${release.id}`} className="flex items-center">
+                    <Link to={`/artists/${release.release_artist}`} className="flex items-center">
                       <span className="text-xs font-medium text-gray-600">by</span>
                       <span className="text-xs font-medium ml-1 text-indigo-500">{release.release_artist}</span>
                     </Link>
