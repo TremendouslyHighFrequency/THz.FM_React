@@ -89,6 +89,12 @@ const totalStaked = [
     },
   ];
 
+const valueFormatterNumber = (number: number) =>
+  `${Intl.NumberFormat("us").format(number).toString()}`;
+
+const valueFormatterCurrency = (number: number) =>
+  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
+
 const LineChartView = ({ category }: { category: any }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
