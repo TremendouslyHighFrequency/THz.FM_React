@@ -2,98 +2,92 @@ import { Card, Metric, Text, AreaChart, Tab, TabList, Grid, TabGroup } from "@tr
 
 import { useState } from "react";
 
-const sales = [
-  {
-    Month: "Jan 21",
-    "This year": 2890,
-    "Last year": 2190,
-    Peer: 1930,
-  },
-  {
-    Month: "Feb 21",
-    "This year": 1890,
-    "Last year": 2230,
-    Peer: 1600,
-  },
-  // ...
-  {
-    Month: "Jul 21",
-    "This year": 3490,
-    "Last year": 2187,
-    Peer: 3200,
-  },
-];
-
-const profit = [
-  {
-    Month: "Jan 21",
-    "This year": 2400,
-    "Last year": 2650,
-    Peer: 2100,
-  },
-  {
-    Month: "Feb 21",
-    "This year": 1990,
-    "Last year": 2300,
-    Peer: 1450,
-  },
-  // ...
-  {
-    Month: "Jul 21",
-    "This year": 4300,
-    "Last year": 3850,
-    Peer: 3100,
-  },
-];
-
-const customers = [
-  {
-    Month: "Jan 21",
-    "This year": 4300,
-    "Last year": 1505,
-    Peer: 3010,
-  },
-  {
-    Month: "Feb 21",
-    "This year": 4380,
-    "Last year": 1960,
-    Peer: 2800,
-  },
-  // ...
-  {
-    Month: "Jul 21",
-    "This year": 3290,
-    "Last year": 3150,
-    Peer: 2100,
-  },
-];
-
-const valueFormatterNumber = (number: number) =>
-  `${Intl.NumberFormat("us").format(number).toString()}`;
-
-const valueFormatterCurrency = (number: number) =>
-  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
-
-const categories = [
-  {
-    title: "Sales • YTD",
-    metric: "$ 12,699",
-    data: sales,
-    valueFormatter: valueFormatterCurrency,
-  },
-  {
-    title: "Profit • YTD",
-    metric: "$ 12,348",
-    data: profit,
-    valueFormatter: valueFormatterCurrency,
-  },
-  {
-    title: "Customers • YTD",
-    metric: "948",
-    data: customers,
-    valueFormatter: valueFormatterNumber,
-  },
-];
+const totalStaked = [
+    {
+      Month: "Jan 21",
+      "THz": 25000,
+      "SigUSD": 30000,
+      Peer: 20000,
+    },
+    {
+      Month: "Feb 21",
+      "THz": 27000,
+      "SigUSD": 32000,
+      Peer: 21000,
+    },
+    // ...
+    {
+      Month: "Jul 21",
+      "THz": 35000,
+      "SigUSD": 38000,
+      Peer: 30000,
+    },
+  ];
+  
+  const rewardsEarned = [
+    {
+      Month: "Jan 21",
+      "THz": 50,
+      "SigUSD": 45,
+      Peer: 40,
+    },
+    {
+      Month: "Feb 21",
+      "THz": 55,
+      "SigUSD": 50,
+      Peer: 45,
+    },
+    // ...
+    {
+      Month: "Jul 21",
+      "THz": 60,
+      "SigUSD": 55,
+      Peer: 50,
+    },
+  ];
+  
+  const stakersCount = [
+    {
+      Month: "Jan 21",
+      "THz": 200,
+      "SigUSD": 180,
+      Peer: 170,
+    },
+    {
+      Month: "Feb 21",
+      "THz": 220,
+      "SigUSD": 210,
+      Peer: 190,
+    },
+    // ...
+    {
+      Month: "Jul 21",
+      "THz": 240,
+      "SigUSD": 230,
+      Peer: 220,
+    },
+  ];
+  
+  const categories = [
+    {
+      title: "Total Staked • YTD",
+      metric: "58,000 THz",
+      data: totalStaked,
+      valueFormatter: valueFormatterNumber,
+    },
+    {
+      title: "Rewards Earned • YTD",
+      metric: "165 THz",
+      data: rewardsEarned,
+      valueFormatter: valueFormatterNumber,
+    },
+    {
+      title: "Stakers Count • YTD",
+      metric: "470",
+      data: stakersCount,
+      valueFormatter: valueFormatterNumber,
+    },
+  ];
 
 const LineChartView = ({ category }: { category: any }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
