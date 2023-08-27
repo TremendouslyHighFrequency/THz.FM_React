@@ -1,55 +1,58 @@
 import {
-  Card,
-  Table,
-  TableRow,
-  TableCell,
-  TableHead,
-  TableHeaderCell,
-  TableBody,
-  BadgeDelta,
-  DeltaType,
-  MultiSelect,
-  MultiSelectItem,
-} from "@tremor/react";
-import { useState } from "react";
-
-type MusicLabel = {
-    name: string;
-    albumsReleased: number;
-    topTrack: string;
-    topTrackRating: string;
-    country: string;
-    status: string;
+    Card,
+    Table,
+    TableRow,
+    TableCell,
+    TableHead,
+    TableHeaderCell,
+    TableBody,
+    BadgeDelta,
+    DeltaType,
+    MultiSelect,
+    MultiSelectItem,
+  } from "@tremor/react";
+  import { useState } from "react";
+  
+  type MusicCampaign = {
+    labelName: string;
+    campaignsRun: number;
+    topPromotedTrack: string;
+    trackRating: string;
+    listenersReached: number;
+    campaignBudget: string;
+    campaignEffectiveness: string; // could be 'high', 'medium', 'low'
     deltaType: DeltaType;
   };
   
-
-  const musicLabels: MusicLabel[] = [
+  const musicCampaigns: MusicCampaign[] = [
     {
-      name: "Alpha Records",
-      albumsReleased: 20,
-      topTrack: "Echoes of Silence",
-      topTrackRating: "4.8",
-      country: "USA",
-      status: "renowned",
+      labelName: "Alpha Records",
+      campaignsRun: 5,
+      topPromotedTrack: "Echoes of Silence",
+      trackRating: "4.8",
+      listenersReached: 500000,
+      campaignBudget: "$200,000",
+      campaignEffectiveness: "high",
       deltaType: "increase",
     },
     {
-      name: "Beta Sounds",
-      albumsReleased: 15,
-      topTrack: "Moonlight Serenade",
-      topTrackRating: "4.5",
-      country: "UK",
-      status: "emerging",
+      labelName: "Beta Sounds",
+      campaignsRun: 3,
+      topPromotedTrack: "Moonlight Serenade",
+      trackRating: "4.5",
+      listenersReached: 300000,
+      campaignBudget: "$150,000",
+      campaignEffectiveness: "medium",
       deltaType: "unchanged",
     },
-];
-
-export default function MusicCampaigns() {
+    // ... (add more sample campaign data similarly)
+  ];
+  
+  export default function MusicCampaigns() {
     const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   
-    const isLabelSelected = (label: MusicLabel) =>
-      selectedLabels.includes(label.name) || selectedLabels.length === 0;
+    const isCampaignSelected = (campaign: MusicCampaign) =>
+      selectedLabels.includes(campaign.labelName) || selectedLabels.length === 0;
   
     return (
       <Card>
@@ -58,37 +61,39 @@ export default function MusicCampaigns() {
           placeholder="Select Music Label..."
           className="max-w-xs"
         >
-          {musicLabels.map((item) => (
-            <MultiSelectItem key={item.name} value={item.name}>
-              {item.name}
+          {musicCampaigns.map((item) => (
+            <MultiSelectItem key={item.labelName} value={item.labelName}>
+              {item.labelName}
             </MultiSelectItem>
           ))}
         </MultiSelect>
         <Table className="mt-6">
           <TableHead>
             <TableRow>
-              <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell className="text-right">Albums Released</TableHeaderCell>
-              <TableHeaderCell className="text-right">Top Track</TableHeaderCell>
-              <TableHeaderCell className="text-right">Top Track Rating</TableHeaderCell>
-              <TableHeaderCell className="text-right">Country</TableHeaderCell>
-              <TableHeaderCell className="text-right">Status</TableHeaderCell>
+              <TableHeaderCell>Label Name</TableHeaderCell>
+              <TableHeaderCell className="text-right">Campaigns Run</TableHeaderCell>
+              <TableHeaderCell className="text-right">Top Promoted Track</TableHeaderCell>
+              <TableHeaderCell className="text-right">Track Rating</TableHeaderCell>
+              <TableHeaderCell className="text-right">Listeners Reached</TableHeaderCell>
+              <TableHeaderCell className="text-right">Campaign Budget</TableHeaderCell>
+              <TableHeaderCell className="text-right">Effectiveness</TableHeaderCell>
             </TableRow>
           </TableHead>
   
           <TableBody>
-            {musicLabels
-              .filter((item) => isLabelSelected(item))
+            {musicCampaigns
+              .filter((item) => isCampaignSelected(item))
               .map((item) => (
-                <TableRow key={item.name}>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell className="text-right">{item.albumsReleased}</TableCell>
-                  <TableCell className="text-right">{item.topTrack}</TableCell>
-                  <TableCell className="text-right">{item.topTrackRating}</TableCell>
-                  <TableCell className="text-right">{item.country}</TableCell>
+                <TableRow key={item.labelName}>
+                  <TableCell>{item.labelName}</TableCell>
+                  <TableCell className="text-right">{item.campaignsRun}</TableCell>
+                  <TableCell className="text-right">{item.topPromotedTrack}</TableCell>
+                  <TableCell className="text-right">{item.trackRating}</TableCell>
+                  <TableCell className="text-right">{item.listenersReached.toLocaleString()}</TableCell>
+                  <TableCell className="text-right">{item.campaignBudget}</TableCell>
                   <TableCell className="text-right">
                     <BadgeDelta deltaType={item.deltaType} size="xs">
-                      {item.status}
+                      {item.campaignEffectiveness}
                     </BadgeDelta>
                   </TableCell>
                 </TableRow>
@@ -98,3 +103,4 @@ export default function MusicCampaigns() {
       </Card>
     );
   }
+  
