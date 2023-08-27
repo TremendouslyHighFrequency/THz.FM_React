@@ -30,7 +30,7 @@ const Artists = () => {
                         data.map(({ title, artist_bio, artist_photo }, i) => (
                             <Col key={i} numColSpan={1} numColSpanLg={i === 0 ? 2 : 1}>
                                 <Card>
-                                    <div className="artist-card-bg" style={{ position: 'relative', padding: '16px', backgroundImage: `url(${artist_photo})` }}>
+                                    <div className="artist-card-bg" style={{ position: 'relative', backgroundImage: `url(${artist_photo})` }}>
                                         <Text>{title}</Text>
                                         <Link to={`/artists/${title}`}>View Artist</Link>
                                     </div>
