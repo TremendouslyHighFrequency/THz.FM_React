@@ -5,9 +5,6 @@ import { useState } from "react";
 const valueFormatterNumber = (number: number) =>
   `${Intl.NumberFormat("us").format(number).toString()}`;
 
-const valueFormatterCurrency = (number: number) =>
-  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
-
 const totalStaked = [
     {
       Month: "Jan 21",
@@ -94,44 +91,44 @@ const totalStaked = [
       valueFormatter: valueFormatterNumber,
     },
   ];
-
-const LineChartView = ({ category }: { category: any }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  return (
-    <>
-      <TabGroup className="mt-6" index={selectedIndex} onIndexChange={(i) => setSelectedIndex(i)}>
-        <TabList>
-          <Tab>Peer group</Tab>
-          <Tab>Same period last year</Tab>
-        </TabList>
-      </TabGroup>
-      <AreaChart
-        className="h-40 mt-4"
-        data={category.data}
-        index="Month"
-        categories={["This year", selectedIndex == 0 ? "Peer" : "Last year"]}
-        colors={["blue", "slate"]}
-        valueFormatter={category.valueFormatter}
-        showXAxis={true}
-        startEndOnly={true}
-        showYAxis={false}
-        showLegend={false}
-      />
-    </>
-  );
-};
-
-export default function StakingMetrics() {
-  return (
-    <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-      {categories.map((item) => (
-        <Card key={item.title}>
-          <Text>{item.title}</Text>
-          <Metric>{item.metric}</Metric>
-          <LineChartView category={item} />
-        </Card>
-      ))}
-    </Grid>
-  );
-}
+  
+  const LineChartView = ({ category }: { category: any }) => {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+  
+    return (
+      <>
+        <TabGroup className="mt-6" index={selectedIndex} onIndexChange={(i) => setSelectedIndex(i)}>
+          <TabList>
+            <Tab>SigUSD</Tab>
+            <Tab>THz</Tab>
+          </TabList>
+        </TabGroup>
+        <AreaChart
+          className="h-40 mt-4"
+          data={category.data}
+          index="Month"
+          categories={["This year", selectedIndex === 0 ? "SigUSD" : "THz"]} {/* Adjusted tab labels */}
+          colors={["blue", "slate"]}
+          valueFormatter={category.valueFormatter}
+          showXAxis={true}
+          startEndOnly={true}
+          showYAxis={false}
+          showLegend={false}
+        />
+      </>
+    );
+  };
+  
+  export default function StakingMetrics() {
+    return (
+      <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
+        {categories.map((item) => (
+          <Card key={item.title}>
+            <Text>{item.title}</Text>
+            <Metric>{item.metric}</Metric>
+            <LineChartView category={item} />
+          </Card>
+        ))}
+      </Grid>
+    );
+  }
