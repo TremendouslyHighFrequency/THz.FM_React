@@ -33,7 +33,7 @@ const Dashboard = () => {
           <main>
       <Metric>Dashboard</Metric>
 
-      <TabGroup className="mt-6">
+      <TabGroup className="mt-6 mb-8">
         <TabList>
           <Tab>Sales</Tab>
           <Tab>Staking</Tab>
