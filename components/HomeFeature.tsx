@@ -27,6 +27,26 @@ export default function HomeFeature() {
           </div>
         </Col>
       </Grid>
+      <Grid numItemsMd={2} className="mt-6 gap-6">
+        <Card>
+          <div className="h-44" />
+        </Card>
+        <Card>
+          <div className="h-44" />
+        </Card>
+        <Card>
+          <div className="h-44" />
+        </Card>
+        <Card>
+          <div className="h-44" />
+        </Card>
+        <Card>
+          <div className="h-44" />
+        </Card>
+        <Card>
+          <div className="h-44" />
+        </Card>
+      </Grid>
     </main>
   );
 }
