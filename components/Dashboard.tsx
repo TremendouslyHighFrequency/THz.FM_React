@@ -33,6 +33,7 @@ const Dashboard = () => {
       <TabGroup className="mt-6">
         <TabList>
           <Tab>Sales</Tab>
+          <Tab>Staking</Tab>
           <Tab>Release Metrics</Tab>
           <Tab>Social Campaigns</Tab>
         </TabList>
@@ -42,6 +43,14 @@ const Dashboard = () => {
             <div className="mt-6">
                   <DashboardGraph />
              </div>
+          </TabPanel>
+
+          <TabPanel>
+            <div className="mt-6">
+              <Card>
+                <div className="h-96" />
+              </Card>
+            </div>
           </TabPanel>
 
           <TabPanel>
