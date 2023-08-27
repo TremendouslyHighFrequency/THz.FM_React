@@ -58,10 +58,10 @@ const Releases = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-10 space-x-1">
+        {/* <div className="flex justify-center mt-10 space-x-1">
           <button onClick={() => setPageIndex(prevIndex => prevIndex - 50)} className="flex items-center justify-center h-8 px-2 rounded text-sm font-medium text-gray-400">Prev</button>
           <button onClick={() => setPageIndex(prevIndex => prevIndex + 50)} className="flex items-center justify-center h-8 px-2 rounded hover:bg-indigo-200 text-sm font-medium text-gray-600 hover:text-indigo-600">Next</button>
-        </div>
+        </div> */}
       </div>
       </div>
     )
