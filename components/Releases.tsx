@@ -49,19 +49,19 @@ const Releases = () => {
                     <span className="text-xs font-medium ml-1 text-indigo-500">{release.release_artist}</span>
                   </Link>
                 </div>
-                <div className="flex space-x-4">
+                {/* <div className="flex space-x-4">
                   <span>❤️</span> {/* Replace with heart SVG icon */}
                   <span>🛒</span> {/* Replace with cart SVG icon */}
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
         </div>
 
-        {/* <div className="flex justify-center mt-10 space-x-1">
+        <div className="flex justify-center mt-10 space-x-1">
           <button onClick={() => setPageIndex(prevIndex => prevIndex - 50)} className="flex items-center justify-center h-8 px-2 rounded text-sm font-medium text-gray-400">Prev</button>
           <button onClick={() => setPageIndex(prevIndex => prevIndex + 50)} className="flex items-center justify-center h-8 px-2 rounded hover:bg-indigo-200 text-sm font-medium text-gray-600 hover:text-indigo-600">Next</button>
-        </div> */}
+        </div>
       </div>
       </div>
     )
