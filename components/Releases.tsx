@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import ReleaseFeature from './ReleaseFeature';
 import MeiliSearch from 'meilisearch';
+import { useFrappeGetDocList } from 'frappe-react-sdk';
+import { ReleaseItem } from '../types';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -15,6 +17,20 @@ const Releases = () => {
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
+  const [useFallback, setUseFallback] = useState<boolean>(false);
+
+  const { data, error: frappeError } = useFrappeGetDocList<ReleaseItem>('Release', {
+    fields: ["title", "release_artist", "release_artwork", "name", "published"],
+    limit_start: pageIndex,
+    limit: 50,
+    filters: {
+      published: 1
+    },
+    orderBy: {
+      field: "creation",
+      order: 'desc'
+    }
+  });
 
   useEffect(() => {
     const fetchReleases = async () => {
@@ -23,24 +39,27 @@ const Releases = () => {
           offset: pageIndex,
           limit: 50
         });
-        setReleases(searchResults.hits);
-        setLoading(false);
+        if (searchResults.hits.length > 0) {
+          setReleases(searchResults.hits);
+          setLoading(false);
+        } else {
+          setUseFallback(true);
+        }
       } catch (err) {
-        setError(err);
-        setLoading(false);
+        setUseFallback(true);
       }
     };
 
-    fetchReleases();
-  }, [pageIndex]);
-
-  if (loading) {
-    return <>Loading...</>;
-  }
-
-  if (error) {
-    return <>{JSON.stringify(error)}</>;
-  }
+    if (!useFallback) {
+      fetchReleases();
+    } else if (data && Array.isArray(data)) {
+      setReleases(data);
+      setLoading(false);
+    } else if (frappeError) {
+      setError(frappeError);
+      setLoading(false);
+    }
+  }, [pageIndex, useFallback, data, frappeError]);
   
   if (releases.length > 0) {
     return (
