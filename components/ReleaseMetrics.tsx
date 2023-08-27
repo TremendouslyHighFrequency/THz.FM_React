@@ -84,13 +84,6 @@ import {
     return (
       <Card>
         <Title>Most Engaged Audience</Title>
-        <TabGroup className="mt-10" index={selectedIndex} onIndexChange={setSelectedIndex}>
-          <TabList variant="line">
-            <Tab>Interested Rate</Tab>
-            <Tab>Open Rate</Tab>
-            <Tab>Reply Rate</Tab>
-          </TabList>
-        </TabGroup>
         <Grid numItemsMd={2} className="gap-x-8 gap-y-2">
           <div>
             <Title className="mt-8">Genres</Title>
