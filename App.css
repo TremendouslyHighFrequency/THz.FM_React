@@ -462,6 +462,17 @@ body[data-theme='light'] .side-nav li a {
   text-align: right;
   right: 0;
 }
+.artist-card-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
 .album-card {
   margin: 10px;
   min-width: 240px;
