@@ -51,7 +51,7 @@ const Releases = () => {
             {releases.map(release => (
               <div key={release.id} className="w-96">
                 <Link 
-                  to={`/releases/${release.title}/by/${release.release_artist_primary}/${release.id}`} 
+                  to={`/releases/${release.title}/by/${release.release_artist}/${release.id}`} 
                   className="block h-96 rounded-lg shadow-lg bg-white" 
                   style={{ backgroundImage: `url('${release.release_artwork}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 ></Link>
