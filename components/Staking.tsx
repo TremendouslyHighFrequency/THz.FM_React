@@ -2,6 +2,12 @@ import { Card, Metric, Text, AreaChart, Tab, TabList, Grid, TabGroup } from "@tr
 
 import { useState } from "react";
 
+const valueFormatterNumber = (number: number) =>
+  `${Intl.NumberFormat("us").format(number).toString()}`;
+
+const valueFormatterCurrency = (number: number) =>
+  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
+
 const totalStaked = [
     {
       Month: "Jan 21",
@@ -88,12 +94,6 @@ const totalStaked = [
       valueFormatter: valueFormatterNumber,
     },
   ];
-
-const valueFormatterNumber = (number: number) =>
-  `${Intl.NumberFormat("us").format(number).toString()}`;
-
-const valueFormatterCurrency = (number: number) =>
-  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 const LineChartView = ({ category }: { category: any }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
