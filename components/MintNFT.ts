@@ -1,23 +1,17 @@
-import {
-  OutputBuilder,
-  TransactionBuilder,
-  SConstant,
-  SColl,
-  SByte,
-} from '@fleet-sdk/core';
-import { sha256 } from '@noble/hashes/sha256';
-import { utf8ToBytes } from '@noble/hashes/utils';
+import { OutputBuilder, TransactionBuilder } from '@fleet-sdk/core';
+import { SPair, SColl, SByte } from '@fleet-sdk/serializer';
+import { sha256, utf8 } from '@fleet-sdk/crypto';
 import { NFTStorage } from 'nft.storage';
 import commonSiteConfig from '../../common_site_config.json';
 
 const NFTstorageApiKey = commonSiteConfig.NFT_STORAGE_API_KEY;
 
 export async function MintNFT(file: File, title: string, description: string, decimals: number, setLoading: (loading: boolean) => void) {
+
   setLoading(true);
   const client = new NFTStorage({ token: NFTstorageApiKey });
   const cid = await client.storeBlob(file);
   const ipfsLink = `ipfs://${cid}`;
-  console.log(ipfsLink);
   setLoading(false);  
 
   const fileBytes = new Uint8Array(await file.arrayBuffer());
@@ -27,19 +21,24 @@ export async function MintNFT(file: File, title: string, description: string, de
     const height = await ergo.get_current_height();
     const recipient = await ergo.get_change_address();
 
+    const artworkURL = 'https://thz.fm/files/Terahertz-app-icon3da4a5.png';
+
     const unsignedTx = new TransactionBuilder(height)
       .from(await ergo.get_utxos())
       .to(
         new OutputBuilder('1000000', recipient)
           .mintToken({ amount: 1 })
           .setAdditionalRegisters({
-            R4: SConstant(SColl(SByte, utf8ToBytes(title))),
-            R5: SConstant(SColl(SByte, utf8ToBytes(description))),
-            R6: SConstant(SColl(SByte, utf8ToBytes(decimals.toString()))),
-            R7: SConstant(SColl(SByte, [0x01, 0x02])),
-            R8: SConstant(SColl(SByte, fileHash)),
-            R9: SConstant(SColl(SByte, utf8ToBytes(ipfsLink))),
-          })
+            R4: SColl(SByte, utf8.decode(title)).toHex(),
+            R5: SColl(SByte, utf8.decode(description)).toHex(),
+            R6: SColl(SByte, utf8.decode(decimals.toString())).toHex(),
+            R7: SColl(SByte, [0x01, 0x02]).toHex(),
+            R8: SColl(SByte, fileHash).toHex(),
+            R9: SPair(
+              SColl(SByte, utf8.decode(artworkURL)),
+              SColl(SByte, utf8.decode(ipfsLink))
+           ).toHex(),
+    })
       )
       .sendChangeTo(await ergo.get_change_address())
       .payMinFee()
@@ -53,7 +52,6 @@ export async function MintNFT(file: File, title: string, description: string, de
     return ipfsLink;
   }
 }
-
 
 // import {
 //   OutputBuilder,
@@ -94,7 +92,7 @@ export async function MintNFT(file: File, title: string, description: string, de
 //                 0x02, // audio token type
 //                 // 0x03, // video token type
 //                 // 0x04, // artwork collection token type
-//                 // 0x0F, // NFT file attachments - collection of SHA256 hashes of the files encoded as Coll[Coll[Byte]] 
+//                 // 0x0F, // NFT file attachments - collection of SHA256 hashes of the files decoded as Coll[Coll[Byte]] 
 
 // // NFT File Attachments
 // // NFT File attachments can be used to attach any number of files of any file format to an Ergo token.

@@ -500,6 +500,10 @@ body[data-theme='light'] .side-nav li a {
   border-radius: 50%; /* Make the glow circular */
   animation: pulseGlow 1.5s infinite alternate;
 }
+.thzIcon-logo {
+
+}
+
 .loading-modal {
   position: fixed;
   top: 0;
