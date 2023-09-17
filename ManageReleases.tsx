@@ -52,8 +52,8 @@ const ManageReleases = () => {
   return (
     
     <div className="createRelease">
-       {/* {currentUser ? (
-        <> */}
+       {currentUser ? (
+        <>
               <div className="publishedReleases">
         <section className="container px-4 mx-auto">
           <Flex>
@@ -135,10 +135,10 @@ const ManageReleases = () => {
           </div>
         )}
       </div>
-      {/* </>
+       </>
       ) : (
         <h1>Please login to view this page.</h1>
-      )} */}
+      )} 
     </div>
     
   );

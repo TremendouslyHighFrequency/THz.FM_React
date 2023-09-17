@@ -1,9 +1,9 @@
-export const WITHDRAW_TOKEN_TEMPLATE = {
-     {
-	val swampAudioNode = PK("9hKFHa886348VhfM1BRfLPKi8wwXMnyVqqmri9p5zPFE8qgMMui").propBytes
+
+export const WITHDRAW_TOKEN_TEMPLATE =`{
+	val swampAudioNode = PK("9iAp6nJugJciwfZK5rDt4civh4jnnT13j4fXoBLqscC7GRbpt5s").propBytes
 	val withdrawFee    = 10000000L
 	
-	val initialWithdrawalTokens = SELF.tokens(0)
+	val initialWithdrawalTokens = SELF.tokens
 	val tokenOwners             = SELF.R7[Coll[(Long,Coll[Byte])]].get
 	
 	val swampAudioBox = OUTPUTS(0)
@@ -18,14 +18,14 @@ export const WITHDRAW_TOKEN_TEMPLATE = {
 	val validSwampValue       = swampAudioBox.value >= withdrawFee
 	
 	val validWithdrawalScript = withdrawalBox.propositionBytes == tokenOwners(tokenIndex)(1)
-	val validWithdrawAmount   = withdrawalBox.tokens(0)._1 == initialWithdrawalTokens._1 && withdrawalBox.tokens(0)._2 == 1
+	val validWithdrawAmount = withdrawalBox.tokens(0)._1 == initialWithdrawalTokens(0)._1 && withdrawalBox.tokens(0)._2 == 1
 
 	val validSuccessorScript = successor.propositionBytes == SELF.propositionBytes
 	val validSuccessorValue  = successor.value >= SELF.value
-	val validSuccesorTokens  = if (initialWithdrawalTokens._2 > 1) {
+	val validSuccesorTokens  = if (initialWithdrawalTokens(0)._2 > 1) {
 		val finalWithdrawalTokens = successor.tokens(0)
-		finalWithdrawalTokens._2 == initialWithdrawalTokens._2 - 1 &&
-		finalWithdrawalTokens._1 == initialWithdrawalTokens._1
+        finalWithdrawalTokens._2 == initialWithdrawalTokens(0)._2 - 1 &&
+        finalWithdrawalTokens._1 == initialWithdrawalTokens(0)._1
 	} else {true}
 	val validSuccessorOwners = tokenOwners.slice(0,tokenIndex).append(tokenOwners.slice(tokenIndex + 1, tokenOwners.size)) == finalTokenOwners
 	
@@ -37,9 +37,6 @@ export const WITHDRAW_TOKEN_TEMPLATE = {
 		validSuccessorScript &&
 		validSuccessorValue &&
 		validSuccesorTokens &&
-		validSuccessorOwners && 
-		HEIGHT < 1667857691 // trivial condition for uniqueness
-	)
-
-}
-};
+		validSuccessorOwners 
+		)
+	}`;

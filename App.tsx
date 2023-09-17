@@ -1,28 +1,21 @@
 //React Imports
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ReleaseProvider } from './components/ReleaseContext';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 //Frappe Imports 
 import { FrappeProvider } from 'frappe-react-sdk';
 
-//Ergo / Crypto Imports
-import { TransactionBuilder, OutputBuilder } from '@fleet-sdk/core';
-import { SHA256 } from 'crypto-js';
-import { ErgoDappConnector } from 'ergo-dapp-connector';
-import { MintNFT } from './components/MintNFT';
-
 // Import the usePageContentStore hook
 import { usePageContentStore } from './pageContentStore';
 
 //App Requirement Imports
 import './App.css';
-import { Notification, TrackItem } from './types';
+import { Notification } from './types';
 import { getLoggedUser, getNotifications } from './components/api';
 import Navbar from './components/Navbar';
 
-import { purchase as purchaseFn } from './components/purchase';
 import { TxContext } from './components/txContext.js';
 
 // Nav Imports
@@ -33,7 +26,6 @@ import Home from './components/Home';
 import Collection from './components/Collection';
 import Workspace from './components/Workspace';
 import SideNav from './components/FrontSideNav';
-import FooterPlayer from './components/FooterPlayer';
 import Release from './components/Release';
 import Roadmap from './components/Roadmap'; 
 import Product from './components/Product';
@@ -47,7 +39,7 @@ import { getUserImage } from './components/api';
 import Register from './components/Register';
 import EditProfile from './components/EditProfile';
 import AlbumReleaseListeningParty from './components/ListeningParty';
-import MusicPage from './components/MusicHome.js';
+import ContractCompiler from './components/ContractCompiler';
 
 
 function App() {
@@ -60,9 +52,6 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const currentDomain = window.location.hostname;
-
-  const frappeURL = (currentDomain !== 'thz.fm') ? `https://${currentDomain}` : 'https://thz.fm';
 
   useEffect(() => {
     getLoggedUser()
@@ -70,19 +59,6 @@ function App() {
       .then(notificationData => setNotifications(notificationData))
       .catch(error => console.error(`Error fetching data: ${error}`));
   }, []);
-
-  const handleButtonClick = async () => {
-    try {
-      await MintNFT();
-
-       // Update the content of the page-content area
-       usePageContentStore.setContent(content);
-
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
 
   const { navItems, links } = SideNav();
@@ -114,6 +90,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/collection" element={<Collection />} />
+                    <Route path="/contract-compiler" element={<ContractCompiler />} />
                     <Route path="/workspace" element={<Workspace />} />
                     <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/" element={<Home />} />
@@ -122,21 +99,10 @@ function App() {
                     <Route path="/roadmap" element={<Roadmap />} />
                     <Route path="/releases/:title/by/:artist/:name" element={<Release setCurrentTrack={setCurrentTrack} setCurrentTime={setCurrentTime} setDuration={setDuration} setTransaction={setTxId} />} />
                   </Routes>
-                  <div id="comment-container"></div>
                 </div>
               </div>
   
             </div>
-
-            {/* <div className="App-footer">
-              <div className="footer">
-                <div>
-                  <div className="footer-links">
-                    <FooterNav track={currentTrack} currentTime={currentTime} duration={duration} />
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </TxContext.Provider>
         </div>
       </Router>

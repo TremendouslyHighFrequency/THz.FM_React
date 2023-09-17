@@ -1,8 +1,7 @@
-export const SALE_TEMPLATE = {
-{
-	val swampAudioNode            = PK("9hKFHa886348VhfM1BRfLPKi8wwXMnyVqqmri9p5zPFE8qgMMui").propBytes
+export const SALE_TEMPLATE =`{
+	val swampAudioNode            = PK("9iAp6nJugJciwfZK5rDt4civh4jnnT13j4fXoBLqscC7GRbpt5s").propBytes
 	val withdrawFee               = 10000000L
-	val withdrawIndictationScript = fromBase58("5XykR68c3FDk2edgiug1WVS9RYnZjm7egu9VGHq9kiNWmTYxKMLUb652hBwssbL4e4rhwcLJVzWBWoMVeBmrmCzz5")
+	val withdrawIndictationScript = fromBase58("2z3xfLuhN2xkRCSpR7cHL8Ap4CSqXDsmHFPCpbKHhTkPV4PntB8s9Xtc2sdEwm9x8jaQ4rffHqv45dDgw9f9Lxwt")
 	
 	val heldERG0              = SELF.value
 	val heldTokens0           = SELF.tokens
@@ -112,5 +111,5 @@ export const SALE_TEMPLATE = {
 			validRegisters
 		)
 	}
-}
-};
+	
+}`;

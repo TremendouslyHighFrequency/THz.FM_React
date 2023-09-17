@@ -105,7 +105,7 @@ const handleArtistChange = (index: number, value: string) => {
 
 
 return (
-  <>
+  <>  
     <div className="mb-4 bg-white rounded-lg shadow-md p-12">
       <h2 className="text-2xl font-bold mb-4">Create your Distinct Digital Master (DDM™)</h2>
       <p className="mb-4">

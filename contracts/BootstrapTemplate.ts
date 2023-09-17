@@ -1,9 +1,8 @@
-export const BOOTSTRAP_TEMPLATE = {
-{
+export const BOOTSTRAP_TEMPLATE =`{
 	val withdrawFee         = 10000000L
-	val saleSuccessorScript = fromBase58("2wjy8dSAvwKdmCcaz1XwjKdcHjsvHqhHPh4FzshLcZ3AunL6ZykaedY1S3vjevgcSvVoiGJ5K2bGarWmjA5C6R4X")
-	val terminationScript   = fromBase58("32NjucdcZFvQfcjDY3it2jDNerkrG7ue8KMEzzC4eCfosWFb7roQVwFkQ6sH7m97W9zwNLraFw6r1FVUfo2VaZJ1") 
-	val swampAudioNode      = PK("9hKFHa886348VhfM1BRfLPKi8wwXMnyVqqmri9p5zPFE8qgMMui").propBytes
+	val saleSuccessorScript = fromBase58("31R3ahVVPfKRUos8kLShhPyK3shaKEgBt5ZaRCE4vWZasC5gWAjAaTYW3UsfLM4ZjcRjfxd1EdvEoFkpNq3gJfn1")
+	val terminationScript   = fromBase58("2z3xivBgYxhh2GLzoFEcy9MiAebo3sTw19Pe2DcPoUVdHUsGHRAHFdGobkdiEYdTW3mkZhofHy4ZP7rEMYP9WU9F") 
+	val swampAudioNode      = PK("9iAp6nJugJciwfZK5rDt4civh4jnnT13j4fXoBLqscC7GRbpt5s").propBytes
 
 	val heldERG0           = SELF.value
 	val heldTokens0        = SELF.tokens
@@ -112,5 +111,4 @@ export const BOOTSTRAP_TEMPLATE = {
 		validSaleCombine ||
 		validWithdraw
 	)
-}
-};
+}`;
