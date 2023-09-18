@@ -325,10 +325,10 @@ const ContractCompiler: React.FC = () => {
                 console.log(`Artist Ergo Address: ${artistErgoAddress}`);
                 let artistErgoTreeHex: string = ErgoAddress.fromBase58(artistErgoAddress).ergoTree;
                 
-                let value = "1000000";  // Adjust this as necessary
-    
-                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";  // Adjust this as necessary
-    
+                let value = "1000000";
+
+                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";
+
                 let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex();
                 console.log("R4:", r4);
                 let r5 =  "0e20" + tokenId
@@ -336,7 +336,7 @@ const ContractCompiler: React.FC = () => {
                 let r6 = SLong("1").toHex();  // Adjust this as necessary
                 console.log("R6:", r6);
     
-                let r7 = "7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129";  
+                let r7 = SColl(SByte, utf8.decode('7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129')).toHex();
                 console.log("R7:", r7);  // Log the new R7 value
     
                 console.log('Creating transaction builder...');  
