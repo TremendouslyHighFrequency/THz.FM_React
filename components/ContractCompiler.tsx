@@ -362,7 +362,7 @@ const ContractCompiler: React.FC = () => {
                             R4: SColl(SByte, utf8.decode('THz Contract Withdrawal Indicator')).toHex(),
                             R5: SColl(SByte, utf8.decode('Send this indicator to the Assignment Provision contract to get your contract nullification tokens.')).toHex(),
                             R6: SColl(SByte, utf8.decode("0".toString())).toHex(),
-                            R7: r4  // Adding the new R7 value here
+                            R7: SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex()
                         })
                 )
                 .sendChangeTo(await ergo.get_change_address())
