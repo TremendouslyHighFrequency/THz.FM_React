@@ -16,7 +16,7 @@ const ContractCompiler: React.FC = () => {
     const [secondTxId, setSecondTxId] = useState<string | null>(null);
     const [buyTxId, setBuyTxId] = useState<string | null>(null);
     const [saleTxId, setSaleTxId] = useState<string | null>(null);
-
+    let bootstrapInputBox = null;
     const [compiledSale, setCompiledSale] = useState<string | null>(null); 
     const [compiledIndicationToWithdraw, setCompiledIndicationToWithdraw] = useState<string | null>(null);  
     const [compiledWithdrawToken, setCompiledWithdrawToken] = useState<string | null>(null);
@@ -229,6 +229,7 @@ const ContractCompiler: React.FC = () => {
                     },
                     "mainChain": true
                 };
+               
 
                 console.log('Creating transaction builder...');  
                 const unsignedTx = new TransactionBuilder(height)
@@ -287,11 +288,39 @@ const ContractCompiler: React.FC = () => {
     
             if (await ergoConnector.nautilus.connect()) {
                 console.log('Nautilus connected...');  
+                const inputBox: InputBox = {
+                    "boxId": "7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129",
+                    "transactionId": "7517a53479c345eeb9772145594646728f8159a3c1110fde2d530fe0fe84d776",
+                    "blockId": "8e70445d5219e69bb49e5bb47b53923395215a3cd96b4348415bd6ff3aaad664",
+                    "value": 1000000,
+                    "index": 0,
+                    "globalIndex": 32723003,
+                    "creationHeight": 1093281,
+                    "settlementHeight": 1093284,
+                    "ergoTree": "1014040005000400040004020e40646439346138643938323535656336353932383062343838316362313365373934613265363230623137616636306664356164663566323335343532336230620404040204000402040204000e4063373539316262616133343963643961636266356364613863613663626631646265363032393564646339316566653263343365303437633234653664336232010008cd03e0cec0822ad82f91a141a1333551fc448e7c9921ca2989569d5e2aaf0e5c420a0580dac4090406040404000100d810d601b2a5730000d602c27201d603937202c2a7d6049299c17201c1a77301d605db6308a7d606b17205d607b4720573027206d608db63087201d609b4720873037206d60ae4c6a7040c410ed60be4c6a7051ad60ce4c6a70605d60de4c672010605d60eeded93720ae4c67201040c410e93720be4c67201051a93720c720dd60fb1a5d610b2a5730400d1ececededed720372049372077209720eededed93cb72027305af720bd901110eae7208d901134d0eed938c7213017211928c721302720d720e95eded91720f730691b1db6308b2a57307007308e6c6b2a5730900070c410ed803d611b2a5730a00d612b2db63087211730b00d613e4c67211070c410eededed93cbc27211730ced938c721201c5a7938c7212027eb1721305937213720a93e4c67201074d0e7212730dededededed93c27210d0730e92c17210730f9591720f7310d804d611b2a5731100d612e4c672110404d613b2db63087211731200d614b2720b721200eded93c272118cb2720a72120002ed938c7213017214928c721302720c93b57207d901154d0e948c7215017214b57209d901154d0e948c72150172147313720e72037204",
+                    "address": "Fjp7ogHP6fdk2Xy782guv7jnMXQHH3Htjq7m7ZViEFR2JrWw8KxURU5SgET7FaXULXonQkcPdueZP54yDYojwaT5328tGnppvWBSRjcnMRUBAUmvKW7zXs3dyRuHHJMRUQ7b8Ybgp6H5xX4PkWzqnJNyjfBb5ocMjRPMuqazfLgC4K8uSsVotsUYM7qLaUNWF97gwEfzLRummjKB5Q2d1fu6LbCY8MtpaYCVxcSPYBeKdQZJuA9jVDK92roDT2UwUxjciTZ3MQB5ptCTzjipweRNM3tGU4RfrXKhSj56Z2mPL4GTZEptf9m3PhZv6XdYtwC6euV5KMyfFa4otmKcNT3yEL2D24aq16DnB6RvefHRcyRLCJgxah5sReEff4ZZfMKUS8QhrobkZ62xSha4zyRxhPXcdvz7U8EuTM7raHQm4hKZEc7YVRTMAgtSDKNXiQvrKrSas8ZgaANdB1XnhMS5bv18bWfuxseSsQZ2Fb3p96wJNhve3GGamRAqdrnCg7sFrWioXemYAo5SAAX7QXS95LwVYssrNVtxm9dAEubSeh4wReUpVMxaWWFJ8FediFR7Nfs3Tqk9UdduJhgMDcBXQe1TFD2rpE5FzsuXbgsuP58aQCbkyTshwwut38YgjJR9WtWXpSfJpoPegSoKkKQF7ZbP9E3DQgy6iX67zGj3iTxc7jdu6uyzPQ3JRpbL3e44gM87t7MT6qvWR2RUEKsKnk2KXUashPX5p3Ac4PXS6nhi2e3YTFJAoLaeKFoQS1cc4qLBy76Wjb2pnFUyM2HLy498QjbKFCJFk1zZCM7tGgSrsASKCxNbSLuAycqRHbQhQxzFXxLimWu1aitsTPDGE1ShCnYfHS2NeFNFmiDM",
+                    "assets": [
+                        {
+                            "tokenId": "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
+                            "index": 0,
+                            "amount": 1,
+                            "name": "DDM Test",
+                            "decimals": 0,
+                            "type": "EIP-004"
+                        }
+                    ],
+                    "additionalRegisters": {
+                        "R4": "0c410e0180897a48303030386364303263303663396331336264646262323231623831343639363065656466656264333164633538653630623638353437376363346639653165626562623165313761",
+                        "R5": "0e2013e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
+                        "R6": "0502"
+                    },
+                    "mainChain": true
+                };
                 const height = await ergo.get_current_height();
                 console.log(`Current height: ${height}`);  
                 const newRecipient = "JnV5d3BsYC2GyshNWVGVjniCzPyJEnTbwvKdyQ8EbbbwXSPDtNMm1ahZhsyTaMoFDu7g4zx9fmrBcxuayz65Yk4tpgbhSpPX8VAPCzPhzeDzZN73bFDSBiU3aFUqvGvNw2rQ8aupHgT5kVht4YaodDxPnFmJiWEHy49YgTaeUGtWm7aDqZtFraW4ga9cnRRsHeF1w3doSWM2ripjsxw3GxcpEWFPmuU8146thNGLXf5Wb8TkkhA6RuZUHu2BVx9ydUEcXgezq1cxKUMLhBSF6Z6u822hhJ6YMFC15Phv1qBPHPkoUMCxjzatDUmgJBs2k2UHvqDGw5epa2G5wahuhXAGPwZWvEykzzm2vbwtKRpWynV74bp2BJmS1QpmRadM9At3MMDp9hYSaWSY2ViyQtERqXFkZZo6ajbTk5t5G6gHSdF1q35ZWsnTbM3zyDsgB27WYxwhJ5a1a81komfGUTjuPjmMJBAB13qJEhxi8wzgrYEkcchAo183fKTBshjVSj57ejQdCCToAhh6xFp7mtzyJUMMJvMXbn38CyamU1LdwRCA1xt4GbgX9wdgT8d2N4PMcdTkhYc2EtDACX8zT46i38U1YNx9CnYH4FvqwEisJoko84B2vjAE1vXHRqUSKTXXaD6qhX6WCvb56TVrAMK5ZFCnnNRE7Y92CDCiv8t1zT4crotoqqjc1XfwYwLZiLf77bzJjbitY3JYUbB";  // Update this with the actual recipient address
                 console.log(`Recipient set to: ${newRecipient}`);  
-    
+                
                 let artistErgoAddress = await ergo.get_change_address();
                 console.log(`Artist Ergo Address: ${artistErgoAddress}`);
                 let artistErgoTreeHex: string = ErgoAddress.fromBase58(artistErgoAddress).ergoTree;
@@ -307,36 +336,33 @@ const ContractCompiler: React.FC = () => {
                 let r6 = SLong("1").toHex();  // Adjust this as necessary
                 console.log("R6:", r6);
     
-                let r7 = SColl(SByte, utf8.decode("3e609df78f81b0b233e83143f2c47fdb87e01790b15b2274133c074ecfafbfa6")).toHex();  // Define your new R7 value here
+                let r7 = "7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129";  
                 console.log("R7:", r7);  // Log the new R7 value
     
                 console.log('Creating transaction builder...');  
                 const unsignedTx = new TransactionBuilder(height)
-                .from(await ergo.get_utxos())
+                .from([inputBox, ...await ergo.get_utxos()])
                 .to(
                     new OutputBuilder('1000000', newRecipient)  // Using the new recipient address here
                         .setAdditionalRegisters({
                             R4: r4,
                             R5: r5,
                             R6: r6,
-                            R7: r7  // Adding the new R7 value here
+                            R7: r7  
                         })
                         .addTokens({ 
-                            tokenId: tokenId,  // Using the tokenId variable from earlier
-                            amount: "1"  // Setting the amount to 1
+                            tokenId: tokenId,  
+                            amount: "1"  
                         })
                 )
                 .to(
                     new OutputBuilder('1000000', artistErgoAddress)  // Using the new recipient address here
+                    .mintToken({ amount: 1 })
                         .setAdditionalRegisters({
-                            R4: r4,
-                            R5: r5,
-                            R6: r6,
-                            R7: r7  // Adding the new R7 value here
-                        })
-                        .addTokens({ 
-                            tokenId: tokenId,  // Using the tokenId variable from earlier
-                            amount: "1"  // Setting the amount to 1
+                            R4: SColl(SByte, utf8.decode('THz Contract Withdrawal Indicator')).toHex(),
+                            R5: SColl(SByte, utf8.decode('Send this indicator to the Assignment Provision contract to get your contract nullification tokens.')).toHex(),
+                            R6: SColl(SByte, utf8.decode("0".toString())).toHex(),
+                            R7: r4  // Adding the new R7 value here
                         })
                 )
                 .sendChangeTo(await ergo.get_change_address())
@@ -485,9 +511,6 @@ const ContractCompiler: React.FC = () => {
             <h1>Compile Your Contract</h1>
             <p>Timestamp being used: {timestamp}</p>
             <button className="Button bg-yellow-500 mt-6" onClick={handleCompile} disabled={isLoading}>Get Bootstrap P2S</button><br />
-            <button onClick={handleCompileSale} disabled={isLoading}>Compile Sale</button>
-    <button onClick={handleCompileIndicationToWithdraw} disabled={isLoading}>Compile Indication to Withdraw</button>
-    <button onClick={handleCompileWithdrawToken} disabled={isLoading}>Compile Withdraw Token</button>
             {isLoading && <p>Compiling...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {compiledBootstrap && (
