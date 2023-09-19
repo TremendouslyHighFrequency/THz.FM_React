@@ -329,7 +329,7 @@ const ContractCompiler: React.FC = () => {
 
                 const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";
 
-                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex();
+                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoAddress)]]).toHex();
                 console.log("R4:", r4);
                 let r5 =  "0e20" + tokenId
                 console.log("R5:", r5);
