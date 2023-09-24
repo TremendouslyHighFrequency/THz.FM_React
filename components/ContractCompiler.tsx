@@ -95,6 +95,18 @@ const ContractCompiler: React.FC = () => {
             setIsLoading(false);
         }
     };
+
+
+
+
+
+    
+    //////////////////////////
+
+
+
+
+
     
     async function initiateBootstrap(setLoading) {
         try {
@@ -106,7 +118,7 @@ const ContractCompiler: React.FC = () => {
                 const height = await ergo.get_current_height();
                 console.log(`Current height: ${height}`);  
     
-                const recipient = "Fjp7ogHP6fdk2Xy782guv7jnMXQHH3Htjq7m7ZViEFR2JrWw8KxURU5SgET7FaXULXonQkcPdueZP54yDYojwaT5328tGnppvWBSRjcnMRUBAUmvKW7zXs3dyRuHHJMRUQ7b8Ybgp6H5xX4PkWzqnJNyjfBb5ocMjRPMuqazfLgC4K8uSsVotsUYM7qLaUNWF97gwEfzLRummjKB5Q2d1fu6LbCY8MtpaYCVxcSPYBeKdQZJuA9jVDK92roDT2UwUxjciTZ3MQB5ptCTzjipweRNM3tGU4RfrXKhSj56Z2mPL4GTZEptf9m3PhZv6XdYtwC6euV5KMyfFa4otmKcNT3yEL2D24aq16DnB6RvefHRcyRLCJgxah5sReEff4ZZfMKUS8QhrobkZ62xSha4zyRxhPXcdvz7U8EuTM7raHQm4hKZEc7YVRTMAgtSDKNXiQvrKrSas8ZgaANdB1XnhMS5bv18bWfuxseSsQZ2Fb3p96wJNhve3GGamRAqdrnCg7sFrWioXemYAo5SAAX7QXS95LwVYssrNVtxm9dAEubSeh4wReUpVMxaWWFJ8FediFR7Nfs3Tqk9UdduJhgMDcBXQe1TFD2rpE5FzsuXbgsuP58aQCbkyTshwwut38YgjJR9WtWXpSfJpoPegSoKkKQF7ZbP9E3DQgy6iX67zGj3iTxc7jdu6uyzPQ3JRpbL3e44gM87t7MT6qvWR2RUEKsKnk2KXUashPX5p3Ac4PXS6nhi2e3YTFJAoLaeKFoQS1cc4qLBy76Wjb2pnFUyM2HLy498QjbKFCJFk1zZCM7tGgSrsASKCxNbSLuAycqRHbQhQxzFXxLimWu1aitsTPDGE1ShCnYfHS2NeFNFmiDM";
+                const recipient = "2SApbDZd8MwJT2odz5kU93Rsgi6ukLtbS3GfbvYRsz6yKEnpxZBrFKb1an9tCPDpeENjPnX1wjCLQckSSfgrCebw42fBQfAuCcVA11ChFXGgbKQ4b4pGr1B13H234vSj6d5s9RH795ZXmuqnACjiF2c7M21KPspT7jaLgi7CVMbYfPAqdexDfoEyC3HzJD1DFUrNENh5i1mmAdPjQx1JXEvZL8rp7tEYUQf2ADW8zhaEu3ZLqpkVjkvjSVBbY5gcSWovsSg3wLCrUWZkJXg3x3z3XN2MariRNDxfdzvzYAe8HH2Wt5qQWdo7abFSSQxuCZvbHqBzqBTDQavymm7XFrMPsRQkGWV9MXtpVjF23pxyxhBShFfxDTmwyyRANbNXQq2Rsm98MdeicpyRhsjVJf9Ydz9QdQFXVKDvUtGRnFULqQTKqCrUT82Dc4kv6qT8HUMFUX8SCmnCYoPePdCGy9JPHZ8ELbJxhLk1H3GaDP3Ue9giM32d2xFEk4c44kd63j99GCNQJFR63GfjtqP9wdvXgZzoQQYcLJDCyWehM62xpMNkWWWyRskE4g9NM8fhNg65vJT2VBJpu6ztjwoyX7yd95qsxDyf3QaxtfN3Pu55MyAx3zca5vv1vFhr4MEvPD24zpz28rShaveEDx8iL93CKSdR3bKiyZnJPX6ppjR7xve9x9UfDevoMQQ2sQyeptgm17QP66HBd3HWKzJb8AC9Sk4XAU7yMfCbNij2h7seDS6nzhtnWNCmiMuSTZ3QdQf6fh3px5x1V2H9xedbZXU8ukV5";
                 console.log(`Recipient set to: ${recipient}`);  
                 
                 let artistErgoAddress = await ergo.get_change_address();
@@ -115,11 +127,12 @@ const ContractCompiler: React.FC = () => {
                 
                 let value = "1000000";
 
-                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";
+                const tokenId = "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91";
+                const token2 = "8c7ff0e5f1970be69aa3b9ad0428b398e9a9446b505f457f0d4ac6c9acfbeb93";
 
-                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex();
+                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, artistErgoTreeHex]]).toHex();
                 console.log("R4:", r4);
-                let r5 =  "0e20" + tokenId
+                let r5 = SColl(SColl(SByte), [tokenId]).toHex();
                 console.log("R5:", r5);
                 let r6 = SLong("1").toHex();
                 console.log("R6:", r6);
@@ -180,8 +193,8 @@ const ContractCompiler: React.FC = () => {
                 console.log('Nautilus connected...');  
                 const height = await ergo.get_current_height();
                 console.log(`Current height: ${height}`);  
-                const thzNode = "9iAp6nJugJciwfZK5rDt4civh4jnnT13j4fXoBLqscC7GRbpt5s";
-                const recipient = "Fjp7ogHP6fdk2Xy782guv7jnMXQHH3Htjq7m7ZViEFR2JrWw8KxURU5SgET7FaXULXonQkcPdueZP54yDYojwaT5328tGnppvWBSRjcnMRUBAUmvKW7zXs3dyRuHHJMRUQ7b8Ybgp6H5xX4PkWzqnJNyjfBb5ocMjRPMuqazfLgC4K8uSsVotsUYM7qLaUNWF97gwEfzLRummjKB5Q2d1fu6LbCY8MtpaYCVxcSPYBeKdQZJuA9jVDK92roDT2UwUxjciTZ3MQB5ptCTzjipweRNM3tGU4RfrXKhSj56Z2mPL4GTZEptf9m3PhZv6XdYtwC6euV5KMyfFa4otmKcNT3yEL2D24aq16DnB6RvefHRcyRLCJgxah5sReEff4ZZfMKUS8QhrobkZ62xSha4zyRxhPXcdvz7U8EuTM7raHQm4hKZEc7YVRTMAgtSDKNXiQvrKrSas8ZgaANdB1XnhMS5bv18bWfuxseSsQZ2Fb3p96wJNhve3GGamRAqdrnCg7sFrWioXemYAo5SAAX7QXS95LwVYssrNVtxm9dAEubSeh4wReUpVMxaWWFJ8FediFR7Nfs3Tqk9UdduJhgMDcBXQe1TFD2rpE5FzsuXbgsuP58aQCbkyTshwwut38YgjJR9WtWXpSfJpoPegSoKkKQF7ZbP9E3DQgy6iX67zGj3iTxc7jdu6uyzPQ3JRpbL3e44gM87t7MT6qvWR2RUEKsKnk2KXUashPX5p3Ac4PXS6nhi2e3YTFJAoLaeKFoQS1cc4qLBy76Wjb2pnFUyM2HLy498QjbKFCJFk1zZCM7tGgSrsASKCxNbSLuAycqRHbQhQxzFXxLimWu1aitsTPDGE1ShCnYfHS2NeFNFmiDM";
+                const thzNode = "9hKFHa886348VhfM1BRfLPKi8wwXMnyVqqmri9p5zPFE8qgMMui";
+                const recipient = "2SApbDZd8MwJT2odz5kU93Rsgi6ukLtbS3GfbvYRsz6yKEnpxZBrFKb1an9tCPDpeENjPnX1wjCLQckSSfgrCebw42fBQfAuCcVA11ChFXGgbKQ4b4pGr1B13H234vSj6d5s9RH795ZXmuqnACjiF2c7M21KPspT7jaLgi7CVMbYfPAqdexDfoEyC3HzJD1DFUrNENh5i1mmAdPjQx1JXEvZL8rp7tEYUQf2ADW8zhaEu3ZLqpkVjkvjSVBbY5gcSWovsSg3wLCrUWZkJXg3x3z3XN2MariRNDxfdzvzYAe8HH2Wt5qQWdo7abFSSQxuCZvbHqBzqBTDQavymm7XFrMPsRQkGWV9MXtpVjF23pxyxhBShFfxDTmwyyRANbNXQq2Rsm98MdeicpyRhsjVJf9Ydz9QdQFXVKDvUtGRnFULqQTKqCrUT82Dc4kv6qT8HUMFUX8SCmnCYoPePdCGy9JPHZ8ELbJxhLk1H3GaDP3Ue9giM32d2xFEk4c44kd63j99GCNQJFR63GfjtqP9wdvXgZzoQQYcLJDCyWehM62xpMNkWWWyRskE4g9NM8fhNg65vJT2VBJpu6ztjwoyX7yd95qsxDyf3QaxtfN3Pu55MyAx3zca5vv1vFhr4MEvPD24zpz28rShaveEDx8iL93CKSdR3bKiyZnJPX6ppjR7xve9x9UfDevoMQQ2sQyeptgm17QP66HBd3HWKzJb8AC9Sk4XAU7yMfCbNij2h7seDS6nzhtnWNCmiMuSTZ3QdQf6fh3px5x1V2H9xedbZXU8ukV5";
                 console.log(`Recipient set to: ${recipient}`);  
                 
                 let artistErgoAddress = await ergo.get_change_address();
@@ -190,42 +203,44 @@ const ContractCompiler: React.FC = () => {
                 
                 let value = "1000000";
 
-                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";
+                const tokenId = "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91";
+                const token2 = "8c7ff0e5f1970be69aa3b9ad0428b398e9a9446b505f457f0d4ac6c9acfbeb93";
 
-                const r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex();
+                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, artistErgoTreeHex]]).toHex();
                 console.log("R4:", r4);
-                const r5 =  "0e20" + tokenId
+                let r5 = SColl(SColl(SByte), [tokenId]).toHex();
                 console.log("R5:", r5);
-                const r6 = SLong("1").toHex();
+                let r6 = SLong("1").toHex();
                 console.log("R6:", r6);
+
                 const assetArray = "0400";
                 console.log("Asset Array:", assetArray);
 
-                const inputBox: InputBox = {
-                    "boxId": "7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129",
-                    "transactionId": "7517a53479c345eeb9772145594646728f8159a3c1110fde2d530fe0fe84d776",
-                    "blockId": "8e70445d5219e69bb49e5bb47b53923395215a3cd96b4348415bd6ff3aaad664",
+                const inputBox: InputBox =  {
+                    "boxId": "c00efdbc4dbb0d568f9fdbbfaaaf7b17a42612cc0c69cbea314d0e2e27e349db",
+                    "transactionId": "bfa53fe3af8233e5d6023ca719d47c3197857ed31fd28be3e5dfc8a30fcba9e0",
+                    "blockId": "1f872a1d0ba37fd9ed0b435a2a5ce5baebf4563b3dd829452d6b7b942dd5af26",
                     "value": 1000000,
                     "index": 0,
-                    "globalIndex": 32723003,
-                    "creationHeight": 1093281,
-                    "settlementHeight": 1093284,
-                    "ergoTree": "1014040005000400040004020e40646439346138643938323535656336353932383062343838316362313365373934613265363230623137616636306664356164663566323335343532336230620404040204000402040204000e4063373539316262616133343963643961636266356364613863613663626631646265363032393564646339316566653263343365303437633234653664336232010008cd03e0cec0822ad82f91a141a1333551fc448e7c9921ca2989569d5e2aaf0e5c420a0580dac4090406040404000100d810d601b2a5730000d602c27201d603937202c2a7d6049299c17201c1a77301d605db6308a7d606b17205d607b4720573027206d608db63087201d609b4720873037206d60ae4c6a7040c410ed60be4c6a7051ad60ce4c6a70605d60de4c672010605d60eeded93720ae4c67201040c410e93720be4c67201051a93720c720dd60fb1a5d610b2a5730400d1ececededed720372049372077209720eededed93cb72027305af720bd901110eae7208d901134d0eed938c7213017211928c721302720d720e95eded91720f730691b1db6308b2a57307007308e6c6b2a5730900070c410ed803d611b2a5730a00d612b2db63087211730b00d613e4c67211070c410eededed93cbc27211730ced938c721201c5a7938c7212027eb1721305937213720a93e4c67201074d0e7212730dededededed93c27210d0730e92c17210730f9591720f7310d804d611b2a5731100d612e4c672110404d613b2db63087211731200d614b2720b721200eded93c272118cb2720a72120002ed938c7213017214928c721302720c93b57207d901154d0e948c7215017214b57209d901154d0e948c72150172147313720e72037204",
-                    "address": "Fjp7ogHP6fdk2Xy782guv7jnMXQHH3Htjq7m7ZViEFR2JrWw8KxURU5SgET7FaXULXonQkcPdueZP54yDYojwaT5328tGnppvWBSRjcnMRUBAUmvKW7zXs3dyRuHHJMRUQ7b8Ybgp6H5xX4PkWzqnJNyjfBb5ocMjRPMuqazfLgC4K8uSsVotsUYM7qLaUNWF97gwEfzLRummjKB5Q2d1fu6LbCY8MtpaYCVxcSPYBeKdQZJuA9jVDK92roDT2UwUxjciTZ3MQB5ptCTzjipweRNM3tGU4RfrXKhSj56Z2mPL4GTZEptf9m3PhZv6XdYtwC6euV5KMyfFa4otmKcNT3yEL2D24aq16DnB6RvefHRcyRLCJgxah5sReEff4ZZfMKUS8QhrobkZ62xSha4zyRxhPXcdvz7U8EuTM7raHQm4hKZEc7YVRTMAgtSDKNXiQvrKrSas8ZgaANdB1XnhMS5bv18bWfuxseSsQZ2Fb3p96wJNhve3GGamRAqdrnCg7sFrWioXemYAo5SAAX7QXS95LwVYssrNVtxm9dAEubSeh4wReUpVMxaWWFJ8FediFR7Nfs3Tqk9UdduJhgMDcBXQe1TFD2rpE5FzsuXbgsuP58aQCbkyTshwwut38YgjJR9WtWXpSfJpoPegSoKkKQF7ZbP9E3DQgy6iX67zGj3iTxc7jdu6uyzPQ3JRpbL3e44gM87t7MT6qvWR2RUEKsKnk2KXUashPX5p3Ac4PXS6nhi2e3YTFJAoLaeKFoQS1cc4qLBy76Wjb2pnFUyM2HLy498QjbKFCJFk1zZCM7tGgSrsASKCxNbSLuAycqRHbQhQxzFXxLimWu1aitsTPDGE1ShCnYfHS2NeFNFmiDM",
+                    "globalIndex": 32940536,
+                    "creationHeight": 1097773,
+                    "settlementHeight": 1097775,
+                    "ergoTree": "101904000500040004000e0301b97b040208cd03704333b53273fd0cbec619124f04ba6019241756745273b3eff792e4d8ffc7c9040404020400040204020400010004000400040204fe01040604040580dac4090406040404000100d813d601b2a5730000d602c27201d603937202c2a7d6049299c17201c1a77301d605db6308a7d606b17205d607b4720573027206d608db63087201d609b4720873037206d60ae4c6a7040c410ed60be4c6a7051ad60ce4c6a70605d60de4c672010605d60eeded93720ae4c67201040c410e93720be4c67201051a93720c720dd60f7304d610b1a5d611b2a5730500d612c27211d613d07306d1ececededed720372049372077209720eededed93cb7202720faf720bd901140eae7208d901164d0eed938c7216017214928c721602720d720e95eded917210730791b1db6308b2a57308007309e6c6b2a5730a00070c410ed803d614b2a5730b00d615b2db63087214730c00d616e4c67214070c410eededed93cbc27214720fed938c721501c5a7938c7215027eb1721605937216720a93e4c67201074d0e7215730dededededed95937eb27212730e0004730f9372127213d801d614b1721293b472137310b17213b4721295917214731173127313721492c172117314959172107315d804d614b2a5731600d615e4c672140404d616b2db63087214731700d617b2720b721500eded93c272148cb2720a72150002ed938c7216017217928c721602720c93b57207d901184d0e948c7218017217b57209d901184d0e948c72180172177318720e72037204",
+                    "address": "2SApbDZd8MwJT2odz5kU93Rsgi6ukLtbS3GfbvYRsz6yKEnpxZBrFKb1an9tCPDpeENjPnX1wjCLQckSSfgrCebw42fBQfAuCcVA11ChFXGgbKQ4b4pGr1B13H234vSj6d5s9RH795ZXmuqnACjiF2c7M21KPspT7jaLgi7CVMbYfPAqdexDfoEyC3HzJD1DFUrNENh5i1mmAdPjQx1JXEvZL8rp7tEYUQf2ADW8zhaEu3ZLqpkVjkvjSVBbY5gcSWovsSg3wLCrUWZkJXg3x3z3XN2MariRNDxfdzvzYAe8HH2Wt5qQWdo7abFSSQxuCZvbHqBzqBTDQavymm7XFrMPsRQkGWV9MXtpVjF23pxyxhBShFfxDTmwyyRANbNXQq2Rsm98MdeicpyRhsjVJf9Ydz9QdQFXVKDvUtGRnFULqQTKqCrUT82Dc4kv6qT8HUMFUX8SCmnCYoPePdCGy9JPHZ8ELbJxhLk1H3GaDP3Ue9giM32d2xFEk4c44kd63j99GCNQJFR63GfjtqP9wdvXgZzoQQYcLJDCyWehM62xpMNkWWWyRskE4g9NM8fhNg65vJT2VBJpu6ztjwoyX7yd95qsxDyf3QaxtfN3Pu55MyAx3zca5vv1vFhr4MEvPD24zpz28rShaveEDx8iL93CKSdR3bKiyZnJPX6ppjR7xve9x9UfDevoMQQ2sQyeptgm17QP66HBd3HWKzJb8AC9Sk4XAU7yMfCbNij2h7seDS6nzhtnWNCmiMuSTZ3QdQf6fh3px5x1V2H9xedbZXU8ukV5",
                     "assets": [
                         {
-                            "tokenId": "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
+                            "tokenId": "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91",
                             "index": 0,
                             "amount": 1,
-                            "name": "DDM Test",
+                            "name": "$Lambo",
                             "decimals": 0,
                             "type": "EIP-004"
                         }
                     ],
                     "additionalRegisters": {
-                        "R4": "0c410e0180897a48303030386364303263303663396331336264646262323231623831343639363065656466656264333164633538653630623638353437376363346639653165626562623165313761",
-                        "R5": "0e2013e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
-                        "R6": "0502"
+                        "R4": "0c410e0180897a240008cd03f68e2d2a05f62d2dcb3db017c62fcdd92c554ff6f31cc5acccb2157c63b45238",
+            "R5": "1a01200fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91",
+            "R6": "0502"
                     },
                     "mainChain": true
                 };
@@ -240,10 +255,6 @@ const ContractCompiler: React.FC = () => {
                         R4: r4,
                         R5: r5,
                         R6: r6
-                    })
-                    .addTokens({ 
-                        tokenId: tokenId,  // Using the tokenId variable from earlier
-                        amount: "0"  // Setting the amount to 0
                     })
                 )
                 .to(
@@ -287,32 +298,40 @@ const ContractCompiler: React.FC = () => {
             console.log('Sending files to contract...');  
     
             if (await ergoConnector.nautilus.connect()) {
-                console.log('Nautilus connected...');  
+               
                 const inputBox: InputBox = {
-                    "boxId": "7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129",
-                    "transactionId": "7517a53479c345eeb9772145594646728f8159a3c1110fde2d530fe0fe84d776",
-                    "blockId": "8e70445d5219e69bb49e5bb47b53923395215a3cd96b4348415bd6ff3aaad664",
+                    "boxId": "ccdb24754634fefbd5a5ed587fa997a80fdeec9db73bc13880d582229ad29c9a",
+                    "transactionId": "34f127bba2272e063485a473700cbfa31fa4e3ee95f7de19fb84ea625ca7e0b2",
+                    "blockId": "bc5756eac3f57e32904c91ed10fc716e21d5128c5af85751d9ffdefa1ed6a00b",
                     "value": 1000000,
                     "index": 0,
-                    "globalIndex": 32723003,
-                    "creationHeight": 1093281,
-                    "settlementHeight": 1093284,
+                    "globalIndex": 32939266,
+                    "creationHeight": 1097714,
+                    "settlementHeight": 1097716,
                     "ergoTree": "1014040005000400040004020e40646439346138643938323535656336353932383062343838316362313365373934613265363230623137616636306664356164663566323335343532336230620404040204000402040204000e4063373539316262616133343963643961636266356364613863613663626631646265363032393564646339316566653263343365303437633234653664336232010008cd03e0cec0822ad82f91a141a1333551fc448e7c9921ca2989569d5e2aaf0e5c420a0580dac4090406040404000100d810d601b2a5730000d602c27201d603937202c2a7d6049299c17201c1a77301d605db6308a7d606b17205d607b4720573027206d608db63087201d609b4720873037206d60ae4c6a7040c410ed60be4c6a7051ad60ce4c6a70605d60de4c672010605d60eeded93720ae4c67201040c410e93720be4c67201051a93720c720dd60fb1a5d610b2a5730400d1ececededed720372049372077209720eededed93cb72027305af720bd901110eae7208d901134d0eed938c7213017211928c721302720d720e95eded91720f730691b1db6308b2a57307007308e6c6b2a5730900070c410ed803d611b2a5730a00d612b2db63087211730b00d613e4c67211070c410eededed93cbc27211730ced938c721201c5a7938c7212027eb1721305937213720a93e4c67201074d0e7212730dededededed93c27210d0730e92c17210730f9591720f7310d804d611b2a5731100d612e4c672110404d613b2db63087211731200d614b2720b721200eded93c272118cb2720a72120002ed938c7213017214928c721302720c93b57207d901154d0e948c7215017214b57209d901154d0e948c72150172147313720e72037204",
                     "address": "Fjp7ogHP6fdk2Xy782guv7jnMXQHH3Htjq7m7ZViEFR2JrWw8KxURU5SgET7FaXULXonQkcPdueZP54yDYojwaT5328tGnppvWBSRjcnMRUBAUmvKW7zXs3dyRuHHJMRUQ7b8Ybgp6H5xX4PkWzqnJNyjfBb5ocMjRPMuqazfLgC4K8uSsVotsUYM7qLaUNWF97gwEfzLRummjKB5Q2d1fu6LbCY8MtpaYCVxcSPYBeKdQZJuA9jVDK92roDT2UwUxjciTZ3MQB5ptCTzjipweRNM3tGU4RfrXKhSj56Z2mPL4GTZEptf9m3PhZv6XdYtwC6euV5KMyfFa4otmKcNT3yEL2D24aq16DnB6RvefHRcyRLCJgxah5sReEff4ZZfMKUS8QhrobkZ62xSha4zyRxhPXcdvz7U8EuTM7raHQm4hKZEc7YVRTMAgtSDKNXiQvrKrSas8ZgaANdB1XnhMS5bv18bWfuxseSsQZ2Fb3p96wJNhve3GGamRAqdrnCg7sFrWioXemYAo5SAAX7QXS95LwVYssrNVtxm9dAEubSeh4wReUpVMxaWWFJ8FediFR7Nfs3Tqk9UdduJhgMDcBXQe1TFD2rpE5FzsuXbgsuP58aQCbkyTshwwut38YgjJR9WtWXpSfJpoPegSoKkKQF7ZbP9E3DQgy6iX67zGj3iTxc7jdu6uyzPQ3JRpbL3e44gM87t7MT6qvWR2RUEKsKnk2KXUashPX5p3Ac4PXS6nhi2e3YTFJAoLaeKFoQS1cc4qLBy76Wjb2pnFUyM2HLy498QjbKFCJFk1zZCM7tGgSrsASKCxNbSLuAycqRHbQhQxzFXxLimWu1aitsTPDGE1ShCnYfHS2NeFNFmiDM",
                     "assets": [
                         {
-                            "tokenId": "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
+                            "tokenId": "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91",
                             "index": 0,
-                            "amount": 1,
-                            "name": "DDM Test",
+                            "amount": 2,
+                            "name": "$Lambo",
+                            "decimals": 0,
+                            "type": "EIP-004"
+                        },
+                        {
+                            "tokenId": "8c7ff0e5f1970be69aa3b9ad0428b398e9a9446b505f457f0d4ac6c9acfbeb93",
+                            "index": 1,
+                            "amount": 2,
+                            "name": "Liquid Phase",
                             "decimals": 0,
                             "type": "EIP-004"
                         }
                     ],
                     "additionalRegisters": {
-                        "R4": "0c410e0180897a48303030386364303263303663396331336264646262323231623831343639363065656466656264333164633538653630623638353437376363346639653165626562623165313761",
-                        "R5": "0e2013e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65",
-                        "R6": "0502"
+                        "R4": "0c410e0180897a240008cd03f68e2d2a05f62d2dcb3db017c62fcdd92c554ff6f31cc5acccb2157c63b45238",
+            "R5": "1a02200fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91208c7ff0e5f1970be69aa3b9ad0428b398e9a9446b505f457f0d4ac6c9acfbeb93",
+            "R6": "0504"
                     },
                     "mainChain": true
                 };
@@ -326,17 +345,19 @@ const ContractCompiler: React.FC = () => {
                 let artistErgoTreeHex: string = ErgoAddress.fromBase58(artistErgoAddress).ergoTree;
                 
                 let value = "1000000";
+                const withdrawContract = "ChSE2E1gh9wX8ffWYwgxofQnaPk311gyC4KE9nhYdXrWaeNsiiP3A8CdMVbmJ4YKDRVPzVMJey9CUrKPf9u6YVYGg8mRnNopeiAfJVzi1v1Hr36Htx9CrVDnc5aautRjFPyzGCFPsM1tfiJutBpSJyNRamEL2BvTTUq8ZZiG2k8eKTtiE5WLk8fHHaeAzh8a5ehDFuRR93ZtZGh4QP5ykQZwkDk98H8vLe1JLKDYrzVjyhTFZAFSMMagQe41Yq3EbW8f9Qgj3T96DZdbYHi3iNnS6sAWXtHx7oVY9KhwZb5nV1WAdXoDTB9zkAMoLRctkM2fe8LTHEoJXVawDikQRGFRNKkLwzuWqtfKLGKEpRoSMLZAB96thVsBmba1TguW5rXGQRKYaeoZvxcBPaFC7vW9vVcm8h9wHvBrLvcPjDWFYtSvGzEjVQVdzUR6eshyoCupmE3nztsJQjY1uc54zAe3ZdA93ncdm4ejrqCGG5MD6XVSjcejqj951XTXtqEATn3WjNYAqvP6dGN4yxeMEgrsiZFLewucYYtvQFZgq3ZGSKwioS44m4B5mKrdPcDqYqX7oA6VX2JpdSDJ";
 
-                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";
-
-                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoAddress)]]).toHex();
-                console.log("R4:", r4);
-                let r5 =  "0e20" + tokenId
-                console.log("R5:", r5);
-                let r6 = SLong("1").toHex();  // Adjust this as necessary
-                console.log("R6:", r6);
+const tokenId = "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91";
+const token2 = "8c7ff0e5f1970be69aa3b9ad0428b398e9a9446b505f457f0d4ac6c9acfbeb93";
+       
+let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, artistErgoTreeHex]]).toHex();
+console.log("R4:", r4);
+let r5 = SColl(SColl(SByte), [tokenId, token2]).toHex();
+console.log("R5:", r5);
+let r6 = SLong("2").toHex();
+console.log("R6:", r6);
     
-                let r7 = SColl(SByte, utf8.decode('7cb8ddd615c6dd4dc3b2ff97f77b35d249819dc872ccdbc1de5612b18ff57129')).toHex();
+                let r7 = SColl(SByte, utf8.decode('3fa5a56c3460497d4fa80dde55f349dacd6da4b8c3716bfb6e41145574be32e0')).toHex();
                 console.log("R7:", r7);  // Log the new R7 value
     
                 console.log('Creating transaction builder...');  
@@ -352,17 +373,21 @@ const ContractCompiler: React.FC = () => {
                         })
                         .addTokens({ 
                             tokenId: tokenId,  
-                            amount: "1"  
+                            amount: "2"  
+                        })
+                        .addTokens({ 
+                            tokenId: token2,  // Using the tokenId variable from earlier
+                            amount: "2"  // Setting the amount to 1
                         })
                 )
                 .to(
-                    new OutputBuilder('1000000', artistErgoAddress)  // Using the new recipient address here
+                    new OutputBuilder('1000000', withdrawContract)  // Using the new recipient address here
                     .mintToken({ amount: 1 })
                         .setAdditionalRegisters({
                             R4: SColl(SByte, utf8.decode('THz Contract Withdrawal Indicator')).toHex(),
                             R5: SColl(SByte, utf8.decode('Send this indicator to the Assignment Provision contract to get your contract nullification tokens.')).toHex(),
                             R6: SColl(SByte, utf8.decode("0".toString())).toHex(),
-                            R7: SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex()
+                            R7: r4
                         })
                 )
                 .sendChangeTo(await ergo.get_change_address())
@@ -405,7 +430,7 @@ const ContractCompiler: React.FC = () => {
     
                 let artistErgoTreeHex: string = ErgoAddress.fromBase58(artistErgoAddress).ergoTree;
     
-                const tokenId = "13e4c606615071a396c8ceab6d6233da4be2f98bcf131ecda481968ab4115f65";  // Adjust this as necessary
+                const tokenId = "0fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91";  // Adjust this as necessary
                 const buyerAddress = await ergo.get_change_address(); 
                 const saleBoxId = "88a47a56676f961c0f9e91a7a5be5d2b70bded2c5bd6de0f8f72b8da1b8822ba";
                 const revenue = "1000000000";  // 1 erg in nano ergs
@@ -421,9 +446,9 @@ const ContractCompiler: React.FC = () => {
                 console.log('UTXOs:', JSON.stringify(utxos, null, 2));
 
 
-                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, utf8.decode(artistErgoTreeHex)]]).toHex();
+                let r4 = SColl(SPair(SLong, SColl(SByte)), [[value, artistErgoTreeHex]]).toHex();
                 console.log("R4:", r4);
-                let r5 =  "0e20" + tokenId
+                let r5 = SColl(SColl(SByte), [tokenId]).toHex();
                 console.log("R5:", r5);
                 let r6 = SLong(0).toHex();  
                 console.log("R6:", r6);    
