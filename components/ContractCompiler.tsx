@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { compile } from '@fleet-sdk/compiler';
 import { ErgoAddress, OutputBuilder, Network, TransactionBuilder } from "@fleet-sdk/core";
-import { SByte, SColl, SLong, SPair } from '@fleet-sdk/serializer'; 
+import { SByte, SColl, SLong, SPair, SInt } from '@fleet-sdk/serializer'; 
 import { sha256, utf8 } from '@fleet-sdk/crypto'; 
 import { BOOTSTRAP_TEMPLATE } from '../contracts/BootstrapTemplate';
 
@@ -212,11 +212,11 @@ const ContractCompiler: React.FC = () => {
                 console.log("R5:", r5);
                 let r6 = SLong("1").toHex();
                 console.log("R6:", r6);
+                let r42 = SInt("0").toHex();
+                console.log("R42:", r42);
+              
 
-                const assetArray = "0400";
-                console.log("Asset Array:", assetArray);
-
-                const inputBox: InputBox =  {
+                const inputBox: InputBox = {
                     "boxId": "c00efdbc4dbb0d568f9fdbbfaaaf7b17a42612cc0c69cbea314d0e2e27e349db",
                     "transactionId": "bfa53fe3af8233e5d6023ca719d47c3197857ed31fd28be3e5dfc8a30fcba9e0",
                     "blockId": "1f872a1d0ba37fd9ed0b435a2a5ce5baebf4563b3dd829452d6b7b942dd5af26",
@@ -239,8 +239,8 @@ const ContractCompiler: React.FC = () => {
                     ],
                     "additionalRegisters": {
                         "R4": "0c410e0180897a240008cd03f68e2d2a05f62d2dcb3db017c62fcdd92c554ff6f31cc5acccb2157c63b45238",
-            "R5": "1a01200fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91",
-            "R6": "0502"
+                        "R5": "1a01200fdb7ff8b37479b6eb7aab38d45af2cfeefabbefdc7eebc0348d25dd65bc2c91",
+                        "R6": "0502"
                     },
                     "mainChain": true
                 };
@@ -262,8 +262,8 @@ const ContractCompiler: React.FC = () => {
                 )
                 .to(
                     new OutputBuilder('1000000', artistErgoAddress)
-                        .setAdditionalRegisters({
-                            R4: assetArray,
+                    .setAdditionalRegisters({
+                        R4: r42,
                         })
                         .addTokens({ 
                             tokenId: tokenId,  // Using the tokenId variable from earlier
