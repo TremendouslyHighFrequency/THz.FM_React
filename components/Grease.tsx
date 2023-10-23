@@ -8,6 +8,17 @@ const grease_data = [
     {
         "NFT_Type": "Fitness Influencer Male",
         "Song to pair": " pump_up_the_jam.mp3 ",
+        "File Name": "Character NFT MISC Fitness Influencer M1 V2.jpg",
+        "NFT Name/Title": "Fitness Influencer #1",
+        "Description": "Greasy Royale Miscellaneous Character",
+        "Number to mint": "1",
+        "IPFS CID Audio": "ipfs://bafybeie3bnofgpul3dtnwrd2c3fch3tb572zqyzsrnznul5sjau3ohdenu",
+        "IPFS CID Image": "ipfs://bafybeifuvgwwsraomvkxk7kz6asxgdhtu63nms5iav522s7jmhtzzrg3i",
+        "Token ID": "76c592187a8eeaf2d4ebfbf35e957b12005d568e4530ef9dc658d91284c05c0f"
+    },
+    {
+        "NFT_Type": "Fitness Influencer Male",
+        "Song to pair": " pump_up_the_jam.mp3 ",
         "File Name": "Character NFT MISC Fitness Influencer M2 V2.jpg",
         "NFT Name/Title": "Fitness Influencer #3",
         "Description": "Greasy Royale Miscellaneous Character",
