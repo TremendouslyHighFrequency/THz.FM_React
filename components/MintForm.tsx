@@ -5,13 +5,13 @@ import { CheckIcon } from '@radix-ui/react-icons';
 import { MintNFT } from './MintNFT';
 import './component_styles/Checkbox.css';
 
-export const MintForm = () => {  
+export const MintForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [decimals, setDecimals] = useState<string>('0');
-  const [uploadComplete, setUploadComplete] = useState(false); 
-  const [loading, setLoading] = useState(false); 
+  const [uploadComplete, setUploadComplete] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
   const [showNautilus, setShowNautilus] = useState(false);
   const [nftStorageProgress, setNftStorageProgress] = useState<number | null>(null);
@@ -23,21 +23,21 @@ export const MintForm = () => {
   const [showMultipleArtists, setShowMultipleArtists] = useState(false);
 
 
-  
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("File change event triggered.");
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
       console.log(`Selected file: ${e.target.files[0].name}`);
-      
+
       setLoading(true);
       setUploadProgress(0);
-      setTimeout(() => setUploadProgress(50), 1000); 
+      setTimeout(() => setUploadProgress(50), 1000);
       setTimeout(() => {
         setUploadProgress(100);
         setLoading(false);
       }, 2000);
-      
+
       setUploadComplete(true);
     } else {
       console.log("No file selected or multiple files selected.");
@@ -79,7 +79,7 @@ const handleArtistChange = (index: number, value: string) => {
       console.log("Creating DDM...");
       try {
         const ipfsLink = await MintNFT(file, title, description, parseInt(decimals), setLoading, setNftStorageProgress);
-        setUploadComplete(true); 
+        setUploadComplete(true);
         console.log(`Creation completed. IPFS link: ${ipfsLink}`);
       } catch (error) {
         console.error("Error during creation:", error);
@@ -101,11 +101,11 @@ const handleArtistChange = (index: number, value: string) => {
       return newValue;
     });
   };
-  
+
 
 
 return (
-  <>  
+  <>
     <div className="mb-4 bg-white rounded-lg shadow-md p-12">
       <h2 className="text-2xl font-bold mb-4">Create your Distinct Digital Master (DDM™)</h2>
       <p className="mb-4">
@@ -127,8 +127,8 @@ return (
 
         <li className="mb-2">2. Is this a solo work, or will there be multiple artists/representatives of the work?</li>
         <div className="flex items-center mt-4">
-            <div 
-                className="CheckboxRoot mr-2" 
+            <div
+                className="CheckboxRoot mr-2"
                 onClick={() => setShowMultipleArtists(!showMultipleArtists)}
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
@@ -146,7 +146,7 @@ return (
                     <>
                         <li className="mb-2">Primary Artist or Representative:</li>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 mb-6 bg-indigo-50 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="representative" type="text" placeholder="Primary artist or representative" onChange={(e) => setPrimaryArtist(e.target.value)} />
-                        
+
                         {otherArtists.map((artist, index) => (
                             <div key={index} className="flex items-center mb-2">
                                 <input className="shadow appearance-none border rounded w-full py-2 px-3 bg-indigo-50 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={artist} onChange={e => handleArtistChange(index, e.target.value)} placeholder={`Artist ${index + 2}`} />
@@ -163,10 +163,10 @@ return (
                     Upload Album Art
                 </label>
 
-         
+
         </ol>
       </div>
-      
+
     </div>
 
     <div className="mb-4 mt-12">
@@ -182,10 +182,10 @@ return (
         </div>
       )}
 
-    
+
       <div className="flex items-center mt-4">
-        <div 
-          className="CheckboxRoot mr-2" 
+        <div
+          className="CheckboxRoot mr-2"
           onClick={handleCheckboxToggle}
           style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
@@ -202,7 +202,7 @@ return (
       {showDecimals && (
         <div className="mt-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="decimals">
-          Decimals represent how the DDM can be divided. 
+          Decimals represent how the DDM can be divided.
          <span className="font-normal">
           <br />A value of 0 means the DDM cannot be split (1).
           <br />A value of 1 means the DDM can be split into 10 parts (0.1,0.2,...,1.0).
@@ -221,7 +221,7 @@ return (
 />
 
           <p className="text-gray-700 mt-1"></p>
-        </div> 
+        </div>
       )}
 
       <div className="flex mt-8">

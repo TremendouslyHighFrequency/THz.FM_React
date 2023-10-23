@@ -40,7 +40,7 @@ import Register from './components/Register';
 import EditProfile from './components/EditProfile';
 import AlbumReleaseListeningParty from './components/ListeningParty';
 import ContractCompiler from './components/ContractCompiler';
-
+import GreaseViewer from './components/Grease';
 
 function App() {
 
@@ -84,6 +84,7 @@ function App() {
                   {navItems.map(item => (
   <Route key={item.route} path={item.route} element={<item.component />} />
 ))}
+                    <Route path="/grease" element={<GreaseViewer />} />
                       <Route path="/releases/:title/by/:artist/:name/listening-party" element={<AlbumReleaseListeningParty />} />
                     <Route path="/create-release" element={<CreateRelease />}/>
                     <Route path="/manage-releases" element={<ManageReleases />} />
