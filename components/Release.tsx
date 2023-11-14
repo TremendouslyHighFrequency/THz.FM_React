@@ -424,6 +424,114 @@ const updateLocalState = (newValue) => {
 
 <p className="mb-4"><Link to={`/search/type/${data.release_type}`}>{data.release_type}</Link> by: <Link to={`/artists/${data.release_artist}`}>{data.release_artist}</Link></p>
 
+{Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
+        <Link to={`/search/genre/${genre.genre}`}><p className="genre-item" key={index}>{genre.genre}</p></Link>
+      ))}
+
+<div className="my-6">
+       
+       <Dialog.Root>
+   <Dialog.Trigger asChild>
+   <button className="Button violet mr-12">Purchase</button>
+   </Dialog.Trigger>
+   <Dialog.Portal>
+   <Dialog.Overlay className="DialogOverlay" />
+   <Dialog.Content className="DialogContent">
+   <Dialog.Title className="DialogTitle">Choose payment method</Dialog.Title>
+   <Dialog.Description className="DialogDescription">
+   This artist accepts both ERG and USD.<br />        
+   <span className="text-xs">(ERG payment requires Nautilus wallet connection.)</span>
+   </Dialog.Description>
+   
+   <div className="flex space-x-4">
+   {
+   !showPayPalButtons && (
+   <>
+   <button className="Button orange w-full text-lg" onClick={handleButtonClick} style={{ fontFamily: "'Russo One', sans-serif" }}><span><b>∑ </b>{data.price_erg} ERG</span></button>
+   <button className="Button green w-full text-lg" onClick={() => setShowPayPalButtons(true)} style={{ fontFamily: "'Russo One', sans-serif" }}><span>${data.price_usd} USD</span></button>
+   </>
+   )
+   }
+   
+   {showPayPalButtons && data.price_usd && (
+   <>
+   <PayPalButtons
+   price_usd={data.price_usd}
+   createOrder={async (orderData, actions) => {
+   const amount_usd = data.price_usd; // Access price_usd from component's props
+   try {
+   const response = await fetch(`https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount_usd}`);
+   const responseData = await response.json();
+   console.log("API Response:", responseData);
+   
+   if (responseData.message && responseData.message.orderID) {
+   return responseData.message.orderID; // Return the nested order ID
+   } else {
+   const errorMsg = responseData.error ? responseData.error : 'Failed to create PayPal order';
+   throw new Error(errorMsg);
+   }
+   } catch (error) {
+   console.error("Error creating PayPal order:", error);
+   throw error; // Rethrow the error to propagate it
+   }
+   }}
+   onApprove={async (data, actions) => {
+   console.log("onApprove Data:", data);
+   try {
+   const orderID = data.orderID;
+   console.log("Received orderID:", orderID);
+   
+   // Make a POST call to capture the PayPal order
+   const response = await fetch(`https://thz.fm/api/method/frappe.create_order.capture_paypal_order`, {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify({ order_id: orderID })
+   });
+   const captureResponse = await response.json();
+   
+   if (captureResponse && !captureResponse.error) {
+   setMessage(`Payment captured successfully!`);
+   } else {
+   throw new Error(captureResponse.error || 'Failed to capture payment.');
+   }
+   
+   } catch (error) {
+   console.error("Error capturing PayPal order:", error);
+   setMessage('Failed to capture payment.');
+   }
+   }}
+   />
+   <button 
+         className="Button gray w-full text-lg" 
+         onClick={() => setShowPayPalButtons(false)} 
+         style={{ fontFamily: "'Russo One', sans-serif", marginLeft: '10px' }}>
+             <span>Back</span>
+     </button>
+      </>
+   )}
+   
+   
+   </div>
+   
+   <Dialog.Close asChild>
+   <button className="IconButton" aria-label="Close">
+     <Cross2Icon />
+   </button>
+   </Dialog.Close>
+   </Dialog.Content>
+   </Dialog.Portal>
+   </Dialog.Root>
+   
+   <ShareModal data={data} />
+   <button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
+   
+       
+         
+       </div>
+   
+
               {Array.isArray(data.release_tracks) && data.release_tracks.map((track, index) => (
                 <Track 
                 track={track} 
@@ -458,117 +566,13 @@ const updateLocalState = (newValue) => {
     <div className="mb-12">
             {/* Album Artwork */}
   <div className="display-artwork" style={{backgroundImage: `url(${data.release_artwork})`}}></div>
-      {Array.isArray(data.release_genres) && data.release_genres.map((genre, index) => (
-        <Link to={`/search/genre/${genre.genre}`}><p className="genre-item" key={index}>{genre.genre}</p></Link>
-      ))}
+
     </div>
 
 
     <p className="mb-12 text-lg">{data.release_description}</p>
     <Link to={`/releases/${data.title}/by/${data.release_artist}/${data.name}/listening-party`}>Join Listening Party</Link>
-    <div className="mt-8">
-       
-    <Dialog.Root>
-<Dialog.Trigger asChild>
-<button className="Button violet mr-12">Purchase</button>
-</Dialog.Trigger>
-<Dialog.Portal>
-<Dialog.Overlay className="DialogOverlay" />
-<Dialog.Content className="DialogContent">
-<Dialog.Title className="DialogTitle">Choose payment method</Dialog.Title>
-<Dialog.Description className="DialogDescription">
-This artist accepts both ERG and USD.<br />        
-<span className="text-xs">(ERG payment requires Nautilus wallet connection.)</span>
-</Dialog.Description>
-
-<div className="flex space-x-4">
-{
-!showPayPalButtons && (
-<>
-<button className="Button orange w-full text-lg" onClick={handleButtonClick} style={{ fontFamily: "'Russo One', sans-serif" }}><span><b>∑ </b>{data.price_erg} ERG</span></button>
-<button className="Button green w-full text-lg" onClick={() => setShowPayPalButtons(true)} style={{ fontFamily: "'Russo One', sans-serif" }}><span>${data.price_usd} USD</span></button>
-</>
-)
-}
-
-{showPayPalButtons && data.price_usd && (
-<>
-<PayPalButtons
-price_usd={data.price_usd}
-createOrder={async (orderData, actions) => {
-const amount_usd = data.price_usd; // Access price_usd from component's props
-try {
-const response = await fetch(`https://thz.fm/api/method/frappe.create_order.create_paypal_order?amount_usd=${amount_usd}`);
-const responseData = await response.json();
-console.log("API Response:", responseData);
-
-if (responseData.message && responseData.message.orderID) {
-return responseData.message.orderID; // Return the nested order ID
-} else {
-const errorMsg = responseData.error ? responseData.error : 'Failed to create PayPal order';
-throw new Error(errorMsg);
-}
-} catch (error) {
-console.error("Error creating PayPal order:", error);
-throw error; // Rethrow the error to propagate it
-}
-}}
-onApprove={async (data, actions) => {
-console.log("onApprove Data:", data);
-try {
-const orderID = data.orderID;
-console.log("Received orderID:", orderID);
-
-// Make a POST call to capture the PayPal order
-const response = await fetch(`https://thz.fm/api/method/frappe.create_order.capture_paypal_order`, {
-method: 'POST',
-headers: {
-  'Content-Type': 'application/json'
-},
-body: JSON.stringify({ order_id: orderID })
-});
-const captureResponse = await response.json();
-
-if (captureResponse && !captureResponse.error) {
-setMessage(`Payment captured successfully!`);
-} else {
-throw new Error(captureResponse.error || 'Failed to capture payment.');
-}
-
-} catch (error) {
-console.error("Error capturing PayPal order:", error);
-setMessage('Failed to capture payment.');
-}
-}}
-/>
-<button 
-      className="Button gray w-full text-lg" 
-      onClick={() => setShowPayPalButtons(false)} 
-      style={{ fontFamily: "'Russo One', sans-serif", marginLeft: '10px' }}>
-          <span>Back</span>
-  </button>
-   </>
-)}
-
-
-</div>
-
-<Dialog.Close asChild>
-<button className="IconButton" aria-label="Close">
-  <Cross2Icon />
-</button>
-</Dialog.Close>
-</Dialog.Content>
-</Dialog.Portal>
-</Dialog.Root>
-
-<ShareModal data={data} />
-<button onClick={() => handleFavoriteClick("release", data)} className="Button gray ml-12">Add to Favorites</button>
-
-    
-      
-    </div>
-  
+     
   </div>
 
 
