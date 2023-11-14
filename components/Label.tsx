@@ -1,37 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFrappeGetDoc } from 'frappe-react-sdk'; // assuming this hook exists
-import { ReleaseItem } from '../types';
+import { useFrappeGetDoc } from 'frappe-react-sdk';
+import { LabelItem } from '../types'; // Ensure this type definition matches your data structure
+import LabelFeature from './LabelFeature';
 
-const Single = () => {
-  const { title, artist } = useParams();
-  const { data, error, isValidating } = useFrappeGetDoc<ReleaseItem>('Release', title); // assuming 'title' can be used to fetch a single ReleaseItem
+const Label = () => {
+  const { name } = useParams(); 
+  const { data, error, isValidating } = useFrappeGetDoc<LabelItem>('Label', name);  
+  const [label, setLabel] = useState<LabelItem | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [localError, setLocalError] = useState<any>(null); // Correctly define error state
 
   useEffect(() => {
-    // do something when title or artist changes, such as fetch related data
-  }, [title, artist]);
+    if (data) {
+      setLabel(data);
+      setLoading(false);
+    } else if (error) {
+      setLocalError(error);
+      setLoading(false);
+    }
+  }, [data, error]);
 
-  if (isValidating) {
-    return <>Loading...</>
-  }
+  if (loading) return <div>Loading...</div>;
+  if (localError) return <div>Error: {localError.message}</div>; // Display localError
 
-  if (error) {
-    return <>{JSON.stringify(error)}</>
-  }
-
-  if (data) {
+  if (label) {
     return (
       <div>
-        {/* Display the data */}
-        <h1>{data.title}</h1>
-        <p>{data.release_artist}</p>
-        <img src={data.release_artwork} alt={data.title} />
-        {/* Add more fields as necessary */}
+        <h1>{label.name}</h1> {/* Ensure properties match the LabelItem type */}
+        {/* Render other label details here */}
       </div>
-    )
+    );
   }
 
   return null;
 };
 
-export default Single;
+export default Label;
