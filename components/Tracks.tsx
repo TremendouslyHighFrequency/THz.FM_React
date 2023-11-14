@@ -88,8 +88,8 @@ const Tracks = () => {
 <Card>
       <List>
         {tracks.map((track, i) => (
-          <ListItem key={i} className="bg-white p-2" style={{ position: 'relative', backgroundImage: `url(${parents[track.parent]?.artwork})` }}>
-           <div className="playButton float-left w-8 block"><img className="w-8" src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/play-icon.png" />Play</div>
+          <ListItem key={i} className="bg-white p-2" style={{ position: 'relative' }}>
+           <div className="playButton float-left w-8 block"><img className="w-8" src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/play-icon.png" style={{ position: 'relative', backgroundImage: `url(${parents[track.parent]?.artwork})` }} />Play</div>
           
               <div className="inline-block px-4">
               <Text className="font-bold text-gray-800">{track.track_title}</Text> <Text className="text-xs text-gray-400">{track.track_artist}</Text>
