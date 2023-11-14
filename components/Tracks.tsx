@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useFrappeGetDocList } from 'frappe-react-sdk';
+import { LabelItem } from '../types';
 import { Link } from "react-router-dom";
-import { Grid, Col, Card, Text } from "@tremor/react";
+import { Grid, Col, Card, Text, MultiSelect, MultiSelectItem, List, ListItem, SearchSelect } from "@tremor/react";
 import MeiliSearch from 'meilisearch';
+import LabelFeature from './LabelFeature';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
@@ -69,26 +71,47 @@ const Tracks = () => {
   }, [pageIndex, useFallback]);
 
   return (
-    <>
-      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
-        {tracks.map((track, i) => (
-          <Col key={i}>
-            <Link to={`/releases/${parents[track.parent]?.title}/${track.track_title}/by/${track.track_artist}`}>
-              <Card>
-                <div className="artist-card-bg" style={{ position: 'relative', padding: '16px', backgroundImage: `url(${parents[track.parent]?.artwork})` }}>
-                  <Text>{track.track_title}</Text>
-                  <p>{track.track_artist}</p>
-                </div>
-              </Card>
-            </Link>
-          </Col>
+    <div className="labelPage grid grid-cols-[minmax(0,1fr),2fr] gap-4">
+    <div className="searchColumn p-2 pr-8">
+    <h1 className="text-3xl font-bold uppercase">Published Tracks</h1>
+  <Text className="text-lg mb-8">Finished whole songs to enjoy!</Text>
+      <MultiSelect className="w-96" placeholder='Search for an artist name or genre'>
+        <MultiSelectItem value="1">1</MultiSelectItem>
+        <MultiSelectItem value="2">2</MultiSelectItem>
+        <MultiSelectItem value="3">3</MultiSelectItem>
+      </MultiSelect>
+
+      <div className="py-6">
+     
+      </div>
+<Card>
+      <List>
+        {tracks.map(({ track_title, artwork }, i) => (
+          <ListItem key={i} className="bg-white p-2" style={{ position: 'relative', backgroundImage: `url(${encodeURI(artwork)})` }}>
+           <div className="playButton float-left w-8 block"><img className="w-8" src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/play-icon.png" />Play</div>
+          
+              <div className="inline-block px-4">
+              <Text className="font-bold text-gray-800">{track_title}</Text> <Text className="text-xs text-gray-400">Genre 1 •Genre 2 • Genre 3</Text>
+                <Text className="text-xs py-2 text-gray-700">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</Text>
+                <Link className="text-xs text-indigo-400" to={`/label/${track_title}`}>View Label</Link>
+              </div>
+              
+            
+          </ListItem>
         ))}
-      </Grid>
-      <div className="flex justify-center mt-10 space-x-1">
-            <button onClick={() => setPageIndex(prevIndex => prevIndex - 50)} className="flex items-center justify-center h-8 px-2 rounded text-sm font-medium text-gray-400">Prev</button>
-            <button onClick={() => setPageIndex(prevIndex => prevIndex + 50)} className="flex items-center justify-center h-8 px-2 rounded hover:bg-indigo-200 text-sm font-medium text-gray-600 hover:text-indigo-600">Next</button>
-          </div>
-    </>
+      </List>
+
+</Card>
+      {tracks.length >= 50 && (
+        <button onClick={() => setPageIndex(pageIndex + 50)}>Next page</button>
+      )}
+    </div>
+
+    <div className="labelDisplayColumn flex-grow mr-6">
+      <LabelFeature />
+  </div>
+
+</div>
   );
 };
 
