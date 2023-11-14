@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Grid, Col, Card, Text, MultiSelect, MultiSelectItem, List, ListItem, SearchSelect } from "@tremor/react";
 import MeiliSearch from 'meilisearch';
 import LabelFeature from './LabelFeature';
+import axios from 'axios';
 
 const client = new MeiliSearch({
   host: 'https://index.thz.fm',
