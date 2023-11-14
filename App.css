@@ -35,6 +35,43 @@ body[data-theme='dark'] {
 .h1 {
   font-size: 2.5rem;
 }
+.quote-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 2rem;
+}
+
+.quote-text {
+  text-align: center;
+  font-size: 1.5rem; /* Adjust as needed */
+  font-style: italic;
+  max-width: 800px; /* Adjust for readability */
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme='light'] .quote-text {
+  background-color: #fff;
+  color: #000;
+}
+
+body[data-theme='dark'] .quote-text {
+  background-color: #263040;
+  color: #fff;
+}
+body[data-theme='light'] .detailContainer {
+  background-color: #fff;
+  color: #000;
+}
+
+body[data-theme='dark'] .detailContainer {
+  background-color: #263040;
+  color: #fff;
+}
 
 .mintForm {
   text-align: center;
@@ -308,8 +345,8 @@ body[data-theme='dark'] {
 
 .display-artwork {
   float: right;
-  width: 22vw;
-  height: 22vw;
+  width: 12vw;
+  height: 12vw;
   min-height: 350px;
   min-width: 350px;
   max-width: 50%;
@@ -932,6 +969,13 @@ body[data-theme='light'] .side-nav li a {
 }
 
 @media screen and (max-width: 768px) {
+  .labelPage {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .searchColumn, .labelDisplayColumn {
+    padding: 1rem; /* Adjust padding */
+  }
   .search-results {
     width: 100%;
   }
